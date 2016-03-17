@@ -32,11 +32,11 @@ class GroupChatJSONEncoder(json.JSONEncoder):
     def default(self, obj: Application):
         if obj is Application:
             return {
-                'application_token': obj.application_token,
+                'applicationToken': obj.application_token,
                 'id': obj.id,
                 'name': obj.name,
-                'sequence_number': obj.sequence_number,
-                'tenant_id': obj.tenant_id
+                'sequenceNumber': obj.sequence_number,
+                'tenantId': obj.tenant_id
             }
         else:
             raise TypeError("UserJsonEncoder got {} instead of Application.".format(type(obj)))
@@ -45,5 +45,5 @@ class GroupChatJSONEncoder(json.JSONEncoder):
 class GroupChatDictDecoder:
     @staticmethod
     def decode(obj: dict) -> Application:
-        return Application(application_token=obj['application_token'], app_id=obj['id'], name=obj['name'],
-                           sequence_number=int(obj['sequence_number']), tenant_id=obj['tenant_id'])
+        return Application(application_token=obj['applicationToken'], app_id=obj['id'], name=obj['name'],
+                           sequence_number=int(obj['sequenceNumber']), tenant_id=obj['tenantId'])
