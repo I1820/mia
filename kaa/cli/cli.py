@@ -46,7 +46,7 @@ under certain conditions; type `show c' for details.
         return prompt
 
     def do_quit(self, line):
-        print("Thank you for using Firewall CLI")
+        print("Thank you for using Kaa Administration CLI")
         return True
 
     do_EOF = do_quit
