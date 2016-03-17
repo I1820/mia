@@ -8,6 +8,8 @@
 # =======================================
 import cmd
 
+from rest.app import KaaRestApplication
+
 try:
     import termcolor
 except ImportError:
@@ -33,10 +35,17 @@ under certain conditions; type `show c' for details.
             prompt = termcolor.colored(prompt, color="red", attrs=['bold'])
         server = input("{} Please enter kaa ip address: ".format(prompt))
         port = input("{} Please enter kaa port: ".format(prompt))
-        devuser = input("{} Please enter kaa tenant developer username".format(prompt))
-        devpass = input("{} Please enter kaa tenant developer password".format(prompt))
-        adminuser = input("{} Please enter kaa tenant administrator username".format(prompt))
-        adminpass = input("{} Please enter kaa tenant administrator password".format(prompt))
+        self.address = server + ":" + port
+        self.devuser = input("{} Please enter kaa tenant developer username: ".format(prompt))
+        self.devpass = input("{} Please enter kaa tenant developer password: ".format(prompt))
+        self.adminuser = input("{} Please enter kaa tenant administrator username: ".format(prompt))
+        self.adminpass = input("{} Please enter kaa tenant administrator password: ".format(prompt))
+
+    def do_get_all_applications(self, line):
+        kra = KaaRestApplication(self.address, self.devuser, self.devpass)
+        apps = kra.get_all_applications()
+        for app in apps:
+            print(app)
 
     @property
     def prompt(self):
