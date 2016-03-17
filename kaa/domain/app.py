@@ -28,7 +28,7 @@ class Application:
         self.tenant_id = tenant_id
 
 
-class GroupChatJSONEncoder(json.JSONEncoder):
+class ApplicationJSONEncoder(json.JSONEncoder):
     def default(self, obj: Application):
         if obj is Application:
             return {
@@ -42,7 +42,7 @@ class GroupChatJSONEncoder(json.JSONEncoder):
             raise TypeError("UserJsonEncoder got {} instead of Application.".format(type(obj)))
 
 
-class GroupChatDictDecoder:
+class ApplicationDictDecoder:
     @staticmethod
     def decode(obj: dict) -> Application:
         return Application(application_token=obj['applicationToken'], app_id=obj['id'], name=obj['name'],
