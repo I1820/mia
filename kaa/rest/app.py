@@ -24,5 +24,5 @@ class KaaRestApplication(KaaRestBase):
         response = json.loads(response.text)
         for obj in response:
             application = ApplicationDictDecoder.decode(obj)
-            applications = applications.append(application)
+            applications.append(application)
         return applications
