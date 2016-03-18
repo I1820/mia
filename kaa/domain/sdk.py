@@ -9,6 +9,7 @@
 
 import datetime
 import json
+from enum import Enum
 
 
 class SDKProfile:
@@ -50,6 +51,14 @@ class SDKProfile:
 
     def __str__(self) -> str:
         return json.dumps(self, indent=4, cls=SDKProfileJSONEncoder)
+
+
+class SDKProfileTargetPlatform(Enum):
+    c = 'C'
+    c_plus_plus = 'CPP'
+    java = 'JAVA'
+    android = 'ANDROID'
+    objective_c = 'OBJC'
 
 
 class SDKProfileJSONEncoder(json.JSONEncoder):
