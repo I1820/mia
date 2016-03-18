@@ -9,6 +9,7 @@
 import cmd
 
 from kaa.rest.app import KaaRestApplication
+from kaa.rest.sdk import KaaRestSDKProfile
 
 try:
     import termcolor
@@ -41,11 +42,22 @@ under certain conditions; type `show c' for details.
         self.adminuser = input("{} Please enter kaa tenant administrator username: ".format(prompt))
         self.adminpass = input("{} Please enter kaa tenant administrator password: ".format(prompt))
 
-    def do_get_all_applications(self, line):
+    def do_get_all_applications(self, line: str):
         kra = KaaRestApplication(self.address, self.devuser, self.devpass)
         apps = kra.get_all_applications()
         for app in apps:
             print(app)
+
+    def do_get_all_sdk_profiles(self, line: str):
+        try:
+            application_id = int(line)
+        except TypeError as e:
+            print("*** Invalid number: {}".format(str(e)))
+            return
+        krsp = KaaRestSDKProfile(self.address, self.devuser, self.devpass)
+        sdks = krsp.get_all_sdk_profiles(application_id)
+        for sdk in sdks:
+            print(sdk)
 
     @property
     def prompt(self):
