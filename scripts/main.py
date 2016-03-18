@@ -6,6 +6,6 @@
 #
 # [] Created By : Parham Alvani (parham.alvani@gmail.com)
 # =======================================
-from cli.cli import KaaCLICmd
+from kaa.cli.cli import KaaCLICmd
 
 KaaCLICmd().cmdloop()
