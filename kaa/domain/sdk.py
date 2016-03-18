@@ -78,4 +78,16 @@ class SDKProfileJSONEncoder(json.JSONEncoder):
 class SDKProfileDictDecoder:
     @staticmethod
     def decode(obj: dict) -> SDKProfile:
-        pass
+        aef_map_ids = []
+        for aef_map_id in obj['aefMapIds']:
+            aef_map_ids.append(aef_map_id)
+        return SDKProfile(aef_map_ids=aef_map_ids, application_id=obj['applicationId'],
+                          application_token=obj['applicationToken'],
+                          configuration_schema_version=int(obj['configurationSchemaVersion']),
+                          log_schema_version=int(obj['logSchemaVersion']),
+                          notification_schema_version=int(obj['notificationSchemaVersion']),
+                          profile_schema_version=int(obj['profileSchemaVersion']),
+                          created_time=datetime.datetime.fromtimestamp(int(obj['createdTime'])),
+                          created_username=obj['createdUsername'], endpoint_count=int(obj['endpointCount']),
+                          sdk_id=obj['id'], name=obj['name'], token=obj['token'],
+                          default_verifier_token=obj['defaultVerifierToken'])
