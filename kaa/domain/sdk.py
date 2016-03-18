@@ -63,7 +63,7 @@ class SDKProfileJSONEncoder(json.JSONEncoder):
                 "logSchemaVersion": obj.log_schema_version,
                 "notificationSchemaVersion": obj.notification_schema_version,
                 "profileSchemaVersion": obj.profile_schema_version,
-                "createdTime": obj.created_time.second,
+                "createdTime": obj.created_time.timestamp() * 1000,
                 "createdUsername": obj.created_username,
                 "endpointCount": obj.endpoint_count,
                 "id": obj.id,
@@ -87,7 +87,7 @@ class SDKProfileDictDecoder:
                           log_schema_version=int(obj['logSchemaVersion']),
                           notification_schema_version=int(obj['notificationSchemaVersion']),
                           profile_schema_version=int(obj['profileSchemaVersion']),
-                          created_time=datetime.datetime.fromtimestamp(int(obj['createdTime'])),
+                          created_time=datetime.datetime.fromtimestamp(int(obj['createdTime']) // 1000),
                           created_username=obj['createdUsername'], endpoint_count=int(obj['endpointCount']),
                           sdk_id=obj['id'], name=obj['name'], token=obj['token'],
                           default_verifier_token=obj['defaultVerifierToken'])
