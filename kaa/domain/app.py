@@ -42,7 +42,7 @@ class ApplicationJSONEncoder(json.JSONEncoder):
                 'tenantId': obj.tenant_id
             }
         else:
-            raise TypeError("UserJsonEncoder got {} instead of Application.".format(type(obj)))
+            raise TypeError("ApplicationJsonEncoder got {} instead of Application.".format(type(obj)))
 
 
 class ApplicationDictDecoder:
