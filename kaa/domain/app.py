@@ -27,13 +27,13 @@ class Application:
         self.sequence_number = sequence_number
         self.tenant_id = tenant_id
 
-    def __str__(self):
-        json.dumps(self, indent=4, cls=ApplicationJSONEncoder)
+    def __str__(self) -> str:
+        return json.dumps(self, indent=4, cls=ApplicationJSONEncoder)
 
 
 class ApplicationJSONEncoder(json.JSONEncoder):
     def default(self, obj: Application):
-        if obj is Application:
+        if isinstance(obj, Application):
             return {
                 'applicationToken': obj.application_token,
                 'id': obj.id,
