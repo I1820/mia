@@ -7,9 +7,11 @@
 # [] Created By : Parham Alvani (parham.alvani@gmail.com)
 # =======================================
 import cmd
+import os.path
 
 from kaa.rest.app import KaaRestApplication
 from kaa.rest.sdk import KaaRestSDKProfile
+from kaa.domain.sdk import SDKProfileTargetPlatform
 
 try:
     import termcolor
@@ -58,6 +60,35 @@ under certain conditions; type `show c' for details.
         sdks = krsp.get_all_sdk_profiles(application_id)
         for sdk in sdks:
             print(sdk)
+
+    def do_generate_endpoint_sdk(self, line: str):
+        kra = KaaRestApplication(self.address, self.devuser, self.devpass)
+        apps = kra.get_all_applications()
+        for app in apps:
+            if app.name == line:
+                break
+        else:
+            print("*** Invalid application name: {}".format(line))
+            return
+        krsp = KaaRestSDKProfile(self.address, self.devuser, self.devpass)
+        sdks = krsp.get_all_sdk_profiles(app.id)
+        for sdk in sdks:
+            print("[{0}] {1}: {2} {3} {4} {5}".format(sdk.id, sdk.name, sdk.configuration_schema_version,
+                                                      sdk.log_schema_version, sdk.notification_schema_version,
+                                                      sdk.profile_schema_version))
+        sdk_id = input("Please enter your target sdk id: ")
+        for sdk in sdks:
+            if sdk.id == sdk_id:
+                break
+        else:
+            print("*** Invalid SDK ID: {}".format(sdk_id))
+            return
+        path = input("Please enter path for saving generated sdk: ")
+        path = os.path.join(path, "{0}-c{1}-l{2}-n{3}-p{4}.tar.gz".format(sdk.name, sdk.configuration_schema_version,
+                                                                          sdk.log_schema_version,
+                                                                          sdk.notification_schema_version,
+                                                                          sdk.profile_schema_version))
+        krsp.generate_endpoint_sdk(sdk_id, SDKProfileTargetPlatform.c, path)
 
     @property
     def prompt(self):
