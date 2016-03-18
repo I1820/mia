@@ -8,7 +8,7 @@
 # =======================================
 import cmd
 
-from rest.app import KaaRestApplication
+from kaa.rest.app import KaaRestApplication
 
 try:
     import termcolor
