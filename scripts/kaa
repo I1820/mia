@@ -1,6 +1,7 @@
+#!/usr/bin/env python3
 # In The Name Of God
 # ========================================
-# [] File Name : kaa.py
+# [] File Name : kaa
 #
 # [] Creation Date : 3/17/16
 #
@@ -8,4 +9,7 @@
 # =======================================
 from kaa.cli.cli import KaaCLICmd
 
-KaaCLICmd().cmdloop()
+try:
+    KaaCLICmd().cmdloop()
+except KeyboardInterrupt:
+    quit(0)
