@@ -31,9 +31,12 @@ class SDKProfile:
     :type default_verifier_token: str
     """
 
-    def __init__(self, aef_map_ids, application_id, application_token, default_verifier_token,
-                 configuration_schema_version, log_schema_version, notification_schema_version, profile_schema_version,
-                 created_time, created_username, endpoint_count, sdk_id, name, token):
+    def __init__(self, aef_map_ids, application_id, application_token,
+                 default_verifier_token,
+                 configuration_schema_version, log_schema_version,
+                 notification_schema_version, profile_schema_version,
+                 created_time, created_username, endpoint_count, sdk_id, name,
+                 token):
         self.aef_map_ids = aef_map_ids
         self.application_id = application_id
         self.application_token = application_token
@@ -81,7 +84,9 @@ class SDKProfileJSONEncoder(json.JSONEncoder):
                 "defaultVerifierToken": obj.default_verifier_token
             }
         else:
-            raise TypeError("SDKProfileJsonEncoder got {} instead of SDKProfile.".format(type(obj)))
+            raise TypeError(
+                "SDKProfileJsonEncoder got {} instead of SDKProfile.".format(
+                    type(obj)))
 
 
 class SDKProfileDictDecoder:
@@ -90,13 +95,20 @@ class SDKProfileDictDecoder:
         aef_map_ids = []
         for aef_map_id in obj['aefMapIds']:
             aef_map_ids.append(aef_map_id)
-        return SDKProfile(aef_map_ids=aef_map_ids, application_id=obj['applicationId'],
+        return SDKProfile(aef_map_ids=aef_map_ids,
+                          application_id=obj['applicationId'],
                           application_token=obj['applicationToken'],
-                          configuration_schema_version=int(obj['configurationSchemaVersion']),
+                          configuration_schema_version=int(
+                              obj['configurationSchemaVersion']),
                           log_schema_version=int(obj['logSchemaVersion']),
-                          notification_schema_version=int(obj['notificationSchemaVersion']),
-                          profile_schema_version=int(obj['profileSchemaVersion']),
-                          created_time=datetime.datetime.fromtimestamp(int(obj['createdTime']) // 1000),
-                          created_username=obj['createdUsername'], endpoint_count=int(obj['endpointCount']),
-                          sdk_id=obj['id'], name=obj['name'], token=obj['token'],
+                          notification_schema_version=int(
+                              obj['notificationSchemaVersion']),
+                          profile_schema_version=int(
+                              obj['profileSchemaVersion']),
+                          created_time=datetime.datetime.fromtimestamp(
+                              int(obj['createdTime']) // 1000),
+                          created_username=obj['createdUsername'],
+                          endpoint_count=int(obj['endpointCount']),
+                          sdk_id=obj['id'], name=obj['name'],
+                          token=obj['token'],
                           default_verifier_token=obj['defaultVerifierToken'])

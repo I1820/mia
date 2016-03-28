@@ -23,6 +23,10 @@ class KaaCLICmd(cmd.Cmd):
     def __init__(self):
         super(KaaCLICmd, self).__init__()
         self.firewall = None
+        self.adminpass = "admin123"
+        self.adminuser = "admin"
+        self.devuser = "devuser"
+        self.devpass = "devuser123"
         self.intro = """
 {0:*^160}
 {1:=^160}
@@ -30,7 +34,8 @@ Kaa.py version 0.1, Copyright (C) 2015 Parham Alvani (parham.alvani@gmail.com)
 Kaa.py comes with ABSOLUTELY NO WARRANTY; for details type `show w'.
 This is free software, and you are welcome to redistribute it
 under certain conditions; type `show c' for details.
-""".format("Welcome", " CLI program for using Kaa Administration Panel which is written by Parham Alvani ")
+""".format("Welcome",
+           " CLI program for using Kaa Administration Panel which is written by Parham Alvani ")
 
     def preloop(self):
         prompt = "Kaa Administration CLI [] >"
@@ -39,10 +44,16 @@ under certain conditions; type `show c' for details.
         server = input("{} Please enter kaa ip address: ".format(prompt))
         port = input("{} Please enter kaa port: ".format(prompt))
         self.address = server + ":" + port
-        self.devuser = input("{} Please enter kaa tenant developer username: ".format(prompt))
-        self.devpass = input("{} Please enter kaa tenant developer password: ".format(prompt))
-        self.adminuser = input("{} Please enter kaa tenant administrator username: ".format(prompt))
-        self.adminpass = input("{} Please enter kaa tenant administrator password: ".format(prompt))
+        self.devuser = input(
+            "{} Please enter kaa tenant developer username: ".format(prompt))
+        self.devpass = input(
+            "{} Please enter kaa tenant developer password: ".format(prompt))
+        self.adminuser = input(
+            "{} Please enter kaa tenant administrator username: ".format(
+                prompt))
+        self.adminpass = input(
+            "{} Please enter kaa tenant administrator password: ".format(
+                prompt))
 
     def do_get_all_applications(self, line: str):
         kra = KaaRestApplication(self.address, self.devuser, self.devpass)
@@ -73,8 +84,10 @@ under certain conditions; type `show c' for details.
         krsp = KaaRestSDKProfile(self.address, self.devuser, self.devpass)
         sdks = krsp.get_all_sdk_profiles(app.id)
         for sdk in sdks:
-            print("[{0}] {1}: {2} {3} {4} {5}".format(sdk.id, sdk.name, sdk.configuration_schema_version,
-                                                      sdk.log_schema_version, sdk.notification_schema_version,
+            print("[{0}] {1}: {2} {3} {4} {5}".format(sdk.id, sdk.name,
+                                                      sdk.configuration_schema_version,
+                                                      sdk.log_schema_version,
+                                                      sdk.notification_schema_version,
                                                       sdk.profile_schema_version))
         sdk_id = input("Please enter your target sdk id: ")
         for sdk in sdks:
@@ -84,10 +97,12 @@ under certain conditions; type `show c' for details.
             print("*** Invalid SDK ID: {}".format(sdk_id))
             return
         path = input("Please enter path for saving generated sdk: ")
-        path = os.path.join(path, "{0}-c{1}-l{2}-n{3}-p{4}.tar.gz".format(sdk.name, sdk.configuration_schema_version,
-                                                                          sdk.log_schema_version,
-                                                                          sdk.notification_schema_version,
-                                                                          sdk.profile_schema_version))
+        path = os.path.join(path,
+                            "{0}-c{1}-l{2}-n{3}-p{4}.tar.gz".format(sdk.name,
+                                                                    sdk.configuration_schema_version,
+                                                                    sdk.log_schema_version,
+                                                                    sdk.notification_schema_version,
+                                                                    sdk.profile_schema_version))
         krsp.generate_endpoint_sdk(sdk_id, SDKProfileTargetPlatform.c, path)
 
     @property

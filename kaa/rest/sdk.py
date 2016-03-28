@@ -9,7 +9,8 @@
 
 from .base import KaaRestBase
 
-from kaa.domain.sdk import SDKProfile, SDKProfileDictDecoder, SDKProfileTargetPlatform
+from kaa.domain.sdk import SDKProfile, SDKProfileDictDecoder, \
+    SDKProfileTargetPlatform
 
 import requests
 import json
@@ -21,14 +22,17 @@ class KaaRestSDKProfile(KaaRestBase):
 
     def get_all_sdk_profiles(self, application_id: int) -> [SDKProfile]:
         sdk_profiles = []
-        response = requests.get(self.url_prefix + "sdkProfiles/{}".format(application_id))
+        response = requests.get(
+            self.url_prefix + "sdkProfiles/{}".format(application_id))
         response = json.loads(response.text)
         for obj in response:
             sdk_profile = SDKProfileDictDecoder.decode(obj)
             sdk_profiles.append(sdk_profile)
         return sdk_profiles
 
-    def generate_endpoint_sdk(self, profile_sdk_id: str, target_platform: SDKProfileTargetPlatform, filename: str):
+    def generate_endpoint_sdk(self, profile_sdk_id: str,
+                              target_platform: SDKProfileTargetPlatform,
+                              filename: str):
         params = {
             'sdkProfileId': profile_sdk_id,
             'targetPlatform': target_platform.value
