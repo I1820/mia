@@ -8,4 +8,4 @@
 # [] Created By : Parham Alvani (parham.alvani@gmail.com)
 # =======================================
 export PYTHONPATH=$PYTHONPATH:.kaa
-python3 scripts/main.py
+python3 scripts/kaa
