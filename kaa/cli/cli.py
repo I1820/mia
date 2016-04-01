@@ -118,10 +118,3 @@ under certain conditions; type `show c' for details.
         return True
 
     do_EOF = do_quit
-
-
-def main():
-    try:
-        KaaCLICmd().cmdloop()
-    except KeyboardInterrupt:
-        quit(0)

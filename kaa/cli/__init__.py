@@ -6,3 +6,11 @@
 #
 # [] Created By : Parham Alvani (parham.alvani@gmail.com)
 # =======================================
+from kaa.cli.cli import KaaCLICmd
+
+
+def main():
+    try:
+        KaaCLICmd().cmdloop()
+    except KeyboardInterrupt:
+        quit(0)

@@ -11,7 +11,7 @@ setup(
     description='Kaa Administration REST Client',
     entry_points={
         'console_scripts': [
-            'kaa.py = kaa.cli.cli:main'
+            'kaa.py = kaa.cli:main'
         ]
     },
 )
