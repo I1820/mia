@@ -28,14 +28,15 @@ class KaaCLICmd(cmd.Cmd):
         self.devuser = "devuser"
         self.devpass = "devuser123"
         self.intro = """
-{0:*^160}
-{1:=^160}
+{0:*^80}
+{1:=^80}
 Kaa.py version 0.1, Copyright (C) 2015 Parham Alvani (parham.alvani@gmail.com)
 Kaa.py comes with ABSOLUTELY NO WARRANTY; for details type `show w'.
 This is free software, and you are welcome to redistribute it
 under certain conditions; type `show c' for details.
 """.format("Welcome",
-           " CLI program for using Kaa Administration Panel which is written by Parham Alvani ")
+           " CLI program for Kaa Administration which "
+           "is written by Parham Alvani ")
 
     def preloop(self):
         prompt = "Kaa Administration CLI [] >"
