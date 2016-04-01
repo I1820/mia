@@ -8,8 +8,9 @@
 # =======================================
 import cmd
 import os.path
+import pprint
 
-from pykaa.rest.app import KaaRestApplication
+from pykaa.rest.app import KaaRestApplication, KaaRestApplicationError
 from pykaa.rest.sdk import KaaRestSDKProfile
 from pykaa.domain.sdk import SDKProfileTargetPlatform
 
@@ -58,7 +59,11 @@ under certain conditions; type `show c' for details.
 
     def do_get_all_applications(self, line: str):
         kra = KaaRestApplication(self.address, self.devuser, self.devpass)
-        apps = kra.get_all_applications()
+        try:
+            apps = kra.get_all_applications()
+        except KaaRestApplicationError as e:
+            pprint.pprint(str(e), width=80)
+            return
         for app in apps:
             print(app)
 
