@@ -7,5 +7,7 @@
 #
 # [] Created By : Parham Alvani (parham.alvani@gmail.com)
 # =======================================
-export PYTHONPATH=$PYTHONPATH:.kaa
-python3 scripts/kaa
+python3 setup.py develop -u
+python3 setup.py develop
+kaa.py
+python3 setup.py develop -u
