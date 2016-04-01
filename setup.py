@@ -1,4 +1,4 @@
-from distutils.core import setup
+from setuptools import setup
 
 setup(
     name='Kaa.py',
@@ -9,5 +9,9 @@ setup(
     author='Parham Alvani',
     author_email='parham.alvani@gmail.com',
     description='Kaa Administration REST Client',
-    scripts=['scripts/kaa']
+    entry_points={
+        'console_scripts': [
+            'kaa.py = kaa.cli.cli:main'
+        ]
+    },
 )
