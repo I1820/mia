@@ -14,4 +14,7 @@ setup(
             'kaa.py = kaa.cli:main'
         ]
     },
+    package_data={
+        'kaa': ['server.data'],
+    },
 )
