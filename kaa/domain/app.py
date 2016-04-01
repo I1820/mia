@@ -20,7 +20,8 @@ class Application:
     :type tenant_id: str
     """
 
-    def __init__(self, application_token, app_id, name, sequence_number, tenant_id):
+    def __init__(self, application_token, app_id, name, sequence_number,
+                 tenant_id):
         self.application_token = application_token
         self.id = app_id
         self.name = name
@@ -42,11 +43,15 @@ class ApplicationJSONEncoder(json.JSONEncoder):
                 'tenantId': obj.tenant_id
             }
         else:
-            raise TypeError("ApplicationJsonEncoder got {} instead of Application.".format(type(obj)))
+            raise TypeError(
+                "ApplicationJsonEncoder got {} instead of Application.".format(
+                    type(obj)))
 
 
 class ApplicationDictDecoder:
     @staticmethod
     def decode(obj: dict) -> Application:
-        return Application(application_token=obj['applicationToken'], app_id=obj['id'], name=obj['name'],
-                           sequence_number=int(obj['sequenceNumber']), tenant_id=obj['tenantId'])
+        return Application(application_token=obj['applicationToken'],
+                           app_id=obj['id'], name=obj['name'],
+                           sequence_number=int(obj['sequenceNumber']),
+                           tenant_id=obj['tenantId'])
