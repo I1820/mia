@@ -6,7 +6,7 @@
 #
 # [] Created By : Parham Alvani (parham.alvani@gmail.com)
 # =======================================
-from kaa.cli.cli import KaaCLICmd
+from pykaa.cli.cli import KaaCLICmd
 
 
 def main():

@@ -9,7 +9,7 @@
 
 from .base import KaaRestBase
 
-from kaa.domain.sdk import SDKProfile, SDKProfileDictDecoder, \
+from pykaa.domain.sdk import SDKProfile, SDKProfileDictDecoder, \
     SDKProfileTargetPlatform
 
 import requests

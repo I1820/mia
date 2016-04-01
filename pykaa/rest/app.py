@@ -8,7 +8,7 @@
 # =======================================
 
 from .base import KaaRestBase
-from kaa.domain.app import Application, ApplicationDictDecoder
+from pykaa.domain.app import Application, ApplicationDictDecoder
 
 import requests
 import json

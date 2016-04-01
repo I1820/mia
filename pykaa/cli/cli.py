@@ -9,9 +9,9 @@
 import cmd
 import os.path
 
-from kaa.rest.app import KaaRestApplication
-from kaa.rest.sdk import KaaRestSDKProfile
-from kaa.domain.sdk import SDKProfileTargetPlatform
+from pykaa.rest.app import KaaRestApplication
+from pykaa.rest.sdk import KaaRestSDKProfile
+from pykaa.domain.sdk import SDKProfileTargetPlatform
 
 try:
     import termcolor
@@ -42,18 +42,18 @@ under certain conditions; type `show c' for details.
         prompt = "Kaa Administration CLI [] >"
         if termcolor:
             prompt = termcolor.colored(prompt, color="red", attrs=['bold'])
-        server = input("{} Please enter kaa ip address: ".format(prompt))
-        port = input("{} Please enter kaa port: ".format(prompt))
+        server = input("{} Please enter pykaa ip address: ".format(prompt))
+        port = input("{} Please enter pykaa port: ".format(prompt))
         self.address = server + ":" + port
         self.devuser = input(
-            "{} Please enter kaa tenant developer username: ".format(prompt))
+            "{} Please enter pykaa tenant developer username: ".format(prompt))
         self.devpass = input(
-            "{} Please enter kaa tenant developer password: ".format(prompt))
+            "{} Please enter pykaa tenant developer password: ".format(prompt))
         self.adminuser = input(
-            "{} Please enter kaa tenant administrator username: ".format(
+            "{} Please enter pykaa tenant administrator username: ".format(
                 prompt))
         self.adminpass = input(
-            "{} Please enter kaa tenant administrator password: ".format(
+            "{} Please enter pykaa tenant administrator password: ".format(
                 prompt))
 
     def do_get_all_applications(self, line: str):

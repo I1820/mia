@@ -12,7 +12,7 @@ with open(path.join(here, 'LICENSE'), encoding='utf-8') as f:
     license_text = f.read()
 
 setup(
-    name='Kaa.py',
+    name='pykaa',
     version='0.5.dev2',
     packages=find_packages(),
     url='https://github.com/AoLab/Kaa.py',
@@ -23,10 +23,10 @@ setup(
     description='Kaa Administration REST Client',
     entry_points={
         'console_scripts': [
-            'kaa.py = kaa.cli:main'
+            'pykaa.py = pykaa.cli:main'
         ]
     },
     package_data={
-        'kaa': ['server.data'],
+        'pykaa': ['server.data'],
     },
 )
