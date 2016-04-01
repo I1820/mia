@@ -15,6 +15,7 @@ setup(
     name='pykaa',
     version='0.5.dev2',
     packages=find_packages(),
+    package_dir={'pykaa': 'pykaa'},
     url='https://github.com/AoLab/Kaa.py',
     license=license_text,
     long_description=long_description_text,
@@ -23,7 +24,7 @@ setup(
     description='Kaa Administration REST Client',
     entry_points={
         'console_scripts': [
-            'pykaa.py = pykaa.cli:main'
+            'kaa.py = pykaa.cli:main'
         ]
     },
     package_data={
