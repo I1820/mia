@@ -29,5 +29,5 @@ setup(
     },
     package_data={
         'pykaa': ['server.data'],
-    },
+    }, requires=['requests']
 )
