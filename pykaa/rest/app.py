@@ -51,6 +51,26 @@ class KaaRestApplication(KaaRestBase):
     def get_application_by_id(self, application_id: str) -> Application:
         response = requests.get(
             self.url_prefix + "application/{}".format(application_id))
+        try:
+            response.raise_for_status()
+        except HTTPError as e:
+            if response.status_code == 401:
+                raise KaaRestApplicationError(
+                    "The user is not authenticated or"
+                    " invalid credentials were provided", e) from e
+            if response.status_code == 403:
+                raise KaaRestApplicationError(
+                    "The authenticated user does not have the required role"
+                    " (TENANT_ADMIN, TENANT_DEVELOPER, or TENANT_USER)", e) \
+                    from e
+            if response.status_code == 404:
+                raise KaaRestApplicationError(
+                    "An application with the specified applicationId"
+                    " does not exist", e) from e
+            if response.status_code == 500:
+                raise KaaRestApplicationError(
+                    "An unexpected error occurred on the server side", e) \
+                    from e
         response = json.loads(response.text)
         application = ApplicationDictDecoder.decode(response)
         return application
