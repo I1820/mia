@@ -62,10 +62,19 @@ under certain conditions; type `show c' for details.
         try:
             apps = kra.get_all_applications()
         except KaaRestApplicationError as e:
-            pprint.pprint(str(e), width=80)
+            pprint.pprint("*** REST error: {}".format(e), width=80)
             return
         for app in apps:
             print(app)
+
+    def do_get_application_by_id(self, line: str):
+        kra = KaaRestApplication(self.address, self.devuser, self.devpass)
+        try:
+            app = kra.get_application_by_id(self)
+        except KaaRestApplicationError as e:
+            pprint.pprint("*** REST error: {}".format(e), width=80)
+            return
+        print(app)
 
     def do_get_all_sdk_profiles(self, line: str):
         try:
