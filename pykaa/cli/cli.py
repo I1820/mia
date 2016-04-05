@@ -67,10 +67,18 @@ under certain conditions; type `show c' for details.
         for app in apps:
             print(app)
 
+    @staticmethod
+    def help_get_all_applications():
+        command = "get_all_applications"
+        if termcolor:
+            command = termcolor.colored(command, color='green', attrs=['bold'])
+        print(command)
+        print("Get all Kaa applications registered in the server")
+
     def do_get_application_by_id(self, line: str):
         kra = KaaRestApplication(self.address, self.devuser, self.devpass)
         try:
-            app = kra.get_application_by_id(self)
+            app = kra.get_application_by_id(line)
         except KaaRestApplicationError as e:
             pprint.pprint("*** REST error: {}".format(e), width=80)
             return
