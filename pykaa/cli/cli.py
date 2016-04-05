@@ -75,6 +75,22 @@ under certain conditions; type `show c' for details.
         print(command)
         print("Get all Kaa applications registered in the server")
 
+    def do_get_application_by_name(self, line: str):
+        kra = KaaRestApplication(self.address, self.devuser, self.devpass)
+        try:
+            apps = kra.get_all_applications()
+        except KaaRestApplicationError as e:
+            pprint.pprint("*** REST error: {}".format(e), width=80)
+            return
+
+        for app in apps:
+            if app.name == line:
+                break
+        else:
+            print("*** Invalid application name: {}".format(line))
+            return
+        print(app)
+
     def do_get_application_by_id(self, line: str):
         kra = KaaRestApplication(self.address, self.devuser, self.devpass)
         try:
