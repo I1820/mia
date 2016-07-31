@@ -17,7 +17,7 @@ import json
 
 
 class KaaRestSDKProfile(KaaRestBase):
-    def __int__(self, address, username, password):
+    def __init__(self, address, username, password):
         super(KaaRestSDKProfile, self).__init__(address, username, password)
 
     def get_all_sdk_profiles(self, application_id: int) -> [SDKProfile]:

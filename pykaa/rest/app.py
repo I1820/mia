@@ -20,7 +20,7 @@ class KaaRestApplication(KaaRestBase):
     This class provide a rest way for interfacing with kaa applications
     """
 
-    def __int__(self, address, username, password):
+    def __init__(self, address, username, password):
         super(KaaRestApplication, self).__init__(address, username, password)
 
     def get_all_applications(self) -> [Application]:
