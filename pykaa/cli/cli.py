@@ -12,6 +12,7 @@ import pprint
 
 from pykaa.rest.app import KaaRestApplication, KaaRestApplicationError
 from pykaa.rest.sdk import KaaRestSDKProfile
+from pykaa.rest.config import T1820RestConfig, T1820RestConfigError
 from pykaa.domain.sdk import SDKProfileTargetPlatform
 
 try:
@@ -24,10 +25,12 @@ class KaaCLICmd(cmd.Cmd):
     def __init__(self):
         super(KaaCLICmd, self).__init__()
         self.firewall = None
-        self.adminpass = "admin123"
-        self.adminuser = "admin"
-        self.devuser = "devuser"
-        self.devpass = "devuser123"
+        self.config_name = "Not Loaded"
+        self.address = "127.0.0.1:8080"
+        self.admin_pass = "admin123"
+        self.admin_user = "admin"
+        self.dev_user = "devuser"
+        self.dev_pass = "devuser123"
         self.intro = """
 {0:*^80}
 {1:=^80}
@@ -43,22 +46,21 @@ under certain conditions; type `show c' for details.
         prompt = "Kaa Administration CLI [] >"
         if termcolor:
             prompt = termcolor.colored(prompt, color="red", attrs=['bold'])
-        server = input("{} Please enter pykaa ip address: ".format(prompt))
-        port = input("{} Please enter pykaa port: ".format(prompt))
-        self.address = server + ":" + port
-        self.devuser = input(
-            "{} Please enter pykaa tenant developer username: ".format(prompt))
-        self.devpass = input(
-            "{} Please enter pykaa tenant developer password: ".format(prompt))
-        self.adminuser = input(
-            "{} Please enter pykaa tenant administrator username: ".format(
-                prompt))
-        self.adminpass = input(
-            "{} Please enter pykaa tenant administrator password: ".format(
-                prompt))
+        server = input("{} Please enter 18.20 ip address: ".format(prompt))
+        try:
+            config = T1820RestConfig(server).get_last_configuration()
+        except T1820RestConfigError as e:
+            pprint.pprint("*** REST error: {}".format(e), width=80)
+            return
+        self.address = config.kaa_ip + ":" + str(config.kaa_port)
+        self.admin_user = config.kaa_admin_user
+        self.admin_pass = config.kaa_admin_password
+        self.dev_user = config.kaa_developer_user
+        self.dev_pass = config.kaa_developer_password
+        self.config_name = config.name
 
     def do_get_all_applications(self, line: str):
-        kra = KaaRestApplication(self.address, self.devuser, self.devpass)
+        kra = KaaRestApplication(self.address, self.dev_user, self.dev_pass)
         try:
             apps = kra.get_all_applications()
         except KaaRestApplicationError as e:
@@ -76,7 +78,7 @@ under certain conditions; type `show c' for details.
         print("Get all Kaa applications registered in the server")
 
     def do_get_application_by_name(self, line: str):
-        kra = KaaRestApplication(self.address, self.devuser, self.devpass)
+        kra = KaaRestApplication(self.address, self.dev_user, self.dev_pass)
         try:
             apps = kra.get_all_applications()
         except KaaRestApplicationError as e:
@@ -92,7 +94,7 @@ under certain conditions; type `show c' for details.
         print(app)
 
     def do_get_application_by_id(self, line: str):
-        kra = KaaRestApplication(self.address, self.devuser, self.devpass)
+        kra = KaaRestApplication(self.address, self.dev_user, self.dev_pass)
         try:
             app = kra.get_application_by_id(line)
         except KaaRestApplicationError as e:
@@ -106,13 +108,13 @@ under certain conditions; type `show c' for details.
         except TypeError as e:
             print("*** Invalid number: {}".format(str(e)))
             return
-        krsp = KaaRestSDKProfile(self.address, self.devuser, self.devpass)
+        krsp = KaaRestSDKProfile(self.address, self.dev_user, self.dev_pass)
         sdks = krsp.get_all_sdk_profiles(application_id)
         for sdk in sdks:
             print(sdk)
 
     def do_generate_endpoint_sdk(self, line: str):
-        kra = KaaRestApplication(self.address, self.devuser, self.devpass)
+        kra = KaaRestApplication(self.address, self.dev_user, self.dev_pass)
         apps = kra.get_all_applications()
         for app in apps:
             if app.name == line:
@@ -120,7 +122,7 @@ under certain conditions; type `show c' for details.
         else:
             print("*** Invalid application name: {}".format(line))
             return
-        krsp = KaaRestSDKProfile(self.address, self.devuser, self.devpass)
+        krsp = KaaRestSDKProfile(self.address, self.dev_user, self.dev_pass)
         sdks = krsp.get_all_sdk_profiles(app.id)
         for sdk in sdks:
             print("[{0}] {1}: {2} {3} {4} {5}".format(sdk.id, sdk.name,
@@ -146,7 +148,7 @@ under certain conditions; type `show c' for details.
 
     @property
     def prompt(self):
-        prompt = "Kaa Administration CLI [{}] > "
+        prompt = "Kaa Administration CLI [{}] > ".format(self.config_name)
         if termcolor:
             prompt = termcolor.colored(prompt, color="red", attrs=['bold'])
         return prompt
