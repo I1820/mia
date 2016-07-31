@@ -23,16 +23,18 @@ class T1820RestConfig:
         self.url_prefix = 'http://{}/'.format(address)
 
     def get_last_configuration(self) -> Config:
-        response = requests.get(self.url_prefix + "config/")
+        response = requests.get(self.url_prefix + "config")
         try:
             response.raise_for_status()
         except HTTPError as e:
+            if response.status_code == 404:
+                raise T1820RestConfigError("18.20 server not found", e) from e
             if response.status_code == 500:
                 raise T1820RestConfigError(
                     "An unexpected error occurred on the server side", e) \
                     from e
         response = response.json()
-        config = ConfigDictDecoder.decode(response[0])
+        config = ConfigDictDecoder.decode(response[str(len(response) - 1)])
         return config
 
 
