@@ -7,4 +7,4 @@
 #
 # [] Created By : Parham Alvani (parham.alvani@gmail.com)
 # =======================================
-docker build -t aolab/18.20 .
+docker build --force-rm -t aolab/18.20 .
