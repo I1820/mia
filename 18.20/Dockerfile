@@ -5,7 +5,7 @@ MAINTAINER Parham Alvani <parham.alvani@gmail.com>
 RUN apt update
 RUN apt install -y git nginx wget \
 	sudo dbus curl \
-	php-fpm php-curl php-mysql php-mcrypt php-json php-cli php-curl php-mongodb
+	php-curl php-mysql php-mcrypt php-json php-cli php-curl php-mongodb
 
 # Cleanup
 RUN rm -rf /var/lib/apt/lists/* /var/cache/apt/packages/* && apt autoremove -y
@@ -20,24 +20,25 @@ RUN mkdir -p /var/www && \
     sudo -u www-data git config --global credential.helper store
 
 # PHP
-COPY conf/php.ini /etc/php5/fpm/php.ini
-COPY conf/www.conf /etc/php5/fpm/pool.d/www.conf
+# COPY conf/php.ini /etc/php5/fpm/php.ini
+# COPY conf/www.conf /etc/php5/fpm/pool.d/www.conf
 
 # Nginx
-COPY conf/nginx.conf /etc/nginx/nginx.conf
-COPY conf/nginx-default /etc/nginx/sites-enabled/default
+# COPY conf/nginx.conf /etc/nginx/nginx.conf
+# COPY conf/nginx-default /etc/nginx/sites-enabled/default
 
 # Home dir
 RUN mkdir -p /var/www && chown -R www-data:www-data /var/www
+RUN git clone https://github.com/aolab/18.20
 
 # Dist
-COPY dist /opt/dist
+# COPY dist /opt/dist
 
 # Lasser
-COPY laaser /usr/share/laaser
+# COPY laaser /usr/share/laaser
 
 # Bin
-COPY bin /usr/local/bin
+# COPY bin /usr/local/bin
 
-#Entrypoint Script
-ENTRYPOINT ["/usr/local/bin/entrypoint"]
+# Entrypoint Script
+# ENTRYPOINT ["/usr/local/bin/entrypoint"]
