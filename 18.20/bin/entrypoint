@@ -1,0 +1,8 @@
+#!/bin/bash
+
+/bin/bash entrypoint-www $@ || exit
+
+echo "Starting Apache"
+service apache2 start
+
+echo "Let's go"

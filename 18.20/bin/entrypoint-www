@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Logs
+touch /var/www/18.20/storage/logs/laravel.log
+ln -fs /var/www/18.20/storage/logs/laravel.log /var/www/logs
+chmod -R 0777 /var/www/18.20/storage
+
+# Rotate All Logs
+for l in var/www/logs/* ; do
+	echo "" > $l
+done
+
+# Update repo
+update
