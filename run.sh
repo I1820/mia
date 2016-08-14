@@ -9,5 +9,4 @@
 # =======================================
 python3 setup.py develop -u
 python3 setup.py develop
-kaa.py
-python3 setup.py develop -u
+./bin/kaa.py
