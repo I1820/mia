@@ -27,7 +27,5 @@ setup(
             'kaa.py = pykaa.cli:main'
         ]
     },
-    package_data={
-        'pykaa': ['server.data'],
-    }, requires=['requests']
+    install_requires=['requests']
 )
