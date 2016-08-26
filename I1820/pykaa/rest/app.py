@@ -50,7 +50,7 @@ class KaaRestApplication(KaaRestBase):
 
     def get_application_by_token(self, application_token: str) -> Application:
         response = requests.get(
-            self.url_prefix + "application/token/{}".format(application_id))
+            self.url_prefix + "application/token/{}".format(application_token))
         try:
             response.raise_for_status()
         except HTTPError as e:
