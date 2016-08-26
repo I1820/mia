@@ -23,7 +23,8 @@ setup(
     author_email='parham.alvani@gmail.com',
     entry_points={
         'console_scripts': [
-            '18.20.py = I1820.cli:main'
+            '18.20-cli.py = I1820.cli:main',
+            '18.20-serve.py = I1820.http.main:main'
         ]
     },
 )
