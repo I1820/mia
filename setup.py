@@ -27,5 +27,5 @@ setup(
             'kaa.py = pykaa.cli:main'
         ]
     },
-    install_requires=['requests']
+    install_requires=['requests', 'Flask']
 )
