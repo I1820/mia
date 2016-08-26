@@ -12,18 +12,18 @@ with open(path.join(here, 'LICENSE'), encoding='utf-8') as f:
     license_text = f.read()
 
 setup(
-    name='pykaa',
-    version='1.0-dev1',
-    packages=find_packages(),
+    name='I18.20',
+    version='1.0.dev1',
+    packages=find_packages(exclude=('I1820r')),
     url='https://github.com/AoLab/Kaa.py',
-    description="Kaa Administration REST Client"
+    description="Kaa Administration REST Client",
     license=license_text,
     long_description=long_description_text,
     author='Parham Alvani',
     author_email='parham.alvani@gmail.com',
     entry_points={
         'console_scripts': [
-            'kaa.py = pykaa.cli:main'
+            '18.20.py = I1820.cli:main'
         ]
     },
 )
