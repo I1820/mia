@@ -32,3 +32,11 @@ class Thing(metaclass=Things):
     @abc.abstractmethod
     def name(self):
         raise NotImplemented()
+
+    @abc.abstractmethod
+    def list(self):
+        raise NotImplemented()
+
+    @abc.abstractmethod
+    def handle(self, data: dict):
+        raise NotImplemented()
