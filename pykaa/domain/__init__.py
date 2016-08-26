@@ -1,8 +1,4 @@
-# In The Name Of God
-# ========================================
-# [] File Name : __init__.py
-#
-# [] Creation Date : 3/17/16
-#
-# [] Created By : Parham Alvani (parham.alvani@gmail.com)
-# =======================================
+"""
+This module provides an abstraction from Kaa
+models in python.
+"""
