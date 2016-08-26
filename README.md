@@ -16,3 +16,9 @@ pyvenv $PROJECT_ROOT
 . $PROJECT_ROOT/bin/activate
 $PROJECT_ROOT/run.sh
 ```
+## Usage :)
+### Kaa Environment Setup
+### RESTFul API
+| Name     | Description                         | URL                         |
+|:--------:|:----------------------------------- |:---------------------------:|
+| Thing    | Chanage or Read thing configuration | `thing/{rpi_id}/{thing_id}` |
