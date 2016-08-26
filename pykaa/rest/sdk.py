@@ -20,7 +20,7 @@ class KaaRestSDKProfile(KaaRestBase):
     def __init__(self, address, username, password):
         super(KaaRestSDKProfile, self).__init__(address, username, password)
 
-    def get_all_sdk_profiles(self, application_token: sdk) -> [SDKProfile]:
+    def get_all_sdk_profiles(self, application_token: str) -> [SDKProfile]:
         sdk_profiles = []
         response = requests.get(
             self.url_prefix + "sdkProfilesByAppToken/{}".format(application_token))
