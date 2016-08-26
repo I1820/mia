@@ -93,10 +93,10 @@ under certain conditions; type `show c' for details.
             return
         print(app)
 
-    def do_get_application_by_id(self, line: str):
+    def do_get_application_by_token(self, line: str):
         kra = KaaRestApplication(self.address, self.dev_user, self.dev_pass)
         try:
-            app = kra.get_application_by_id(line)
+            app = kra.get_application_by_token(line)
         except KaaRestApplicationError as e:
             pprint.pprint("*** REST error: {}".format(e), width=80)
             return
@@ -104,12 +104,12 @@ under certain conditions; type `show c' for details.
 
     def do_get_all_sdk_profiles(self, line: str):
         try:
-            application_id = int(line)
+            application_token = line
         except TypeError as e:
             print("*** Invalid number: {}".format(str(e)))
             return
         krsp = KaaRestSDKProfile(self.address, self.dev_user, self.dev_pass)
-        sdks = krsp.get_all_sdk_profiles(application_id)
+        sdks = krsp.get_all_sdk_profiles(application_token)
         for sdk in sdks:
             print(sdk)
 
@@ -123,7 +123,7 @@ under certain conditions; type `show c' for details.
             print("*** Invalid application name: {}".format(line))
             return
         krsp = KaaRestSDKProfile(self.address, self.dev_user, self.dev_pass)
-        sdks = krsp.get_all_sdk_profiles(app.id)
+        sdks = krsp.get_all_sdk_profiles(app.application_token)
         for sdk in sdks:
             print("[{0}] {1}: {2} {3} {4} {5}".format(sdk.id, sdk.name,
                                                       sdk.configuration_schema_version,
