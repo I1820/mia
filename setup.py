@@ -13,19 +13,17 @@ with open(path.join(here, 'LICENSE'), encoding='utf-8') as f:
 
 setup(
     name='pykaa',
-    version='0.5.dev2',
+    version='1.0-dev1',
     packages=find_packages(),
-    package_dir={'pykaa': 'pykaa'},
     url='https://github.com/AoLab/Kaa.py',
+    description="Kaa Administration REST Client"
     license=license_text,
     long_description=long_description_text,
     author='Parham Alvani',
     author_email='parham.alvani@gmail.com',
-    description='Kaa Administration REST Client',
     entry_points={
         'console_scripts': [
             'kaa.py = pykaa.cli:main'
         ]
     },
-    install_requires=['requests', 'Flask']
 )
