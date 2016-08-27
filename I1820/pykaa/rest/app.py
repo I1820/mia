@@ -6,7 +6,6 @@
 #
 # [] Created By : Parham Alvani (parham.alvani@gmail.com)
 # =======================================
-
 from .base import KaaRestBase, KaaRestError
 from ..domain.app import Application, ApplicationDictDecoder
 
