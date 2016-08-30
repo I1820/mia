@@ -29,8 +29,8 @@ class Lamp(Thing):
         krn.send_notification(32768, 32771, 32769, message)
 
         lamp = Lamp()
-        lamp.state = data['states']['state']
-        data['states']['state'] = lamp.state
+        lamp.state = data['settings']['on']
+        data['settings']['on'] = lamp.state
 
         return "Lamp: {}".format(data)
 
