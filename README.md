@@ -38,9 +38,9 @@ $PROJECT_ROOT/run.sh
 ```json
 {
   "type": "lamp",
-  "settings": [
+  "settings": {
     "on": true
-   ]
+  }
 }
 ```
 
