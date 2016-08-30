@@ -7,7 +7,7 @@ When 18.20 decide to leave us alone, we created improved version of it,
 in this version we provide everything you need in simple package.
 ## Basis
 Basis of this project comes from [SDN101 project](https://github.com/elahejalalpour/SDN101).  
-***Gread Memories***
+***Great Memories***
 ## Development
 I think for using this project in development phase,
 it's better to use virtual environment:
@@ -19,6 +19,28 @@ $PROJECT_ROOT/run.sh
 ## Usage :)
 ### Kaa Environment Setup
 ### RESTFul API
-| Name     | Description                         | URL                         |
-|:--------:|:----------------------------------- |:---------------------------:|
-| Thing    | Chanage or Read thing configuration | `thing/{rpi_id}/{thing_id}` |
+#### Read Thing States and Status
+* URL: `/thing/{rpi_id}/{device_id}`
+* Method: `POST`
+* Request:
+```json
+{
+  "type": "temprature",
+  "states": [
+    "temprature"
+   ]
+}
+```
+#### Change Thing States
+* URL: `/thing/{rpi_id}/{device_id}`
+* Method: `PUT`
+* Request:
+```json
+{
+  "type": "lamp",
+  "settings": [
+    "on": true
+   ]
+}
+```
+
