@@ -1,0 +1,13 @@
+kaa:
+  host: localhost
+  port: 8080
+  user_admin: admin
+  passwd_admin: admin123
+  user_developer: devuser
+  passwd_developer: devuser123
+mongodb:
+  host: localhost
+  port: 27017
+  db: I1820
+  user: I1820
+  passwd: 12345
