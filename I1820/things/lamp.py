@@ -13,8 +13,8 @@ from ..pykaa.rest.notif import KaaRestNotification
 class Lamp(Thing):
     """
     This class represents Lamp !
-    :param state: shows the lamp state
-    :type state: bool
+    :param on: shows the lamp is on or off
+    :type on: bool
     """
     name = "lamp"
 
@@ -29,20 +29,20 @@ class Lamp(Thing):
         krn.send_notification(32768, 32771, 32769, message)
 
         lamp = Lamp()
-        lamp.state = data['settings']['on']
-        data['settings']['on'] = lamp.state
+        lamp.on = data['settings']['on']
+        data['settings']['on'] = lamp.on
 
         return "Lamp: {}".format(data)
 
     def __init__(self):
-        self.__state = False
+        self.__on = False
 
     @property
-    def state(self):
-        return self.__state
+    def on(self):
+        return self.__on
 
-    @state.setter
-    def state(self, state):
-        if self.__state != state:
-            self.__state = state
+    @on.setter
+    def on(self, on):
+        if self.__on != on:
+            self.__on = on
             # TODO: send notification to change lamp status
