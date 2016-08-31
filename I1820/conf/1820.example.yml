@@ -1,6 +1,7 @@
 kaa:
   host: localhost
   port: 8080
+  tenant_id: 10
   user_admin: admin
   passwd_admin: admin123
   user_developer: devuser
