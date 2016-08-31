@@ -14,8 +14,8 @@ with open(path.join(here, 'LICENSE'), encoding='utf-8') as f:
 setup(
     name='I18.20',
     version='1.0.dev1',
-    packages=find_packages(exclude=('I1820r')),
-    url='https://github.com/AoLab/Kaa.py',
+    packages=find_packages(),
+    url='https://github.com/AoLab/I1820',
     description="Kaa Administration REST Client",
     license=license_text,
     long_description=long_description_text,
@@ -24,7 +24,6 @@ setup(
     entry_points={
         'console_scripts': [
             '18.20-cli.py = I1820.cli:main',
-            '18.20-serve.py = I1820.http.main:main'
         ]
     },
 )
