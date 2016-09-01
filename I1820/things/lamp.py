@@ -25,10 +25,6 @@ class Lamp(Thing):
 
     @classmethod
     def handle(cls, data: dict):
-        message = {'id': '00', 'interval': 10}
-        krn = KaaRestNotification('192.168.1.5:8080', 'devuser', 'devuser123')
-        krn.send_notification(32768, 32771, 32769, message)
-
         lamp = Lamp()
         lamp.on = data['settings']['on']
         data['settings']['on'] = lamp.on
@@ -36,6 +32,7 @@ class Lamp(Thing):
         return "Lamp: {}".format(data)
 
     def __init__(self):
+        self.id = 10
         self.__on = False
 
     @property
@@ -43,7 +40,11 @@ class Lamp(Thing):
         return self.__on
 
     @on.setter
-    def on(self, on):
+    def on(self, on: bool):
         if self.__on != on:
             self.__on = on
-            # TODO: send notification to change lamp status
+            message = {'id': self.id, 'settings': {'on': on}, 'type': 'lamp'}
+            krn = KaaRestNotification('%s:%s' % (cfg.kaa_host, cfg.kaa_port),
+                                      cfg.kaa_user_developer,
+                                      cfg.kaa_passwd_developer)
+            krn.send_notification(cfg.app_uid, 32771, 32769, message)
