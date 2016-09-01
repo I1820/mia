@@ -47,4 +47,4 @@ class Lamp(Thing):
             krn = KaaRestNotification('%s:%s' % (cfg.kaa_host, cfg.kaa_port),
                                       cfg.kaa_user_developer,
                                       cfg.kaa_passwd_developer)
-            krn.send_notification(cfg.app_uid, 32771, 32769, message)
+            krn.send_notification(cfg.app_uid, cfg.notif_uid, 32770, message)
