@@ -10,6 +10,7 @@ import yaml
 import os
 
 from ..pykaa.rest.app import KaaRestApplication
+from ..pykaa.rest.notif import KaaRestNotification
 
 
 class I1820Kaa:
@@ -26,6 +27,17 @@ class I1820Kaa:
                 self.app['token'] = app.application_token
                 self.app['uid'] = app.id
         # Notification
+        self.notif = {}
+        krn = KaaRestNotification('%s:%s' % (kaa['host'], kaa['port']),
+                                  kaa['user_developer'],
+                                  kaa['passwd_developer'])
+        notifss = krn.get_all_notification_schemas(self.app['token'])
+        notifss.sort(reverse=True)
+        notifs = notifss[0]
+
+        self.notif['name'] = notifs.name
+        self.notif['uid'] = notifs.id
+        self.notif['version'] = notifs.version
 
 
 class I1820Config:
@@ -41,8 +53,8 @@ class I1820Config:
             return self.cfg[section][field]
         elif section == 'app':
             return self.kaa.app[field]
-        elif section == 'notification':
-            return None
+        elif section == 'notif':
+            return self.kaa.notif[field]
 
 
 I1820_CONFIG_PATH = os.path.join(os.path.dirname(__file__), "1820.yml")
