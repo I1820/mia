@@ -1,0 +1,25 @@
+{
+  "type" : "record",
+  "name" : "I1820",
+  "namespace" : "ir.ac.aut.ceit.aolab.I1820",
+  "fields" : [ {
+    "name" : "id",
+    "type" : "int"
+  }, {
+    "name" : "settings",
+    "type" : {
+      "type" : "record",
+      "name" : "settings",
+      "fields" : [ {
+        "name" : "on",
+        "type" : "boolean"
+      } ]
+    }
+  }, {
+    "name" : "type",
+    "type" : {
+      "type" : "string",
+      "avro.java.string" : "String"
+    }
+  } ]
+}
