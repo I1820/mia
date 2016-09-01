@@ -48,7 +48,7 @@ class NotificationSchema:
         return self.version >= other.version
 
 
-class NotificationJSONEncoder(json.JSONEncoder):
+class NotificationSchemaJSONEncoder(json.JSONEncoder):
     def default(self, obj: NotificationSchema):
         if isinstance(obj, NotificationSchema):
             return {
@@ -65,7 +65,7 @@ class NotificationJSONEncoder(json.JSONEncoder):
                 .format(type(obj)))
 
 
-class NotificationDictDecoder:
+class NotificationSchemaDictDecoder:
     @staticmethod
     def decode(obj: dict) -> NotificationSchema:
         return NotificationSchema(notif_id=obj['id'], name=obj['name'],
