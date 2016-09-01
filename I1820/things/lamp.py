@@ -8,6 +8,7 @@
 # =======================================
 from .base import Thing
 from ..pykaa.rest.notif import KaaRestNotification
+from ..conf.config import cfg
 
 
 class Lamp(Thing):
