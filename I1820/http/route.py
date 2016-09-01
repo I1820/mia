@@ -24,5 +24,6 @@ def thing_handler(rpi_id, device_id):
     data['device_id'] = device_id
     try:
         return Things.get(data['type']).handle(data)
-    except ImportError:
-        flask.abort(400)
+    except ImportError as e:
+        return ('%s is not one of our things: %s' % (data['type'], str(e)),
+                400, {})
