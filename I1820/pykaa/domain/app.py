@@ -14,7 +14,7 @@ class Application:
     """
     This object represents a Kaa application
     :type application_token: str
-    :type app_id: str
+    :type id: str
     :type name: str
     :type sequence_number: int
     :type tenant_id: str
