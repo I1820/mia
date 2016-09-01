@@ -6,6 +6,8 @@ kaa:
   passwd_admin: admin123
   user_developer: devuser
   passwd_developer: devuser123
+app:
+  name: 1820
 mongodb:
   host: localhost
   port: 27017
