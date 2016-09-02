@@ -32,13 +32,3 @@ class Thing(metaclass=Things):
     @abc.abstractmethod
     def name(self):
         raise NotImplemented()
-
-    @classmethod
-    @abc.abstractmethod
-    def list(cls):
-        raise NotImplemented()
-
-    @classmethod
-    @abc.abstractmethod
-    def handle(cls, data: dict):
-        raise NotImplemented()
