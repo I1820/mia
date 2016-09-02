@@ -132,7 +132,7 @@ under certain conditions; type `show c' for details.
 
     @property
     def prompt(self):
-        prompt = "Kaa Administration CLI [{}] > ".format(self.config_name)
+        prompt = "Kaa Administration CLI [] > "
         if termcolor:
             prompt = termcolor.colored(prompt, color="red", attrs=['bold'])
         return prompt
