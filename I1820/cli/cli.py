@@ -10,10 +10,11 @@ import cmd
 import os.path
 import pprint
 
-from I1820.pykaa.rest.app import KaaRestApplication, KaaRestApplicationError
-from I1820.pykaa.rest.sdk import KaaRestSDKProfile
-from I1820.pykaa.rest.config import T1820RestConfig, T1820RestConfigError
-from I1820.pykaa.domain.sdk import SDKProfileTargetPlatform
+from ..pykaa.rest.app import KaaRestApplication, KaaRestApplicationError
+from ..pykaa.rest.sdk import KaaRestSDKProfile
+from ..pykaa.domain.sdk import SDKProfileTargetPlatform
+
+from ..conf.config import cfg
 
 try:
     import termcolor
@@ -24,40 +25,21 @@ except ImportError:
 class I1820CLICmd(cmd.Cmd):
     def __init__(self):
         super(I1820CLICmd, self).__init__()
-        self.firewall = None
-        self.config_name = "Not Loaded"
-        self.address = "127.0.0.1:8080"
-        self.admin_pass = "admin123"
-        self.admin_user = "admin"
-        self.dev_user = "devuser"
-        self.dev_pass = "devuser123"
+        self.admin_user = cfg.kaa_user_admin
+        self.admin_pass = cfg.kaa_passwd_admin
+        self.dev_user = cfg.kaa_user_developer
+        self.dev_pass = cfg.kaa_passwd_developer
+        self.address = cfg.kaa_host + ":" + cfg.kaa_port
         self.intro = """
 {0:*^80}
 {1:=^80}
-Kaa.py version 0.1, Copyright (C) 2015 Parham Alvani (parham.alvani@gmail.com)
-Kaa.py comes with ABSOLUTELY NO WARRANTY; for details type `show w'.
+18.20 version 1.0, Copyright (C) 2015 Parham Alvani (parham.alvani@gmail.com)
+18.20 comes with ABSOLUTELY NO WARRANTY; for details type `show w'.
 This is free software, and you are welcome to redistribute it
 under certain conditions; type `show c' for details.
 """.format("Welcome",
            " CLI program for Kaa Administration which "
            "is written by Parham Alvani ")
-
-    def preloop(self):
-        prompt = "Kaa Administration CLI [] >"
-        if termcolor:
-            prompt = termcolor.colored(prompt, color="red", attrs=['bold'])
-        server = input("{} Please enter 18.20 ip address: ".format(prompt))
-        try:
-            config = T1820RestConfig(server).get_last_configuration()
-        except T1820RestConfigError as e:
-            pprint.pprint("*** REST error: {}".format(e), width=80)
-            return
-        self.address = config.kaa_ip + ":" + str(config.kaa_port)
-        self.admin_user = config.kaa_admin_user
-        self.admin_pass = config.kaa_admin_password
-        self.dev_user = config.kaa_developer_user
-        self.dev_pass = config.kaa_developer_password
-        self.config_name = config.name
 
     def do_get_all_applications(self, line: str):
         kra = KaaRestApplication(self.address, self.dev_user, self.dev_pass)
@@ -125,11 +107,12 @@ under certain conditions; type `show c' for details.
         krsp = KaaRestSDKProfile(self.address, self.dev_user, self.dev_pass)
         sdks = krsp.get_all_sdk_profiles(app.application_token)
         for sdk in sdks:
-            print("[{0}] {1}: {2} {3} {4} {5}".format(sdk.id, sdk.name,
-                                                      sdk.configuration_schema_version,
-                                                      sdk.log_schema_version,
-                                                      sdk.notification_schema_version,
-                                                      sdk.profile_schema_version))
+            print("[{0}] {1}: {2} {3} {4} {5}".
+                  format(sdk.id, sdk.name,
+                         sdk.configuration_schema_version,
+                         sdk.log_schema_version,
+                         sdk.notification_schema_version,
+                         sdk.profile_schema_version))
         sdk_id = input("Please enter your target sdk id: ")
         for sdk in sdks:
             if sdk.id == sdk_id:
@@ -139,11 +122,12 @@ under certain conditions; type `show c' for details.
             return
         path = input("Please enter path for saving generated sdk: ")
         path = os.path.join(path,
-                            "{0}-c{1}-l{2}-n{3}-p{4}.tar.gz".format(sdk.name,
-                                                                    sdk.configuration_schema_version,
-                                                                    sdk.log_schema_version,
-                                                                    sdk.notification_schema_version,
-                                                                    sdk.profile_schema_version))
+                            "{0}-c{1}-l{2}-n{3}-p{4}.tar.gz".
+                            format(sdk.name,
+                                   sdk.configuration_schema_version,
+                                   sdk.log_schema_version,
+                                   sdk.notification_schema_version,
+                                   sdk.profile_schema_version))
         krsp.generate_endpoint_sdk(sdk_id, SDKProfileTargetPlatform.c, path)
 
     @property
