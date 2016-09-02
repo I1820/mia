@@ -45,15 +45,19 @@ class I1820Config:
         with open(path, 'r') as ymlfile:
             cfg = yaml.load(ymlfile)
         self.cfg = cfg
-        self.kaa = I1820Kaa(cfg['app']['name'], cfg['kaa'])
+        self.kaa = None
 
     def __getattr__(self, name):
         section, field = name.split('_', maxsplit=1)
         if section == 'kaa' or section == 'mongodb':
             return self.cfg[section][field]
         elif section == 'app':
+            if self.kaa is None:
+                self.kaa = I1820Kaa(cfg['app']['name'], cfg['kaa'])
             return self.kaa.app[field]
         elif section == 'notif':
+            if self.kaa is None:
+                self.kaa = I1820Kaa(cfg['app']['name'], cfg['kaa'])
             return self.kaa.notif[field]
 
 
