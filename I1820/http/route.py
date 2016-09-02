@@ -18,6 +18,12 @@ def test_handler():
     return "18.20 is leaving us"
 
 
+@app.route('/log', methods=['POST'])
+def log_handler():
+    data = flask.request.get_json(force=True)
+    print(data)
+
+
 @app.route('/service/<string:name>', methods=['POST'])
 def service_handler(name):
     pass
