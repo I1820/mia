@@ -1,0 +1,18 @@
+{
+  "host":"192.168.1.9",
+  "port":1373,
+  "ssl":false,
+  "verifySslCert":false,
+  "username":null,
+  "password":null,
+  "connectionPoolSize":1,
+  "header":true,
+  "path":"/service/log",
+  "method":"POST",
+  "mimeType":"JSON",
+  "minLogSchemaVersion":2,
+  "maxLogSchemaVersion":2147483647,
+  "pluginTypeName":"REST",
+  "pluginClassName":"org.kaaproject.kaa.server.appenders.rest.appender.RestLogAppender",
+  "headerStructure":[]
+}
