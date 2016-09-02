@@ -29,7 +29,7 @@ class I1820CLICmd(cmd.Cmd):
         self.admin_pass = cfg.kaa_passwd_admin
         self.dev_user = cfg.kaa_user_developer
         self.dev_pass = cfg.kaa_passwd_developer
-        self.address = cfg.kaa_host + ":" + cfg.kaa_port
+        self.address = cfg.kaa_host + ":" + str(cfg.kaa_port)
         self.intro = """
 {0:*^80}
 {1:=^80}
