@@ -7,7 +7,7 @@
   "password":null,
   "connectionPoolSize":1,
   "header":true,
-  "path":"/service/log",
+  "path":"/log",
   "method":"POST",
   "mimeType":"JSON",
   "minLogSchemaVersion":2,
