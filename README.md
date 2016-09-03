@@ -1,7 +1,7 @@
 ![Lamp Project Logo](http://www.googledrive.com/host/0B33KzMHyLoH2eVNHWFJZdmthOVk/Lamp-Logo.png)
 # I1820
 ## Introduction
-![I1820 Architecture](http://aolab.github.io/documentation/architecture/RPi-Plug.jpg)
+![I1820 Architecture](http://aolab.github.io/documentation/architecture/I1820.jpg)
 This program does [Kaa](http://www.kaaproject.org/) administration things with CLI
 in the first place, I think
 using a complex CLI is better than using a simple GUI :D.  
