@@ -13,3 +13,10 @@ class I1820Logger:
     def __init__(self, timestamp: datetime.datetime,
                  data: dict, endpoint: str):
         pass
+
+    def save(self):
+        pass
+
+    @classmethod
+    def last(cls):
+        pass
