@@ -29,9 +29,11 @@ def service_handler(name):
     pass
 
 
-@app.route('/thing/<uuid:rpi_id>/<uuid:device_id>', methods=['POST', 'PUT'])
-def thing_handler(rpi_id, device_id):
+@app.route('/thing', methods=['POST', 'PUT'])
+def thing_handler():
     data = flask.request.get_json(force=True)
+    rpi_id = data['rpi_id']
+    device_id = data['device_id']
     result = {}
     try:
         thing = Things.get(data['type'])(rpi_id, device_id)
