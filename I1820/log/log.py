@@ -6,5 +6,10 @@
 #
 # [] Created By : Parham Alvani (parham.alvani@gmail.com)
 # =======================================
+import datetime
 
 
+class I1820Logger:
+    def __init__(self, timestamp: datetime.datetime,
+                 data: dict, endpoint: str):
+        pass
