@@ -8,9 +8,11 @@
 # =======================================
 import flask
 import json
+import datetime
 
 from . import app
 from ..things.base import Things
+from ..log.log import I1820Logger
 
 
 @app.route('/test')
@@ -21,6 +23,11 @@ def test_handler():
 @app.route('/log', methods=['POST'])
 def log_handler():
     data = flask.request.get_json(force=True)
+    log = I1820Logger(
+        datetime.datetime.fromtimestamp(data['timestamp']['long']),
+        data['data'],
+        data['endpointKeyHash']['string']
+    )
     print(data)
 
 
