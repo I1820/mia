@@ -49,7 +49,7 @@ class I1820Config:
 
     def __getattr__(self, name):
         section, field = name.split('_', maxsplit=1)
-        if section == 'kaa' or section == 'mongodb':
+        if section == 'kaa' or section == 'influxdb':
             return self.cfg[section][field]
         elif section == 'app':
             if self.kaa is None:
