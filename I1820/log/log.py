@@ -12,15 +12,21 @@ import datetime
 class I1820Logger:
     def __init__(self, timestamp: datetime.datetime,
                  data: dict, endpoint: str):
-        self._status = data['status']
-        for key, value in data['status'].items():
-            setattr(self, key, value)
+        self.states = data['states']
         self.timestamp = timestamp
         self.endpoint = endpoint
 
     def save(self):
-        for key, value in self._status.items():
-            pass
+        points = []
+        for key, value in self.states.items():
+            point = {
+                "measurement": key,
+                "time": self.timestamp,
+                "fields": {
+                    "value": value
+                }
+            }
+            points.append(point)
 
     @classmethod
     def last(cls, me):
