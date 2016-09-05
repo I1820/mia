@@ -24,11 +24,12 @@ def test_handler():
 def log_handler():
     data = flask.request.get_json(force=True)
     log = I1820Logger(
-        datetime.datetime.fromtimestamp(data['timestamp']['long']),
+        datetime.datetime.fromtimestamp(data['timestamp']),
         data['data'],
-        data['endpointKeyHash']['string']
+        data['endpoint']
     )
     print(data)
+    return ""
 
 
 @app.route('/service/<string:name>', methods=['POST'])
