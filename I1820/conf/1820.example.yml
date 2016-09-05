@@ -8,9 +8,9 @@ kaa:
   passwd_developer: devuser123
 app:
   name: 1820
-mongodb:
+influxdb:
   host: localhost
-  port: 27017
+  port: 8086
   db: I1820
-  user: I1820
-  passwd: 12345
+  user: root
+  passwd: root
