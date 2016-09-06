@@ -1,7 +1,7 @@
 {
   "type" : "record",
   "name" : "I1820",
-  "namespace" : "ir.ac.aut.ceit.aolab.I1820",
+  "namespace" : "ir.ac.aut.ceit.aolab.I1820.notification",
   "fields" : [ {
     "name" : "id",
     "type" : "int"
