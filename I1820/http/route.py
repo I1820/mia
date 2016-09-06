@@ -28,7 +28,7 @@ def log_handler():
         data['data'],
         data['endpoint']
     )
-    print(data)
+    log.save()
     return ""
 
 
