@@ -53,7 +53,8 @@ class KaaRestNotification(KaaRestBase):
         print(response.text)
 
     def create_notification_schema(self, application_id: int,
-                                   name: str, description: str, schema: dict):
+                                   name: str, description: str,
+                                   schema: dict) -> NotificationSchema:
         meta = {'applicationId': application_id, 'name': name,
                 'description': description}
 
@@ -64,7 +65,9 @@ class KaaRestNotification(KaaRestBase):
 
         response = requests.post(self.url_prefix + 'createNotificationSchema',
                                  files=files)
-        print(response.text)
+        notification_schema = NotificationSchemaDictDecoder.decode(
+            response.json)
+        return notification_schema
 
 
 class KaaRestNotificationError(KaaRestError):
