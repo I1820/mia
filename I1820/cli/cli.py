@@ -14,6 +14,7 @@ import json
 from ..pykaa.rest.app import KaaRestApplication, KaaRestApplicationError
 from ..pykaa.rest.sdk import KaaRestSDKProfile
 from ..pykaa.rest.notif import KaaRestNotification
+from ..pykaa.rest.log import KaaRestLog
 from ..pykaa.domain.sdk import SDKProfileTargetPlatform
 
 from ..conf.config import cfg
@@ -111,9 +112,27 @@ under certain conditions; type `show c' for details.
         schema_file = input("Please enter your schema file address: ")
         with open(schema_file, 'r') as fd:
             schema = json.load(fd)
-        krn.create_notification_schema(app.id,
-                                       'I1820',
-                                       'I1820 Default Notification', schema)
+        name = input("Please enter your log schema name: ")
+        description = input("Please enter your log schema description: ")
+        krn.create_notification_schema(app.id, name, description, schema)
+
+    def do_create_log_schema(self, line: str):
+        kra = KaaRestApplication(self.address, self.dev_user, self.dev_pass)
+        apps = kra.get_all_applications()
+        for app in apps:
+            if app.name == line:
+                break
+        else:
+            print("*** Invalid application name: {}".format(line))
+            return
+        krn = KaaRestLog(self.address, self.dev_user, self.dev_pass)
+        schema = {}
+        schema_file = input("Please enter your schema file address: ")
+        with open(schema_file, 'r') as fd:
+            schema = json.load(fd)
+        name = input("Please enter your log schema name: ")
+        description = input("Please enter your log schema description: ")
+        krn.create_log_schema(app.id, name, description, schema)
 
     def do_generate_endpoint_sdk(self, line: str):
         kra = KaaRestApplication(self.address, self.dev_user, self.dev_pass)
