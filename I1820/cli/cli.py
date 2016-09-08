@@ -95,6 +95,19 @@ under certain conditions; type `show c' for details.
         for sdk in sdks:
             print(sdk)
 
+    def do_upload_notification_schema(self, line: str):
+        kra = KaaRestApplication(self.address, self.dev_user, self.dev_pass)
+        apps = kra.get_all_applications()
+        for app in apps:
+            if app.name == line:
+                break
+        else:
+            print("*** Invalid application name: {}".format(line))
+            return
+        krn = KaaRestNotification(self.address, self.dev_user, self.dev_pass)
+        create_notification_schema(app.id, 'I1820', 'I1820 Default Notification',
+                                   json.load(open('schema/I1820-notification-schema.avsc'))
+
     def do_generate_endpoint_sdk(self, line: str):
         kra = KaaRestApplication(self.address, self.dev_user, self.dev_pass)
         apps = kra.get_all_applications()
