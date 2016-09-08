@@ -53,11 +53,11 @@ class I1820Config:
             return self.cfg[section][field]
         elif section == 'app':
             if self.kaa is None:
-                self.kaa = I1820Kaa(cfg['app']['name'], cfg['kaa'])
+                self.kaa = I1820Kaa(self.cfg['app']['name'], self.cfg['kaa'])
             return self.kaa.app[field]
         elif section == 'notif':
             if self.kaa is None:
-                self.kaa = I1820Kaa(cfg['app']['name'], cfg['kaa'])
+                self.kaa = I1820Kaa(self.cfg['app']['name'], self.cfg['kaa'])
             return self.kaa.notif[field]
 
 
