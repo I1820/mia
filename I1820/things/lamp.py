@@ -6,16 +6,14 @@
 #
 # [] Created By : Parham Alvani (parham.alvani@gmail.com)
 # =======================================
-from .base import Thing
+from .actuator import ActuatorThing
 from ..pykaa.rest.notif import KaaRestNotification
 from ..conf.config import cfg
 
 
-class Lamp(Thing):
+class Lamp(ActuatorThing):
     """
-    This class represents Lamp !
-    :param on: shows the lamp is on or off
-    :type on: bool
+    This class represents Lamp actuator
     """
     name = "lamp"
 
@@ -24,7 +22,10 @@ class Lamp(Thing):
 
     @property
     def on(self):
-        pass
+        """
+        On property is used as a trigger for lamp status.
+        """
+        raise ValueError('Actuator settings are not readable')
 
     @on.setter
     def on(self, on: bool):
