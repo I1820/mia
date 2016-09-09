@@ -28,7 +28,7 @@ function onIndexLoad () {
   var ws = new WebSocket('wss://www.example.com/socketserver')
   ws.onerror = function (event) {
     app.status.message = 'Error :('
-    app.status.type = 'error'
+    app.status.type = 'danger'
   }
   ws.onmessage = function (event) {
     var message = event.data
