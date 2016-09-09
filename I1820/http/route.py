@@ -40,7 +40,7 @@ def log_handler():
 def discovery_thing_handler():
     data = flask.request.get_json(force=True)
     discovery = DiscoveryController()
-    discovery.ping(data)
+    discovery.ping(data, flask.request.remote_addr)
     return ""
 
 
