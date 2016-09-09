@@ -26,11 +26,12 @@ var app = new Vue({
 
 function onIndexLoad () {
   var ws = new WebSocket('wss://www.example.com/socketserver')
-  ws.onerror = function (error) {
-    app.status.message = error
+  ws.onerror = function (event) {
+    app.status.message = event.data
     app.status.type = 'error'
   }
-  ws.onmessage = function (message) {
-    app.message.push(message.data)
+  ws.onmessage = function (event) {
+    var message = event.data
+    app.message.push(message)
   }
 }
