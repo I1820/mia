@@ -12,12 +12,16 @@ import datetime
 
 from . import app
 from ..things.base import Things
+from ..controller.discovery import DiscoveryController
 from ..log.log import I1820Logger
 
 
 @app.route('/test')
 def test_handler():
     return "18.20 is leaving us"
+
+
+# Thing Side
 
 
 @app.route('/log', methods=['POST'])
@@ -32,9 +36,21 @@ def log_handler():
     return ""
 
 
-@app.route('/service/<string:name>', methods=['POST'])
-def service_handler(name):
-    pass
+@app.route('/discovery', methods=['POST'])
+def discovery_thing_handler():
+    data = flask.request.get_json(force=True)
+    discovery = DiscoveryController()
+    discovery.ping(data)
+    return ""
+
+
+# Human Side
+
+
+@app.route('/discovery', methods=['GET'])
+def discovery_human_handler():
+    discovery = DiscoveryController()
+    return json.dumps(discovery.rpis)
 
 
 @app.route('/thing', methods=['POST', 'PUT'])
