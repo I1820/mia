@@ -25,7 +25,7 @@ var app = new Vue({
 })
 
 function onIndexLoad () {
-  var ws = new WebSocket('ws://www.example.com/socketserver')
+  var ws = new WebSocket('wss://www.example.com/socketserver')
   ws.onerror = function (error) {
     app.status.message = error
     app.status.type = 'error'
