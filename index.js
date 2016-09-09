@@ -12,6 +12,10 @@ window.onLoad = onIndexLoad
 var app = new Vue({
   el: '#app',
   data: {
+    status: {
+      message: 'connecting',
+      type: 'default'
+    },
     messages: [{
       id: '123',
       ip: '192.168.12.2',
@@ -22,6 +26,10 @@ var app = new Vue({
 
 function onIndexLoad () {
   var ws = new WebSocket('ws://www.example.com/socketserver')
+  ws.onerror = function (error) {
+    app.status.message = error
+    app.status.type = 'error'
+  }
   ws.onmessage = function (message) {
     app.message.push(message.data)
   }
