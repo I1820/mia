@@ -21,7 +21,7 @@ class DiscoveryController(I1820Controller):
                                             'ip': ip,
                                             'things': message['things']}
             for thing in message['things']:
-                Things.get(thing['type']).newThing(
+                Things.get(thing['type']).new_thing(
                     message['rpi_id'], thing['id'])
         else:
             self.rpis[message['rpi_id']]['time'] = str(datetime.now())
