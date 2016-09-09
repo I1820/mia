@@ -13,7 +13,7 @@ var app = new Vue({
   el: '#app',
   data: {
     status: {
-      message: 'connecting',
+      message: 'Connecting...',
       type: 'default'
     },
     messages: [{
@@ -27,7 +27,7 @@ var app = new Vue({
 function onIndexLoad () {
   var ws = new WebSocket('wss://www.example.com/socketserver')
   ws.onerror = function (event) {
-    app.status.message = event.data
+    app.status.message = 'Error :('
     app.status.type = 'error'
   }
   ws.onmessage = function (event) {
