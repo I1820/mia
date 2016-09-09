@@ -16,7 +16,7 @@ class ControllerMeta(abc.ABCMeta):
         if cls not in cls.instances:
             cls.instances[cls] = super(ControllerMeta,
                                        cls).__call__(*args, **kwargs)
-            return cls.instances[cls]
+        return cls.instances[cls]
 
 
 class I1820Controller(metaclass=ControllerMeta):
