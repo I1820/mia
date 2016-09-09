@@ -20,4 +20,4 @@ class DiscoveryController(I1820Controller):
                                             'things': message['things']}
             # TODO: handle new things
         else:
-            self.rpis[message['rpi_id']]['time'] = datetime.now()
+            self.rpis[message['rpi_id']]['time'] = str(datetime.now())
