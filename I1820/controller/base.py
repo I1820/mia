@@ -12,7 +12,6 @@ import abc
 class ControllerMeta(abc.ABCMeta):
     instances = {}
 
-    @classmethod
     def __call__(cls, *args, **kwargs):
         if cls not in cls.instances:
             cls.instances[cls] = super(ControllerMeta,
