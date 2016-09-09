@@ -7,7 +7,7 @@
  * | File Name:     index.js
  * +===============================================
  */
-window.onLoad = onIndexLoad
+window.onload = onIndexLoad
 
 var app = new Vue({
   el: '#app',
