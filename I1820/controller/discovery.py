@@ -8,6 +8,7 @@
 # =======================================
 from datetime import datetime
 from .base import I1820Controller
+from ..things.base import Things
 
 
 class DiscoveryController(I1820Controller):
@@ -19,6 +20,8 @@ class DiscoveryController(I1820Controller):
             self.rpis[message['rpi_id']] = {'time': str(datetime.now()),
                                             'ip': ip,
                                             'things': message['things']}
-            # TODO: handle new things
+            for thing in message['things']:
+                Things.get(thing['type']).newThing(
+                    message['rpi_id'], thing['id'])
         else:
             self.rpis[message['rpi_id']]['time'] = str(datetime.now())
