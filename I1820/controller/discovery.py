@@ -14,9 +14,10 @@ class DiscoveryController(I1820Controller):
     def __init__(self):
         self.rpis = dict()
 
-    def ping(self, message: dict):
+    def ping(self, message: dict, ip: str):
         if message['rpi_id'] not in self.rpis.keys():
             self.rpis[message['rpi_id']] = {'time': str(datetime.now()),
+                                            'ip': ip,
                                             'things': message['things']}
             # TODO: handle new things
         else:
