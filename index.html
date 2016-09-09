@@ -1,51 +1,32 @@
 <!doctype html>
 <html>
 <head>
-    <meta charset="utf-8"/>
-    <title>Goldoon</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<meta charset="utf-8"/>
+<title>I1820-UI</title>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
+integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 </head>
 <body>
-<div class="container" id="app">
-    <table class="table">
-        <thead>
-        <tr>
-            <th>id</th>
-            <th>ip</th>
-            <th>humidity</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr v-for="message in messages">
-            <td>{{ message.id }}</td>
-            <td>{{ message.ip }}</td>
-            <td>{{ message.humidity }}</td>
-        </tr>
-        </tbody>
+<div class="container">
+	<table class="table" id="app">
+		<thead>
+			<tr>
+				<th>id</th>
+				<th>ip</th>
+				<th>humidity</th>
+			</tr>
+		</thead>
+		<tbody>
+		<tr v-for="message in messages">
+			<td>{{ message.id }}</td>
+			<td>{{ message.ip }}</td>
+			<td>{{ message.humidity }}</td>
+		</tr>
+		</tbody>
 
-    </table>
+	</table>
 </div>
 <script src="https://vuejs.org/js/vue.min.js"></script>
-<script>
-    var vue = new Vue({
-        el: '#app',
-        data: {
-            messages: [
-                {
-                    id: "123",
-                    ip: "192.168.12.2",
-                    humidity: 25
-                }
-            ]
-        }
-    });
-
-    var socket = new WebSocket("ws://www.example.com/socketserver");
-    socket.onmessage = function (event) {
-        vue.messages.push(event.data);
-    }
-
-</script>
+<script src="index.js"></script>
 </body>
 </html>
