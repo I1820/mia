@@ -11,6 +11,7 @@ import json
 
 from . import app
 from ..things.base import Things
+from ..domain.log import I1820LogDictDecoder
 from ..controller.discovery import DiscoveryController
 from ..controller.log import LogController
 
@@ -26,6 +27,9 @@ def test_handler():
 @app.route('/log', methods=['POST'])
 def log_handler():
     data = flask.request.get_json(force=True)
+    data = json.loads(data)
+    log = I1820LogDictDecoder.decode(data)
+    LogController().save(log)
     return ""
 
 
