@@ -34,9 +34,9 @@ class Thing(metaclass=Things):
         raise NotImplemented()
 
     @abc.abstractmethod
-    def get_thing(self, rpi_id, device_id):
+    def get_thing(cls, rpi_id, device_id):
         pass
 
     @abc.abstractmethod
-    def new_thing(self, rpi_id, device_id):
+    def new_thing(cls, rpi_id, device_id):
         pass
