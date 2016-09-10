@@ -61,9 +61,8 @@ def thing_handler():
     except ImportError as e:
         return ('%s is not one of our things: %s' % (data['type'], str(e)),
                 400, {})
-    except KeyError as e:
-        return ('%s is not one of our RPis: %s' % (rpi_id, str(e)),
-                404, {})
+    except KeyError:
+        return ('%s is not one of our RPis' % rpi_id, 404, {})
     if 'settings' in data.keys():
         for key, value in data['settings'].items():
             setattr(thing, key, value)
