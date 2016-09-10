@@ -7,8 +7,6 @@
 # [] Created By : Parham Alvani (parham.alvani@gmail.com)
 # =======================================
 from .actuator import ActuatorThing
-from ..pykaa.rest.notif import KaaRestNotification
-from ..conf.config import cfg
 
 
 class Lamp(ActuatorThing):
@@ -16,9 +14,21 @@ class Lamp(ActuatorThing):
     This class represents Lamp actuator
     """
     name = "lamp"
+    lamps = {}
 
     def __init__(self, rpi_id, device_id):
-        self.id = 10
+        self.rpi_id = rpi_id
+        self.device_id = device_id
+
+    @classmethod
+    def new_thing(cls, rpi_id, device_id):
+        cls.lamps[(rpi_id, device_id)] = cls(rpi_id, device_id)
+        print(cls)
+
+    @classmethod
+    def get_thing(cls, rpi_id, device_id):
+        lamp = cls.lamps[(rpi_id, device_id)]
+        return lamp
 
     @property
     def on(self):
@@ -29,8 +39,6 @@ class Lamp(ActuatorThing):
 
     @on.setter
     def on(self, on: bool):
-        message = {'id': self.id, 'settings': {'on': on}, 'type': 'lamp'}
-        krn = KaaRestNotification('%s:%s' % (cfg.kaa_host, cfg.kaa_port),
-                                  cfg.kaa_user_developer,
-                                  cfg.kaa_passwd_developer)
-        krn.send_notification(cfg.app_uid, cfg.notif_uid, 32770, message)
+        message = {'id': self.device_id, 'settings': {'on': on},
+                   'type': 'lamp'}
+        print(message)
