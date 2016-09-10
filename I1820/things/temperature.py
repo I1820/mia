@@ -7,6 +7,7 @@
 # [] Created By : Parham Alvani (parham.alvani@gmail.com)
 # =======================================
 from .sensor import SensorThing
+from ..controller.log import LogController
 
 
 class Temperature(SensorThing):
@@ -23,7 +24,6 @@ class Temperature(SensorThing):
     @classmethod
     def new_thing(cls, rpi_id, device_id):
         cls.temperatures[(rpi_id, device_id)] = cls(rpi_id, device_id)
-        print(cls)
 
     @classmethod
     def get_thing(cls, rpi_id, device_id):
@@ -35,7 +35,8 @@ class Temperature(SensorThing):
         """
         Temperature property is used for retrieve temperature data.
         """
-        pass
+        log = LogController().last('temperature', self.rpi_id, self.device_id)
+        return log.value
 
     @temperature.setter
     def temperature(self, value):
