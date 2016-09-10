@@ -57,16 +57,19 @@ def thing_handler():
     device_id = data['device_id']
     result = {}
     try:
-        thing = Things.get(data['type'])(rpi_id, device_id)
+        thing = Things.get(data['type']).get_thing(rpi_id, device_id)
     except ImportError as e:
         return ('%s is not one of our things: %s' % (data['type'], str(e)),
                 400, {})
+    except KeyError as e:
+        return ('%s is not one of our RPis: %s' % (rpi_id, str(e)),
+                404, {})
     if 'settings' in data.keys():
         for key, value in data['settings'].items():
             setattr(thing, key, value)
             result[key] = value
-    if 'status' in data.keys():
-        for key in data['status']:
+    if 'states' in data.keys():
+        for key in data['states']:
             result[key] = getattr(thing, key)
 
     return json.dumps(result)
