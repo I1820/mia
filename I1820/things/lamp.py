@@ -23,7 +23,6 @@ class Lamp(ActuatorThing):
     @classmethod
     def new_thing(cls, rpi_id, device_id):
         cls.lamps[(rpi_id, device_id)] = cls(rpi_id, device_id)
-        print(cls)
 
     @classmethod
     def get_thing(cls, rpi_id, device_id):
