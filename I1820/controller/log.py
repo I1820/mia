@@ -41,7 +41,7 @@ class LogController(I1820Controller):
                 }
             }
             points.append(point)
-            self._client().write_points(points)
+            self._client.write_points(points)
 
     def last(self, measurement) -> I1820Log:
         results = self._client.query(
