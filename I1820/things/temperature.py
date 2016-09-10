@@ -9,12 +9,12 @@
 from .sensor import SensorThing
 
 
-class Temprature(SensorThing):
+class Temperature(SensorThing):
     """
     This class represents Temperature sensor
     """
     name = "temperature"
-    temperature = {}
+    temperatures = {}
 
     def __init__(self, rpi_id, device_id):
         self.rpi_id = rpi_id
