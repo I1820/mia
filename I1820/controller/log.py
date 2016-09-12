@@ -44,7 +44,9 @@ class LogController(I1820Controller):
             self._client.write_points(points)
 
     def last(self, measurement, rpi_id, device_id):
-        results = self._client.query(
-            'SELECT value FROM %s WHERE "rpi_id" = \'%s\' AND "device_id" = \'%s\' ORDER BY time DESC LIMIT 1;' % (measurement, rpi_id, device_id))
+        q = ('SELECT * FROM %s'
+             ' WHERE "rpi_id" = \'%s\' AND "device_id" = \'%s\''
+             ' ORDER BY time DESC LIMIT 1;') % (measurement, rpi_id, device_id)
+        results = self._client.query(q)
         print(results)
         return None
