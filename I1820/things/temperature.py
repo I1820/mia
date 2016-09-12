@@ -35,8 +35,9 @@ class Temperature(SensorThing):
         """
         Temperature property is used for retrieve temperature data.
         """
-        log = LogController().last('temperature', self.rpi_id, self.device_id)
-        return log.value
+        temperature = LogController().last(
+            'temperature', self.rpi_id, self.device_id)
+        return temperature
 
     @temperature.setter
     def temperature(self, value):
