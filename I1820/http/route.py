@@ -27,7 +27,6 @@ def test_handler():
 @app.route('/log', methods=['POST'])
 def log_handler():
     data = flask.request.get_json(force=True)
-    data = json.loads(data)
     log = I1820LogDictDecoder.decode(data)
     LogController().save(log)
     return ""
