@@ -38,11 +38,11 @@ $PROJECT_ROOT/run.sh
 * Request:
 ```json
 {
-  "type": "temprature",
-  "device_id": "cdede389-2315-419c-b1d5-ee9a9b43be2a",
+  "type": "temperature",
+  "device_id": 0,
   "rpi_id": "cdede389-2315-419c-b1d5-ee9a9b43be2a",
   "states": [
-    "temprature"
+    "temperature"
    ]
 }
 ```
@@ -53,7 +53,7 @@ $PROJECT_ROOT/run.sh
 ```json
 {
   "type": "lamp",
-  "device_id": "cdede389-2315-419c-b1d5-ee9a9b43be2a",
+  "device_id": 0,
   "rpi_id": "cdede389-2315-419c-b1d5-ee9a9b43be2a",
   "settings": {
     "on": true
