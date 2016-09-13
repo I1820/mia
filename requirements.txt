@@ -2,3 +2,4 @@ requests
 Flask
 pyyaml
 influxdb
+websockets
