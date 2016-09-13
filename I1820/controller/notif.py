@@ -9,7 +9,7 @@
 import requests
 
 from .base import I1820Controller
-from ..domain.notif import I1820Notification
+from ..domain.notif import I1820Notification, I1820NotificationJSONEncoder
 from .discovery import DiscoveryController
 
 
@@ -19,4 +19,5 @@ class NotificationController(I1820Controller):
 
     def notify(self, notification: I1820Notification):
         ip = DiscoveryController.rpis[notification['endpoint']]['ip']
-        requests.post('http://%s:1373/event' % ip)
+        requests.post('http://%s:1373/event' % ip,
+                      data=I1820NotificationJSONEncoder().encode(notification))
