@@ -1,5 +1,5 @@
 requests
 Flask
+Flask-SocketIO
 pyyaml
 influxdb
-websockets
