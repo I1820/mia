@@ -10,6 +10,7 @@ import flask
 import json
 
 from . import app
+from . import socketio
 from ..things.base import Things
 from ..domain.log import I1820LogDictDecoder
 from ..controller.discovery import DiscoveryController
@@ -71,3 +72,8 @@ def thing_handler():
             result[key] = getattr(thing, key)
 
     return json.dumps(result)
+
+
+@socketio.on('subscribe')
+def subscribe_handler(message):
+    print("new connection")

@@ -6,8 +6,8 @@
 #
 # [] Created By : Parham Alvani (parham.alvani@gmail.com)
 # =======================================
-from .route import app
+from .route import app, socketio
 
 
 def main():
-    app.run(debug=True, host="0.0.0.0", port=1373)
+    socketio.run(app, host="0.0.0.0", port=1373, debug=True)
