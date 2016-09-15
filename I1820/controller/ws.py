@@ -6,8 +6,7 @@
 #
 # [] Created By : Parham Alvani (parham.alvani@gmail.com)
 # =======================================
-import socketio
-
+from ..http import socketio
 from .base import I1820Controller
 
 
