@@ -25,13 +25,16 @@ var app = new Vue({
 })
 
 function onIndexLoad () {
-  var ws = new WebSocket('wss://www.example.com/socketserver')
-  ws.onerror = function (event) {
+  var socket = io.connect('ws://192.168.1.9:1373/temperature')
+  socket.on('connect', function () {
+    app.status.message = 'Connected'
+    app.status.type = 'success'
+  })
+  socket.on('error', function () {
     app.status.message = 'Error :('
     app.status.type = 'danger'
-  }
-  ws.onmessage = function (event) {
-    var message = event.data
-    app.message.push(message)
-  }
+  })
+  socket.on('message', function (message) {
+    console.log(message)
+  })
 }
