@@ -7,7 +7,7 @@
 # [] Created By : Parham Alvani (parham.alvani@gmail.com)
 # =======================================
 from .route import app
-from . import socketio
+from .route import socketio
 
 
 def main():
