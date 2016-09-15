@@ -16,4 +16,4 @@ class WebSocketController(I1820Controller):
         pass
 
     def send(self, message, namespace):
-        socketio.send(message, json=True, namespace=namespace)
+        socketio.send(message, json=True, namespace='/%s' % namespace)
