@@ -8,20 +8,18 @@ integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh
 </head>
 <body>
 <div class="container" id="app">
-	<h3>I1820-UI <span class="label label-{{ status.type }}">{{ status.message }}</span></h3>
+	<h3>I1820-UI <span class="label label-{{ connection.state }}">{{ connection.message }}</span></h3>
 	<table class="table">
 		<thead>
 			<tr>
-				<th>id</th>
-				<th>ip</th>
-				<th>humidity</th>
+				<th>Name</th>
+				<th>Value</th>
 			</tr>
 		</thead>
 		<tbody>
-		<tr v-for="message in messages">
-			<td>{{ message.id }}</td>
-			<td>{{ message.ip }}</td>
-			<td>{{ message.humidity }}</td>
+		<tr v-for="(key, value) in states">
+			<td>{{ key | capitalize }}</td>
+			<td>{{ value }}</td>
 		</tr>
 		</tbody>
 
