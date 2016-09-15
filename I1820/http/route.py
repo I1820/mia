@@ -11,7 +11,7 @@ import json
 
 from . import app
 from ..things.base import Things
-from ..domain.log import I1820LogDictDecoder
+from ..domain.log import I1820LogDictDecoder, I1820LogJSONEncoder
 from ..controller.discovery import DiscoveryController
 from ..controller.log import LogController
 from ..controller.ws import WebSocketController
@@ -30,7 +30,8 @@ def log_handler():
     data = flask.request.get_json(force=True)
     log = I1820LogDictDecoder.decode(data)
     LogController().save(log)
-    WebSocketController().send(log, log.type)
+    WebSocketController().send(I1820LogJSONEncoder().encode(log),
+                               log.type)
     return ""
 
 
