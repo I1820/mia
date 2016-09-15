@@ -13,10 +13,7 @@ from .base import I1820Controller
 
 class WebSocketController(I1820Controller):
     def __init__(self):
-        self.connected = []
+        pass
 
     def send(self, message, namespace):
         socketio.send(message, json=True, namespace=namespace)
-
-    def connect(self, socket):
-        self.connected.append(socket)
