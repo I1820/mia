@@ -10,11 +10,11 @@ import flask
 import json
 
 from . import app
+from . import socketio
 from ..things.base import Things
 from ..domain.log import I1820LogDictDecoder, I1820LogJSONEncoder
 from ..controller.discovery import DiscoveryController
 from ..controller.log import LogController
-from ..controller.ws import WebSocketController
 
 
 @app.route('/test')
@@ -29,9 +29,14 @@ def test_handler():
 def log_handler():
     data = flask.request.get_json(force=True)
     log = I1820LogDictDecoder.decode(data)
+
+    # InfluxDB
     LogController().save(log)
-    WebSocketController().send(I1820LogJSONEncoder().encode(log),
-                               log.type)
+
+    # SocketIO
+    socketio.emit('log', I1820LogJSONEncoder().encode(log))
+    socketio.emit('log', I1820LogJSONEncoder().encode(log),
+                  namespace='/%s' % log.type)
     return ""
 
 
