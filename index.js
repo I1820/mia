@@ -12,29 +12,31 @@ window.onload = onIndexLoad
 var app = new Vue({
   el: '#app',
   data: {
-    status: {
+    connection: {
       message: 'Connecting...',
-      type: 'default'
+      state: 'default'
     },
-    messages: [{
-      id: '123',
-      ip: '192.168.12.2',
-      humidity: 25
-    }]
+    states: {
+    }
   }
 })
 
 function onIndexLoad () {
-  var socket = io.connect('ws://192.168.1.9:1373/temperature')
+  var socket = io.connect('http://192.168.1.9:1373/')
   socket.on('connect', function () {
-    app.status.message = 'Connected'
-    app.status.type = 'success'
+    app.connection.message = 'Connected'
+    app.connection.state = 'success'
   })
   socket.on('error', function () {
-    app.status.message = 'Error :('
-    app.status.type = 'danger'
+    app.connection.message = 'Error :('
+    app.connection.state = 'danger'
   })
-  socket.on('message', function (message) {
-    console.log(message)
+  socket.on('log', function (message) {
+    message = JSON.parse(message)
+    for (var key in message.states) {
+      if (message.states.hasOwnProperty(key)) {
+        Vue.set(app.states, key, message.states[key])
+      }
+    }
   })
 }
