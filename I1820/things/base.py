@@ -49,4 +49,4 @@ class Thing(metaclass=Things):
 
     @classmethod
     def new_thing(cls, rpi_id, device_id):
-        cls.things[(rpi_id, device_id)] = cls(rpi_id, device_id)
+        cls.things[cls.name][(rpi_id, device_id)] = cls(rpi_id, device_id)
