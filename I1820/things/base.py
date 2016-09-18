@@ -16,6 +16,13 @@ class Things(abc.ABCMeta):
     def __new__(metaclass, name, bases, namespace):
         cls = abc.ABCMeta.__new__(
             metaclass, name, bases, namespace)
+        if not hasattr(cls, 'things'):
+            # If class has no things list, so it must be a Thing :D
+            cls.things = {}
+        else:
+            # Register the new thing :D
+            if isinstance(cls.name, str):
+                cls.things[cls.name] = {}
         if isinstance(cls.name, str):
             metaclass.things[cls.name] = cls
         return cls
@@ -28,15 +35,18 @@ class Things(abc.ABCMeta):
 
 
 class Thing(metaclass=Things):
+    things = {}
+
     @property
     @abc.abstractmethod
     def name(self):
         raise NotImplemented()
 
-    @abc.abstractmethod
+    @classmethod
     def get_thing(cls, rpi_id, device_id):
-        pass
+        thing = cls.things[cls.name][(rpi_id, device_id)]
+        return thing
 
-    @abc.abstractmethod
+    @classmethod
     def new_thing(cls, rpi_id, device_id):
-        pass
+        cls.things[(rpi_id, device_id)] = cls(rpi_id, device_id)
