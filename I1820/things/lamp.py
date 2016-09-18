@@ -14,20 +14,10 @@ class Lamp(ActuatorThing):
     This class represents Lamp actuator
     """
     name = "lamp"
-    lamps = {}
 
     def __init__(self, rpi_id, device_id):
         self.rpi_id = rpi_id
         self.device_id = device_id
-
-    @classmethod
-    def new_thing(cls, rpi_id, device_id):
-        cls.lamps[(rpi_id, device_id)] = cls(rpi_id, device_id)
-
-    @classmethod
-    def get_thing(cls, rpi_id, device_id):
-        lamp = cls.lamps[(rpi_id, device_id)]
-        return lamp
 
     @property
     def on(self):
