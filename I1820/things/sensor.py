@@ -10,4 +10,5 @@ from .base import Thing
 
 
 class SensorThing(Thing):
+    # TODO: Provide log analyzer
     pass
