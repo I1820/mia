@@ -3,6 +3,7 @@ MAINTAINER Parham Alvani <parham.alvani@gmail.com>
 
 # Install packages
 RUN apt-get update
+RUN apt-get install -y git
 RUN apt-get install -y python3 python3-venv python3-pip
 
 # Cleanup
