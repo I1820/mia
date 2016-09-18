@@ -26,6 +26,7 @@ class SensorThing(Thing):
     def __setattr__(self, name, value):
         if name in self.allowed_states:
             raise ValueError('Sensor states are not writeable')
+        super().__setattr__(name, value)
 
     def __getattr__(self, name):
         if name not in self.allowed_states:
