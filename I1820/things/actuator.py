@@ -10,4 +10,5 @@ from .base import Thing
 
 
 class ActuatorThing(Thing):
-    pass
+    def __init__(self, rpi_id, device_id):
+        super().__init__(rpi_id, device_id)
