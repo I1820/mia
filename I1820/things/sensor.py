@@ -15,13 +15,17 @@ from ..controller.log import LogController
 class SensorThing(Thing):
     # TODO: Provide log analyzer
 
+    def __init__(self, rpi_id, device_id):
+        super().__init__(rpi_id, device_id)
+
     @property
     @abc.abstractmethod
     def allowed_states(self):
         raise NotImplemented()
 
     def __setattr__(self, name, value):
-        raise ValueError('Sensor states are not writeable')
+        if name in self.allowed_states:
+            raise ValueError('Sensor states are not writeable')
 
     def __getattr__(self, name):
         if name not in self.allowed_states:
