@@ -7,7 +7,6 @@
 # [] Created By : Parham Alvani (parham.alvani@gmail.com)
 # =======================================
 from .sensor import SensorThing
-from ..controller.log import LogController
 
 
 class Temperature(SensorThing):
@@ -19,16 +18,4 @@ class Temperature(SensorThing):
     def __init__(self, rpi_id, device_id):
         self.rpi_id = rpi_id
         self.device_id = device_id
-
-    @property
-    def temperature(self):
-        """
-        Temperature property is used for retrieve temperature data.
-        """
-        temperature = LogController().last(
-            'temperature', self.rpi_id, self.device_id)
-        return temperature
-
-    @temperature.setter
-    def temperature(self, value):
-        raise ValueError('Sensor states are not writeable')
+        self.allowed_states = ['temperature']
