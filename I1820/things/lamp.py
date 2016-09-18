@@ -16,8 +16,7 @@ class Lamp(ActuatorThing):
     name = "lamp"
 
     def __init__(self, rpi_id, device_id):
-        self.rpi_id = rpi_id
-        self.device_id = device_id
+        super().__init__(rpi_id, device_id)
 
     @property
     def on(self):
