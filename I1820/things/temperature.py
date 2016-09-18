@@ -41,4 +41,4 @@ class Temperature(SensorThing):
 
     @temperature.setter
     def temperature(self, value):
-        raise ValueError('Sensor states are not readable')
+        raise ValueError('Sensor states are not writeable')
