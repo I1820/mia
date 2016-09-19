@@ -19,5 +19,5 @@ class NotificationController(I1820Controller):
 
     def notify(self, notification: I1820Notification):
         ip = DiscoveryController.rpis[notification['endpoint']]['ip']
-        requests.post('http://%s:1373/event' % ip,
+        requests.post('http://%s:1820/event' % ip,
                       data=I1820NotificationJSONEncoder().encode(notification))
