@@ -32,4 +32,3 @@ class ActuatorThing(Thing):
     def __getattr__(self, name):
         if name in self.allowed_settings:
             raise ValueError('Actuator settings are not readable')
-        return super().__getattr__(name)
