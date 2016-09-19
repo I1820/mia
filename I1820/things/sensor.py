@@ -28,6 +28,7 @@ class SensorThing(Thing):
                 LogController().save(name, self.name, self.rpi_id,
                                      self.device_id,
                                      value['time'], value['value'])
+                return
             else:
                 raise ValueError(
                     'Sensor states are not writeable by %s' % type(value))
