@@ -7,6 +7,8 @@
 # [] Created By : Parham Alvani (parham.alvani@gmail.com)
 # =======================================
 from .actuator import ActuatorThing
+from ..domain import I1820Notification
+from ..controller import NotificationController
 
 
 class Lamp(ActuatorThing):
@@ -27,6 +29,6 @@ class Lamp(ActuatorThing):
 
     @on.setter
     def on(self, on: bool):
-        message = {'id': self.device_id, 'settings': {'on': on},
-                   'type': 'lamp'}
-        print(message)
+        message = I1820Notification('lamp', self.device_id, {'on': on},
+                                    self.rpi_id)
+        NotificationController().notify(message)
