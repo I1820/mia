@@ -22,7 +22,7 @@ var app = new Vue({
 })
 
 function onIndexLoad () {
-  var socket = io.connect('http://127.0.0.1:8080/')
+  var socket = io.connect('http://' + document.domain + ':8080/')
   socket.on('connect', function () {
     app.connection.message = 'Connected'
     app.connection.state = 'success'
