@@ -11,7 +11,7 @@ from .sensor import SensorThing
 
 class Humidity(SensorThing):
     """
-    This class represents Temperature sensor
+    This class represents Humidity sensor
     """
     name = "humidity"
 
