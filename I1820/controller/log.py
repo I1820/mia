@@ -44,5 +44,8 @@ class LogController(I1820Controller):
              ' WHERE "rpi_id" = \'%s\' AND "device_id" = \'%s\''
              ' ORDER BY time DESC LIMIT 1;') % (measurement, rpi_id, device_id)
         results = self._client.query(q)
-        last = next(results.get_points())
-        return last['value']
+        last = next(results.get_points(), None)
+        if last is None:
+            return {'value': None, 'time': None}
+        else:
+            return {'value': last['value'], 'time': last['time']}
