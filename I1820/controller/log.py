@@ -7,7 +7,6 @@
 # [] Created By : Parham Alvani (parham.alvani@gmail.com)
 # =======================================
 from .base import I1820Controller
-from ..domain.log import I1820Log
 try:
     from influxdb import InfluxDBClient
 except ImportError:
@@ -25,23 +24,22 @@ class LogController(I1820Controller):
                                       password=cfg.influxdb_passwd,
                                       database=cfg.influxdb_db)
 
-    def save(self, log: I1820Log):
+    def save(self, measurement, type, rpi_id, device_id, time, value):
         points = []
-        for key, value in log.states.items():
-            point = {
-                "measurement": key,
-                "tags": {
-                    "type": log.type,
-                    "rpi_id": log.endpoint,
-                    "device_id": log.device
-                },
-                "time": int(log.timestamp.timestamp()),
-                "fields": {
-                    "value": value
-                }
+        point = {
+            "measurement": measurement,
+            "tags": {
+                "type": type,
+                "rpi_id": rpi_id,
+                "device_id": device_id
+            },
+            "time": int(time.timestamp()),
+            "fields": {
+                "value": value
             }
-            points.append(point)
-            self._client.write_points(points)
+        }
+        points.append(point)
+        self._client.write_points(points)
 
     def last(self, measurement, rpi_id, device_id):
         q = ('SELECT * FROM %s'
