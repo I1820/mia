@@ -30,8 +30,15 @@ def log_handler():
     data = flask.request.get_json(force=True)
     log = I1820LogDictDecoder.decode(data)
 
-    # InfluxDB
-    LogController().save(log)
+    try:
+        thing = Things.get(log.type).get_thing(log.endpoint, log.device)
+    except ImportError as e:
+        return ('%s is not one of our things: %s' % (log.type, str(e)),
+                400, {})
+    except KeyError:
+        return ('%s is not one of our RPis' % log.endpoint, 404, {})
+    for key, value in log.states:
+        setattr(thing, key, {'value': value, 'time': log.timestamp})
 
     # SocketIO
     socketio.emit('log', I1820LogJSONEncoder().encode(log))
