@@ -9,8 +9,8 @@
 import abc
 
 from .base import Thing
-from ..domain import I1820Notification
-from ..controller import NotificationController
+from ..domain.notif import I1820Notification
+from ..controller.notif import NotificationController
 
 
 class ActuatorThing(Thing):
