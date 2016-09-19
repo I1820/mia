@@ -19,7 +19,7 @@ class I1820Notification:
         self.endpoint = endpoint
 
 
-class I1820NotificatioJSONEncoder(json.JSONEncoder):
+class I1820NotificationJSONEncoder(json.JSONEncoder):
     def default(self, obj: I1820Notification):
         if isinstance(obj, I1820Notification):
             return {
@@ -39,4 +39,4 @@ class I1820NotificationDictDecoder:
     @staticmethod
     def decode(obj: dict) -> I1820Notification:
         return I1820Notification(obj['type'], obj['device'],
-                                 obj['states'], obj['endpoint'])
+                                 obj['settings'], obj['endpoint'])
