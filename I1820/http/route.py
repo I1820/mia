@@ -14,7 +14,6 @@ from . import socketio
 from ..things.base import Things
 from ..domain.log import I1820LogDictDecoder, I1820LogJSONEncoder
 from ..controller.discovery import DiscoveryController
-from ..controller.log import LogController
 
 
 @app.route('/test')
@@ -37,7 +36,7 @@ def log_handler():
                 400, {})
     except KeyError:
         return ('%s is not one of our RPis' % log.endpoint, 404, {})
-    for key, value in log.states:
+    for key, value in log.states.items():
         setattr(thing, key, {'value': value, 'time': log.timestamp})
 
     # SocketIO
