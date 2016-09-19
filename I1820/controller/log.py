@@ -25,21 +25,19 @@ class LogController(I1820Controller):
                                       database=cfg.influxdb_db)
 
     def save(self, measurement, type, rpi_id, device_id, time, value):
-        points = []
-        point = {
+        points = [{
             "measurement": measurement,
             "tags": {
                 "type": type,
                 "rpi_id": rpi_id,
                 "device_id": device_id
             },
-            "time": int(time.timestamp()),
+            "time": time.strftime('%Y-%m-%dT%H:%M:%SZ'),
             "fields": {
                 "value": value
             }
-        }
-        points.append(point)
-        self._client.write_points(points)
+        }]
+        self._client.write_points(points, time_precision="s")
 
     def last(self, measurement, rpi_id, device_id):
         q = ('SELECT * FROM %s'
