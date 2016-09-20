@@ -95,6 +95,11 @@ def thing_handler():
                 "on": true
             }
         }
+    @apiSuccess {json} value of thing requested states or New value of thing target settings
+    @apiSuccessExample {json} States Request Example:
+        {
+            "temperature": 10
+        }
     """
     data = flask.request.get_json(force=True)
     rpi_id = data['rpi_id']
