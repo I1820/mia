@@ -31,33 +31,9 @@ pyvenv $PROJECT_ROOT
 $PROJECT_ROOT/run.sh
 ```
 
-## RESTFul API
-### Read Thing States
-* URL: `/thing`
-* Method: `POST`
-* Request:
-```json
-{
-  "type": "temperature",
-  "device_id": 0,
-  "rpi_id": "cdede389-2315-419c-b1d5-ee9a9b43be2a",
-  "states": [
-    "temperature"
-   ]
-}
+## Up and Running
+In order to install I1820
+```sh
+sudo pip3 install -r requirements.txt
+./18.20-serve.py
 ```
-### Change Thing Settings
-* URL: `/thing`
-* Method: `PUT`
-* Request:
-```json
-{
-  "type": "lamp",
-  "device_id": 0,
-  "rpi_id": "cdede389-2315-419c-b1d5-ee9a9b43be2a",
-  "settings": {
-    "on": true
-  }
-}
-```
-
