@@ -79,6 +79,9 @@ def thing_read_handler():
     if 'states' in data.keys():
         for key in data['states']:
             result[key] = getattr(thing, key)
+    if 'statistics' in data.keys():
+        for key in data['statistics']:
+            result[key] = getattr(thing, key)
 
     return json.dumps(result)
 
