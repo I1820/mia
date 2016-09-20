@@ -59,82 +59,32 @@ def discovery_thing_handler():
 
 @app.route('/discovery', methods=['GET'])
 def discovery_human_handler():
-    """
-    @api {get} /discovery Get avaiable things and rpis
-    @apiName Discovery
-    @apiGroup Thing
-
-    @apiDescription Get avaiable things and rpis until when
-    you requested.
-
-    @apiSuccess {json} response List of rpis and their attached things
-    @apiSuccessExample {json} Discovery Example:
-        {
-            "b07882d6-5c28-597b-89f9-d250f74b0bad": {
-                "time": "2016-09-20 18:05:56.124096",
-                "things": [
-                    {
-                        "id": "0",
-                        "attributes": {},
-                        "type": "lamp"
-                    },
-                    {
-                        "id": "1",
-                        "attributes": {},
-                        "type": "temperature"
-                    }
-                ],
-                "ip": "192.168.1.4"
-            }
-        }
-    """
     discovery = DiscoveryController()
     return json.dumps(discovery.rpis)
 
 
-@app.route('/thing', methods=['POST', 'PUT'])
-def thing_handler():
-    """
-    @api {post} /thing Get thing states or Change thing settings
-    @apiName Thing
-    @apiGroup Thing
+@app.route('/thing', methods=['POST'])
+def thing_read_handler():
+    data = flask.request.get_json(force=True)
+    rpi_id = data['rpi_id']
+    device_id = data['device_id']
+    result = {}
+    try:
+        thing = Things.get(data['type']).get_thing(rpi_id, device_id)
+    except ImportError as e:
+        return ('%s is not one of our things: %s' % (data['type'], str(e)),
+                400, {})
+    except KeyError:
+        return ('%s is not one of our RPis' % rpi_id, 404, {})
+    if 'states' in data.keys():
+        for key in data['states']:
+            result[key] = getattr(thing, key)
 
-    @apiDescription Read or Update thing states and settings
-    respectively based on I1820 Information Model.
+    return json.dumps(result)
 
-    @apiErrorExample {string} Thing Not Found:
-        HTTP/1.1 400 Bad Request
-        humidity is not one of things
-    @apiErrorExample {string} RPi Not Discovered:
-        HTTP/1.1 404 Not Found
-        aa60d333-42ee-4311-87fc-ac08b1dd8773 is not one of our RPi's
 
-    @apiParam {json} request Thing requested states or Thing target settings
-    @apiParamExample {json} States Request Example:
-        {
-            "type": "temperature",
-            "device_id": 0,
-            "rpi_id": "cdede389-2315-419c-b1d5-ee9a9b43be2a",
-            "states": [
-                "temperature"
-            ]
-        }
-    @apiParamExample {json} Settings Target Example:
-        {
-            "type": "lamp",
-            "device_id": 0,
-            "rpi_id": "cdede389-2315-419c-b1d5-ee9a9b43be2a",
-            "settings": {
-                "on": true
-            }
-        }
-
-    @apiSuccess {json} response Value of thing requested states or New value of thing target settings
-    @apiSuccessExample {json} States Request Example:
-        {
-            "temperature": 10
-        }
-    """
+@app.route('/thing', methods=['PUT'])
+def thing_write_handler():
     data = flask.request.get_json(force=True)
     rpi_id = data['rpi_id']
     device_id = data['device_id']
@@ -150,8 +100,5 @@ def thing_handler():
         for key, value in data['settings'].items():
             setattr(thing, key, value)
             result[key] = value
-    if 'states' in data.keys():
-        for key in data['states']:
-            result[key] = getattr(thing, key)
 
     return json.dumps(result)
