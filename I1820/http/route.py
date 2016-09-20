@@ -67,7 +67,7 @@ def discovery_human_handler():
     @apiDescription Get avaiable things and rpis until when
     you requested.
 
-    @apiSuccess {json} List of rpis and their attached things
+    @apiSuccess {json} response List of rpis and their attached things
     @apiSuccessExample {json} Discovery Example:
         {
             "b07882d6-5c28-597b-89f9-d250f74b0bad": {
@@ -109,7 +109,7 @@ def thing_handler():
         HTTP/1.1 404 Not Found
         aa60d333-42ee-4311-87fc-ac08b1dd8773 is not one of our RPi's
 
-    @apiParam {json} Thing requested states or Thing target settings
+    @apiParam {json} request Thing requested states or Thing target settings
     @apiParamExample {json} States Request Example:
         {
             "type": "temperature",
@@ -129,7 +129,7 @@ def thing_handler():
             }
         }
 
-    @apiSuccess {json} value of thing requested states or New value of thing target settings
+    @apiSuccess {json} response Value of thing requested states or New value of thing target settings
     @apiSuccessExample {json} States Request Example:
         {
             "temperature": 10
