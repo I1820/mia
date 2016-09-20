@@ -49,3 +49,4 @@ cp I1820/conf/1820.example.yml I1820/conf/I1820.yml
 ```sh
 ./18.20-serve.py
 ```
+And for API documentation see [here](http://aolab.github.io/I1820/apidoc/).
