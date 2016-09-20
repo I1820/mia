@@ -59,6 +59,35 @@ def discovery_thing_handler():
 
 @app.route('/discovery', methods=['GET'])
 def discovery_human_handler():
+    """
+    @api {get} /discovery Get avaiable things and rpis
+    @apiName Discovery
+    @apiGroup Thing
+
+    @apiDescription Get avaiable things and rpis until when
+    you requested.
+
+    @apiSuccess {json} List of rpis and their attached things
+    @apiSuccessExample {json} Discovery Example:
+        {
+            "b07882d6-5c28-597b-89f9-d250f74b0bad": {
+                "time": "2016-09-20 18:05:56.124096",
+                "things": [
+                    {
+                        "id": "0",
+                        "attributes": {},
+                        "type": "lamp"
+                    },
+                    {
+                        "id": "1",
+                        "attributes": {},
+                        "type": "temperature"
+                    }
+                ],
+                "ip": "192.168.1.4"
+            }
+        }
+    """
     discovery = DiscoveryController()
     return json.dumps(discovery.rpis)
 
@@ -68,14 +97,18 @@ def thing_handler():
     """
     @api {post} /thing Get thing states or Change thing settings
     @apiName Thing
+    @apiGroup Thing
+
     @apiDescription Read or Update thing states and settings
     respectively based on I1820 Information Model.
+
     @apiErrorExample {string} Thing Not Found:
         HTTP/1.1 400 Bad Request
         humidity is not one of things
     @apiErrorExample {string} RPi Not Discovered:
         HTTP/1.1 404 Not Found
         aa60d333-42ee-4311-87fc-ac08b1dd8773 is not one of our RPi's
+
     @apiParam {json} Thing requested states or Thing target settings
     @apiParamExample {json} States Request Example:
         {
@@ -95,6 +128,7 @@ def thing_handler():
                 "on": true
             }
         }
+
     @apiSuccess {json} value of thing requested states or New value of thing target settings
     @apiSuccessExample {json} States Request Example:
         {
