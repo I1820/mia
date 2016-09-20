@@ -32,20 +32,20 @@ $PROJECT_ROOT/run.sh
 ```
 
 ## Up and Running
-1. Install and Setup InfluxDB
+* Install and Setup InfluxDB
 ```sh
 sudo ./scripts/influxdb-install.sh
 influx -execute 'create database I1820'
 ```
-2. Install python dependencies
+* Install python dependencies
 ```sh
 sudo pip3 install -r requirements.txt
 ```
-3. Provide I1820 configuration in YAML ....
+* Provide I1820 configuration in YAML ....
 ```sh
 cp I1820/conf/1820.example.yml I1820/conf/I1820.yml
 ```
-4. Run :D
+* Run :D
 ```sh
 ./18.20-serve.py
 ```
