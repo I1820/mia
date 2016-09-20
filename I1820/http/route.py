@@ -65,6 +65,37 @@ def discovery_human_handler():
 
 @app.route('/thing', methods=['POST', 'PUT'])
 def thing_handler():
+    """
+    @api {post} /thing Get thing states or Change thing settings
+    @apiName Thing
+    @apiDescription Read or Update thing states and settings
+    respectively based on I1820 Information Model.
+    @apiErrorExample {string} Thing Not Found:
+        HTTP/1.1 400 Bad Request
+        humidity is not one of things
+    @apiErrorExample {string} RPi Not Discovered:
+        HTTP/1.1 404 Not Found
+        aa60d333-42ee-4311-87fc-ac08b1dd8773 is not one of our RPi's
+    @apiParam {json} Thing requested states or Thing target settings
+    @apiParamExample {json} States Request Example:
+        {
+            "type": "temperature",
+            "device_id": 0,
+            "rpi_id": "cdede389-2315-419c-b1d5-ee9a9b43be2a",
+            "states": [
+                "temperature"
+            ]
+        }
+    @apiParamExample {json} Settings Target Example:
+        {
+            "type": "lamp",
+            "device_id": 0,
+            "rpi_id": "cdede389-2315-419c-b1d5-ee9a9b43be2a",
+            "settings": {
+                "on": true
+            }
+        }
+    """
     data = flask.request.get_json(force=True)
     rpi_id = data['rpi_id']
     device_id = data['device_id']
