@@ -16,14 +16,9 @@ setup(
     version='1.0.dev1',
     packages=find_packages(),
     url='https://github.com/AoLab/I1820',
-    description="Kaa Administration REST Client",
+    description="The IoT Middleware",
     license=license_text,
     long_description=long_description_text,
     author='Parham Alvani',
     author_email='parham.alvani@gmail.com',
-    entry_points={
-        'console_scripts': [
-            '18.20-cli.py = I1820.cli:main',
-        ]
-    },
 )
