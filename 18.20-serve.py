@@ -1,7 +1,12 @@
 #!/usr/bin/env python3
 
-from I1820.http.main import main
+from multiprocessing import Process
+
+from I1820.http.main import main as http_main
+from I1820.coap.main import main as coap_main
 
 
 if __name__ == '__main__':
-    main()
+    p = Process(target=coap_main)
+    p.start()
+    http_main()
