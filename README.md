@@ -13,6 +13,22 @@ of devices like ESP8266 and ...
 When 18.20 decide to leave us alone, we created improved version of it,
 in this version we provide everything you need in simple package.
 
+### What I1820 Provides for us
+I1820 provides following services for your IoT platform :)
+
+* Identification Services
+* Data Collecting Services
+
+### Where I1820 is in IoT Layers
+If we consider following layers for IoT:
+
+* Sensing Layer
+* Network Layer
+* Application Layer
+* Interface Layer
+
+I1820 provides **Sensing Layer** protocols, **Network Layer** and **Interface Layer** for you.
+
 ## Basis
 Basis of this project comes from [SDN101 project](https://github.com/elahejalalpour/SDN101).  
 ***Great Memories***
