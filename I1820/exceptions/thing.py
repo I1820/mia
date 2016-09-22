@@ -14,7 +14,9 @@ class ThingNotFoundException(Exception):
     exists.
     """
 
-    def __init__(self, rpi_id, device_id, message):
+    def __init__(self, rpi_id, device_id, error):
+        super().__init__("(%s, %s) was Not Found." %
+                         (rpi_id, device_id))
         self.rpi_id = rpi_id
         self.device_id = device_id
-        self.message = message
+        self.error = error
