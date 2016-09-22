@@ -12,11 +12,11 @@ import abc
 class ControllerMeta(abc.ABCMeta):
     instances = {}
 
-    def __call__(cls, *args, **kwargs):
-        if cls not in cls.instances:
-            cls.instances[cls] = super(ControllerMeta,
-                                       cls).__call__(*args, **kwargs)
-        return cls.instances[cls]
+    def __call__(self, *args, **kwargs):
+        if self not in self.instances:
+            self.instances[self] = super(ControllerMeta,
+                                         self).__call__(*args, **kwargs)
+        return self.instances[self]
 
 
 class I1820Controller(metaclass=ControllerMeta):
