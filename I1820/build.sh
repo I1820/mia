@@ -7,4 +7,4 @@
 #
 # [] Created By : Parham Alvani (parham.alvani@gmail.com)
 # =======================================
-docker build --force-rm -t lolab/i1820 .
+docker build --force-rm -t aolab/i1820 .
