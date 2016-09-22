@@ -66,3 +66,8 @@ cp I1820/conf/1820.example.yml I1820/conf/I1820.yml
 ./18.20-serve.py
 ```
 And for API documentation see [here](http://aolab.github.io/I1820/apidoc/).
+
+## Releases
+
+* Orange 1.0.dev1
+* Purple 1.0.dev2 [master]
