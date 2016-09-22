@@ -9,6 +9,8 @@
 import abc
 import importlib
 
+from ..exceptions.thing import ThingNotFoundException
+
 
 class Things(abc.ABCMeta):
     things = {}
@@ -42,7 +44,10 @@ class Thing(metaclass=Things):
 
     @classmethod
     def get_thing(cls, rpi_id, device_id):
-        thing = cls.things[cls.name][(rpi_id, device_id)]
+        try:
+            thing = cls.things[cls.name][(rpi_id, device_id)]
+        except KeyError as e:
+            raise ThingNotFoundException(rpi_id, device_id, cls.name, e)
         return thing
 
     @classmethod
