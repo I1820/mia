@@ -24,4 +24,5 @@ class NotificationController(I1820Controller):
                           data=I1820NotificationJSONEncoder().
                           encode(notification))
         except requests.ConnectionError as e:
-            pass
+            del DiscoveryController().rpis[notification.endpoint]
+            raise ThingNotFoundException()
