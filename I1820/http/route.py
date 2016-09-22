@@ -14,6 +14,7 @@ from . import socketio
 from ..things.base import Things
 from ..domain.log import I1820LogDictDecoder, I1820LogJSONEncoder
 from ..controller.discovery import DiscoveryController
+from ..exceptions.thing import ThingNotFoundException
 
 
 @app.route('/test')
@@ -34,8 +35,6 @@ def log_handler():
     except ImportError as e:
         return ('%s is not one of our things: %s' % (log.type, str(e)),
                 400, {})
-    except KeyError:
-        return ('%s is not one of our RPis' % log.endpoint, 404, {})
     for key, value in log.states.items():
         setattr(thing, key, {'value': value, 'time': log.timestamp})
 
@@ -74,8 +73,6 @@ def thing_read_handler():
     except ImportError as e:
         return ('%s is not one of our things: %s' % (data['type'], str(e)),
                 400, {})
-    except KeyError:
-        return ('%s is not one of our RPis' % rpi_id, 404, {})
     if 'states' in data.keys():
         for key in data['states']:
             result[key] = getattr(thing, key)
@@ -97,11 +94,16 @@ def thing_write_handler():
     except ImportError as e:
         return ('%s is not one of our things: %s' % (data['type'], str(e)),
                 400, {})
-    except KeyError:
-        return ('%s is not one of our RPis' % rpi_id, 404, {})
     if 'settings' in data.keys():
         for key, value in data['settings'].items():
             setattr(thing, key, value)
             result[key] = value
 
     return json.dumps(result)
+
+
+# Error Side :P
+
+@app.errorhandler(ThingNotFoundException)
+def handle_invalid_usage(error):
+    return (str(error), 404, {})
