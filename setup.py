@@ -13,7 +13,7 @@ with open(path.join(here, 'LICENSE'), encoding='utf-8') as f:
 
 setup(
     name='I18.20',
-    version='1.0.dev1',
+    version='1.0.dev2',
     packages=find_packages(),
     url='https://github.com/AoLab/I1820',
     description="The IoT Middleware",
