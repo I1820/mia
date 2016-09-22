@@ -10,6 +10,7 @@ import requests
 
 from .base import I1820Controller
 from ..domain.notif import I1820Notification, I1820NotificationJSONEncoder
+from ..exceptions.thing import ThingNotFoundException
 from .discovery import DiscoveryController
 
 
@@ -25,4 +26,6 @@ class NotificationController(I1820Controller):
                           encode(notification))
         except requests.ConnectionError as e:
             del DiscoveryController().rpis[notification.endpoint]
-            raise ThingNotFoundException()
+            raise ThingNotFoundException(notification.endpoint,
+                                         notification.device,
+                                         notification.type, e)
