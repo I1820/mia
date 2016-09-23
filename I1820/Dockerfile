@@ -5,9 +5,10 @@ EXPOSE 8080
 
 # Install packages
 RUN apt-get update
-RUN apt-get install -y git && curl
+RUN apt-get install -y git
 RUN apt-get install -y python3 python3-venv python3-pip python3-dev
 RUN apt-get install -y libyaml-dev
+RUN apt-get install -y curl
 
 # Cleanup
 RUN rm -rf /var/lib/apt/lists/* /var/cache/apt/packages/* && apt-get autoremove -y
