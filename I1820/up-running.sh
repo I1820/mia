@@ -6,7 +6,7 @@
 # [] Creation Date : 01-08-2016
 #
 # [] Created By : Parham Alvani (parham.alvani@gmail.com)
+# [] Created By : Iman Tabrizian (tabrizian@outlook.com)
 # =======================================
-docker build --force-rm -t aolab/i1820 .
-docker run -p 8080:8080 --name="I1820" aolab/i1820
-docker rm "I1820"
+docker build -t aolab/i1820 .
+docker run -d -p 8080:8080 --name="I1820" aolab/i1820
