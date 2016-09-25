@@ -21,6 +21,6 @@ class DiscoveryController(I1820Controller):
                                         'things': message['things']}
         for thing in message['things']:
             if not Things.get(thing['type']).has_thing(message['rpi_id'],
-                                                       message['id']):
+                                                       thing['id']):
                 Things.get(thing['type']).new_thing(
                     message['rpi_id'], thing['id'])
