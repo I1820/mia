@@ -7,11 +7,16 @@
 integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" 
 rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+<style>
+.panel-body {
+	background: #dad8d8;
+}
+</style>
 </head>
 <body>
 <div class="container" id="app">
 	<h3>I1820-UI <span class="label label-{{ connection.state }}">{{ connection.message }}</span></h3>
-	<table class="table">
+	<table v-if="checkData()" class="table">
 		<thead>
 			<tr>
 				<th>Name</th>
@@ -26,8 +31,11 @@ rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axm
 		</tbody>
 
 	</table>
+	<div v-else class="panel panel-default">
+  		<div class="panel-body text-center">No Sensor data currently</div>
+	</div>
 	<div class="form-group col-xs-1">
-	  <input type="text" class="form-control text-center">
+	  	<input type="text" class="form-control text-center">
 	</div>
 	<button type="button" class="btn btn-primary" v-on:click="on">Turn on the <i class="fa fa-lightbulb-o" aria-hidden="true"></i></button>
 	<button type="button" class="btn btn-danger" v-on:click="off">Turn off the <i class="fa fa-lightbulb-o" aria-hidden="true"></i></button>
