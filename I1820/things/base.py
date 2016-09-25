@@ -15,13 +15,13 @@ from ..exceptions.thing import ThingNotFoundException
 class Things(abc.ABCMeta):
     things = {}
 
-    def __new__(metaclass, name, bases, namespace):
-        cls = abc.ABCMeta.__new__(
-            metaclass, name, bases, namespace)
-        if isinstance(cls.name, str):
-            metaclass.things[cls.name] = cls
-            cls.things[cls.name] = {}
-        return cls
+    def __new__(cls, name, bases, namespace):
+        instance = abc.ABCMeta.__new__(
+            cls, name, bases, namespace)
+        if isinstance(instance.name, str):
+            cls.things[instance.name] = cls
+            instance.things[instance.name] = {}
+        return instance
 
     @classmethod
     def get(cls, name):
