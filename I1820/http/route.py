@@ -107,8 +107,3 @@ def thing_write_handler():
 @app.errorhandler(ThingNotFoundException)
 def handle_invalid_usage(error):
     return (str(error), 404, {})
-
-@socketio.on('connect')
-def test_connect():
-    print('Client connected')
-
