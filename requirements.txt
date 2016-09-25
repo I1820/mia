@@ -4,4 +4,3 @@ Flask-SocketIO
 eventlet
 pyyaml
 influxdb
-aiocoap

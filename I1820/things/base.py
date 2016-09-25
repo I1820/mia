@@ -15,13 +15,13 @@ from ..exceptions.thing import ThingNotFoundException
 class Things(abc.ABCMeta):
     things = {}
 
-    def __new__(metaclass, name, bases, namespace):
-        cls = abc.ABCMeta.__new__(
-            metaclass, name, bases, namespace)
-        if isinstance(cls.name, str):
-            metaclass.things[cls.name] = cls
-            cls.things[cls.name] = {}
-        return cls
+    def __new__(cls, name, bases, namespace):
+        instance = abc.ABCMeta.__new__(
+            cls, name, bases, namespace)
+        if isinstance(instance.name, str):
+            cls.things[instance.name] = instance
+            instance.things[instance.name] = {}
+        return instance
 
     @classmethod
     def get(cls, name):
@@ -46,10 +46,17 @@ class Thing(metaclass=Things):
     def get_thing(cls, rpi_id, device_id):
         try:
             thing = cls.things[cls.name][(rpi_id, device_id)]
-        except KeyError as e:
+        except (KeyError, ValueError) as e:
             raise ThingNotFoundException(rpi_id, device_id, cls.name, e)
         return thing
 
     @classmethod
     def new_thing(cls, rpi_id, device_id):
         cls.things[cls.name][(rpi_id, device_id)] = cls(rpi_id, device_id)
+
+    @classmethod
+    def has_thing(cls, rpi_id, device_id):
+        if cls.name in cls.things:
+            if (rpi_id, device_id) in cls.things[cls.name]:
+                return True
+        return False
