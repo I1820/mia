@@ -20,30 +20,30 @@ var app = new Vue({
     }
   },
   methods: {
-    on: function(event) {
-      
+    on: function (event) {
+
     },
-    checkData: function() {
-	return Object.keys(this.states).length;
+    checkData: function () {
+      return Object.keys(this.states).length
     }
   }
 })
 
 function onIndexLoad () {
-  var socket = io.connect('http://iot.ceit.aut.ac.ir:58902/');
+  var socket = io.connect('http://iot.ceit.aut.ac.ir:58902/')
   socket.on('connect', function () {
-    app.connection.message = 'Connected';
-    app.connection.state = 'success';
+    app.connection.message = 'Connected'
+    app.connection.state = 'success'
   })
   socket.on('error', function () {
-    app.connection.message = 'Error :(';
-    app.connection.state = 'danger';
+    app.connection.message = 'Error :('
+    app.connection.state = 'danger'
   })
   socket.on('log', function (message) {
-    message = JSON.parse(message);
+    message = JSON.parse(message)
     for (var key in message.states) {
       if (message.states.hasOwnProperty(key)) {
-        Vue.set(app.states, key, message.states[key]);
+        Vue.set(app.states, key, message.states[key])
       }
     }
   })
