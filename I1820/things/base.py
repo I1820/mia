@@ -46,7 +46,7 @@ class Thing(metaclass=Things):
     def get_thing(cls, rpi_id, device_id):
         try:
             thing = cls.things[cls.name][(rpi_id, device_id)]
-        except KeyError as e:
+        except (KeyError, ValueError) as e:
             raise ThingNotFoundException(rpi_id, device_id, cls.name, e)
         return thing
 
