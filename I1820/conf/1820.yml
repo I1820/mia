@@ -9,7 +9,7 @@ kaa:
 app:
   name: 1820
 influxdb:
-  host: localhost
+  host: 172.17.0.4
   port: 8086
   db: I1820
   user: root
