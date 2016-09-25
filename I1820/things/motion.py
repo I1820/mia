@@ -1,26 +1,26 @@
 # In The Name Of God
 # ========================================
-# [] File Name : multisensor.py
+# [] File Name : humidity.py
 #
-# [] Creation Date : 21-09-2016
+# [] Creation Date : 10-09-2016
 #
 # [] Created By : Parham Alvani (parham.alvani@gmail.com)
 # =======================================
 from .sensor import SensorThing
 
 
-class MultiSensor(SensorThing):
+class Motion(SensorThing):
     """
-    This class represents Mutli Sensor
+    This class represents Motion detector
     """
-    name = "multisensor"
+    name = "motion"
 
     def __init__(self, rpi_id, device_id):
         super().__init__(rpi_id, device_id)
 
     @property
     def allowed_states(self):
-        return ['temperature', 'humidity', 'light']
+        return []
 
     @property
     def allowed_events(self):
