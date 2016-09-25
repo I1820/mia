@@ -18,6 +18,11 @@ var app = new Vue({
     },
     states: {
     }
+  },
+  methods: {
+    on: function(event) {
+      
+    }
   }
 })
 
