@@ -19,7 +19,7 @@ class Things(abc.ABCMeta):
         instance = abc.ABCMeta.__new__(
             cls, name, bases, namespace)
         if isinstance(instance.name, str):
-            cls.things[instance.name] = cls
+            cls.things[instance.name] = instance
             instance.things[instance.name] = {}
         return instance
 
