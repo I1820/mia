@@ -32,3 +32,6 @@ class Plugin(metaclass=Plugins):
     @abc.abstractmethod
     def name(self):
         raise NotImplemented()
+
+    def notify(self, rpi_id, device_id, type, data):
+        pass
