@@ -22,6 +22,17 @@ def test_handler():
     return "18.20 is leaving us"
 
 
+# I1820-UI
+
+@app.route('/<path:path>', methods=['GET'])
+def ui_handler(path):
+    return flask.send_from_directory('../I1820-UI', path)
+
+
+@app.route('/', methods=['GET'])
+def root_handler():
+    return flask.send_file('../I1820-UI/index.html')
+
 # Thing Side
 
 
