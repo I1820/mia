@@ -30,7 +30,7 @@ var app = new Vue({
 })
 
 function onIndexLoad () {
-  var socket = io.connect('http://iot.ceit.aut.ac.ir:58902/')
+  var socket = io.connect('http://' + document.domain + ':' + location.port)
   socket.on('connect', function () {
     app.connection.message = 'Connected'
     app.connection.state = 'success'
