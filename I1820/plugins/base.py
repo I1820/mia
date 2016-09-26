@@ -13,17 +13,17 @@ import importlib
 class Plugins(abc.ABCMeta):
     plugins = {}
 
-    def __new__(metaclass, name, bases, namespace):
-        cls = abc.ABCMeta.__new__(
-            metaclass, name, bases, namespace)
-        if isinstance(cls.name, str):
-            metaclass.plugins[cls.name] = cls()
-        return cls
+    def __new__(cls, name, bases, namespace):
+        instance = abc.ABCMeta.__new__(
+            cls, name, bases, namespace)
+        if isinstance(instance.name, str):
+            cls.plugins[instance.name] = instance
+        return instance
 
     @classmethod
     def get(cls, name):
         if name not in cls.services.keys():
-            importlib.import_module('I1820.services.%s' % name)
+            importlib.import_module('I1820.plugins.%s' % name)
         return cls.plugins[name]
 
 
