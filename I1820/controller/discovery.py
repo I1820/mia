@@ -17,7 +17,7 @@ class DiscoveryController(I1820Controller):
 
     def ping(self, message: dict, ip: str):
         self.rpis[message['rpi_id']] = {
-            'time': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
+            'time': datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
             'ip': ip,
             'things': message['things']
         }
