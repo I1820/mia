@@ -7,7 +7,25 @@
  * | File Name:     index.js
  * +===============================================
  */
+
+/* global Vue : Vue.js */
+/* global io  : socket.io */
+
 window.onload = onIndexLoad
+
+var rpi = new Vue({
+  el: '#rpi',
+  data: {
+    rpis: {}
+  },
+  methods: {
+    refresh: function () {
+      $.get('discovery', function (data, status) {
+        rpi.rpis = JSON.parse(data)
+      })
+    }
+  }
+})
 
 var app = new Vue({
   el: '#app',
@@ -30,6 +48,8 @@ var app = new Vue({
 })
 
 function onIndexLoad () {
+  rpi.refresh()
+
   var socket = io.connect('http://' + document.domain + ':' + location.port)
   socket.on('connect', function () {
     app.connection.message = 'Connected'
