@@ -16,9 +16,11 @@ class DiscoveryController(I1820Controller):
         self.rpis = dict()
 
     def ping(self, message: dict, ip: str):
-        self.rpis[message['rpi_id']] = {'time': str(datetime.now()),
-                                        'ip': ip,
-                                        'things': message['things']}
+        self.rpis[message['rpi_id']] = {
+            'time': datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
+            'ip': ip,
+            'things': message['things']
+        }
         for thing in message['things']:
             if not Things.get(thing['type']).has_thing(message['rpi_id'],
                                                        thing['id']):
