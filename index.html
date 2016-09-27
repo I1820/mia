@@ -15,12 +15,29 @@ rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axm
 		<h1>I1820 <small>is your IoT Middleware Solution</small></h1>
 	</div>
 	<div id="rpi">
-		<ul class="list-group">
-			<a v-for="(key, value) in rpis" class="list-group-item" href="#">
-				<h4 class="list-group-item-heading">{{key}} - {{value.ip}}</h4>
-				<p class="list-group-item-text">{{value.things | json}}</p>
-			</a>
-		</ul>
+		<div class="list-group">
+			<div v-for="(key, value) in rpis" class="list-group-item" href="#">
+				<h4 class="list-group-item-heading">{{ key }} - {{ value.ip }}<small></small></h4>
+				<div class="list-group-item-text">
+					<table class="table">
+						<thead>
+							<tr>
+								<td>#</td>
+								<td>ID</td>
+								<td>Type</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr v-for="thing in value.things">
+								<td>{{ $index }}</td>
+								<td>{{ thing.id }}</td>
+								<td>{{ thing.type }}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
 	</div>
 	<div id="app">
 		<h3><span class="label label-{{ connection.state }}">{{ connection.message }}</span></h3>
@@ -32,10 +49,10 @@ rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axm
 				</tr>
 			</thead>
 			<tbody>
-			<tr v-for="(key, value) in states">
-				<td>{{ key | capitalize }}</td>
-				<td>{{ value }}</td>
-			</tr>
+				<tr v-for="(key, value) in states">
+					<td>{{ key | capitalize }}</td>
+					<td>{{ value }}</td>
+				</tr>
 			</tbody>
 
 		</table>
