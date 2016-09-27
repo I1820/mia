@@ -10,8 +10,7 @@
 
 /* global Vue : Vue.js */
 /* global io  : socket.io */
-
-window.onload = onIndexLoad
+/* global $   : JQuery */
 
 var rpi = new Vue({
   el: '#rpi',
@@ -23,6 +22,11 @@ var rpi = new Vue({
       $.get('discovery', function (data, status) {
         rpi.rpis = JSON.parse(data)
       })
+    }
+  },
+  watch: {
+    rpis: function () {
+      $('time.timeago').timeago()
     }
   }
 })
@@ -47,7 +51,8 @@ var app = new Vue({
   }
 })
 
-function onIndexLoad () {
+$('document').ready(function () {
+  /* Fetching the raspberry pis */
   rpi.refresh()
 
   var socket = io.connect('http://' + document.domain + ':' + location.port)
@@ -67,4 +72,4 @@ function onIndexLoad () {
       }
     }
   })
-}
+})
