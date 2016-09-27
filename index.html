@@ -3,9 +3,8 @@
 <head>
 <meta charset="utf-8"/>
 <title>I1820-UI</title>
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
-integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" 
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"
 rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 <link href="index.css" rel="stylesheet">
 </head>
@@ -17,7 +16,10 @@ rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axm
 	<div id="rpi">
 		<div class="list-group">
 			<div v-for="(key, value) in rpis" class="list-group-item" href="#">
-				<h4 class="list-group-item-heading">{{ key }} - {{ value.ip }}<small></small></h4>
+				<h4 class="list-group-item-heading">
+					{{ key }} - {{ value.ip }}
+					<small><time class="timeago" datetime="{{ value.time }}"></time></small>
+				</h4>
 				<div class="list-group-item-text">
 					<table class="table">
 						<thead>
@@ -71,6 +73,7 @@ rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axm
 	integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
 	crossorigin="anonymous">
 </script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="https://vuejs.org/js/vue.min.js"></script>
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
 <script src="index.js"></script>
