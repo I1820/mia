@@ -7,7 +7,29 @@
  * | File Name:     index.js
  * +===============================================
  */
-window.onload = onIndexLoad
+
+/* global Vue : Vue.js */
+/* global io  : socket.io */
+/* global $   : JQuery */
+
+var rpi = new Vue({
+  el: '#rpi',
+  data: {
+    rpis: {}
+  },
+  methods: {
+    refresh: function () {
+      $.get('discovery', function (data, status) {
+        rpi.rpis = JSON.parse(data)
+      })
+    }
+  },
+  watch: {
+    rpis: function () {
+      $('time.timeago').timeago()
+    }
+  }
+})
 
 var app = new Vue({
   el: '#app',
@@ -22,59 +44,35 @@ var app = new Vue({
     lamp_id: 1
   },
   methods: {
-    on: function(event) {
-	console.log("Hello")
-	request = {
-	    type: "PUT",
-	    url: "http://iot.ceit.aut.ac.ir:58902/thing",
-	    contentType: "application/json",
-	    data : {
-        	"type": "lamp",
-        	"rpi_id": "066156d8-df62-5894-809b-d51ec5a2ff3d",
-        	"device_id": "1:" + this.lamp_id,
-        	"settings": {
-            	  "on": true
-        	}
-    	   }
-	};
-	console.log(request);
-	$.ajax({
-	    type: "PUT",
-	    url: "http://iot.ceit.aut.ac.ir:58902/thing",
-	    contentType: "application/json",
-	    data : {
-        	type: "lamp",
-        	rpi_id: "066156d8-df62-5894-809b-d51ec5a2ff3d",
-        	device_id: "1:" + this.lamp_id,
-        	settings: {
-            	  on: true
-        	}
-    	   }
-	});
       
+    on: function (event) {
+
     },
-    checkData: function() {
-	return Object.keys(this.states).length;
+    checkData: function () {
+      return Object.keys(this.states).length
     }
   }
 })
 
-function onIndexLoad () {
-  var socket = io.connect('http://iot.ceit.aut.ac.ir:58902/');
+$('document').ready(function () {
+  /* Fetching the raspberry pis */
+  rpi.refresh()
+
+  var socket = io.connect('http://' + document.domain + ':' + location.port)
   socket.on('connect', function () {
-    app.connection.message = 'Connected';
-    app.connection.state = 'success';
+    app.connection.message = 'Connected'
+    app.connection.state = 'success'
   })
   socket.on('error', function () {
-    app.connection.message = 'Error :(';
-    app.connection.state = 'danger';
+    app.connection.message = 'Error :('
+    app.connection.state = 'danger'
   })
   socket.on('log', function (message) {
-    message = JSON.parse(message);
+    message = JSON.parse(message)
     for (var key in message.states) {
       if (message.states.hasOwnProperty(key)) {
-        Vue.set(app.states, key, message.states[key]);
+        Vue.set(app.states, key, message.states[key])
       }
     }
   })
-}
+})
