@@ -1,6 +1,7 @@
 /*
  * +===============================================
  * | Author:        Parham Alvani (parham.alvani@gmail.com)
+ * | Author:        Iman Tabrizian (tabrizian@outlook.com)
  * |
  * | Creation Date: 09-09-2016
  * |
@@ -59,7 +60,6 @@ var app = new Vue({
 		contentType: 'application/json',
 		data: JSON.stringify(payload)
 	})
-	console.log(payload)
     },
     checkData: function () {
       return Object.keys(this.states).length
