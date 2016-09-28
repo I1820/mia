@@ -42,8 +42,22 @@ var app = new Vue({
     }
   },
   methods: {
-    on: function (event) {
-
+    turn: function (command) {
+	payload = {
+		type: 'lamp',
+		rpi_id: '066156d8-df62-5894-809b-d51ec5a2ff3d',
+		device_id: '\u0000\u0013\u00a2\u0000@\u00c1\u00a9o',
+		settings: {
+			on: command
+		}
+	}
+	$.ajax({
+		url: 'thing',
+		type: 'PUT',
+		contentType: 'application/json',
+		data: JSON.stringify(payload)
+	})
+	console.log(payload)
     },
     checkData: function () {
       return Object.keys(this.states).length
