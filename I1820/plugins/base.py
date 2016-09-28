@@ -8,6 +8,7 @@
 # =======================================
 import abc
 import importlib
+import requests
 
 
 class Plugins(abc.ABCMeta):
@@ -33,5 +34,11 @@ class Plugin(metaclass=Plugins):
     def name(self):
         raise NotImplemented()
 
-    def notify(self, rpi_id, device_id, type, data):
-        pass
+    def notify(self, rpi_id, device_id, type, settings):
+        data = {
+            'type': type,
+            'rpi_id': rpi_id,
+            'device_id': device_id,
+            'settings': settings
+        }
+        requests.post('', json=data)
