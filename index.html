@@ -32,10 +32,10 @@ rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axm
 
 	</table>
 	<div v-else class="panel panel-default">
-  		<div class="panel-body text-center">No Sensor data currently</div>
+  		<div class="panel-body text-center">No Sensor data currently available</div>
 	</div>
 	<div class="form-group col-xs-1">
-	  	<input type="text" class="form-control text-center">
+	  	<input type="text" v-model="lamp_id" class="form-control text-center">
 	</div>
 	<button type="button" class="btn btn-primary" v-on:click="on">Turn on the <i class="fa fa-lightbulb-o" aria-hidden="true"></i></button>
 	<button type="button" class="btn btn-danger" v-on:click="off">Turn off the <i class="fa fa-lightbulb-o" aria-hidden="true"></i></button>
@@ -43,6 +43,7 @@ rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axm
 </div>
 <script src="https://vuejs.org/js/vue.min.js"></script>
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="index.js"></script>
 </body>
 </html>

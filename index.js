@@ -17,10 +17,40 @@ var app = new Vue({
       state: 'default'
     },
     states: {
-    }
+    },
+    rpi_ids: [],
+    lamp_id: 1
   },
   methods: {
     on: function(event) {
+	console.log("Hello")
+	request = {
+	    type: "PUT",
+	    url: "http://iot.ceit.aut.ac.ir:58902/thing",
+	    contentType: "application/json",
+	    data : {
+        	"type": "lamp",
+        	"rpi_id": "066156d8-df62-5894-809b-d51ec5a2ff3d",
+        	"device_id": "1:" + this.lamp_id,
+        	"settings": {
+            	  "on": true
+        	}
+    	   }
+	};
+	console.log(request);
+	$.ajax({
+	    type: "PUT",
+	    url: "http://iot.ceit.aut.ac.ir:58902/thing",
+	    contentType: "application/json",
+	    data : {
+        	type: "lamp",
+        	rpi_id: "066156d8-df62-5894-809b-d51ec5a2ff3d",
+        	device_id: "1:" + this.lamp_id,
+        	settings: {
+            	  on: true
+        	}
+    	   }
+	});
       
     },
     checkData: function() {
