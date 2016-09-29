@@ -35,14 +35,13 @@ class ThingTypeNotImplementedException(Exception):
         self.error = error
 
 
-class ThingInvalidAccess(Exception):
+class ThingInvalidAccessException(Exception):
     """
     Raised when an invalid attribute is requested on thing.
     """
 
-    def __init__(self, type, attribute, error):
+    def __init__(self, type, attribute):
         super().__init__("Invalid access on %s of type %s." %
                          (attribute, type))
         self.attribute = attribute
         self.type = type
-        self.error = error
