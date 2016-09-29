@@ -10,7 +10,7 @@ import abc
 
 from .base import Thing
 from ..controller.log import LogController
-from ..exception.thing import ThingInvalidAccessException
+from ..exceptions.thing import ThingInvalidAccessException
 
 
 def make_event_setter(event):
