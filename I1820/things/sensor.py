@@ -10,6 +10,7 @@ import abc
 
 from .base import Thing
 from ..controller.log import LogController
+from ..exception.thing import ThingInvalidAccessException
 
 
 def make_event_setter(event):
@@ -52,14 +53,12 @@ class SensorThing(Thing):
                                      value['time'], value['value'])
                 return
             else:
-                raise ValueError(
-                    'Sensor states are not writeable by %s' % type(value))
+                raise ThingInvalidAccessException(self.name, name)
         super().__setattr__(name, value)
 
     def __getattr__(self, name):
         if name not in self.allowed_states:
-            raise ValueError(
-                'There is no %s state on %s sensor' % (name, self.name))
+            raise ThingInvalidAccessException(self.name, name)
         value = LogController().last(
             name, self.rpi_id, self.device_id)
         return value

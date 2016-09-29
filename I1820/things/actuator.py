@@ -11,6 +11,7 @@ import abc
 from .base import Thing
 from ..domain.notif import I1820Notification
 from ..controller.notif import NotificationController
+from ..exceptions.thing import ThingInvalidAccessException
 
 
 class ActuatorThing(Thing):
@@ -31,4 +32,4 @@ class ActuatorThing(Thing):
 
     def __getattr__(self, name):
         if name in self.allowed_settings:
-            raise ValueError('Actuator settings are not readable')
+            raise ThingInvalidAccessException(self.name, name)
