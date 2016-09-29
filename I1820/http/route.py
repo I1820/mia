@@ -14,7 +14,8 @@ from . import socketio
 from ..things.base import Things
 from ..domain.log import I1820LogDictDecoder, I1820LogJSONEncoder
 from ..controller.discovery import DiscoveryController
-from ..exceptions.thing import ThingNotFoundException
+from ..exceptions.thing import \
+     ThingNotFoundException, ThingTypeNotImplementedException
 
 
 @app.route('/test')
@@ -41,11 +42,8 @@ def log_handler():
     data = flask.request.get_json(force=True)
     log = I1820LogDictDecoder.decode(data)
 
-    try:
-        thing = Things.get(log.type).get_thing(log.endpoint, log.device)
-    except ImportError as e:
-        return ('%s is not one of our things: %s' % (log.type, str(e)),
-                400, {})
+    thing = Things.get(log.type).get_thing(log.endpoint, log.device)
+
     for key, value in log.states.items():
         setattr(thing, key, {'value': value, 'time': log.timestamp})
 
@@ -79,11 +77,9 @@ def thing_read_handler():
     rpi_id = data['rpi_id']
     device_id = data['device_id']
     result = {}
-    try:
-        thing = Things.get(data['type']).get_thing(rpi_id, device_id)
-    except ImportError as e:
-        return ('%s is not one of our things: %s' % (data['type'], str(e)),
-                400, {})
+
+    thing = Things.get(data['type']).get_thing(rpi_id, device_id)
+
     if 'states' in data.keys():
         for key in data['states']:
             result[key] = getattr(thing, key)
@@ -100,11 +96,9 @@ def thing_write_handler():
     rpi_id = data['rpi_id']
     device_id = data['device_id']
     result = {}
-    try:
-        thing = Things.get(data['type']).get_thing(rpi_id, device_id)
-    except ImportError as e:
-        return ('%s is not one of our things: %s' % (data['type'], str(e)),
-                400, {})
+
+    thing = Things.get(data['type']).get_thing(rpi_id, device_id)
+
     if 'settings' in data.keys():
         for key, value in data['settings'].items():
             setattr(thing, key, value)
@@ -118,3 +112,8 @@ def thing_write_handler():
 @app.errorhandler(ThingNotFoundException)
 def handle_invalid_usage(error):
     return (str(error), 404, {})
+
+
+@app.errorhandler(ThingTypeNotImplementedException)
+def handle_invalid_request(error):
+    return (str(error), 400, {})
