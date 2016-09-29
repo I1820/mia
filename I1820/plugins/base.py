@@ -51,5 +51,5 @@ class Plugin(metaclass=Plugins):
         requests.put('http://localhost:8080/thing', json=data)
 
     @abc.abstractmethod
-    def on_log(self, *args):
+    def on_log(self, log):
         raise NotImplemented()
