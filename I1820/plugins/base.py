@@ -41,4 +41,8 @@ class Plugin(metaclass=Plugins):
             'device_id': device_id,
             'settings': settings
         }
-        requests.post('', json=data)
+        requests.put('thing', json=data)
+
+    @abc.abstractmethod
+    def on_log(self):
+        raise NotImplemented()
