@@ -9,7 +9,8 @@
 import abc
 import importlib
 
-from ..exceptions.thing import ThingNotFoundException
+from ..exceptions.thing import \
+     ThingNotFoundException, ThingTypeNotImplementedException
 
 
 class Things(abc.ABCMeta):
@@ -26,7 +27,10 @@ class Things(abc.ABCMeta):
     @classmethod
     def get(cls, name):
         if name not in cls.things:
-            importlib.import_module('I1820.things.%s' % name)
+            try:
+                importlib.import_module('I1820.things.%s' % name)
+            except ImportError as e:
+                raise ThingTypeNotImplementedException(name, e)
         return cls.things[name]
 
 
