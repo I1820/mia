@@ -10,6 +10,8 @@ import abc
 import importlib
 import requests
 
+from socketIO_client import SocketIO
+
 
 class Plugins(abc.ABCMeta):
     plugins = {}
@@ -23,12 +25,16 @@ class Plugins(abc.ABCMeta):
 
     @classmethod
     def get(cls, name):
-        if name not in cls.services.keys():
+        if name not in cls.plugins.keys():
             importlib.import_module('I1820.plugins.%s' % name)
         return cls.plugins[name]
 
 
 class Plugin(metaclass=Plugins):
+    def __init__(self):
+        socket_io = SocketIO('localhost', 8080)
+        socket_io.on('log', self.on_log)
+
     @property
     @abc.abstractmethod
     def name(self):
@@ -44,5 +50,5 @@ class Plugin(metaclass=Plugins):
         requests.put('thing', json=data)
 
     @abc.abstractmethod
-    def on_log(self):
+    def on_log(self, *args):
         raise NotImplemented()
