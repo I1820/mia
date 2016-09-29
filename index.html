@@ -38,8 +38,21 @@
                     </div>
                 </div>
             </div>
+            <div v-else class="panel panel-default">
+                <div class="panel-body text-center">No Sensor data currently</div>
+            </div>
+            <div class="form-group">
+		<select class="form-control">
+			<option v-for="(key, value) in rpis" value="{{ key }}">RPi #{{ $index }}</option>
+		</select>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control text-center">
+            </div>
+            <button type="button" class="btn btn-primary" v-on:click="turn(true)">Turn on the <i class="fa fa-lightbulb-o" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-danger" v-on:click="turn(false)">Turn off the <i class="fa fa-lightbulb-o" aria-hidden="true"></i></button>
         </div>
-        <div id="app">
+	<div id="app">
             <h3><span class="label label-{{ connection.state }}">{{ connection.message }}</span></h3>
             <table v-if="checkData()" class="table">
                 <thead>
@@ -56,15 +69,7 @@
                 </tbody>
 
             </table>
-            <div v-else class="panel panel-default">
-                <div class="panel-body text-center">No Sensor data currently</div>
-            </div>
-            <div class="form-group col-md-1">
-                <input type="text" class="form-control text-center">
-            </div>
-            <button type="button" class="btn btn-primary" v-on:click="turn(true)">Turn on the <i class="fa fa-lightbulb-o" aria-hidden="true"></i></button>
-            <button type="button" class="btn btn-danger" v-on:click="turn(false)">Turn off the <i class="fa fa-lightbulb-o" aria-hidden="true"></i></button>
-        </div>
+	</div>
     </div>
     <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
     <script type="text/javascript" src="js/jquery.timeago.js"></script>
