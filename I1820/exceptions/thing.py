@@ -10,7 +10,7 @@
 
 class ThingNotFoundException(Exception):
     """
-    Raised when a (rpi_id, device_id) is requested that does not
+    Raised when a (rpi_id, device_id) is requested that is not
     exist.
     """
 
@@ -25,7 +25,7 @@ class ThingNotFoundException(Exception):
 
 class ThingTypeNotImplementedException(Exception):
     """
-    Raised when a type of requested thing does not
+    Raised when a type of requested thing is not
     exist.
     """
 
