@@ -34,6 +34,7 @@ class Plugin(metaclass=Plugins):
     def __init__(self):
         socket_io = SocketIO('localhost', 8080)
         socket_io.on('log', self.on_log)
+        socket_io.wait()
 
     @property
     @abc.abstractmethod
@@ -47,7 +48,7 @@ class Plugin(metaclass=Plugins):
             'device_id': device_id,
             'settings': settings
         }
-        requests.put('thing', json=data)
+        requests.put('http://localhost:8080/thing', json=data)
 
     @abc.abstractmethod
     def on_log(self, *args):
