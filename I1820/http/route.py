@@ -15,7 +15,8 @@ from ..things.base import Things
 from ..domain.log import I1820LogDictDecoder, I1820LogJSONEncoder
 from ..controller.discovery import DiscoveryController
 from ..exceptions.thing import \
-     ThingNotFoundException, ThingTypeNotImplementedException
+     ThingNotFoundException, ThingTypeNotImplementedException, \
+     ThingInvalidAccessException
 
 
 @app.route('/test')
@@ -117,3 +118,8 @@ def handle_invalid_usage(error):
 @app.errorhandler(ThingTypeNotImplementedException)
 def handle_invalid_request(error):
     return (str(error), 400, {})
+
+
+@app.errorhandler(ThingInvalidAccessException)
+def handle_invalid_access(error):
+    return (str(error), 403, {})
