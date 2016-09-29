@@ -10,8 +10,8 @@
 
 class ThingNotFoundException(Exception):
     """
-    Raised when a (rpi_id, device_id) requested that's not
-    exists.
+    Raised when a (rpi_id, device_id) is requested that does not
+    exist.
     """
 
     def __init__(self, rpi_id, device_id, type, error):
@@ -19,5 +19,17 @@ class ThingNotFoundException(Exception):
                          (rpi_id, device_id, type))
         self.rpi_id = rpi_id
         self.device_id = device_id
+        self.type = type
+        self.error = error
+
+
+class ThingTypeNotImplementedException(Exception):
+    """
+    Raised when a type of requested thing does not
+    exist.
+    """
+
+    def __init__(self, type, error):
+        super().__init__("type %s was Not Implemented." % type)
         self.type = type
         self.error = error
