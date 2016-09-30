@@ -59,13 +59,13 @@ sudo pip3 install -r requirements.txt
 ```
 * Provide I1820 configuration in YAML ....
 ```sh
-cp I1820/conf/1820.example.yml I1820/conf/I1820.yml
+cp I1820/conf/1820.example.yml I1820/conf/1820.yml
 ```
 * Run :D
 ```sh
 ./18.20-serve.py
 ```
-And for API documentation see [here](http://aolab.github.io/I1820/apidoc/).
+And for API documentation see [here](http://aolab.github.io/I1820-Documentation).
 
 ## Releases
 
