@@ -61,6 +61,9 @@ sudo pip3 install -r requirements.txt
 ```sh
 cp I1820/conf/1820.example.yml I1820/conf/1820.yml
 ```
+* Init UI
+```sh
+git submodule update --init --recursive
 * Run :D
 ```sh
 ./18.20-serve.py
