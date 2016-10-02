@@ -3,8 +3,8 @@ I1820
 - `Introduction`_
 - `History`_
 - `Contributors`_
-_ `Up and Running`_
-_ `Releases`_
+- `Up and Running`_
+- `Releases`_
 
 Introduction
 ------------------------------------------------------------------------------
