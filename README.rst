@@ -1,10 +1,10 @@
 I1820
 ==============================================================================
-- :ref:`s1`
-- :ref:`s2`
-- :ref:`s3`
-
-.. _s1:
+- `Introduction`_
+- `History`_
+- `Contributors`_
+_ `Up and Running`_
+_ `Releases`_
 
 Introduction
 ------------------------------------------------------------------------------
@@ -13,7 +13,6 @@ Introduction
 .. figure:: http://aolab.github.io/documentation/architecture/I1820.jpg
    :alt: I1820 in AoLab IoT Architecture
    :align: center
-   I1820 in AoLab IoT Architecture
 
 I1820 is a improved version of 18.20, it provides you a full featured package
 that can do all you need from IoT middleware consist of create notification,
@@ -44,8 +43,6 @@ I1820 provides **Sensing Layer** protocols, **Network Layer**
 and **Interface Layer** for you.
 
 
-.. _s2:
-
 History
 ------------------------------------------------------------------------------
 This project had been started as a python REST library for `kaa`_ but after
@@ -56,8 +53,6 @@ begining we use `SDN101`_ project as a good example of python REST API client.
 .. _kaa: http://kaaproject.org/
 .. _SDN101: github.com/eljalalpour/SDN101
 
-.. _s3:
-
 Contributors
 ------------------------------------------------------------------------------
 * `Prof. Bahador Bakhshi`_
@@ -67,3 +62,43 @@ Contributors
 .. _`Parham Alvani`: http://1995parham.github.io/
 .. _`Iman Tabrizian`: https://github.com/Tabrizian
 .. _`Prof. Bahador Bakhshi`: http://ceit.aut.ac.ir/~bakhshis/
+
+Up and Running
+------------------------------------------------------------------------------
+1. Install and Setup InfluxDB
+.. code-block:: sh
+   :linenos:
+
+   sudo ./scripts/influxdb-install.sh
+   influx -execute 'create database I1820'
+
+2. Install python dependencies
+.. code-block:: sh
+   :linenos:
+
+   sudo pip3 install -r requirements.txt
+
+3. Provide I1820 configuration in YAML ....
+.. code-block:: sh
+   :linenos:
+
+   cp I1820/conf/1820.example.yml I1820/conf/1820.yml
+
+4. [Optional] Initiate Web Interface
+.. code-block:: sh
+   :linenos:
+
+   git submodule update --init --recursive
+
+5. Run :D
+.. code-block:: sh
+   :linenos:
+
+   ./18.20-serve.py
+
+6. API documentation avaiable `here <http://aolab.github.io/I1820-Documentation>`_.
+
+Releases
+------------------------------------------------------------------------------
+* Orange 1.0.dev1
+* Purple 1.0.dev2 [master]
