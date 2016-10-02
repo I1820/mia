@@ -11,7 +11,7 @@ Introduction
 
 .. image:: http://aolab.github.io/documentation/architecture/I1820.jpg
    :alt: I1820 Architecture
-   :align: center
+   :align: middle
 
 I1820 is a improved version of 18.20, it provides you a full featured package
 that can do all you need from IoT middleware consist of create notification,
