@@ -68,27 +68,32 @@ Up and Running
 1. Install and Setup InfluxDB
 
    .. code-block:: sh
+
       sudo ./scripts/influxdb-install.sh
       influx -execute 'create database I1820'
 
 2. Install python dependencies
 
    .. code-block:: sh
+
       sudo pip3 install -r requirements.txt
 
 3. Provide I1820 configuration in YAML ....
 
    .. code-block:: sh
+
       cp I1820/conf/1820.example.yml I1820/conf/1820.yml
 
 4. [Optional] Initiate Web Interface
 
    .. code-block:: sh
+
       git submodule update --init --recursive
 
 5. Run :D
 
    .. code-block:: sh
+
       ./18.20-serve.py
 
 6. API documentation avaiable `here <http://aolab.github.io/I1820-Documentation>`_.
