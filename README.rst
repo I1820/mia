@@ -51,7 +51,7 @@ begining we use `SDN101`_ project as a good example of python REST API client.
 `SDN101`_ is a **great memory** for `Parham Alvani`_ good old days.
 
 .. _kaa: http://kaaproject.org/
-.. _SDN101: github.com/eljalalpour/SDN101
+.. _SDN101: https://github.com/eljalalpour/SDN101
 
 Contributors
 ------------------------------------------------------------------------------
