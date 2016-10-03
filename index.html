@@ -14,10 +14,10 @@
         <div class="page-header">
             <h1>I1820 <small>is your IoT Middleware Solution</small></h1>
         </div>
-        <div id="rpi">
+        <div id="app">
             <div class="list-group">
-                <div v-for="(key, value) in rpis" class="list-group-item" href="#">
-                    <h4 class="list-group-item-heading">{{ key }} - {{ value.ip }} <small><time class="timeago" datetime="{{ value.time }}"></time></small></h4>
+                <div v-for="(value, key) in rpis" class="list-group-item" href="#">
+                    <h4 class="list-group-item-heading">{{ key }} - {{ value.ip }} <small><time class="timeago" v-bind:datetime="value.time"></time></small></h4>
                     <div class="list-group-item-text">
                         <table class="table">
                             <thead>
@@ -28,8 +28,8 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="thing in value.things">
-                                    <td>{{ $index }}</td>
+                                <tr v-for="(thing, index) in value.things">
+                                    <td>{{ index }}</td>
                                     <td>{{ thing.id }}</td>
                                     <td>{{ thing.type }}</td>
                                 </tr>
@@ -38,22 +38,7 @@
                     </div>
                 </div>
             </div>
-            <div v-else class="panel panel-default">
-                <div class="panel-body text-center">No Sensor data currently</div>
-            </div>
-            <div class="form-group">
-		<select class="form-control">
-			<option v-for="(key, value) in rpis" value="{{ key }}">RPi #{{ $index }}</option>
-		</select>
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control text-center">
-            </div>
-            <button type="button" class="btn btn-primary" v-on:click="turn(true)">Turn on the <i class="fa fa-lightbulb-o" aria-hidden="true"></i></button>
-            <button type="button" class="btn btn-danger" v-on:click="turn(false)">Turn off the <i class="fa fa-lightbulb-o" aria-hidden="true"></i></button>
-        </div>
-	<div id="app">
-            <h3><span class="label label-{{ connection.state }}">{{ connection.message }}</span></h3>
+            <h3><span v-bind:class="'label label-' + connection.state">{{ connection.message }}</span></h3>
             <table v-if="checkData()" class="table">
                 <thead>
                     <tr>
@@ -62,14 +47,26 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="(key, value) in states">
+                    <tr v-for="(value, key) in states">
                         <td>{{ key | capitalize }}</td>
                         <td>{{ value }}</td>
                     </tr>
                 </tbody>
-
             </table>
-	</div>
+            <div v-else class="panel panel-default">
+                <div class="panel-body text-center">No Sensor data currently</div>
+            </div>
+            <div class="form-group">
+                <select class="form-control">
+			<option v-for="(key, value, index) in rpis" value="{{ key }}">RPi #{{ index }}</option>
+		</select>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control text-center">
+            </div>
+            <button type="button" class="btn btn-primary" v-on:click="turn(true)">Turn on the <i class="fa fa-lightbulb-o" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-danger" v-on:click="turn(false)">Turn off the <i class="fa fa-lightbulb-o" aria-hidden="true"></i></button>
+        </div>
     </div>
     <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
     <script type="text/javascript" src="js/jquery.timeago.js"></script>
