@@ -27,11 +27,10 @@ var app = new Vue({
   },
   created: function () {
     this.refresh()
+    $('time.timeago').timeago()
   },
-  watch: {
-    rpis: function () {
-      $('time.timeago').timeago()
-    }
+  updated: function () {
+    $('time.timeago').timeago()
   },
   methods: {
     refresh: function () {
