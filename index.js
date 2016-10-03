@@ -13,38 +13,32 @@
 /* global io  : socket.io */
 /* global $   : JQuery */
 
-var rpi = new Vue({
-  el: '#rpi',
-  data: {
-    rpis: {}
-  },
-  methods: {
-    refresh: function () {
-      $.get('discovery', function (data, status) {
-        rpi.rpis = JSON.parse(data)
-      })
-    }
-  },
-  watch: {
-    rpis: function () {
-      $('time.timeago').timeago()
-    }
-  }
-})
-
 var app = new Vue({
   el: '#app',
   data: {
+    rpis: {},
     connection: {
       message: 'Connecting...',
       state: 'default'
     },
     states: {
-    },
-    rpi_ids: [],
-    lamp_id: 1
+    }
+
+  },
+  created: function () {
+    this.refresh()
+  },
+  watch: {
+    rpis: function () {
+      $('time.timeago').timeago()
+    }
   },
   methods: {
+    refresh: function () {
+      $.get('discovery', function (data, status) {
+        app.rpis = JSON.parse(data)
+      })
+    },
     turn: function (command) {
       var payload = {
         type: 'lamp',
@@ -68,9 +62,6 @@ var app = new Vue({
 })
 
 $('document').ready(function () {
-  /* Fetching the raspberry pis */
-  rpi.refresh()
-
   var socket = io.connect('http://' + document.domain + ':' + location.port)
   socket.on('connect', function () {
     app.connection.message = 'Connected'
