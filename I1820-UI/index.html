@@ -65,15 +65,17 @@
             <div>
                 <h3>Actuators</h3>
                 <div class="form-group">
-                    <select class="form-control">
-			<option v-for="(key, value, index) in rpis" value="{{ key }}">RPi #{{ index }}</option>
+                    <select v-model="endpoint" class="form-control">
+			<option v-for="(value, key, index) in rpis" v-bind:value="key">RPi #{{ index }}</option>
 		</select>
                 </div>
-                <div class="form-group">
-                    <input type="text" class="form-control text-center">
-                </div>
-                <button type="button" class="btn btn-primary" v-on:click="turn(true)">Turn on the <i class="fa fa-lightbulb-o" aria-hidden="true"></i></button>
-                <button type="button" class="btn btn-danger" v-on:click="turn(false)">Turn off the <i class="fa fa-lightbulb-o" aria-hidden="true"></i></button>
+                <template v-for="thing in things">
+		<template v-if="thing.type == 'lamp'">
+		<h5>Lamp <small>{{ thing.id }}</small></h5>
+                <button type="button" class="btn btn-primary" v-on:click="turn(true, thing.id)">Turn on the <i class="fa fa-lightbulb-o" aria-hidden="true"></i></button>
+                <button type="button" class="btn btn-danger" v-on:click="turn(false, thing.id)">Turn off the <i class="fa fa-lightbulb-o" aria-hidden="true"></i></button>
+		</template>
+                </template>
             </div>
         </div>
     </div>
