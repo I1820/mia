@@ -103,5 +103,5 @@ Up and Running
 Releases
 ------------------------------------------------------------------------------
 * Orange 1.0.dev1
-* Pink 1.0 [v1.0]
+* Pink 1.0 [`v1.0 <https://github.com/AoLab/I1820/tree/v1.0>`_]
 * 2.0 [master]
