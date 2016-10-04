@@ -8,6 +8,7 @@
 # =======================================
 import flask
 import json
+import functools
 
 from . import app
 from . import socketio
@@ -25,7 +26,16 @@ def test_handler():
     return "18.20 is leaving us"
 
 
+# API Keys
+def api_key_required(f):
+    @functools.wraps(f)
+    def decorated_function(*args, **kwargs):
+        return f(*args, **kwargs)
+    return decorated_function
+
+
 # I1820-UI
+
 
 @app.route('/<path:path>', methods=['GET'])
 def ui_handler(path):
@@ -40,6 +50,7 @@ def root_handler():
 
 
 @app.route('/log', methods=['POST'])
+@api_key_required
 def log_handler():
     data = flask.request.get_json(force=True)
     log = I1820LogDictDecoder.decode(data)
@@ -57,6 +68,7 @@ def log_handler():
 
 
 @app.route('/discovery', methods=['POST'])
+@api_key_required
 def discovery_thing_handler():
     data = flask.request.get_json(force=True)
     discovery = DiscoveryController()
