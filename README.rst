@@ -4,6 +4,7 @@ I1820
 - `History`_
 - `Contributors`_
 - `Up and Running`_
+- `I1820-UI <https://github.com/AoLab/I1820/blob/master/I1820-UI/README.md>`_
 - `Releases`_
 
 Introduction
@@ -86,19 +87,13 @@ Up and Running
 
       cp I1820/conf/1820.example.yml I1820/conf/1820.yml
 
-4. [Optional] Initiate Web Interface
-
-   .. code-block:: sh
-
-      git submodule update --init --recursive
-
-5. Run :D
+4. Run :D
 
    .. code-block:: sh
 
       ./18.20-serve.py
 
-6. API documentation avaiable `here <http://aolab.github.io/I1820-Documentation>`_.
+5. API documentation avaiable `here <http://aolab.github.io/I1820-Documentation>`_.
 
 Releases
 ------------------------------------------------------------------------------
