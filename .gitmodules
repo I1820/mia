@@ -1,4 +1,0 @@
-[submodule "I1820-UI"]
-	path = I1820-UI
-	url = https://github.com/aolab/I1820-UI
-	branch = origin/master
