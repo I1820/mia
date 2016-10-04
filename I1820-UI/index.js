@@ -17,13 +17,14 @@ var app = new Vue({
   el: '#app',
   data: {
     rpis: {},
+    endpoint: '',
     connection: {
       message: 'Connecting...',
       state: 'default'
     },
     states: {
-    }
-
+    },
+    things: []
   },
   created: function () {
     this.refresh()
@@ -32,17 +33,24 @@ var app = new Vue({
   updated: function () {
     $('time.timeago').timeago()
   },
+  watch: {
+    endpoint: function () {
+      if (typeof this.endpoint === 'string') {
+        this.things = this.rpis[this.endpoint]['things']
+      }
+    }
+  },
   methods: {
     refresh: function () {
       $.get('discovery', function (data, status) {
         app.rpis = JSON.parse(data)
       })
     },
-    turn: function (command) {
+    turn: function (command, deviceId) {
       var payload = {
         type: 'lamp',
-        rpi_id: '066156d8-df62-5894-809b-d51ec5a2ff3d',
-        device_id: '\u0000\u0013\u00a2\u0000@\u00c1\u00a9o',
+        rpi_id: this.endpoint,
+        device_id: deviceId,
         settings: {
           on: command
         }
