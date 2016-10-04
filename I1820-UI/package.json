@@ -1,0 +1,33 @@
+{
+  "name": "I1820-UI",
+  "version": "1.0.0",
+  "description": "Application Layer Web Services",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aolab/I1820-UI.git"
+  },
+  "author": "Iman Tabrizian",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aolab/I1820-UI/issues"
+  },
+  "homepage": "https://github.com/aolab/I1820-UI#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "jquery": "^3.1.1",
+    "socket.io": "^1.4.8",
+    "timeago": "^1.5.3",
+    "vue": "^2.0.1"
+  },
+  "devDependencies": {
+    "eslint": "^3.4.0",
+    "eslint-config-standard": "^6.0.0",
+    "eslint-plugin-promise": "^2.0.1",
+    "eslint-plugin-standard": "^2.0.0"
+  }
+}
