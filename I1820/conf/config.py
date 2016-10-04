@@ -20,6 +20,8 @@ class I1820Config:
         section, field = name.split('_', maxsplit=1)
         if section == 'influxdb':
             return self.cfg[section][field]
+        elif section == 'endpoints':
+            return self.cfg[section]
 
 
 I1820_CONFIG_PATH = os.path.join(os.path.dirname(__file__), "1820.yml")
