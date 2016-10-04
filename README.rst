@@ -49,6 +49,8 @@ This project had been started as a python REST library for `kaa`_ but after
 project grew, we decided to complete it as stand alone middleware. In the
 begining we use `SDN101`_ project as a good example of python REST API client.
 `SDN101`_ is a **great memory** for `Parham Alvani`_ good old days.
+After many weeks of development this project found a new idea from our friend
+and developer `Iman Tabrizian`_ and we switched to version 2.
 
 .. _kaa: http://kaaproject.org/
 .. _SDN101: https://github.com/eljalalpour/SDN101
@@ -101,4 +103,5 @@ Up and Running
 Releases
 ------------------------------------------------------------------------------
 * Orange 1.0.dev1
-* Purple 1.0.dev2 [master]
+* Pink 1.0
+* 2.0 [master]
