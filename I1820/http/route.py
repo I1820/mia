@@ -12,6 +12,7 @@ import functools
 
 from . import app
 from . import socketio
+from ..conf.config import cfg
 from ..things.base import Things
 from ..domain.log import I1820LogDictDecoder, I1820LogJSONEncoder
 from ..controller.discovery import DiscoveryController
@@ -30,6 +31,8 @@ def about_handler():
 def api_key_required(f):
     @functools.wraps(f)
     def decorated_function(*args, **kwargs):
+        if flask.request.args.get('token', '') not in cfg.endpoints:
+            return ('Application Token has not been provided.', 401, {})
         return f(*args, **kwargs)
     return decorated_function
 
