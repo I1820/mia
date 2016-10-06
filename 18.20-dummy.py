@@ -19,7 +19,7 @@ def ping():
         'things': [{'type': 'dummy', 'id': '0', 'attributes': {}}]
     }
     try:
-        requests.post('http://127.0.0.1:8080/discovery', json=message)
+        requests.post('http://127.0.0.1:8080/discovery', json=message, params=token)
     except Exception as e:
         log.error('Ping request failed: %s' % e)
 
