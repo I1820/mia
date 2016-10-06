@@ -8,6 +8,10 @@ import datetime
 
 log = logging.getLogger('ping')
 
+token = {
+    'token': '83DB8F6299E0A303730B5F913B6A3DF420EBC2C2'
+}
+
 
 def ping():
     message = {
@@ -32,5 +36,5 @@ if __name__ == '__main__':
                 'chert': '1'
             }
         }
-        requests.post('http://127.0.0.1:8080/log', json=log)
+        requests.post('http://127.0.0.1:8080/log', json=log, params=token)
         time.sleep(20)
