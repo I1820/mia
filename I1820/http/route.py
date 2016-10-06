@@ -21,8 +21,8 @@ from ..exceptions.thing import \
      ThingInvalidAccessException
 
 
-@app.route('/test')
-def test_handler():
+@app.route('/about')
+def about_handler():
     return "18.20 is leaving us"
 
 
