@@ -17,7 +17,10 @@ class I1820Config:
         self.cfg = cfg
 
     def __getattr__(self, name):
-        section, field = name.split('_', maxsplit=1)
+        if '_' in name:
+            section, field = name.split('_', maxsplit=1)
+        else:
+            section = name
         if section == 'influxdb':
             return self.cfg[section][field]
         elif section == 'endpoints':
