@@ -7,10 +7,7 @@
 # [] Created By : Parham Alvani (parham.alvani@gmail.com)
 # =======================================
 from .base import I1820Controller
-try:
-    from influxdb import InfluxDBClient
-except ImportError:
-    print("InfluxDB was not found, fall back to memory based storage")
+from influxdb import InfluxDBClient
 
 from ..conf.config import cfg
 
