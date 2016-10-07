@@ -20,9 +20,11 @@ RUN rm -rf /var/lib/apt/lists/* /var/cache/apt/packages/* && apt-get autoremove 
 WORKDIR /home/root
 
 # I1820
-RUN git clone https://github.com/aolab/I1820.git I1820
+RUN git clone https://github.com/aolab/I1820.git I1820 
 WORKDIR /home/root/I1820
 RUN pyvenv . && pip3 install -r requirements.txt
+RUN cp I1820/conf/1820.example.yml I1820/conf/1820.yml
+
 RUN influxd &
 
 # Entrypoint Script
