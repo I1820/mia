@@ -7,15 +7,18 @@
 # [] Created By : Parham Alvani (parham.alvani@gmail.com)
 # =======================================
 import abc
+import threading
 
 
 class ControllerMeta(abc.ABCMeta):
     instances = {}
+    lock = threading.Lock()
 
     def __call__(self, *args, **kwargs):
-        if self not in self.instances:
-            self.instances[self] = super(ControllerMeta,
-                                         self).__call__(*args, **kwargs)
+        with self.lock:
+            if self not in self.instances:
+                self.instances[self] = super(ControllerMeta,
+                                             self).__call__(*args, **kwargs)
         return self.instances[self]
 
 

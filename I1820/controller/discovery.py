@@ -10,10 +10,13 @@ from datetime import datetime
 from .base import I1820Controller
 from ..things.base import Things
 
+import threading
+
 
 class DiscoveryController(I1820Controller):
     def __init__(self):
-        self.rpis = dict()
+        self._rpis = dict()
+        self.lock = threading.Lock()
 
     def ping(self, message: dict, ip: str):
         self.rpis[message['rpi_id']] = {
@@ -26,3 +29,8 @@ class DiscoveryController(I1820Controller):
                                                        thing['id']):
                 Things.get(thing['type']).new_thing(
                     message['rpi_id'], thing['id'])
+
+    @property
+    def rpis(self):
+        with self.lock:
+            return self._rpis
