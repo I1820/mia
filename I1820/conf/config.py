@@ -12,8 +12,25 @@ import os
 
 class I1820Config:
     def __init__(self, path):
-        with open(path, 'r') as ymlfile:
-            cfg = yaml.load(ymlfile)
+        try:
+            ymlfile = open(path, 'r')
+        except IOError:
+            cfg = {}
+            cfg['influxdb'] = {}
+            cfg['influxdb']['host'] = os.getenv(
+                'I1820_INFLUXDB_HOST', '0.0.0.0')
+            cfg['influxdb']['port'] = os.getenv(
+                'I1820_INFLUXDB_PORT', '8086')
+            cfg['influxdb']['db'] = os.getenv(
+                'I1820_INFLUXDB_DB', 'I1820')
+            cfg['influxdb']['user'] = os.getenv(
+                'I1820_INFLUXDB_USER', 'root')
+            cfg['influxdb']['passwd'] = os.getenv(
+                'I1820_INFLUXDB_PASSWD', 'root')
+            cfg['endpoints'] = os.getenv('I1820_ENDPOINTS', '').split(' ')
+        else:
+            with ymlfile:
+                cfg = yaml.load(ymlfile)
         self.cfg = cfg
 
     def __getattr__(self, name):
