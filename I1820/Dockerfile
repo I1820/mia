@@ -25,7 +25,8 @@ WORKDIR /home/root/I1820
 RUN pyvenv . && pip3 install -r requirements.txt
 RUN cp I1820/conf/1820.example.yml I1820/conf/1820.yml
 
-RUN influxd &
+RUN sed -i 's/0.0.0.0/172.17.0.3/g' I1820/conf/1820.yml
+RUN influx -execute 'create database I1820' --host=172.17.0.3
 
 # Entrypoint Script
 ENTRYPOINT ["/home/root/I1820/18.20-serve.py"]
