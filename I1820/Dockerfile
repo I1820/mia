@@ -1,26 +1,26 @@
-FROM influxdb
+FROM influxdb:alpine
 MAINTAINER Iman Tabrizian <tabrizian@outlook.com>
 
 EXPOSE 8080
 ENV DEBIAN_FRONTEND noninteractive
 
 # Install packages
-RUN apt-get update
-RUN apt-get install -y git
-RUN apt-get install -y python3 python3-venv python3-pip python3-dev
-RUN apt-get install -y libyaml-dev
-RUN apt-get install -y curl
-RUN apt-get install -y apt-utils
-RUN apt-get install -y apt-transport-https
+RUN apk update
+RUN apk add python3 
+RUN apk add yaml
+RUN apk add git
+RUN apk add gcc
+RUN apk add python3-dev
+RUN apk add musl-dev
 
 # Cleanup
-RUN rm -rf /var/lib/apt/lists/* /var/cache/apt/packages/* && apt-get autoremove -y
+#RUN rm -rf /var/lib/apt/lists/* /var/cache/apt/packages/* && apt-get autoremove -y
 
 #
 WORKDIR /home/root
 
 # I1820
-RUN git clone https://github.com/aolab/I1820.git I1820 
+RUN git clone https://github.com/aolab/I1820.git
 WORKDIR /home/root/I1820
 RUN pyvenv . && pip3 install -r requirements.txt
 RUN cp I1820/conf/1820.example.yml I1820/conf/1820.yml
