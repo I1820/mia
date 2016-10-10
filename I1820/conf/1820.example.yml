@@ -1,8 +1,0 @@
-influxdb:
-  host: 0.0.0.0
-  port: 8086
-  db: I1820
-  user: root
-  passwd: root
-endpoints:
-  - 83DB8F6299E0A303730B5F913B6A3DF420EBC2C2
