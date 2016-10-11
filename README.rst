@@ -4,7 +4,9 @@
 
 *Good Days Good Things*
 
-I1820
+.. image:: https://img.shields.io/docker/automated/jrottenberg/ffmpeg.svg?maxAge=2592000
+
+I1820 
 ==============================================================================
 - `Introduction`_
 - `History`_
