@@ -17,8 +17,9 @@ I1820
 - `Contributors`_
 - `Up and Running`_
 - `I1820-UI <https://github.com/AoLab/I1820/blob/master/I1820-UI/README.md>`_
-- `TaaS is comming ...`_
+- `TaaS is coming ...`_
 - `Releases`_
+
 
 Introduction
 ------------------------------------------------------------------------------
@@ -107,7 +108,7 @@ Up and Running
 
 5. API documentation avaiable `here <http://aolab.github.io/I1820-Documentation>`_.
 
-TaaS is comming ...
+TaaS is coming ...
 ------------------------------------------------------------------------------
 Introduction
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
