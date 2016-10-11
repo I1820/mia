@@ -109,8 +109,6 @@ Up and Running
 
 TaaS is coming ...
 ------------------------------------------------------------------------------
-Introduction
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 By putting I1820 inside an isolated environment we can put I1820 at scale ...
 
 Installation
