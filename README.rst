@@ -4,8 +4,11 @@
 
 *Good Days Good Things*
 
+
 .. image:: https://img.shields.io/docker/automated/aolab/i1820.svg
+
 .. image:: https://img.shields.io/docker/pulls/aolab/i1820.svg
+
 
 I1820
 ==============================================================================
@@ -14,7 +17,7 @@ I1820
 - `Contributors`_
 - `Up and Running`_
 - `I1820-UI <https://github.com/AoLab/I1820/blob/master/I1820-UI/README.md>`_
-- `TaaS is coming`_
+- `TaaS is coming ...`_
 - `Releases`_
 
 Introduction
@@ -105,7 +108,7 @@ Up and Running
 
 5. API documentation avaiable `here <http://aolab.github.io/I1820-Documentation>`_.
 
-TaaS is comming
+TaaS is comming ...
 ------------------------------------------------------------------------------
 Introduction
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
