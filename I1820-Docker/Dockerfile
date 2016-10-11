@@ -21,7 +21,7 @@ WORKDIR /home/root
 
 # I1820
 WORKDIR /home/root/I1820
-COPY .. .
+COPY . .
 RUN pyvenv . && pip3 install -r requirements.txt
 
 # I1820 Configurations
