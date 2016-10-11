@@ -1,5 +1,7 @@
 FROM alpine
+MAINTAINER Parham Alvani <parham.alvani@gmail.com>
 MAINTAINER Iman Tabrizian <tabrizian@outlook.com>
+
 
 EXPOSE 8080
 ENV DEBIAN_FRONTEND noninteractive
