@@ -7,14 +7,14 @@
 .. image:: https://img.shields.io/docker/automated/aolab/i1820.svg
 .. image:: https://img.shields.io/docker/pulls/aolab/i1820.svg
 
-I1820 
+I1820
 ==============================================================================
 - `Introduction`_
 - `History`_
 - `Contributors`_
 - `Up and Running`_
 - `I1820-UI <https://github.com/AoLab/I1820/blob/master/I1820-UI/README.md>`_
-- `I1820-Docker <https://github.com/AoLab/I1820/blob/master/I1820-Docker/README.md>`_
+- `TaaS is coming ...`_
 - `Releases`_
 
 Introduction
@@ -104,6 +104,30 @@ Up and Running
       ./18.20-serve.py
 
 5. API documentation avaiable `here <http://aolab.github.io/I1820-Documentation>`_.
+
+TaaS is comming ...
+------------------------------------------------------------------------------
+Introduction
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+By putting I1820 inside an isolated environment we can put I1820 at scale ...
+
+Installation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Zero configuration, zero installation, your IoT middleware is available at your internet speed.
+
+   .. code-block:: sh
+
+      docker pull aolab/i1820
+      docker run -d -p 8080:8080 --name="I1820" aolab/i1820
+
+Build
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+For building the image from scratch:
+
+   .. code-block:: sh
+
+      docker build -t aolab/i1820 .
+
 
 Releases
 ------------------------------------------------------------------------------
