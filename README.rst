@@ -4,7 +4,7 @@
 
 *Good Days Good Things*
 
-.. image:: https://img.shields.io/docker/automated/jrottenberg/ffmpeg.svg?maxAge=2592000
+.. image:: https://img.shields.io/docker/automated/aolab/i1820.svg
 .. image:: https://img.shields.io/docker/pulls/aolab/i1820.svg
 
 I1820 
