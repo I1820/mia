@@ -10,6 +10,19 @@ import json
 
 
 class I1820Notification:
+    '''
+    The I1820Notification object contains information that is used to
+    send notification into end devices.
+
+    :param type: type of target end device.
+    :type type: str
+    :param device: identification of target end device.
+    :type device: str
+    :param settings: configurations wanted to apply on target end device.
+    :type settings: dict
+    :param endpoint: identification of target end device Raspberry PI.
+    :type endpoint: str
+    '''
     def __init__(self, type: str, device: str,
                  settings: dict,
                  endpoint: str):
