@@ -23,7 +23,6 @@ I1820
 
 Introduction
 ------------------------------------------------------------------------------
-
 .. figure:: http://aolab.github.io/documentation/architecture/I1820.jpg
    :alt: I1820 in AoLab IoT Architecture
    :align: center
