@@ -1,6 +1,6 @@
 .. raw:: html
 
-   <p align="center">Hello :)</p>
+    <p align="center">Hello :)</p>
 
 
 *Good Days Good Things*
