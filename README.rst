@@ -1,6 +1,6 @@
-.. figure:: http://aolab.github.io/I1820/logo/I1820-Logo.jpg
-   :alt: I1820 Logo
-   :align: center
+.. raw:: html
+
+   <img src="http://aolab.github.io/I1820/logo/I1820-Logo.jpg" alt="I1820 Logo" align="center">
 
 *Good Days Good Things*
 
