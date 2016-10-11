@@ -17,12 +17,11 @@ I1820
 - `Contributors`_
 - `Up and Running`_
 - `I1820-UI <https://github.com/AoLab/I1820/blob/master/I1820-UI/README.md>`_
-- `TaaS is coming ...`_
+- `TaaS is comming ...`_
 - `Releases`_
 
 Introduction
 ------------------------------------------------------------------------------
-
 
 .. figure:: http://aolab.github.io/documentation/architecture/I1820.jpg
    :alt: I1820 in AoLab IoT Architecture
