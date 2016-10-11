@@ -1,8 +1,8 @@
 .. figure:: http://aolab.github.io/I1820/logo/I1820-Logo.jpg
    :alt: I1820 Logo
    :align: center
-*Good Days Good Things* 
 
+*Good Days Good Things*
 
 I1820
 ==============================================================================
@@ -11,6 +11,7 @@ I1820
 - `Contributors`_
 - `Up and Running`_
 - `I1820-UI <https://github.com/AoLab/I1820/blob/master/I1820-UI/README.md>`_
+- `I1820-Docker <https://github.com/AoLab/I1820/blob/master/I1820-Docker/README.md>`_
 - `Releases`_
 
 Introduction
