@@ -14,7 +14,7 @@ I1820
 - `Contributors`_
 - `Up and Running`_
 - `I1820-UI <https://github.com/AoLab/I1820/blob/master/I1820-UI/README.md>`_
-- `TaaS is coming ...`_
+- `TaaS is coming`_
 - `Releases`_
 
 Introduction
@@ -95,7 +95,7 @@ Up and Running
 
    .. code-block:: sh
 
-      cp I1820/conf/1820.example.yml I1820/conf/1820.yml
+      cp I1820/conf/1820.example.ini I1820/conf/1820.ini
 
 4. Run :D
 
@@ -105,7 +105,7 @@ Up and Running
 
 5. API documentation avaiable `here <http://aolab.github.io/I1820-Documentation>`_.
 
-TaaS is comming ...
+TaaS is comming
 ------------------------------------------------------------------------------
 Introduction
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -115,18 +115,18 @@ Installation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Zero configuration, zero installation, your IoT middleware is available at your internet speed.
 
-   .. code-block:: sh
+.. code-block:: sh
 
-      docker pull aolab/i1820
-      docker run -d -p 8080:8080 --name="I1820" aolab/i1820
+   docker pull aolab/i1820
+   docker run -d -p 8080:8080 --name="I1820" aolab/i1820
 
 Build
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 For building the image from scratch:
 
-   .. code-block:: sh
+.. code-block:: sh
 
-      docker build -t aolab/i1820 .
+   docker build -t aolab/i1820 .
 
 
 Releases
