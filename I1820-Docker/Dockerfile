@@ -7,7 +7,6 @@ ENV DEBIAN_FRONTEND noninteractive
 # Install packages
 RUN apk update
 RUN apk add python3
-RUN apk add yaml
 RUN apk add git
 RUN apk add gcc
 RUN apk add python3-dev
