@@ -1,6 +1,6 @@
 .. raw:: html
 
-   <p align="center"><img src="https://aolab.github.io/I1820/logo/I1820-Logo.jpg" alt="I1820 Logo"></p>
+   <p align="center">Hello :)</p>
 
 
 *Good Days Good Things*
