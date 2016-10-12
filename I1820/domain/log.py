@@ -7,10 +7,10 @@
 # [] Created By : Parham Alvani (parham.alvani@gmail.com)
 # =======================================
 import datetime
-import json
+import bson
 
 
-class I1820Log:
+class I1820Log(bson.BSONCoding):
     def __init__(self, type: str, device: str,
                  states: dict,
                  endpoint: str,
@@ -24,27 +24,19 @@ class I1820Log:
         self.timestamp = timestamp
         self.endpoint = endpoint
 
+    def bson_encode(self):
+        return {
+                'timestamp': self.timestamp.timestamp(),
+                'type': self.type,
+                'device': self.device,
+                'states': self.states,
+                'endpoint': self.endpoint
+        }
 
-class I1820LogJSONEncoder(json.JSONEncoder):
-    def default(self, obj: I1820Log):
-        if isinstance(obj, I1820Log):
-            return {
-                'timestamp': obj.timestamp.timestamp(),
-                'type': obj.type,
-                'device': obj.device,
-                'states': obj.states,
-                'endpoint': obj.endpoint
-            }
-        else:
-            raise TypeError(
-                "I1820LogJSONEncoder got {} instead of I1820Log.".format(
-                    type(obj)))
-
-
-class I1820LogDictDecoder:
-    @staticmethod
-    def decode(obj: dict) -> I1820Log:
-        return I1820Log(obj['type'], obj['device'],
-                        obj['states'], obj['endpoint'],
-                        datetime.datetime.fromtimestamp(
-                            obj['timestamp']))
+    def bson_init(self, raw_values):
+        self.states = raw_values['states']
+        self.type = raw_values['type']
+        self.device = raw_values['device']
+        self.endpoint = raw_values['endpoint']
+        self.timestamp = datetime.datetime.fromtimestamp(
+            raw_values['timestamp'])
