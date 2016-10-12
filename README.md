@@ -1,10 +1,13 @@
 <p align="center">
     <img alt="I1820 Logo" src="http://aolab.github.io/I1820/logo/I1820-Logo.jpg">
 </p>
+
 <p align="center"><strong>Good Days Good Things</strong></p>
 
-![automated badge](https://img.shields.io/docker/automated/aolab/i1820.svg) ![pulls badge](https://img.shields.io/docker/pulls/aolab/i1820.svg)
-
+<p align="center">
+    <img alt="Automated Badge" src="https://img.shields.io/docker/automated/aolab/i1820.svg">
+    <img alt="Pulls Badge" src="https://img.shields.io/docker/pulls/aolab/i1820.svg">
+</p>
 
 # I1820
 - [Introduction](#introduction)
