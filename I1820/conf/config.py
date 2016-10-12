@@ -45,6 +45,8 @@ class I1820Config:
             section = name
         if section == 'influxdb':
             return self.cfg['InfluxDB'][field]
+        elif section == 'mqtt':
+            return self.cfg['MQTT'][field]
         elif section == 'endpoints':
             return self.cfg['Things']['endpoints'].split(' ')
 
