@@ -6,12 +6,12 @@
 #
 # [] Created By : Parham Alvani (parham.alvani@gmail.com)
 # =======================================
-import requests
-
 from .base import I1820Controller
-from ..domain.notif import I1820Notification, I1820NotificationJSONEncoder
-from ..exceptions.thing import ThingNotFoundException
-from .discovery import DiscoveryController
+from ..domain.notif import I1820Notification
+from ..mqtt import client
+from ..conf.config import cfg
+
+import bson
 
 
 class NotificationController(I1820Controller):
@@ -19,13 +19,5 @@ class NotificationController(I1820Controller):
         pass
 
     def notify(self, notification: I1820Notification):
-        ip = DiscoveryController().rpis[notification.endpoint]['ip']
-        try:
-            requests.post('http://%s:1820/event' % ip,
-                          data=I1820NotificationJSONEncoder().
-                          encode(notification))
-        except requests.ConnectionError as e:
-            del DiscoveryController().rpis[notification.endpoint]
-            raise ThingNotFoundException(notification.endpoint,
-                                         notification.device,
-                                         notification.type, e)
+        for t in cfg.endpoints:
+            client.publish('I1820/%s/event' % t, bson.dumps(notification))
