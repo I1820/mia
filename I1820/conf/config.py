@@ -26,6 +26,11 @@ class I1820Config:
                                                   'root')
         env_cfg['Things'] = {}
         env_cfg['Things']['endpoints'] = os.getenv('I1820_ENDPOINTS', '')
+
+        env_cfg['MQTT'] = {}
+        env_cfg['MQTT']['host'] = os.getenv('I1820_MQTT_HOST', '127.0.0.1')
+        env_cfg['MQTT']['port'] = os.getenv('I1820_MQTT_PORT', '1883')
+
         cfg.read_dict(env_cfg)
 
         # File based configurations
