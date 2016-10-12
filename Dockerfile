@@ -8,9 +8,6 @@ EXPOSE 8080
 # Install packages
 RUN apk update
 RUN apk add python3
-RUN apk add gcc
-RUN apk add python3-dev
-RUN apk add musl-dev
 
 # Cleanup
 RUN rm -rf /var/cache/apk/*
