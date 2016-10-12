@@ -13,7 +13,7 @@ from ..controller.discovery import DiscoveryController
 from ..domain.log import I1820LogDictDecoder
 from ..things.base import Things
 
-import json
+import bson
 
 
 def on_log(client, userdata, message):
@@ -26,7 +26,7 @@ def on_log(client, userdata, message):
     :param message: recived message that contains topic, payload, qos, retain.
     :type message: MQTTMessage
     '''
-    data = json.loads(message.payload)
+    data = bson.loads(message.payload)
     log = I1820LogDictDecoder.decode(data)
 
     thing = Things.get(log.type).get_thing(log.endpoint, log.device)
@@ -47,17 +47,27 @@ def on_discovery(client, userdata, message):
     :param message: recived message that contains topic, payload, qos, retain.
     :type message: MQTTMessage
     '''
-    data = json.loads(message.payload)
+    data = bson.loads(message.payload)
     discovery = DiscoveryController()
     discovery.ping(data)
 
 
-# subscribe to thing side channels based on things API token
-for t in cfg.endpoints:
-    client.subscribe('%s/discovery' % t)
-    client.message_callback_add('%s/discovery' % t, on_discovery)
-    client.subscribe('%s/log' % t)
-    client.message_callback_add('%s/log' % t, on_log)
+def on_connect(client, userdata, flags, rc):
+    '''
+    Called when the broker responds to our connection request.
+    It subscribes to thing side channels based on things API token
+
+    :param client: the client instance for this callback
+    :param userdata: the private user data as set in Client() or userdata_set()
+    :param flags: response flags sent by the broker
+    :param rc: the connection result
+    '''
+    for t in cfg.endpoints:
+        client.subscribe('I1820/%s/discovery' % t)
+        client.message_callback_add('I1820/%s/discovery' % t, on_discovery)
+        client.subscribe('I1820/%s/log' % t)
+        client.message_callback_add('I1820/%s/log' % t, on_log)
 
 # connect to brocker
-client.connect(cfg.mqtt_host, cfg.mqtt_port, 60)
+client.on_connect = on_connect
+client.connect(cfg.mqtt_host, int(cfg.mqtt_port), 60)
