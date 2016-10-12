@@ -8,13 +8,9 @@
 # =======================================
 import flask
 import json
-import functools
 
 from . import app
-from . import socketio
-from ..conf.config import cfg
 from ..things.base import Things
-from ..domain.log import I1820LogDictDecoder, I1820LogJSONEncoder
 from ..controller.discovery import DiscoveryController
 from ..controller.plugin import PluginController
 from ..exceptions.thing import \
@@ -25,16 +21,6 @@ from ..exceptions.thing import \
 @app.route('/about')
 def about_handler():
     return "18.20 is leaving us"
-
-
-# API Keys
-def api_key_required(f):
-    @functools.wraps(f)
-    def decorated_function(*args, **kwargs):
-        if flask.request.args.get('token', '') not in cfg.endpoints:
-            return ('Application Token has not been provided.', 401, {})
-        return f(*args, **kwargs)
-    return decorated_function
 
 
 # I1820-UI
@@ -49,41 +35,12 @@ def ui_handler(path):
 def root_handler():
     return flask.send_file('../I1820-UI/index.html')
 
-# Thing Side
-
-
-@app.route('/log', methods=['POST'])
-@api_key_required
-def log_handler():
-    data = flask.request.get_json(force=True)
-    log = I1820LogDictDecoder.decode(data)
-
-    thing = Things.get(log.type).get_thing(log.endpoint, log.device)
-
-    for key, value in log.states.items():
-        setattr(thing, key, {'value': value, 'time': log.timestamp})
-
-    # SocketIO
-    socketio.emit('log', I1820LogJSONEncoder().encode(log))
-    socketio.emit('log', I1820LogJSONEncoder().encode(log),
-                  namespace='/%s' % log.type)
-    return ""
-
-
-@app.route('/discovery', methods=['POST'])
-@api_key_required
-def discovery_thing_handler():
-    data = flask.request.get_json(force=True)
-    discovery = DiscoveryController()
-    discovery.ping(data, flask.request.remote_addr)
-    return ""
-
 
 # Human Side
 
 
 @app.route('/discovery', methods=['GET'])
-def discovery_human_handler():
+def discovery_handler():
     discovery = DiscoveryController()
     return json.dumps(discovery.rpis)
 
