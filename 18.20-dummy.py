@@ -1,16 +1,15 @@
 #!/usr/bin/env python3
 
-import requests
-import logging
+import paho.mqtt.client as mqtt
 import time
-import datetime
+import bson
+
+from I1820.conf.config import cfg
+from I1820.domain.log import I1820Log
 
 
-log = logging.getLogger('ping')
-
-token = {
-    'token': '83DB8F6299E0A303730B5F913B6A3DF420EBC2C2'
-}
+token = '83DB8F6299E0A303730B5F913B6A3DF420EBC2C2'
+client = mqtt.Client()
 
 
 def ping():
@@ -18,23 +17,16 @@ def ping():
         'rpi_id': 'dummy',
         'things': [{'type': 'dummy', 'id': '0', 'attributes': {}}]
     }
-    try:
-        requests.post('http://127.0.0.1:8080/discovery', json=message, params=token)
-    except Exception as e:
-        log.error('Ping request failed: %s' % e)
+    client.publish('I1820/%s/discovery' % token, bson.dumps(message))
 
 if __name__ == '__main__':
+    client.connect(cfg.mqtt_host, int(cfg.mqtt_port))
+    client.loop_start()
     while True:
         ping()
-        log = {
-            'type': 'dummy',
-            'device': '0',
-            'endpoint': 'dummy',
-            'timestamp': datetime.datetime(
-                1995, 2, 20, 12, 00, 00).timestamp(),
-            'states': {
-                'chert': '1'
-            }
-        }
-        requests.post('http://127.0.0.1:8080/log', json=log, params=token)
+        log = I1820Log(type='dummy', device='0', endpoint='dummy',
+                       states={
+                           'chert': '1'
+                       })
+        client.publish('I1820/%s/log' % token, bson.dumps(log))
         time.sleep(20)
