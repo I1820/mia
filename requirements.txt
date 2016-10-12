@@ -1,7 +1,5 @@
 requests
 Flask
-Flask-SocketIO
-eventlet
 influxdb
-socketIO-client
 paho-mqtt
+bson
