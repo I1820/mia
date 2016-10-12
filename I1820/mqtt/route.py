@@ -10,7 +10,7 @@
 from . import client
 from ..conf.config import cfg
 from ..controller.discovery import DiscoveryController
-from ..domain.log import I1820LogDictDecoder
+from ..domain.log import I1820Log
 from ..things.base import Things
 
 import bson
@@ -26,15 +26,17 @@ def on_log(client, userdata, message):
     :param message: recived message that contains topic, payload, qos, retain.
     :type message: MQTTMessage
     '''
-    data = bson.loads(message.payload)
-    log = I1820LogDictDecoder.decode(data)
+    log = bson.loads(message.payload)
+
+    if not isinstance(log, I1820Log):
+        return
 
     thing = Things.get(log.type).get_thing(log.endpoint, log.device)
 
     for key, value in log.states.items():
         setattr(thing, key, {'value': value, 'time': log.timestamp})
 
-    return ""
+    print("%s -- []" % (message.topic))
 
 
 def on_discovery(client, userdata, message):
@@ -50,6 +52,8 @@ def on_discovery(client, userdata, message):
     data = bson.loads(message.payload)
     discovery = DiscoveryController()
     discovery.ping(data)
+
+    print("%s -- []" % (message.topic))
 
 
 def on_connect(client, userdata, flags, rc):
