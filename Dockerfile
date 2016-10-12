@@ -4,7 +4,6 @@ MAINTAINER Iman Tabrizian <tabrizian@outlook.com>
 
 
 EXPOSE 8080
-ENV DEBIAN_FRONTEND noninteractive
 
 # Install packages
 RUN apk update
@@ -14,7 +13,7 @@ RUN apk add python3-dev
 RUN apk add musl-dev
 
 # Cleanup
-#RUN rm -rf /var/lib/apt/lists/* /var/cache/apt/packages/* && apt-get autoremove -y
+RUN rm -rf /var/cache/apk/*
 
 # Let's Go Home
 WORKDIR /home/root
