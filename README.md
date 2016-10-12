@@ -52,11 +52,14 @@ and **Interface Layer** for you.
 ## History
 
 This project had been started as a python REST library for [kaa] but after
-project grew, we decided to complete it as stand alone middleware. In the
-begining we use [SDN101] project as a good example of python REST API client.
+project grew, we decided to complete it as stand alone middleware.
+
+In the begining we use [SDN101] project as a good example of python REST API client.
 [SDN101] is a **great memory** for [Parham Alvani] good old days.
+
 After many weeks of development this project found a new idea from our friend
 and developer [Iman Tabrizian] and we switched to version 2.
+
 [Parham Alvani] had personal issues for using non-GPL packages and protocols
 but he finally tried to forget the pass and we finally use [MQTT] protocol and
 removed yaml from our project ... version 3.
@@ -128,4 +131,4 @@ docker build -t aolab/i1820 .
 * Orange 1.0.dev1
 * Pink 1.0: [v1.0](https://github.com/AoLab/I1820/tree/v1.0>)
 * Purple 2.0: [v2.0](https://github.com/AoLab/I1820/tree/v2.0>)
-* K 2.0: master
+* Green 2.0: master
