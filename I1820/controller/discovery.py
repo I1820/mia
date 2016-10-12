@@ -15,17 +15,15 @@ class DiscoveryController(I1820Controller):
     def __init__(self):
         self.rpis = dict()
 
-    def ping(self, message: dict, ip: str):
+    def ping(self, message: dict):
         if message['rpi_id'] not in self.rpis:
             self.rpis[message['rpi_id']] = {
                 'time': datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
-                'ip': ip,
                 'things': []
             }
         else:
             self.rpis[message['rpi_id']]['time'] = \
                     datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
-            self.rpis[message['rpi_id']]['ip'] = ip
 
         for thing in message['things']:
             if not Things.get(thing['type']).has_thing(message['rpi_id'],
