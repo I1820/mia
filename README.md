@@ -82,7 +82,7 @@ removed yaml from our project ... version 3.
 [Iman Tabrizian]: https://github.com/Tabrizian
 [Prof. Bahador Bakhshi]: http://ceit.aut.ac.ir/~bakhshis/
 
-## Up and Running
+## Up and Running ###### in Ubuntu
 
 1. Install and Setup InfluxDB \[[InfluxDB installation](https://docs.influxdata.com/influxdb/v1.0/introduction/installation)]
 
@@ -91,25 +91,43 @@ sudo ./scripts/influxdb-install.sh
 influx -execute 'create database I1820'
    ```
 
-2. Install python dependencies
+2. Install and Setup eMQTT \[[eMQTT installation]()]
 
    ```sh
-      sudo pip3 install -r requirements.txt
+unzip emqttd-ubuntu64-2.0-beta1-20160830.zip && cd emqttd
+
+# start console
+./bin/emqttd console
+
+# start as daemon
+./bin/emqttd start
+
+# check status
+./bin/emqttd_ctl status
+
+# stop
+./bin/emqttd stop
    ```
 
-3. Provide I1820 configuration in YAML ....
+3. Install python dependencies
+
+   ```sh
+sudo pip3 install -r requirements.txt
+   ```
+
+4. Provide I1820 configuration in YAML ....
 
    ```sh
 cp I1820/conf/1820.example.ini I1820/conf/1820.ini
    ```
 
-4. Run :D
+5. Run :D
 
    ```sh
 ./18.20-serve.py
    ```
 
-5. API documentation avaiable [here](http://aolab.github.io/I1820-Documentation).
+6. API documentation avaiable [here](http://aolab.github.io/I1820-Documentation).
 
 ## [TaaS](https://github.com/AoLab/TaaS) is coming ...
 
