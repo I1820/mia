@@ -13,7 +13,6 @@ from ..conf.config import cfg
 
 
 class LogController(I1820Controller):
-
     def __init__(self):
         self._client = InfluxDBClient(host=cfg.influxdb_host,
                                       port=cfg.influxdb_port,

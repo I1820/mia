@@ -6,9 +6,10 @@
 #
 # [] Created By : Parham Alvani (parham.alvani@gmail.com)
 # =======================================
-from datetime import datetime
 from .base import I1820Controller
 from ..things.base import Things
+
+from datetime import datetime
 
 
 class DiscoveryController(I1820Controller):

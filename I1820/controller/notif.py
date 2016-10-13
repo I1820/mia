@@ -20,4 +20,5 @@ class NotificationController(I1820Controller):
 
     def notify(self, notification: I1820Notification):
         for t in cfg.endpoints:
-            client.publish('I1820/%s/notification' % t, bson.dumps(notification))
+            client.publish('I1820/%s/notification' % t,
+                           bson.dumps(notification))
