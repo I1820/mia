@@ -82,7 +82,8 @@ removed yaml from our project ... version 3.
 [Iman Tabrizian]: https://github.com/Tabrizian
 [Prof. Bahador Bakhshi]: http://ceit.aut.ac.ir/~bakhshis/
 
-## Up and Running ###### in Ubuntu
+## Up and Running
+###### in Ubuntu
 
 1. Install and Setup InfluxDB \[[InfluxDB installation](https://docs.influxdata.com/influxdb/v1.0/introduction/installation)]
 
