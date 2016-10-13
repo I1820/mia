@@ -60,6 +60,20 @@
                     <button type="button" class="btn btn-primary" v-on:click="fetch('temperature', ['temperature'], thing.id)"><i class="fa fa-refresh" aria-hidden="true"></i></button>
 		</form>
 		</template>
+		<template v-if="thing.type == 'multisensor'">
+		<h4>Multisensor <small>{{ thing.id }}</small></h4>
+		<form class="form-inline">
+		    <div class="form-group">
+		        <label>Temperature</label>
+			<p v-if="typeof states.temperature !== 'undefined'" class="form-control-static">{{states.temperature.value}} @ {{states.temperature.time}}</p>
+		        <label>Humidity</label>
+			<p v-if="typeof states.temperature !== 'undefined'" class="form-control-static">{{states.humidity.value}} @ {{states.humidity.time}}</p>
+		        <label>Light</label>
+			<p v-if="typeof states.temperature !== 'undefined'" class="form-control-static">{{states.light.value}} @ {{states.light.time}}</p>
+		    </div>
+                    <button type="button" class="btn btn-primary" v-on:click="fetch('multisensor', ['humidity', 'temperature', 'light'], thing.id)"><i class="fa fa-refresh" aria-hidden="true"></i></button>
+		</form>
+		</template>
                 </template>
             <div>
                 <h3>Actuators</h3>
