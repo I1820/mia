@@ -10,7 +10,6 @@
  */
 
 /* global Vue : Vue.js */
-/* global io  : socket.io */
 /* global $   : JQuery */
 
 var app = new Vue({
@@ -18,12 +17,7 @@ var app = new Vue({
   data: {
     rpis: {},
     endpoint: '',
-    connection: {
-      message: 'Connecting...',
-      state: 'default'
-    },
-    states: {
-    },
+    states: {},
     things: []
   },
   created: function () {
@@ -46,6 +40,23 @@ var app = new Vue({
         app.rpis = JSON.parse(data)
       })
     },
+    fetch: function (type, data, deviceId) {
+      var payload = {
+        type: type,
+        rpi_id: this.endpoint,
+        device_id: deviceId,
+        states: data
+      }
+      $.post('thing', JSON.stringify(payload), function (data, status) {
+        var message = JSON.parse(data)
+        for (var key in message) {
+          if (message.hasOwnProperty(key)) {
+            message[key].time = new Date(message[key].time).toLocaleString()
+            Vue.set(app.states, key, message[key])
+          }
+        }
+      })
+    },
     turn: function (command, deviceId) {
       var payload = {
         type: 'lamp',
@@ -61,9 +72,6 @@ var app = new Vue({
         contentType: 'application/json',
         data: JSON.stringify(payload)
       })
-    },
-    checkData: function () {
-      return Object.keys(this.states).length
     }
   }
 })

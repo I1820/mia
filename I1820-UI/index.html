@@ -41,34 +41,28 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div>
-                <h3>RealTime Log <small><span v-bind:class="'label label-' + connection.state">{{ connection.message }}</span></small></h3>
-                <table v-if="checkData()" class="table">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Value</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr v-for="(value, key) in states">
-                            <td>{{ key | capitalize }}</td>
-                            <td>{{ value }}</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div v-else class="panel panel-default">
-                    <div class="panel-body text-center">No Sensor data currently</div>
-                </div>
-            </div>
-            <div>
-                <h3>Actuators</h3>
-                <div class="form-group">
+		<div class="form-group">
                     <select v-model="endpoint" class="form-control">
 			<option v-for="(value, key, index) in rpis" v-bind:value="key">RPi #{{ index }}</option>
-		</select>
+		     </select>
                 </div>
+            </div>
+            <div>
+                <h3>Sensing</h3>
+		<template v-for="thing in things">
+		<template v-if="thing.type == 'temperature'">
+		<h4>Temperature <small>{{ thing.id }}</small></h4>
+		<form class="form-inline">
+		    <div class="form-group">
+		        <label>Temperature</label>
+			<p v-if="typeof states.temperature !== 'undefined'" class="form-control-static">{{states.temperature.value}} @ {{states.temperature.time}}</p>
+		    </div>
+                    <button type="button" class="btn btn-primary" v-on:click="fetch('temperature', ['temperature'], thing.id)"><i class="fa fa-refresh" aria-hidden="true"></i></button>
+		</form>
+		</template>
+                </template>
+            <div>
+                <h3>Actuators</h3>
                 <template v-for="thing in things">
 		<template v-if="thing.type == 'lamp'">
 		<h5>Lamp <small>{{ thing.id }}</small></h5>
