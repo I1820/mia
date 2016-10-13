@@ -12,6 +12,7 @@ from ..conf.config import cfg
 from ..controller.discovery import DiscoveryController
 from ..domain.log import I1820Log
 from ..things.base import Things
+from ..exceptions.thing import ThingNotFoundException
 
 import bson
 
@@ -31,7 +32,11 @@ def on_log(client, userdata, message):
     if not isinstance(log, I1820Log):
         return
 
-    thing = Things.get(log.type).get_thing(log.endpoint, log.device)
+    try:
+        thing = Things.get(log.type).get_thing(log.endpoint, log.device)
+    except ThingNotFoundException as e:
+        print("%s -- []: %s" % (message.topic, str(e)))
+        return
 
     for key, value in log.states.items():
         setattr(thing, key, {'value': value, 'time': log.timestamp})
