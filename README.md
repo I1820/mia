@@ -84,7 +84,7 @@ removed yaml from our project ... version 3.
 
 ## Up and Running
 
-1. Install and Setup InfluxDB
+1. Install and Setup InfluxDB \[[InfluxDB installation](https://docs.influxdata.com/influxdb/v1.0/introduction/installation)]
 
    ```sh
 sudo ./scripts/influxdb-install.sh
