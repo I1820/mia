@@ -129,6 +129,16 @@ For building the image from scratch:
 docker build -t aolab/i1820 .
 ```
 
+## Components
+
+Without them we were nothing ...
+
+- [InfluxDB](https://www.influxdata.com/time-series-platform/influxdb/)
+   **Time-Series Data Storate**
+
+- [eMQTT](http://emqtt.io/)
+   **The Massively Scalable MQTT Broker for IoT and Mobile Applications**
+
 ## Releases
 
 * Orange 1.0.dev1
