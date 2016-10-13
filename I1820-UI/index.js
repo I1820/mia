@@ -69,21 +69,4 @@ var app = new Vue({
 })
 
 $('document').ready(function () {
-  var socket = io.connect('http://' + document.domain + ':' + location.port)
-  socket.on('connect', function () {
-    app.connection.message = 'Connected'
-    app.connection.state = 'success'
-  })
-  socket.on('error', function () {
-    app.connection.message = 'Error :('
-    app.connection.state = 'danger'
-  })
-  socket.on('log', function (message) {
-    message = JSON.parse(message)
-    for (var key in message.states) {
-      if (message.states.hasOwnProperty(key)) {
-        Vue.set(app.states, key, message.states[key])
-      }
-    }
-  })
 })
