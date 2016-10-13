@@ -133,11 +133,8 @@ docker build -t aolab/i1820 .
 
 Without them we were nothing ...
 
-- [InfluxDB](https://www.influxdata.com/time-series-platform/influxdb/)
-   **Time-Series Data Storate**
-
-- [eMQTT](http://emqtt.io/)
-   **The Massively Scalable MQTT Broker for IoT and Mobile Applications**
+- [InfluxDB](https://www.influxdata.com/time-series-platform/influxdb/): Time-Series Data Storate
+- [eMQTT](http://emqtt.io/): The Massively Scalable MQTT Broker for IoT and Mobile Applications
 
 ## Releases
 
