@@ -16,6 +16,7 @@
 - [Up and Running]('#up-and-running')
 - [I1820-UI](https://github.com/AoLab/I1820/blob/master/I1820-UI/README.md)
 - [TaaS is coming ...](#taas-is-coming-)
+- [Components](#components)
 - [Releases](#releases)
 
 
