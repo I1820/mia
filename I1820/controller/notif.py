@@ -15,6 +15,10 @@ import bson
 
 
 class NotificationController(I1820Controller):
+    '''
+    The NotificationController controls notifications. these notifications
+    base on :class:`I1820Notification`.
+    '''
     def __init__(self):
         pass
 
