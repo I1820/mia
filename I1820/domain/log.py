@@ -11,6 +11,19 @@ import bson
 
 
 class I1820Log(bson.BSONCoding):
+    '''
+    The I1820Log object contains information that is used to
+    report end device states into I1820.
+
+    :param type: type of target end device.
+    :type type: str
+    :param device: identification of target end device.
+    :type device: str
+    :param states: states of target device.
+    :type states: dict
+    :param endpoint: identification of target end device Raspberry PI.
+    :type endpoint: str
+    '''
     def __init__(self, type: str, device: str,
                  states: dict,
                  endpoint: str,
