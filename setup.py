@@ -12,8 +12,8 @@ with open(path.join(here, 'LICENSE'), encoding='utf-8') as f:
     license_text = f.read()
 
 setup(
-    name='I18.20',
-    version='1.0.dev2',
+    name='I1820',
+    version='3.0',
     packages=find_packages(),
     url='https://github.com/AoLab/I1820',
     description="The IoT Middleware",
