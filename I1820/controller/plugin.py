@@ -9,7 +9,7 @@
 from .base import I1820Controller
 from ..plugins.base import Plugins
 
-from multiprocessing import Process
+import threading
 
 
 def plugin_runner(plugin, args: dict):
@@ -22,22 +22,20 @@ class PluginController(I1820Controller):
 
     def new_plugin(self, name, args: dict):
         plugin = Plugins.get(name)
-        p = Process(target=plugin_runner, args=(plugin, args))
+        p = threading.Thread(target=plugin_runner, args=(plugin, args),
+                             name=name, deamon=True)
         p.start()
         self.plugins.append(p)
 
-        return p.pid
+        return p.ident
 
     def list_plugin(self):
         results = {}
 
         for plugin in self.plugins:
             result = {}
+            result['id'] = plugin.ident
             result['name'] = plugin.name
             result['is_alive'] = plugin.is_alive()
-            if not result['is_alive']:
-                result['exit_code'] = plugin.exitcode
-
-            results[plugin.pid] = result
 
         return results
