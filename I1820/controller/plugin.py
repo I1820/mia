@@ -10,32 +10,33 @@ from .base import I1820Controller
 from ..plugins.base import Plugins
 
 import threading
-
-
-def plugin_runner(plugin, args: dict):
-    plugin(**args)
+import uuid
 
 
 class PluginController(I1820Controller):
     def __init__(self):
         self.plugins = []
 
+    def on_log(self, log):
+        for plugin in self.plugins:
+            threading.Thread(target=plugin.on_log, args=(log,),
+                             daemon=True).start()
+
     def new_plugin(self, name, args: dict):
         plugin = Plugins.get(name)
-        p = threading.Thread(target=plugin_runner, args=(plugin, args),
-                             name=name, deamon=True)
-        p.start()
+        ident = uuid.uuid4()
+        p = plugin(ident, **args)
         self.plugins.append(p)
 
         return p.ident
 
     def list_plugin(self):
-        results = {}
+        results = []
 
         for plugin in self.plugins:
             result = {}
-            result['id'] = plugin.ident
+            result['id'] = str(plugin.ident)
             result['name'] = plugin.name
-            result['is_alive'] = plugin.is_alive()
+            results.append(result)
 
         return results
