@@ -59,6 +59,10 @@ class Thing(metaclass=Things):
         cls.things[cls.name][(rpi_id, device_id)] = cls(rpi_id, device_id)
 
     @classmethod
+    def del_thing(cls, rpi_id, device_id):
+        del cls.things[cls.name][(rpi_id, device_id)]
+
+    @classmethod
     def has_thing(cls, rpi_id, device_id):
         if cls.name in cls.things:
             if (rpi_id, device_id) in cls.things[cls.name]:
