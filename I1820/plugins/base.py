@@ -8,7 +8,8 @@
 # =======================================
 import abc
 import importlib
-import requests
+
+from ..things.base import Things
 
 
 class Plugins(abc.ABCMeta):
@@ -29,11 +30,8 @@ class Plugins(abc.ABCMeta):
 
 
 class Plugin(metaclass=Plugins):
-    def __init__(self):
-        pass
-        # socket_io = SocketIO('localhost', 8080)
-        # socket_io.on('log', self.on_log)
-        # socket_io.wait()
+    def __init__(self, ident):
+        self.ident = ident
 
     @property
     @abc.abstractmethod
@@ -41,13 +39,10 @@ class Plugin(metaclass=Plugins):
         raise NotImplemented()
 
     def notify(self, rpi_id, device_id, type, settings):
-        data = {
-            'type': type,
-            'rpi_id': rpi_id,
-            'device_id': device_id,
-            'settings': settings
-        }
-        requests.put('http://localhost:8080/thing', json=data)
+        thing = Things.get(type).get_thing(rpi_id, device_id)
+
+        for key, value in settings.items():
+            setattr(thing, key, value)
 
     @abc.abstractmethod
     def on_log(self, log):
