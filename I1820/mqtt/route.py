@@ -10,6 +10,7 @@
 from . import client
 from ..conf.config import cfg
 from ..controller.discovery import DiscoveryController
+from ..controller.plugin import PluginController
 from ..domain.log import I1820Log
 from ..things.base import Things
 from ..exceptions.thing import ThingNotFoundException
@@ -40,6 +41,8 @@ def on_log(client, userdata, message):
 
     for key, value in log.states.items():
         setattr(thing, key, {'value': value, 'time': log.timestamp})
+
+    PluginController().on_log(log)
 
     print("%s -- []" % (message.topic))
 
