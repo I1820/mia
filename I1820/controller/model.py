@@ -18,7 +18,15 @@ class ModelController(I1820Controller):
 
     def get_model(self, thing):
         thing_cls = Things.get(thing)
-        if isinstance(thing_cls, ActuatorThing):
+        response = {}
+        response['type'] = thing
+        if ActuatorThing in thing_cls.__bases__:
+            response['master'] = 'actuator'
+            response['settings'] = thing_cls.allowed_settings
+        elif SensorThing in thing_cls.__bases__:
+            response['master'] = 'sensor'
+            response['states'] = thing_cls.allowed_states
+            response['events'] = thing_cls.allowed_events
+        else:
             pass
-        elif isinstance(thing_cls, SensorThing):
-            pass
+        return response
