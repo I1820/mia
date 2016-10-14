@@ -13,6 +13,7 @@ from . import app
 from ..things.base import Things
 from ..controller.discovery import DiscoveryController
 from ..controller.plugin import PluginController
+from ..controller.model import ModelController
 from ..exceptions.thing import \
      ThingNotFoundException, ThingTypeNotImplementedException, \
      ThingInvalidAccessException
@@ -37,6 +38,12 @@ def root_handler():
 
 
 # Human Side
+
+
+@app.route('/model/<string:thing>', methods=['GET'])
+def model_handler(thing):
+    model = ModelController()
+    return json.dumps(model.get_model(thing))
 
 
 @app.route('/discovery', methods=['GET'])
