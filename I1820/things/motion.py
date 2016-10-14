@@ -14,14 +14,8 @@ class Motion(SensorThing):
     This class represents Motion detector
     """
     name = "motion"
+    allowed_events = ['motion']
+    allowed_states = []
 
     def __init__(self, rpi_id, device_id):
         super().__init__(rpi_id, device_id)
-
-    @property
-    def allowed_states(self):
-        return []
-
-    @property
-    def allowed_events(self):
-        return ['motion']

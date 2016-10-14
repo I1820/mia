@@ -14,10 +14,7 @@ class Humidity(SensorThing):
     This class represents Humidity sensor
     """
     name = "humidity"
+    allowed_states = ['humidity']
 
     def __init__(self, rpi_id, device_id):
         super().__init__(rpi_id, device_id)
-
-    @property
-    def allowed_states(self):
-        return ['humidity']

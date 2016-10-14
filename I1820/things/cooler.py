@@ -15,10 +15,7 @@ class Cooler(ActuatorThing):
     """
 
     name = "cooler"
+    allowed_settings = ['on']
 
     def __init__(self, rpi_id, device_id):
         super().__init__(rpi_id, device_id)
-
-    @property
-    def allowed_settings(self):
-        return ['on']

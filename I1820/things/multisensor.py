@@ -14,14 +14,8 @@ class MultiSensor(SensorThing):
     This class represents Mutli Sensor
     """
     name = "multisensor"
+    allowed_states = ['temperature', 'humidity', 'light']
+    allowed_events = ['motion']
 
     def __init__(self, rpi_id, device_id):
         super().__init__(rpi_id, device_id)
-
-    @property
-    def allowed_states(self):
-        return ['temperature', 'humidity', 'light']
-
-    @property
-    def allowed_events(self):
-        return ['motion']

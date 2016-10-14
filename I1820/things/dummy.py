@@ -14,10 +14,7 @@ class Dummy(SensorThing):
     This class represents Dummy sensor
     """
     name = "dummy"
+    allowed_states = ['chert']
 
     def __init__(self, rpi_id, device_id):
         super().__init__(rpi_id, device_id)
-
-    @property
-    def allowed_states(self):
-        return ['chert']

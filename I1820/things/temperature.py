@@ -14,10 +14,7 @@ class Temperature(SensorThing):
     This class represents Temperature sensor
     """
     name = "temperature"
+    allowed_states = ['temperature']
 
     def __init__(self, rpi_id, device_id):
         super().__init__(rpi_id, device_id)
-
-    @property
-    def allowed_states(self):
-        return ['temperature']
