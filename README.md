@@ -27,9 +27,11 @@
 I1820 is a improved version of 18.20, it provides you a full featured package
 that can do all you need from IoT middleware consist of create notification,
 collect logs and discover your things.
+
 In I1820 literature you have things and RPi, things are your actuators and
 sesnors and RPis are your point of present to I1820, you can merge these
 two in one when you use some type of devices like ESP8266.
+
 When 18.20 decide to leave us alone, we created improved version of it,
 in this version we provide everything you need in simple package.
 
@@ -40,7 +42,7 @@ I1820 provides following services for your IoT platform :)
 * Identification Services
 * Data Collecting Services
 
-## Where I1820 is in IoT Layers
+### Where I1820 is in IoT Layers
 
 If we consider following layers for IoT:
 
@@ -51,6 +53,15 @@ If we consider following layers for IoT:
 
 I1820 provides **Sensing Layer** protocols, **Network Layer**
 and **Interface Layer** for you.
+
+### I1820 Main Components
+I1820 provides following components of **IoT Application Enablement Platform**:
+
+* Connectivity & normalization
+* Device Management
+* Database
+* Processing & action management
+* Visualization
 
 
 ## History
