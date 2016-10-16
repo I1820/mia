@@ -145,12 +145,20 @@ cp I1820/conf/1820.example.ini I1820/conf/1820.ini
 
 By putting I1820 inside an isolated environment we can put I1820 at scale ...
 
-### Installation
+### Docker for dummies like Parham :(
 
 Zero configuration, zero installation, your IoT middleware is available at your internet speed.
 ```sh
 docker pull aolab/i1820
-docker run -d -p 8080:8080 --name="I1820" aolab/i1820
+docker run -d --rm -p 8080:8080 --name="I1820" aolab/i1820
+```
+and if you want to configure influxDB or MQTT you can do the followings:
+```sh
+# Detach mode
+docker run -d --rm -p 8080:8080 --name="I1820" -e I1820_MQTT_HOST=127.0.0.1 -e I1820_MQTT_PORT=1883 aolab/i1820
+
+# Interactive mode
+docker run -ti --rm -p 8080:8080 --name="I1820" -e I1820_MQTT_HOST=127.0.0.1 -e I1820_MQTT_PORT=1883 aolab/i1820
 ```
 
 ### Build
