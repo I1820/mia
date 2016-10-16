@@ -103,7 +103,7 @@ sudo ./scripts/influxdb-install.sh
 influx -execute 'create database I1820'
    ```
 
-2. Install and Setup eMQTT \[[eMQTT installation]()]
+2. Install and Setup eMQTT \[[eMQTT installation](http://emqtt.io/docs/v2/install.html)]
 
    ```sh
 unzip emqttd-ubuntu64-2.0-beta1-20160830.zip && cd emqttd
