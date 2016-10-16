@@ -7,6 +7,7 @@
 # [] Created By : Parham Alvani (parham.alvani@gmail.com)
 # =======================================
 import flask
+import flask_cors
 import json
 
 from . import app
@@ -53,6 +54,7 @@ def discovery_handler():
 
 
 @app.route('/thing', methods=['POST'])
+@flask_cors.cross_origin()
 def thing_read_handler():
     data = flask.request.get_json(force=True)
     rpi_id = data['rpi_id']
@@ -72,6 +74,7 @@ def thing_read_handler():
 
 
 @app.route('/thing', methods=['PUT'])
+@flask_cors.cross_origin()
 def thing_write_handler():
     data = flask.request.get_json(force=True)
     rpi_id = data['rpi_id']
