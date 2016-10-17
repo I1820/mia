@@ -179,5 +179,5 @@ Without them we were nothing ...
 
 * Orange 1.0.dev1
 * Pink 1.0: [v1.0](https://github.com/AoLab/I1820/tree/v1.0>)
-* Purple 2.0: [v2.0](https://github.com/AoLab/I1820/tree/v2.0>)
+* Purple 2.0
 * Green 3.0: master
