@@ -45,3 +45,12 @@ class LogController(I1820Controller):
             return {'value': None, 'time': None}
         else:
             return {'value': last['value'], 'time': last['time']}
+
+    def since(self, measurement, rpi_id, device_id, since, limit=10):
+        q = ('SELECT * FROM %s'
+             ' WHERE "rpi_id" = \'%s\' AND "device_id" = \'%s\''
+             ' AND time > \'%s\''
+             ' ORDER BY time DESC LIMIT %d;') % (measurement, rpi_id,
+                                                 device_id, since, limit)
+        results = self._client.query(q)
+        next(results.get_points(), None)
