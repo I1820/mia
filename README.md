@@ -21,6 +21,7 @@
 
 
 ## Introduction
+*Next Generation of IoT Platforms*
 
 <p align="center"><img alt="I1820 in AoLab IoT Architecture" src="http://aolab.github.io/documentation/architecture/I1820.jpg"></p>
 
@@ -54,14 +55,20 @@ If we consider following layers for IoT:
 I1820 provides **Sensing Layer** protocols, **Network Layer**
 and **Interface Layer** for you.
 
+### I1820 is different !
+
+In our IoT plafrom you do not have to create any SDK and you can just code
+as simple as you think.
+
 ### I1820 Main Components
+
 I1820 provides following components of **IoT Application Enablement Platform**:
 
 * Connectivity & normalization
-* Device Management
+* Device management
 * Database
 * Processing & action management
-* Visualization
+* Data visualization
 
 
 ## History
@@ -144,6 +151,9 @@ cp I1820/conf/1820.example.ini I1820/conf/1820.ini
 ## [TaaS](https://github.com/AoLab/TaaS) is coming ...
 
 By putting I1820 inside an isolated environment we can put I1820 at scale ...
+I1820 instances can be run in diffrent places and work together, TaaS uses this
+feature and provides isolated environment for each I1820 and users can use these
+environments as a personal IoT platforms.
 
 ### Docker for dummies like Parham :(
 
