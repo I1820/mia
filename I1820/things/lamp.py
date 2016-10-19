@@ -7,6 +7,7 @@
 # [] Created By : Parham Alvani (parham.alvani@gmail.com)
 # =======================================
 from .actuator import ActuatorThing
+from .types import Setting
 
 
 class Lamp(ActuatorThing):
@@ -15,7 +16,8 @@ class Lamp(ActuatorThing):
     """
 
     name = "lamp"
-    allowed_settings = ['on']
+
+    on = Setting()
 
     def __init__(self, rpi_id, device_id):
         super().__init__(rpi_id, device_id)
