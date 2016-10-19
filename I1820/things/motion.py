@@ -7,6 +7,7 @@
 # [] Created By : Parham Alvani (parham.alvani@gmail.com)
 # =======================================
 from .sensor import SensorThing
+from .types import Event
 
 
 class Motion(SensorThing):
@@ -14,8 +15,8 @@ class Motion(SensorThing):
     This class represents Motion detector
     """
     name = "motion"
-    allowed_events = ['motion']
-    allowed_states = []
+
+    motion = Event()
 
     def __init__(self, rpi_id, device_id):
         super().__init__(rpi_id, device_id)
