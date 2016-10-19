@@ -20,11 +20,10 @@ class LogController(I1820Controller):
                                       password=cfg.influxdb_passwd,
                                       database=cfg.influxdb_db)
 
-    def save(self, measurement, type, rpi_id, device_id, time, value):
+    def save(self, measurement, rpi_id, device_id, time, value):
         points = [{
             "measurement": measurement,
             "tags": {
-                "type": type,
                 "rpi_id": rpi_id,
                 "device_id": device_id
             },
