@@ -50,6 +50,16 @@
             <div>
                 <h3>Sensing</h3>
 		<template v-for="thing in things">
+		<template v-if="thing.type == 'dummy'">
+		<h4>Dummy <small>{{ thing.id }}</small></h4>
+		<form class="form-inline">
+		    <div class="form-group">
+		        <label>Chert</label>
+			<p v-if="typeof states.chert !== 'undefined'" class="form-control-static">{{states.chert.value}} @ {{states.chert.time}}</p>
+		    </div>
+                    <button type="button" class="btn btn-primary" v-on:click="fetch('dummy', ['chert'], thing.id)"><i class="fa fa-refresh" aria-hidden="true"></i></button>
+		</form>
+		</template>
 		<template v-if="thing.type == 'temperature'">
 		<h4>Temperature <small>{{ thing.id }}</small></h4>
 		<form class="form-inline">
