@@ -9,9 +9,9 @@
 import abc
 import importlib
 
+from .types import Event, Setting, State
 from ..exceptions.thing import \
      ThingNotFoundException, ThingTypeNotImplementedException
-from .types import Event, Setting, State
 
 
 class Things(abc.ABCMeta):
@@ -28,13 +28,22 @@ class Things(abc.ABCMeta):
         for k, v in namespace.items():
             if isinstance(v, State):
                 v.name = k
-                instance.states.append(k)
+                if hasattr(instance, 'states'):
+                    instance.states.append(k)
+                else:
+                    instance.states = [k]
             if isinstance(k, Event):
                 v.name = k
-                instance.events.append(k)
+                if hasattr(instance, 'events'):
+                    instance.events.append(k)
+                else:
+                    instance.events = [k]
             if isinstance(k, Setting):
                 v.name = k
-                instance.settings.append(k)
+                if hasattr(instance, 'settings'):
+                    instance.settings.append(k)
+                else:
+                    instance.settings = [k]
         return instance
 
     @classmethod
