@@ -7,14 +7,15 @@
 # [] Created By : Parham Alvani (parham.alvani@gmail.com)
 # =======================================
 from .sensor import SensorThing
-
+from .types import State
 
 class Humidity(SensorThing):
     """
     This class represents Humidity sensor
     """
     name = "humidity"
-    allowed_states = ['humidity']
+
+    humidity = State()
 
     def __init__(self, rpi_id, device_id):
         super().__init__(rpi_id, device_id)

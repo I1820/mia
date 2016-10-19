@@ -7,6 +7,7 @@
 # [] Created By : Parham Alvani (parham.alvani@gmail.com)
 # =======================================
 from .sensor import SensorThing
+from .types import State
 
 
 class Light(SensorThing):
@@ -14,7 +15,8 @@ class Light(SensorThing):
     This class represents Light sensor
     """
     name = "light"
-    allowed_states = ['light']
+
+    light = State()
 
     def __init__(self, rpi_id, device_id):
         super().__init__(rpi_id, device_id)
