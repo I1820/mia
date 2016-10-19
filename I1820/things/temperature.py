@@ -7,6 +7,7 @@
 # [] Created By : Parham Alvani (parham.alvani@gmail.com)
 # =======================================
 from .sensor import SensorThing
+from .types import State
 
 
 class Temperature(SensorThing):
@@ -14,7 +15,8 @@ class Temperature(SensorThing):
     This class represents Temperature sensor
     """
     name = "temperature"
-    allowed_states = ['temperature']
+
+    temperature = State()
 
     def __init__(self, rpi_id, device_id):
         super().__init__(rpi_id, device_id)

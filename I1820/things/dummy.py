@@ -16,7 +16,7 @@ class Dummy(SensorThing):
     """
     name = "dummy"
 
-    chert = State('chert')
+    chert = State()
 
     def __init__(self, rpi_id, device_id):
         super().__init__(rpi_id, device_id)
