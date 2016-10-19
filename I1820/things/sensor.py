@@ -10,8 +10,5 @@ from .base import Thing
 
 
 class SensorThing(Thing):
-    events = []
-    states = []
-
     def __init__(self, rpi_id, device_id):
         super().__init__(rpi_id, device_id)
