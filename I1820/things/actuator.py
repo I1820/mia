@@ -10,7 +10,7 @@ from .base import Thing
 
 
 class ActuatorThing(Thing):
-    states = []
+    settings = []
 
     def __init__(self, rpi_id, device_id):
         super().__init__(rpi_id, device_id)
