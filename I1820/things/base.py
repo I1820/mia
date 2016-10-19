@@ -32,13 +32,13 @@ class Things(abc.ABCMeta):
                     instance.states.append(k)
                 else:
                     instance.states = [k]
-            if isinstance(k, Event):
+            if isinstance(v, Event):
                 v.name = k
                 if hasattr(instance, 'events'):
                     instance.events.append(k)
                 else:
                     instance.events = [k]
-            if isinstance(k, Setting):
+            if isinstance(v, Setting):
                 v.name = k
                 if hasattr(instance, 'settings'):
                     instance.settings.append(k)
