@@ -22,11 +22,13 @@ class ModelController(I1820Controller):
         response['type'] = thing
         if ActuatorThing in thing_cls.__bases__:
             response['master'] = 'actuator'
-            response['settings'] = thing_cls.settings or []
+            response['settings'] = thing_cls.settings
         elif SensorThing in thing_cls.__bases__:
             response['master'] = 'sensor'
-            response['states'] = thing_cls.states or []
-            response['events'] = thing_cls.events or []
+            response['states'] = thing_cls.states \
+                if hasattr(thing_cls, 'states') else []
+            response['events'] = thing_cls.events \
+                if hasattr(thing_cls, 'events') else []
         else:
             pass
         return response
