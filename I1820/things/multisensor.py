@@ -7,6 +7,7 @@
 # [] Created By : Parham Alvani (parham.alvani@gmail.com)
 # =======================================
 from .sensor import SensorThing
+from .types import State, Event
 
 
 class MultiSensor(SensorThing):
@@ -14,8 +15,12 @@ class MultiSensor(SensorThing):
     This class represents Mutli Sensor
     """
     name = "multisensor"
-    allowed_states = ['temperature', 'humidity', 'light']
-    allowed_events = ['motion']
+
+    temperature = State()
+    humidity = State()
+    light = State()
+
+    motion = Event()
 
     def __init__(self, rpi_id, device_id):
         super().__init__(rpi_id, device_id)
