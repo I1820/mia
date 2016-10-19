@@ -9,6 +9,7 @@
 from .sensor import SensorThing
 from .types import State
 
+
 class Gas(SensorThing):
     """
     This class represents Gas sensor
