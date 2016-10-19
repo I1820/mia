@@ -11,6 +11,7 @@ import importlib
 
 from ..exceptions.thing import \
      ThingNotFoundException, ThingTypeNotImplementedException
+from .types import Event, Setting, State
 
 
 class Things(abc.ABCMeta):
@@ -19,9 +20,21 @@ class Things(abc.ABCMeta):
     def __new__(cls, name, bases, namespace):
         instance = abc.ABCMeta.__new__(
             cls, name, bases, namespace)
+
         if isinstance(instance.name, str):
             cls.things[instance.name] = instance
             instance.things[instance.name] = {}
+
+        for k, v in namespace.items():
+            if isinstance(v, State):
+                v.name = k
+                instance.states.append(k)
+            if isinstance(k, Event):
+                v.name = k
+                instance.events.append(k)
+            if isinstance(k, Setting):
+                v.name = k
+                instance.settings.append(k)
         return instance
 
     @classmethod
