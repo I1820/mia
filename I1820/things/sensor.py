@@ -13,6 +13,8 @@ from ..controller.log import LogController
 from ..exceptions.thing import ThingInvalidAccessException
 
 
+# Events
+
 def make_event_setter(event):
     def event_setter(self, value):
         if isinstance(value, dict):
@@ -21,6 +23,22 @@ def make_event_setter(event):
 
 
 def make_event_getter(event):
+    def event_getter(self):
+        time = getattr(self, "_%s" % event)
+        return time.strftime("%Y-%m-%dT%H:%M:%SZ")
+    return event_getter
+
+
+# States
+
+def make_state_setter(event):
+    def event_setter(self, value):
+        if isinstance(value, dict):
+            setattr(self, "_%s" % event, value['time'])
+    return event_setter
+
+
+def make_state_getter(event):
     def event_getter(self):
         time = getattr(self, "_%s" % event)
         return time.strftime("%Y-%m-%dT%H:%M:%SZ")
