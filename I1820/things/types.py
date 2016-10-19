@@ -8,25 +8,28 @@
 # =======================================
 from ..controller.log import LogController
 from ..exceptions.thing import ThingInvalidAccessException
+from ..controller.notif import NotificationController
+from ..domain.notif import I1820Notification
 
 
 class Event:
-    def __init__(self, name):
-        self.name = name
-        self.time = None
+    def __init__(self):
+        self.name = None
+        self.storage = {}
 
     def __get__(self, obj, objtype):
-        time = self.time
-        return time.strftime("%Y-%m-%dT%H:%M:%SZ")
+        time = self.storage.get((obj.rpi_id, obj.device_id), None)
+        return time.strftime("%Y-%m-%dT%H:%M:%SZ")\
+            if time is not None else None
 
     def __set__(self, obj, value):
         if isinstance(value, dict):
-            self.time = value['time']
+            self.storage[(obj.rpi_id, obj.device_id)] = value['time']
 
 
 class State:
-    def __init__(self, name):
-        self.name = name
+    def __init__(self):
+        self.name = None
 
     def __get__(self, obj, objtype):
         value = LogController().last(
@@ -44,11 +47,13 @@ class State:
 
 
 class Setting:
-    def __init__(self, name):
-        pass
+    def __init__(self):
+        self.name = None
 
     def __get__(self, obj, objtype):
         pass
 
     def __set__(self, obj, value):
-        pass
+        message = I1820Notification(obj.name, obj.device_id,
+                                    {self.name: value}, obj.rpi_id)
+        NotificationController().notify(message)
