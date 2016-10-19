@@ -7,7 +7,7 @@
 # [] Created By : Parham Alvani (parham.alvani@gmail.com)
 # =======================================
 from .sensor import SensorThing
-
+from .types import State
 
 class Gas(SensorThing):
     """
@@ -15,9 +15,7 @@ class Gas(SensorThing):
     """
     name = "gas"
 
+    gas = State('gas')
+
     def __init__(self, rpi_id, device_id):
         super().__init__(rpi_id, device_id)
-
-    @property
-    def allowed_states(self):
-        return ['gas']

@@ -30,12 +30,12 @@ class State:
 
     def __get__(self, obj, objtype):
         value = LogController().last(
-            obj.name, obj.rpi_id, obj.device_id)
+            self.name, obj.rpi_id, obj.device_id)
         return value
 
     def __set__(self, obj, value):
         if isinstance(value, dict):
-            LogController().save(self.name, obj.name, obj.rpi_id,
+            LogController().save(self.name, obj.rpi_id,
                                  obj.device_id,
                                  value['time'], value['value'])
             return
