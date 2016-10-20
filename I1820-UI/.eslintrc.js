@@ -5,7 +5,6 @@ module.exports = {
       "browser": true
     },
     "plugins": [
-        "standard",
-        "jquery"
+        "standard"
     ]
 };
