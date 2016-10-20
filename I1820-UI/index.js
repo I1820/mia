@@ -85,7 +85,7 @@ var app = new Vue({
         type: 'scatter',
         x: [0],
         y: [0],
-        marker: {size: 28, color: '850000'},
+        marker: {size: 20, color: '850000'},
         showlegend: false,
         name: 'A',
         text: value,
@@ -93,7 +93,7 @@ var app = new Vue({
       }, {
         values: [50 / 6, 50 / 6, 50 / 6, 50 / 6, 50 / 6, 50 / 6, 50],
         rotation: 90,
-        text: ['TOO FAST!', 'Pretty Fast', 'Fast', 'Average', 'Slow', 'Super Slow', ''],
+        text: ['', '', '', '', '', '', ''],
         textinfo: 'text',
         textposition: 'inside',
         marker: {
