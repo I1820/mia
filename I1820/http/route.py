@@ -79,16 +79,14 @@ def thing_write_handler():
     data = flask.request.get_json(force=True)
     rpi_id = data['rpi_id']
     device_id = data['device_id']
-    result = {}
 
     thing = Things.get(data['type']).get_thing(rpi_id, device_id)
 
     if 'settings' in data.keys():
         for key, value in data['settings'].items():
             setattr(thing, key, value)
-            result[key] = value
 
-    return json.dumps(result)
+    return json.dumps(data)
 
 
 @app.route('/plugin', methods=['POST'])
