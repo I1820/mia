@@ -70,6 +70,8 @@ I1820 provides following components of **IoT Application Enablement Platform**:
 * Processing & action management
 * Data visualization
 
+<p align="center"><img alt="I1820 Main Components" src="http://aolab.github.io/I1820/documentation/I1820-Components.jpg"></p>
+
 
 ## History
 
