@@ -29,36 +29,26 @@ I1820 is a improved version of 18.20, it provides you a full featured package
 that can do all you need from IoT middleware consist of create notification,
 collect logs and discover your things.
 
-In I1820 literature you have things and RPi, things are your actuators and
-sesnors and RPis are your point of present to I1820, you can merge these
-two in one when you use some type of devices like ESP8266.
-
-When 18.20 decide to leave us alone, we created improved version of it,
-in this version we provide everything you need in simple package.
+In I1820 literature you have *things* and *nodes*, things are your actuators and
+sesnors and *nodes* are any device that can connect to the I1820 server, 
+they only requirment is being able to make HTTP requests. An examples of such 
+devices are NodeMCU and RPi. 
 
 ### What I1820 Provides for us
 
-I1820 provides following services for your IoT platform :)
+I1820 provides following services:
 
 * Identification Services
 * Data Collecting Services
 
-### Where I1820 is in IoT Layers
+### Why another middleware?
 
-If we consider following layers for IoT:
+The benefits we can point out about I1820 are:
 
-* Sensing Layer
-* Network Layer
-* Application Layer
-* Interface Layer
-
-I1820 provides **Sensing Layer** protocols, **Network Layer**
-and **Interface Layer** for you.
-
-### I1820 is different !
-
-In our IoT plafrom you do not have to create any SDK and you can just code
-as simple as you think.
+* SDK pain is over, you don't need sdk's anymore!
+* Minimalistic dependencies, you're node only should be able to make HTTP 
+requests
+* Dead simple sample codes
 
 ### I1820 Main Components
 
@@ -73,34 +63,13 @@ I1820 provides following components of **IoT Application Enablement Platform**:
 <p align="center"><img alt="I1820 Main Components" src="http://aolab.github.io/I1820/documentation/I1820-Components.jpg"></p>
 
 
-## History
-
-This project had been started as a python REST library for [kaa] but after
-project grew, we decided to complete it as stand alone middleware.
-
-In the begining we use [SDN101] project as a good example of python REST API client.
-[SDN101] is a **great memory** for [Parham Alvani] good old days.
-
-After many weeks of development this project found a new idea from our friend
-and developer [Iman Tabrizian] and we switched to version 2.
-
-[Parham Alvani] had personal issues for using non-GPL packages and protocols
-but he finally tried to forget the pass and we finally use [MQTT] protocol and
-removed yaml from our project ... version 3.
-
-[kaa]: http://kaaproject.org/
-[MQTT]: http://mqtt.org/
-[SDN101]: https://github.com/eljalalpour/SDN101
-
 ## Contributors
 
-* [Prof. Bahador Bakhshi]
 * [Iman Tabrizian]
 * [Parham Alvani]
 
 [Parham Alvani]: http://1995parham.github.io/
 [Iman Tabrizian]: https://github.com/Tabrizian
-[Prof. Bahador Bakhshi]: http://ceit.aut.ac.ir/~bakhshis/
 
 ## Up and Running
 ###### in Ubuntu
@@ -150,39 +119,10 @@ cp I1820/conf/1820.example.ini I1820/conf/1820.ini
 
 6. API documentation avaiable [here](http://aolab.github.io/I1820-Documentation).
 
-## [TaaS](https://github.com/AoLab/TaaS) is coming ...
-
-By putting I1820 inside an isolated environment we can put I1820 at scale ...
-I1820 instances can be run in diffrent places and work together, TaaS uses this
-feature and provides isolated environment for each I1820 and users can use these
-environments as a personal IoT platforms.
-
-### Docker for dummies like Parham :(
-
-Zero configuration, zero installation, your IoT middleware is available at your internet speed.
-```sh
-docker pull aolab/i1820
-docker run -d -p 8080:8080 --name="I1820" aolab/i1820
-```
-and if you want to configure influxDB or MQTT you can do the followings:
-```sh
-# Detach mode
-docker run -d -p 8080:8080 --name="I1820" -e I1820_MQTT_HOST=127.0.0.1 -e I1820_MQTT_PORT=1883 aolab/i1820
-
-# Interactive mode
-docker run -ti --rm -p 8080:8080 --name="I1820" -e I1820_MQTT_HOST=127.0.0.1 -e I1820_MQTT_PORT=1883 aolab/i1820
-```
-
-### Build
-
-For building the image from scratch:
-```sh
-docker build -t aolab/i1820 .
-```
 
 ## Components
 
-Without them we were nothing ...
+Thanks to following technologies:
 
 - [InfluxDB](https://www.influxdata.com/time-series-platform/influxdb/): Time-Series Data Storate
 - [eMQTT](http://emqtt.io/): The Massively Scalable MQTT Broker for IoT and Mobile Applications
