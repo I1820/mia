@@ -14,12 +14,14 @@ from ..conf.config import cfg
 
 class EventController(I1820Controller):
     '''
-    The NotificationController controls notifications. these notifications
-    base on :class:`I1820Notification`.
+    The EventController controls human related events. these events
+    base on :class:`I1820Event`.
+    **Use Event for sending realtime information to humans.**
     '''
     def __init__(self):
         pass
 
-    def notify(self, event: I1820Event):
+    def event(self, event: I1820Event):
         for t in cfg.endpoints:
-            client.publish('I1820/%s/event/%s' % t, None)
+            client.publish('I1820/%s/event/%s' % (t, event.type),
+                           event.to_json())
