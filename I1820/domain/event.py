@@ -6,6 +6,7 @@
 #
 # [] Created By : Parham Alvani (parham.alvani@gmail.com)
 # =======================================
+import json
 
 
 class I1820Event:
@@ -15,6 +16,21 @@ class I1820Event:
 
     :param type: type of event [Discovery, Log, Event]
     :type type: str
+    :param data: event's data with following form:
+    {
+        rpi_id: RPi Identification
+        device_id: device number relative to RPi
+        type: device type
+        state: {
+            'temperature': 10
+        }
+    }
     '''
-    def __init__(self, type: str):
+    def __init__(self, type: str, data: dict):
         self.type = type
+        self.data = data
+
+    def to_json(self):
+        result = self.data
+        result['event'] = self.type
+        return json.dumps(result)
