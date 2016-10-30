@@ -9,7 +9,9 @@
 from ..controller.log import LogController
 from ..exceptions.thing import ThingInvalidAccessException
 from ..controller.notif import NotificationController
+from ..controller.event import EventController
 from ..domain.notif import I1820Notification
+from ..domain.event import I1820Event
 
 
 class Event:
@@ -41,6 +43,17 @@ class State:
             LogController().save(self.name, obj.rpi_id,
                                  obj.device_id,
                                  value['time'], value['value'])
+            data = {
+                'rpi_id': obj.rpi_id,
+                'device_id': obj.device_id,
+                'state': {
+                    self.name: {
+                        'value': value['value'],
+                        'time': value['time']
+                    }
+                }
+            }
+            EventController().event(I1820Event('log', data))
             return
         else:
             raise ThingInvalidAccessException(obj.name, self.name)
