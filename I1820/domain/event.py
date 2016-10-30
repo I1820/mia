@@ -21,7 +21,10 @@ class I1820Event:
         rpi_id: RPi Identification
         device_id: device number relative to RPi
         state: {
-            'temperature': 10
+            'temperature': {
+                'time': ...,
+                'value': ...
+            }
         }
     }
     '''
