@@ -10,3 +10,7 @@ then install our project dev dependencies
 ```sh
 npm install --only=dev .
 ```
+finally :)
+```sh
+gulp
+```
