@@ -18,6 +18,7 @@
 - [TaaS is coming ...](#taas-is-coming-)
 - [Components](#components)
 - [Releases](#releases)
+- [ToDo](#todo)
 
 
 ## Introduction
@@ -133,3 +134,7 @@ Thanks to following technologies:
 * Pink 1.0: [v1.0](https://github.com/AoLab/I1820/tree/v1.0>)
 * Purple 2.0
 * Green 3.0: master
+
+## ToDo
+
+[ ] OSGi Service Model [based on iPOPO]
