@@ -1,6 +1,5 @@
 Flask
 Flask-cors
-Flask-gulp
 influxdb
 paho-mqtt
 bson
