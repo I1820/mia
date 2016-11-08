@@ -1,5 +1,5 @@
 <p align="center">
-    <img alt="I1820 Logo" src="http://aolab.github.io/I1820/logo/I1820-Logo.jpg">
+    <img alt="I1820 Logo" src="http://aolab.github.io/I1820/logo/logo-md.png">
 </p>
 
 <p align="center"><strong>Good Days Good Things</strong></p>
