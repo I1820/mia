@@ -18,16 +18,14 @@
   "homepage": "https://github.com/aolab/I1820-UI#readme",
   "dependencies": {
     "body-parser": "^1.15.2",
-    "express": "^4.14.0",
-    "jquery": "^3.1.1",
-    "timeago": "^1.5.3",
-    "vue": "^2.0.1"
+    "express": "^4.14.0"
   },
   "devDependencies": {
     "eslint": "^3.4.0",
     "eslint-config-standard": "^6.0.0",
     "eslint-plugin-promise": "^2.0.1",
     "eslint-plugin-standard": "^2.0.0",
-    "gulp": "^3.9.1"
+    "gulp": "^3.9.1",
+    "gulp-uglifyjs": "^0.6.2"
   }
 }
