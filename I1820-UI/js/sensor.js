@@ -8,4 +8,8 @@
  * +===============================================
  */
 
+/* global Vue : Vue.js */
 
+Vue.component('sensor', {
+  'template': '<p class="form-control-static">{{}}'
+})
