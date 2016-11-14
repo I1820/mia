@@ -137,17 +137,17 @@ Thanks to following technologies:
 
 ## ToDo
 ### Core
-[ ] OSGi Service Model [based on iPOPO]
+- [ ] OSGi Service Model [based on iPOPO]
 
 ### Database
-[ ] MongoDB Support
-[ ] MySQLDB Support
+- [ ] MongoDB Support
+- [ ] MySQLDB Support
 
 ### Comminucation
-[ ] CoAP Proxy
-[ ] HTTP Proxy
+- [ ] CoAP Proxy
+- [ ] HTTP Proxy
 
 ### Low Level
-[ ] I1820 C Library
-[ ] I1820 TinyOS
-[ ] I1820 RIOT
+- [ ] I1820 C Library
+- [ ] I1820 TinyOS
+- [ ] I1820 RIOT
