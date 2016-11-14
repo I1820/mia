@@ -146,3 +146,8 @@ Thanks to following technologies:
 ### Comminucation
 [ ] CoAP Proxy
 [ ] HTTP Proxy
+
+### Low Level
+[ ] I1820 C Library
+[ ] I1820 TinyOS
+[ ] I1820 RIOT
