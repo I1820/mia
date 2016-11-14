@@ -136,5 +136,13 @@ Thanks to following technologies:
 * Green 3.0: master
 
 ## ToDo
-
+### Core
 [ ] OSGi Service Model [based on iPOPO]
+
+### Database
+[ ] MongoDB Support
+[ ] MySQLDB Support
+
+### Comminucation
+[ ] CoAP Proxy
+[ ] HTTP Proxy
