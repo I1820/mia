@@ -49,7 +49,7 @@ class State:
                 'state': {
                     self.name: {
                         'value': value['value'],
-                        'time': value['time']
+                        'time': value['time'].strftime("%Y-%m-%dT%H:%M:%SZ")
                     }
                 }
             }
