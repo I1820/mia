@@ -138,6 +138,7 @@ Thanks to following technologies:
 ## ToDo
 ### Core
 - [ ] OSGi Service Model [based on iPOPO]
+- [ ] MQTT based user level notification
 
 ### Database
 - [ ] MongoDB Support
