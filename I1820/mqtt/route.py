@@ -16,6 +16,7 @@ from ..things.base import Things
 from ..exceptions.thing import ThingNotFoundException
 
 import bson
+from datetime import datetime
 
 
 def on_log(client, userdata, message):
@@ -36,7 +37,9 @@ def on_log(client, userdata, message):
     try:
         thing = Things.get(log.type).get_thing(log.endpoint, log.device)
     except ThingNotFoundException as e:
-        print("%s -- []: %s" % (message.topic, str(e)))
+        print("%s - - [%s]: %s" % (message.topic, str(e),
+                                   datetime.now().
+                                   strftime('%Y-%m-%d %H:%M:%S')))
         return
 
     for key, value in log.states.items():
@@ -44,7 +47,8 @@ def on_log(client, userdata, message):
 
     PluginController().on_log(log)
 
-    print("%s -- []" % (message.topic))
+    print("%s - - [%s]" % (message.topic,
+                           datetime.now().strftime('%Y-%m-%d %H:%M:%S')))
 
 
 def on_discovery(client, userdata, message):
@@ -61,7 +65,8 @@ def on_discovery(client, userdata, message):
     discovery = DiscoveryController()
     discovery.ping(data)
 
-    print("%s -- []" % (message.topic))
+    print("%s - - [%s]" % (message.topic,
+                           datetime.now().strftime('%Y-%m-%d %H:%M:%S')))
 
 
 def on_connect(client, userdata, flags, rc):
