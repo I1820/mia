@@ -6,8 +6,8 @@
 #
 # [] Created By : Parham Alvani (parham.alvani@gmail.com)
 # =======================================
-from .sensor import SensorThing
-from .types import Event
+from ..sensor import SensorThing
+from ..types import Event
 
 
 class Motion(SensorThing):

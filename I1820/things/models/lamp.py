@@ -1,21 +1,23 @@
 # In The Name Of God
 # ========================================
-# [] File Name : humidity.py
+# [] File Name : lamp.py
 #
-# [] Creation Date : 10-09-2016
+# [] Creation Date : 26-08-2016
 #
 # [] Created By : Parham Alvani (parham.alvani@gmail.com)
 # =======================================
-from .sensor import SensorThing
-from .types import State
+from ..actuator import ActuatorThing
+from ..types import Setting
 
-class Humidity(SensorThing):
-    """
-    This class represents Humidity sensor
-    """
-    name = "humidity"
 
-    humidity = State()
+class Lamp(ActuatorThing):
+    """
+    This class represents Lamp actuator
+    """
+
+    name = "lamp"
+
+    on = Setting()
 
     def __init__(self, rpi_id, device_id):
         super().__init__(rpi_id, device_id)

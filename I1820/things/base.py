@@ -50,7 +50,7 @@ class Things(abc.ABCMeta):
     def get(cls, name):
         if name not in cls.things:
             try:
-                importlib.import_module('I1820.things.%s' % name)
+                importlib.import_module('I1820.things.models.%s' % name)
             except ImportError as e:
                 raise ThingTypeNotImplementedException(name, e)
         return cls.things[name]

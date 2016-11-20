@@ -1,22 +1,26 @@
 # In The Name Of God
 # ========================================
-# [] File Name : temperature.py
+# [] File Name : multisensor.py
 #
-# [] Creation Date : 10-09-2016
+# [] Creation Date : 21-09-2016
 #
 # [] Created By : Parham Alvani (parham.alvani@gmail.com)
 # =======================================
-from .sensor import SensorThing
-from .types import State
+from ..sensor import SensorThing
+from ..types import State, Event
 
 
-class Temperature(SensorThing):
+class MultiSensor(SensorThing):
     """
-    This class represents Temperature sensor
+    This class represents Mutli Sensor
     """
-    name = "temperature"
+    name = "multisensor"
 
     temperature = State()
+    humidity = State()
+    light = State()
+
+    motion = Event()
 
     def __init__(self, rpi_id, device_id):
         super().__init__(rpi_id, device_id)

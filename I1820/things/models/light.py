@@ -1,22 +1,22 @@
 # In The Name Of God
 # ========================================
-# [] File Name : current.py
+# [] File Name : humidity.py
 #
 # [] Creation Date : 10-09-2016
 #
 # [] Created By : Parham Alvani (parham.alvani@gmail.com)
 # =======================================
-from .sensor import SensorThing
-from .types import State
+from ..sensor import SensorThing
+from ..types import State
 
 
-class Dummy(SensorThing):
+class Light(SensorThing):
     """
-    This class represents Current sensor
+    This class represents Light sensor
     """
-    name = "current"
+    name = "light"
 
-    current = State()
+    light = State()
 
     def __init__(self, rpi_id, device_id):
         super().__init__(rpi_id, device_id)

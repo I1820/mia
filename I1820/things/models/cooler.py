@@ -1,22 +1,23 @@
 # In The Name Of God
 # ========================================
-# [] File Name : humidity.py
+# [] File Name : cooler.py
 #
-# [] Creation Date : 10-09-2016
+# [] Creation Date : 02-10-2016
 #
 # [] Created By : Parham Alvani (parham.alvani@gmail.com)
 # =======================================
-from .sensor import SensorThing
-from .types import State
+from ..actuator import ActuatorThing
+from ..types import Setting
 
 
-class Light(SensorThing):
+class Cooler(ActuatorThing):
     """
-    This class represents Light sensor
+    This class represents Cooler actuator
     """
-    name = "light"
 
-    light = State()
+    name = "cooler"
+
+    on = Setting()
 
     def __init__(self, rpi_id, device_id):
         super().__init__(rpi_id, device_id)
