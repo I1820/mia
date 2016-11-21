@@ -31,23 +31,16 @@ that can do all you need from IoT middleware consist of create notification,
 collect logs and discover your things.
 
 In I1820 literature you have *things* and *nodes*, things are your actuators and
-sesnors and *nodes* are any device that can connect to the I1820 server, 
-they only requirment is being able to make HTTP requests. An examples of such 
-devices are NodeMCU and RPi. 
-
-### What I1820 Provides for us
-
-I1820 provides following services:
-
-* Identification Services
-* Data Collecting Services
+sesnors and *nodes* are any device that can connect to the I1820 server,
+they only requirment is being able to make MQTT requests. An examples of such
+devices are NodeMCU and RPi.
 
 ### Why another middleware?
 
 The benefits we can point out about I1820 are:
 
 * SDK pain is over, you don't need sdk's anymore!
-* Minimalistic dependencies, you're node only should be able to make HTTP 
+* Minimalistic dependencies, you're node only should be able to make MQTT
 requests
 * Dead simple sample codes
 
