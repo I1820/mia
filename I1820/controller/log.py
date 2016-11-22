@@ -7,9 +7,9 @@
 # [] Created By : Parham Alvani (parham.alvani@gmail.com)
 # =======================================
 from .base import I1820Controller
-from influxdb import InfluxDBClient
-
 from ..conf.config import cfg
+
+from influxdb import InfluxDBClient
 
 
 class LogController(I1820Controller):
