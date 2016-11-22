@@ -5,7 +5,7 @@
   "authors": [
     "Parham Alvani"
   ],
-  "license": "GPLv2",
+  "license": "GPL-3.0",
   "homepage": "https://github.com/AoLab/I1820",
   "private": true,
   "ignore": [
