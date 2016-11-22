@@ -1,0 +1,21 @@
+{
+  "name": "I1820-UI",
+  "description": "UserInterface of I1820",
+  "main": "index.js",
+  "authors": [
+    "Parham Alvani"
+  ],
+  "license": "GPLv2",
+  "homepage": "https://github.com/AoLab/I1820",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.8"
+  }
+}
