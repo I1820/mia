@@ -1,5 +1,6 @@
+version: "2"
 services:
-  I1820:
+  i1820:
     build: .
     ports:
       - "8080:8080"
