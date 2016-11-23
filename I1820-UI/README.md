@@ -1,16 +1,11 @@
 # I1820-UI
 ## Introduction
+This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)
+version 0.15.1.
 Improved 1820 UserInterface based on WebSockets and AJAX requests to I1820.
-## Installation
-We use gulp as our build system, first install it
-```sh
-sudo npm install --global gulp-cli
-```
-then install our project dev dependencies
-```sh
-npm install --only=dev .
-```
-finally :)
-```sh
-gulp
-```
+
+## Build & development
+Run `grunt` for building and `grunt serve` for preview.
+
+## Testing
+Running `grunt test` will run the unit tests with karma.
