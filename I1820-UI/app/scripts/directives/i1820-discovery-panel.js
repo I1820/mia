@@ -9,7 +9,7 @@
 angular.module('i1820UiApp')
   .directive('i1820DiscoveryPanel', function (DiscoveryService) {
     return {
-      template: 'views/templates/discovery-panel.html',
+      templateUrl: 'views/templates/discovery-panel.html',
       restrict: 'E',
       scope: {},
       link: function ($scope) {
