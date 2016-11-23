@@ -7,12 +7,18 @@
  * # i1820DiscoveryPanel
  */
 angular.module('i1820UiApp')
-  .directive('i1820DiscoveryPanel', function () {
+  .directive('i1820DiscoveryPanel', function (DiscoveryService) {
     return {
-      template: '<div></div>',
+      template: 'views/templates/discovery-panel.html',
       restrict: 'E',
-      link: function postLink(scope, element, attrs) {
-        element.text('this is the i1820DiscoveryPanel directive');
+      scope: {},
+      link: function ($scope) {
+        $scope.agents = DiscoveryService.query();
+
+        $scope.refresh = function () {
+          DiscoveryService.refresh();
+          $scope.agents = DiscoveryService.query();
+        };
       }
     };
   });
