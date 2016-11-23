@@ -10,6 +10,7 @@
   "strict": true,
   "undef": true,
   "unused": true,
+  "jquery": true,
   "globals": {
     "angular": false
   }
