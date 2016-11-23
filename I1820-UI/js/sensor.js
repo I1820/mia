@@ -11,5 +11,6 @@
 /* global Vue : Vue.js */
 
 Vue.component('sensor', {
-  'template': '<p class="form-control-static">{{}}'
+  'template': '<p class="form-control-static">{{}}</p>',
+  'props': ['type', 'rpi_id', 'node_id']
 })
