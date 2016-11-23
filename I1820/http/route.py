@@ -30,12 +30,12 @@ def about_handler():
 
 @app.route('/<path:path>', methods=['GET'])
 def ui_handler(path):
-    return flask.send_from_directory('../I1820-UI/public', path)
+    return flask.send_from_directory('../I1820-UI/dist', path)
 
 
 @app.route('/', methods=['GET'])
 def root_handler():
-    return flask.send_file('../I1820-UI/public/index.html')
+    return flask.send_file('../I1820-UI/dist/index.html')
 
 
 # Human Side
