@@ -50,7 +50,7 @@ def model_handler(thing):
 @app.route('/discovery', methods=['GET'])
 def discovery_handler():
     discovery = DiscoveryController()
-    return json.dumps(discovery.rpis)
+    return json.dumps(discovery.agents)
 
 
 @app.route('/thing', methods=['POST'])
