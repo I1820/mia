@@ -14,7 +14,7 @@ client = mqtt.Client()
 
 def ping():
     message = {
-        'rpi_id': 'dummy',
+        'agent_id': 'dummy',
         'things': [['dummy', '0']]
     }
     client.publish('I1820/%s/discovery' % token, bson.dumps(message))
