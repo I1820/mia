@@ -8,6 +8,12 @@
 # =======================================
 from .base import I1820Controller
 
+import datetime
+
 
 class StatController(I1820Controller):
-    pass
+    def __init__(self):
+        self.start_time = datetime.datetime.now()
+
+    def uptime(self):
+        return datetime.datetime.now() - self.start_time
