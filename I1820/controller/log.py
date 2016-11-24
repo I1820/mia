@@ -20,11 +20,11 @@ class LogController(I1820Controller):
                                       password=cfg.influxdb_passwd,
                                       database=cfg.influxdb_db)
 
-    def save(self, measurement, rpi_id, device_id, time, value):
+    def save(self, measurement, agent_id, device_id, time, value):
         points = [{
             "measurement": measurement,
             "tags": {
-                "rpi_id": rpi_id,
+                "agent_id": agent_id,
                 "device_id": device_id
             },
             "time": time.strftime('%Y-%m-%dT%H:%M:%SZ'),
@@ -34,10 +34,11 @@ class LogController(I1820Controller):
         }]
         self._client.write_points(points, time_precision="s")
 
-    def last(self, measurement, rpi_id, device_id):
+    def last(self, measurement, agent_id, device_id):
         q = ('SELECT * FROM %s'
-             ' WHERE "rpi_id" = \'%s\' AND "device_id" = \'%s\''
-             ' ORDER BY time DESC LIMIT 1;') % (measurement, rpi_id, device_id)
+             ' WHERE "agent_id" = \'%s\' AND "device_id" = \'%s\''
+             ' ORDER BY time DESC LIMIT 1;') % (measurement,
+                                                agent_id, device_id)
         results = self._client.query(q)
         last = next(results.get_points(), None)
         if last is None:
@@ -45,11 +46,11 @@ class LogController(I1820Controller):
         else:
             return {'value': last['value'], 'time': last['time']}
 
-    def since(self, measurement, rpi_id, device_id, since, limit=10):
+    def since(self, measurement, agent_id, device_id, since, limit=10):
         q = ('SELECT * FROM %s'
-             ' WHERE "rpi_id" = \'%s\' AND "device_id" = \'%s\''
+             ' WHERE "agent_id" = \'%s\' AND "device_id" = \'%s\''
              ' AND time > \'%s\''
-             ' ORDER BY time DESC LIMIT %d;') % (measurement, rpi_id,
+             ' ORDER BY time DESC LIMIT %d;') % (measurement, agent_id,
                                                  device_id, since, limit)
         results = self._client.query(q)
         next(results.get_points(), None)
