@@ -8,13 +8,13 @@
  * Service in the i1820UiApp.
  */
 angular.module('i1820UiApp')
-  .service('DiscoveryService', function () {
+  .service('DiscoveryService', function ($http, $interval) {
     // AngularJS will instantiate a singleton by calling "new" on this function
     var Agents = {};
 
     var fetchAgents = function () {
-      $.getJSON('discovery', function (result) {
-        Agents = result;
+      $http.get('discovery').then(function (response) {
+        Agents = response.data;
       });
     };
 
@@ -29,4 +29,6 @@ angular.module('i1820UiApp')
         return Agents;
       }
     };
+
+    $interval(fetchAgents, 5000);
   });
