@@ -21,12 +21,12 @@ class I1820Log(bson.BSONCoding):
     :type device: str
     :param states: states of target device.
     :type states: dict
-    :param endpoint: identification of target end device Raspberry PI.
-    :type endpoint: str
+    :param agent: identification of target end device agent [Raspberry PI].
+    :type agent: str
     '''
     def __init__(self, type: str, device: str,
                  states: dict,
-                 endpoint: str,
+                 agent: str,
                  timestamp: datetime.datetime = None):
         if timestamp is None:
             timestamp = datetime.datetime.utcnow()
@@ -35,7 +35,7 @@ class I1820Log(bson.BSONCoding):
         self.type = type
         self.device = device
         self.timestamp = timestamp
-        self.endpoint = endpoint
+        self.agent = agent
 
     def bson_encode(self):
         return {
@@ -43,14 +43,14 @@ class I1820Log(bson.BSONCoding):
                 'type': self.type,
                 'device': self.device,
                 'states': self.states,
-                'endpoint': self.endpoint
+                'agent': self.agent
         }
 
     def bson_init(self, raw_values):
         self.states = raw_values['states']
         self.type = raw_values['type']
         self.device = raw_values['device']
-        self.endpoint = raw_values['endpoint']
+        self.agent = raw_values['agent']
         self.timestamp = datetime.datetime.fromtimestamp(
             raw_values['timestamp'])
 
