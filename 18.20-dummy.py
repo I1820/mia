@@ -24,7 +24,7 @@ if __name__ == '__main__':
     client.loop_start()
     while True:
         ping()
-        log = I1820Log(type='dummy', device='0', endpoint='dummy',
+        log = I1820Log(type='dummy', device='0', agent='dummy',
                        states={
                            'chert': '1'
                        })
