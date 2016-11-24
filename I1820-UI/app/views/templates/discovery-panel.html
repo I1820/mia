@@ -1,11 +1,15 @@
 <div class="panel panel-info">
   <div class="panel-heading">
     Agents
-    <button type="button" class="btn btn-primary"
-      ng-click="refresh()"><i class="fa fa-refresh" aria-hidden="true"></i>
+    <button type="button" class="btn btn-sucess btn-xs pull-right"
+      ng-click="refresh()">
+      <span class="glyphicon glyphicon-refresh"></span>
     </button>
   </div>
   <div class="panel-body">
+    <div ng-if="!agents.length" class="text-center">
+      There is no agent ...
+    </div>
     <div class="list-group">
       <div ng-repeat="(uuid, agent) in agnets" class="list-group-item" href="#">
         <h4 class="list-group-item-heading">{{uuid}} - {{agent.ip}} <small><time class="timeago" ng-attr-datetime="{{agent.time}}"></time></small></h4>
