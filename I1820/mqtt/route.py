@@ -35,7 +35,7 @@ def on_log(client, userdata, message):
         return
 
     try:
-        thing = Things.get(log.type).get_thing(log.endpoint, log.device)
+        thing = Things.get(log.type).get_thing(log.agent, log.device)
     except ThingNotFoundException as e:
         print("%s - - [%s]: %s" % (message.topic, str(e),
                                    datetime.now().
