@@ -20,13 +20,13 @@ class Event:
         self.storage = {}
 
     def __get__(self, obj, objtype):
-        time = self.storage.get((obj.rpi_id, obj.device_id), None)
+        time = self.storage.get((obj.agent_id, obj.device_id), None)
         return time.strftime("%Y-%m-%dT%H:%M:%SZ")\
             if time is not None else None
 
     def __set__(self, obj, value):
         if isinstance(value, dict):
-            self.storage[(obj.rpi_id, obj.device_id)] = value['time']
+            self.storage[(obj.agent_id, obj.device_id)] = value['time']
 
 
 class State:
@@ -35,16 +35,16 @@ class State:
 
     def __get__(self, obj, objtype):
         value = LogController().last(
-            self.name, obj.rpi_id, obj.device_id)
+            self.name, obj.agent_id, obj.device_id)
         return value
 
     def __set__(self, obj, value):
         if isinstance(value, dict):
-            LogController().save(self.name, obj.rpi_id,
+            LogController().save(self.name, obj.agent_id,
                                  obj.device_id,
                                  value['time'], value['value'])
             data = {
-                'rpi_id': obj.rpi_id,
+                'rpi_id': obj.agent_id,
                 'device_id': obj.device_id,
                 'state': {
                     self.name: {
@@ -68,5 +68,5 @@ class Setting:
 
     def __set__(self, obj, value):
         message = I1820Notification(obj.name, obj.device_id,
-                                    {self.name: value}, obj.rpi_id)
+                                    {self.name: value}, obj.agent_id)
         NotificationController().notify(message)
