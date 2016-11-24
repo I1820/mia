@@ -7,11 +7,8 @@
     </button>
   </div>
   <div class="panel-body">
-    <div ng-if="!agents.length" class="text-center">
-      There is no agent ...
-    </div>
     <div class="list-group">
-      <div ng-repeat="(uuid, agent) in agnets" class="list-group-item" href="#">
+      <div ng-repeat="(uuid, agent) in agents" class="list-group-item" href="#">
         <h4 class="list-group-item-heading">{{uuid}} - {{agent.ip}} <small><time class="timeago" ng-attr-datetime="{{agent.time}}"></time></small></h4>
         <div class="list-group-item-text">
           <table class="table">
@@ -23,7 +20,7 @@
               </tr>
             </thead>
             <tbody>
-            <tr v-for="thing in agent.things track by $index">
+            <tr ng-repeat="thing in agent.things track by $index">
               <td>{{$index + 1}}</td>
               <td>{{thing.id}}</td>
               <td>{{thing.type}}</td>
