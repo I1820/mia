@@ -18,5 +18,5 @@ class Motion(SensorThing):
 
     motion = Event()
 
-    def __init__(self, rpi_id, device_id):
-        super().__init__(rpi_id, device_id)
+    def __init__(self, agent_id, device_id):
+        super().__init__(agent_id, device_id)

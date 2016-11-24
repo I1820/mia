@@ -59,8 +59,8 @@ class Things(abc.ABCMeta):
 class Thing(metaclass=Things):
     things = {}
 
-    def __init__(self, rpi_id, device_id):
-        self.rpi_id = rpi_id
+    def __init__(self, agent_id, device_id):
+        self.agent_id = agent_id
         self.device_id = device_id
 
     @property
@@ -69,24 +69,24 @@ class Thing(metaclass=Things):
         raise NotImplemented()
 
     @classmethod
-    def get_thing(cls, rpi_id, device_id):
+    def get_thing(cls, agent_id, device_id):
         try:
-            thing = cls.things[cls.name][(rpi_id, device_id)]
+            thing = cls.things[cls.name][(agent_id, device_id)]
         except (KeyError, ValueError) as e:
-            raise ThingNotFoundException(rpi_id, device_id, cls.name, e)
+            raise ThingNotFoundException(agent_id, device_id, cls.name, e)
         return thing
 
     @classmethod
-    def new_thing(cls, rpi_id, device_id):
-        cls.things[cls.name][(rpi_id, device_id)] = cls(rpi_id, device_id)
+    def new_thing(cls, agent_id, device_id):
+        cls.things[cls.name][(agent_id, device_id)] = cls(agent_id, device_id)
 
     @classmethod
-    def del_thing(cls, rpi_id, device_id):
-        del cls.things[cls.name][(rpi_id, device_id)]
+    def del_thing(cls, agent_id, device_id):
+        del cls.things[cls.name][(agent_id, device_id)]
 
     @classmethod
-    def has_thing(cls, rpi_id, device_id):
+    def has_thing(cls, agent_id, device_id):
         if cls.name in cls.things:
-            if (rpi_id, device_id) in cls.things[cls.name]:
+            if (agent_id, device_id) in cls.things[cls.name]:
                 return True
         return False
