@@ -57,11 +57,11 @@ def discovery_handler():
 @flask_cors.cross_origin()
 def thing_read_handler():
     data = flask.request.get_json(force=True)
-    rpi_id = data['rpi_id']
+    agent_id = data['agent_id']
     device_id = data['device_id']
     result = {}
 
-    thing = Things.get(data['type']).get_thing(rpi_id, device_id)
+    thing = Things.get(data['type']).get_thing(agent_id, device_id)
 
     if 'states' in data.keys():
         for key in data['states']:
@@ -77,10 +77,10 @@ def thing_read_handler():
 @flask_cors.cross_origin()
 def thing_write_handler():
     data = flask.request.get_json(force=True)
-    rpi_id = data['rpi_id']
+    agent_id = data['agent_id']
     device_id = data['device_id']
 
-    thing = Things.get(data['type']).get_thing(rpi_id, device_id)
+    thing = Things.get(data['type']).get_thing(agent_id, device_id)
 
     if 'settings' in data.keys():
         for key, value in data['settings'].items():
