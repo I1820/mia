@@ -23,6 +23,12 @@ angular.module('i1820UiApp')
         $scope.toAgent = function (agentId) {
           $location.path('/agent/' + agentId);
         };
+
+        $scope.$watch(function () {
+          return DiscoveryService.query();
+        }, function (agents) {
+          $scope.agents = agents;
+        });
       }
     };
   });
