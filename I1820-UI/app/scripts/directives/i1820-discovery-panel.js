@@ -7,7 +7,7 @@
  * # i1820DiscoveryPanel
  */
 angular.module('i1820UiApp')
-  .directive('i1820DiscoveryPanel', function (DiscoveryService) {
+  .directive('i1820DiscoveryPanel', function ($location, DiscoveryService) {
     return {
       templateUrl: 'views/templates/discovery-panel.html',
       restrict: 'E',
@@ -18,6 +18,10 @@ angular.module('i1820UiApp')
         $scope.refresh = function () {
           DiscoveryService.refresh();
           $scope.agents = DiscoveryService.query();
+        };
+
+        $scope.toAgent = function (agentId) {
+          $location.path('/agent/' + agentId);
         };
       }
     };
