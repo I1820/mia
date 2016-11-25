@@ -29,7 +29,7 @@ angular
         controller: 'AboutCtrl',
         controllerAs: 'about'
       })
-      .when('/agent/:id', {
+      .when('/agent/:agentId', {
         templateUrl: 'views/agent.html',
         controller: 'AgentCtrl',
         controllerAs: 'agent'
