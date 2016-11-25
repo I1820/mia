@@ -29,6 +29,11 @@ angular
         controller: 'AboutCtrl',
         controllerAs: 'about'
       })
+      .when('/agent/:id', {
+        templateUrl: 'views/agent.html',
+        controller: 'AgentCtrl',
+        controllerAs: 'agent'
+      })
       .otherwise({
         redirectTo: '/'
       });
