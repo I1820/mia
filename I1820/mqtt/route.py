@@ -16,12 +16,14 @@ from ..things.base import Things
 from ..exceptions.thing import ThingNotFoundException
 
 import bson
-from datetime import datetime
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 def on_log(client, userdata, message):
     '''
-    Handles log messages that come from Raspberry PIs.
+    Handles log messages that come from I1820 Agents.
     These messages are used for report and status collecting.
 
     :param client: the client instance for this callback
@@ -37,9 +39,7 @@ def on_log(client, userdata, message):
     try:
         thing = Things.get(log.type).get_thing(log.agent, log.device)
     except ThingNotFoundException as e:
-        print("%s - - [%s]: %s" % (message.topic, str(e),
-                                   datetime.now().
-                                   strftime('%Y-%m-%d %H:%M:%S')))
+        log.warning("[%s]: %s" % (message.topic, str(e)))
         return
 
     for key, value in log.states.items():
@@ -47,13 +47,12 @@ def on_log(client, userdata, message):
 
     PluginController().on_log(log)
 
-    print("%s - - [%s]" % (message.topic,
-                           datetime.now().strftime('%Y-%m-%d %H:%M:%S')))
+    logger.info("[%s]" % message.topic)
 
 
 def on_discovery(client, userdata, message):
     '''
-    Handles discovery messages that come from Raspberry PIs.
+    Handles discovery messages that come from I1820 Agents.
     These messages are used as Raspberry PI heart beat.
 
     :param client: the client instance for this callback
@@ -65,8 +64,7 @@ def on_discovery(client, userdata, message):
     discovery = DiscoveryController()
     discovery.ping(data)
 
-    print("%s - - [%s]" % (message.topic,
-                           datetime.now().strftime('%Y-%m-%d %H:%M:%S')))
+    logger.info("[%s]" % message.topic)
 
 
 def on_connect(client, userdata, flags, rc):
