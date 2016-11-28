@@ -14,25 +14,6 @@ class I1820Config:
     def __init__(self, path):
         cfg = configparser.ConfigParser()
 
-        # Environment based configurations
-        env_cfg = {}
-        env_cfg['InfluxDB'] = {}
-        env_cfg['InfluxDB']['host'] = os.getenv('I1820_INFLUXDB_HOST',
-                                                '0.0.0.0')
-        env_cfg['InfluxDB']['port'] = os.getenv('I1820_INFLUXDB_PORT', '8086')
-        env_cfg['InfluxDB']['db'] = os.getenv('I1820_INFLUXDB_DB', 'I1820')
-        env_cfg['InfluxDB']['user'] = os.getenv('I1820_INFLUXDB_USER', 'root')
-        env_cfg['InfluxDB']['passwd'] = os.getenv('I1820_INFLUXDB_PASSWD',
-                                                  'root')
-        env_cfg['Things'] = {}
-        env_cfg['Things']['endpoints'] = os.getenv('I1820_ENDPOINTS', '')
-
-        env_cfg['MQTT'] = {}
-        env_cfg['MQTT']['host'] = os.getenv('I1820_MQTT_HOST', '127.0.0.1')
-        env_cfg['MQTT']['port'] = os.getenv('I1820_MQTT_PORT', '1883')
-
-        cfg.read_dict(env_cfg)
-
         # File based configurations
         cfg.read(path)
 
@@ -43,12 +24,16 @@ class I1820Config:
             section, field = name.split('_', maxsplit=1)
         else:
             section = name
-        if section == 'influxdb':
-            return self.cfg['InfluxDB'][field]
+        if section == 'appenders':
+            if '_' in field:
+                db, field = field.split('_', maxsplit=1)
+                return self.cfg['%s.appenders.i1820.org' % db][field]
+            else:
+                return self.cfg['appenders.i1820.org'][field]
         elif section == 'mqtt':
-            return self.cfg['MQTT'][field]
+            return self.cfg['mqtt.i1820.org'][field]
         elif section == 'endpoints':
-            return self.cfg['Things']['endpoints'].split(' ')
+            return self.cfg['things.i1820.org']['endpoints'].split(' ')
 
 
 I1820_CONFIG_PATH = os.path.join(os.path.dirname(__file__), "1820.ini")
