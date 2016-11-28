@@ -18,6 +18,6 @@ class I1820LogAppender:
     def last(self, measurement, agent_id, device_id):
         raise NotImplemented()
 
-    @abc.abstractmehod
+    @abc.abstractmethod
     def since(self, measurement, agent_id, device_id, since, limit):
         raise NotImplemented()
