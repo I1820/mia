@@ -13,7 +13,7 @@ angular.module('i1820UiApp')
     var Agents = {};
 
     var fetchAgents = function () {
-      $http.get('discovery').then(function (response) {
+      $http.get('/discovery').then(function (response) {
         Agents = response.data;
       });
     };
