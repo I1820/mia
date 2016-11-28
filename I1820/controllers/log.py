@@ -22,7 +22,8 @@ class LogController(I1820Controller):
         self.appender = appender_cls()
 
     def save(self, measurement, agent_id, device_id, time, value):
-        pass
+        return self.appender.save(measurement, agent_id,
+                                  device_id, time, value)
 
     def last(self, measurement, agent_id, device_id):
-        pass
+        return self.appender.last(measurement, agent_id, device_id)
