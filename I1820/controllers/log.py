@@ -6,51 +6,23 @@
 #
 # [] Created By : Parham Alvani (parham.alvani@gmail.com)
 # =======================================
+import importlib
+
 from .base import I1820Controller
 from ..conf.config import cfg
-
-from influxdb import InfluxDBClient
 
 
 class LogController(I1820Controller):
     def __init__(self):
-        self._client = InfluxDBClient(host=cfg.influxdb_host,
-                                      port=cfg.influxdb_port,
-                                      username=cfg.influxdb_user,
-                                      password=cfg.influxdb_passwd,
-                                      database=cfg.influxdb_db)
+        appender_name = cfg.appenders_appender
+        appender_module = importlib.import_module(
+            'I1820.appenders.%s' % appender_name)
+        appender_cls = getattr(
+            appender_module, "%sLogAppender" % appender_name.title())
+        self.appender = appender_cls()
 
     def save(self, measurement, agent_id, device_id, time, value):
-        points = [{
-            "measurement": measurement,
-            "tags": {
-                "agent_id": agent_id,
-                "device_id": device_id
-            },
-            "time": time.strftime('%Y-%m-%dT%H:%M:%SZ'),
-            "fields": {
-                "value": value
-            }
-        }]
-        self._client.write_points(points, time_precision="s")
+        pass
 
     def last(self, measurement, agent_id, device_id):
-        q = ('SELECT * FROM %s'
-             ' WHERE "agent_id" = \'%s\' AND "device_id" = \'%s\''
-             ' ORDER BY time DESC LIMIT 1;') % (measurement,
-                                                agent_id, device_id)
-        results = self._client.query(q)
-        last = next(results.get_points(), None)
-        if last is None:
-            return {'value': None, 'time': None}
-        else:
-            return {'value': last['value'], 'time': last['time']}
-
-    def since(self, measurement, agent_id, device_id, since, limit=10):
-        q = ('SELECT * FROM %s'
-             ' WHERE "agent_id" = \'%s\' AND "device_id" = \'%s\''
-             ' AND time > \'%s\''
-             ' ORDER BY time DESC LIMIT %d;') % (measurement, agent_id,
-                                                 device_id, since, limit)
-        results = self._client.query(q)
-        next(results.get_points(), None)
+        pass
