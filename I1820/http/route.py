@@ -12,9 +12,9 @@ import json
 
 from . import app
 from ..things.base import Things
-from ..controller.discovery import DiscoveryController
-from ..controller.plugin import PluginController
-from ..controller.model import ModelController
+from ..controllers.discovery import DiscoveryController
+from ..controllers.plugin import PluginController
+from ..controllers.model import ModelController
 from ..exceptions.thing import \
      ThingNotFoundException, ThingTypeNotImplementedException, \
      ThingInvalidAccessException

@@ -9,8 +9,8 @@
 
 from . import client
 from ..conf.config import cfg
-from ..controller.discovery import DiscoveryController
-from ..controller.plugin import PluginController
+from ..controllers.discovery import DiscoveryController
+from ..controllers.plugin import PluginController
 from ..domain.log import I1820Log
 from ..things.base import Things
 from ..exceptions.thing import ThingNotFoundException

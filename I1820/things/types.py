@@ -6,10 +6,10 @@
 #
 # [] Created By : Parham Alvani (parham.alvani@gmail.com)
 # =======================================
-from ..controller.log import LogController
 from ..exceptions.thing import ThingInvalidAccessException
-from ..controller.notif import NotificationController
-from ..controller.event import EventController
+from ..controllers.log import LogController
+from ..controllers.notif import NotificationController
+from ..controllers.event import EventController
 from ..domain.notif import I1820Notification
 from ..domain.event import I1820Event
 
