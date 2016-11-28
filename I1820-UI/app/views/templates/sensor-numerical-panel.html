@@ -14,7 +14,7 @@
         </h4>
         <div class="list-group-item-text">
           <p>{{values[state]['value']}}</p>
-          <p>{{values[state]['time'] | date: 'longdate'}}</p>
+          <p>{{values[state]['time'] | date : 'medium' : 'UTC'}}</p>
         </div>
       </div>
     </div>
