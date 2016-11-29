@@ -39,7 +39,7 @@ def on_log(client, userdata, message):
     try:
         thing = Things.get(log.type).get_thing(log.agent, log.device)
     except ThingNotFoundException as e:
-        log.warning("[%s]: %s" % (message.topic, str(e)))
+        logger.warning("[%s]: %s" % (message.topic, str(e)))
         return
 
     for key, value in log.states.items():
