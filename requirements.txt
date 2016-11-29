@@ -3,3 +3,4 @@ Flask-cors
 influxdb
 paho-mqtt
 bson
+python-socketio
