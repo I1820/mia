@@ -34,6 +34,11 @@ angular
         controller: 'AgentCtrl',
         controllerAs: 'agent'
       })
+      .when('/plugin', {
+        templateUrl: 'views/plugin.html',
+        controller: 'PluginCtrl',
+        controllerAs: 'plugin'
+      })
       .otherwise({
         redirectTo: '/'
       });
