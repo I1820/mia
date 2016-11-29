@@ -20,6 +20,8 @@ class ModelController(I1820Controller):
         thing_cls = Things.get(thing)
         response = {}
         response['type'] = thing
+        response['statistics'] = thing_cls.statistics \
+            if hasattr(thing_cls, 'statistics') else []
         if ActuatorThing in thing_cls.__bases__:
             response['master'] = 'actuator'
             response['settings'] = thing_cls.settings
