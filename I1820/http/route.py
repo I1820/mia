@@ -63,13 +63,16 @@ def thing_read_handler():
 
     thing = Things.get(data['type']).get_thing(agent_id, device_id)
 
+    # Handling the requested states :)
     if 'states' in data.keys():
         if len(data['states']) == 0:
             data['states'] = thing.states
         for key in data['states']:
             result[key] = getattr(thing, key)
-    if 'statistics' in data.keys():
-        for key in data['statistics']:
+
+    # Handling the statistics for having more fucking fun ...
+    if hasattr(thing, 'statistics'):
+        for key in thing.statistics:
             result[key] = getattr(thing, key)
 
     return json.dumps(result)
