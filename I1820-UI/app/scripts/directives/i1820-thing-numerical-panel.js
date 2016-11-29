@@ -18,9 +18,15 @@ angular.module('i1820UiApp')
       },
       link: function ($scope) {
         $scope.states = [];
+        $scope.settings = [];
 
         ModelService.getModel($scope.type).then(function (data) {
-          $scope.states = data.states;
+          if (typeof(data.states) !== undefined) {
+            $scope.states = data.states;
+          }
+          if (typeof(data.settings) !== undefined) {
+            $scope.settings = data.settings;
+          }
           if ($scope.states.length !== 0) {
             $interval($scope.refresh, 1000);
           }
@@ -33,6 +39,10 @@ angular.module('i1820UiApp')
                                 $scope.type, []).then(function (data) {
             $scope.values = data;
           });
+        };
+
+        $scope.turn = function (setting, value) {
+          ThingService.setSetting($scope.agentId, $scope.thingId, $scope.type, setting, value);
         };
       }
     };
