@@ -18,8 +18,8 @@ class I1820Event:
     :type type: str
     :param data: event's data with following form:
     {
-        rpi_id: RPi Identification
-        device_id: device number relative to RPi
+        agent_id: Agent Identification
+        device_id: device number relative to Agent
         state: {
             'temperature': {
                 'time': ...,
@@ -34,5 +34,5 @@ class I1820Event:
 
     def to_json(self):
         result = self.data
-        result['event'] = self.type
+        result['code'] = self.type
         return json.dumps(result)
