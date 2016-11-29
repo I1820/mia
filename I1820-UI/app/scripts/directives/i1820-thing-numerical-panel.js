@@ -2,14 +2,14 @@
 
 /**
  * @ngdoc directive
- * @name i1820UiApp.directive:i1820SensorNumericalPanel
+ * @name i1820UiApp.directive:i1820ThingNumericalPanel
  * @description
  * # i1820SensorNumericalPanel
  */
 angular.module('i1820UiApp')
-  .directive('i1820SensorNumericalPanel', function ($interval, ModelService, ThingService) {
+  .directive('i1820ThingNumericalPanel', function ($interval, ModelService, ThingService) {
     return {
-      templateUrl: 'views/templates/sensor-numerical-panel.html',
+      templateUrl: 'views/templates/thing-numerical-panel.html',
       restrict: 'E',
       scope: {
         agentId: '=',
@@ -21,6 +21,9 @@ angular.module('i1820UiApp')
 
         ModelService.getModel($scope.type).then(function (data) {
           $scope.states = data.states;
+          if ($scope.states.length !== 0) {
+            $interval($scope.refresh, 1000);
+          }
         });
 
         $scope.values = {};
@@ -31,8 +34,6 @@ angular.module('i1820UiApp')
             $scope.values = data;
           });
         };
-
-        $interval($scope.refresh, 1000);
       }
     };
   });
