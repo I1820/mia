@@ -8,8 +8,7 @@
 # =======================================
 from .base import I1820Controller
 from ..domain.event import I1820Event
-from ..mqtt import client
-from ..conf.config import cfg
+from ..http import sio
 
 
 class EventController(I1820Controller):
@@ -22,6 +21,4 @@ class EventController(I1820Controller):
         pass
 
     def event(self, event: I1820Event):
-        for t in cfg.endpoints:
-            client.publish('I1820/%s/event/%s' % (t, event.type),
-                           event.to_json())
+        sio.emit(event.type, data=event.to_json(), namespace='event')
