@@ -27,6 +27,18 @@ class Event:
     def __set__(self, obj, value):
         if isinstance(value, dict):
             self.storage[(obj.agent_id, obj.device_id)] = value['time']
+            data = {
+                'agent_id': obj.agent_id,
+                'device_id': obj.device_id,
+                'type': obj.name,
+                'state': {
+                    self.name: {
+                        'value': value['value'],
+                        'time': value['time'].strftime("%Y-%m-%dT%H:%M:%SZ")
+                    }
+                }
+            }
+            EventController().event(I1820Event('event', data))
 
 
 class State:
@@ -43,17 +55,6 @@ class State:
             LogController().save(self.name, obj.agent_id,
                                  obj.device_id,
                                  value['time'], value['value'])
-            data = {
-                'rpi_id': obj.agent_id,
-                'device_id': obj.device_id,
-                'state': {
-                    self.name: {
-                        'value': value['value'],
-                        'time': value['time'].strftime("%Y-%m-%dT%H:%M:%SZ")
-                    }
-                }
-            }
-            EventController().event(I1820Event('log', data))
             return
         else:
             raise ThingInvalidAccessException(obj.name, self.name)
