@@ -59,6 +59,21 @@ class State:
             raise ThingInvalidAccessException(obj.name, self.name)
 
 
+class Statistic:
+    def __init__(self):
+        self.name = None
+        self.storage = {}
+
+    def __get__(self, obj, objtype):
+        time = self.storage.get((obj.agent_id, obj.device_id), None)
+        return time.strftime("%Y-%m-%dT%H:%M:%SZ")\
+            if time is not None else None
+
+    def __set__(self, obj, value):
+        if isinstance(value, dict):
+            self.storage[(obj.agent_id, obj.device_id)] = value['time']
+
+
 class Setting:
     def __init__(self):
         self.name = None
