@@ -7,7 +7,7 @@
 # [] Created By : Parham Alvani (parham.alvani@gmail.com)
 # =======================================
 from ..sensor import SensorThing
-from ..types import State, Event
+from ..types import State, Event, Statistic
 
 
 class MultiSensor(SensorThing):
@@ -19,6 +19,8 @@ class MultiSensor(SensorThing):
     temperature = State()
     humidity = State()
     light = State()
+
+    battery = Statistic()
 
     motion = Event()
 
