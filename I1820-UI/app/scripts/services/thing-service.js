@@ -30,10 +30,9 @@ angular.module('i1820UiApp')
         'agent_id': agentId,
         'device_id': thingId,
         'type': type,
-        'settings': {
-          setting: value
-        }
+        'settings': {}
       };
+      msg.settings[setting] = value;
       return $http.put('/thing', msg).then(function (response) {
         if (typeof response.data === 'object') {
           return response.data;
