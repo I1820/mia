@@ -9,7 +9,7 @@
 import abc
 import importlib
 
-from .types import Event, Setting, State
+from .types import Event, Setting, State, Statistic
 from ..exceptions.thing import \
      ThingNotFoundException, ThingTypeNotImplementedException
 
@@ -44,6 +44,12 @@ class Things(abc.ABCMeta):
                     instance.settings.append(k)
                 else:
                     instance.settings = [k]
+            if isinstance(v, Statistic):
+                v.name = k
+                if hasattr(instance, 'statistics'):
+                    instance.statistics.append(k)
+                else:
+                    instance.statistics = [k]
         return instance
 
     @classmethod
