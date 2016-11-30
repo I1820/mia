@@ -19,14 +19,23 @@ angular.module('i1820UiApp')
       link: function ($scope) {
         $scope.states = [];
         $scope.settings = [];
+        $scope.statistics = [];
+        $scope.events = [];
 
         ModelService.getModel($scope.type).then(function (data) {
-          if (typeof(data.states) !== undefined) {
+          if (data.hasOwnProperty('states')) {
             $scope.states = data.states;
           }
-          if (typeof(data.settings) !== undefined) {
+          if (data.hasOwnProperty('settings')) {
             $scope.settings = data.settings;
           }
+          if (data.hasOwnProperty('statistics')) {
+            $scope.statistics = data.statistics;
+          }
+          if (data.hasOwnProperty('events')) {
+            $scope.events = data.events;
+          }
+
           if ($scope.states.length !== 0) {
             $interval($scope.refresh, 1000);
           }
