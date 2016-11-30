@@ -53,7 +53,7 @@ def agent_get_handler():
     return json.dumps(discovery.agents)
 
 
-@app.route('agent/<string:agent>', methods=['DELETE'])
+@app.route('/agent/<string:agent>', methods=['DELETE'])
 def agent_remove_handler(agent):
     discovery = DiscoveryController(agent)
     return discovery.pong(agent)
