@@ -40,6 +40,7 @@
 
         <ul class="nav navbar-nav">
           <li class="active"><a href="#/">Home</a></li>
+          <li><a ng-href="#/plugin">Plugin</a></li>
           <li><a ng-href="#/about">About</a></li>
         </ul>
       </div>
@@ -69,6 +70,10 @@
 ga('send', 'pageview');
 </script>
 
+<!-- build:js(.) scripts/socket-io.js -->
+<script src="bower_components/socket.io-client/dist/socket.io.js"></script>
+<!-- endbuild -->
+
 <!-- build:js(.) scripts/vendor.js -->
 <!-- bower:js -->
 <script src="bower_components/jquery/dist/jquery.js"></script>
@@ -80,6 +85,7 @@ ga('send', 'pageview');
 <script src="bower_components/angular-route/angular-route.js"></script>
 <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
 <script src="bower_components/angular-touch/angular-touch.js"></script>
+<script src="bower_components/angular-socket-io/socket.js"></script>
 <!-- endbower -->
 <!-- endbuild -->
 
