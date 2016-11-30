@@ -52,3 +52,6 @@ class DiscoveryController(I1820Controller):
         for thing in to_be_add:
             Things.get(thing[0]).new_thing(message['agent_id'], thing[1])
             self._agents[message['agent_id']]['things'].add(thing)
+
+    def pong(self, agent_id: str):
+        return self._agents.pop(agent_id, None)
