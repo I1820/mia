@@ -8,6 +8,29 @@
   </div>
   <div class="panel-body">
     <div class="list-group">
+      <h3 ng-if="statistics.length">Statistics</h3>
+      <div ng-repeat="statistic in statistics" class="list-group-item">
+        <h4 class="list-group-item-heading">
+          {{statistic}}
+        </h4>
+        <div class="list-group-item-text">
+          <p>{{values[statistic]['value']}}</p>
+          <p>{{values[statistic]['time'] | date : 'medium'}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="list-group">
+      <h3 ng-if="events.length">Events</h3>
+      <div ng-repeat="event in events" class="list-group-item">
+        <h4 class="list-group-item-heading">
+          {{event}}
+        </h4>
+        <div class="list-group-item-text">
+          <p>{{values[event] | date : 'medium'}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="list-group">
       <h3 ng-if="states.length">Sensors</h3>
       <div ng-repeat="state in states" class="list-group-item">
         <h4 class="list-group-item-heading">
