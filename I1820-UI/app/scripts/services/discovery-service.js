@@ -13,9 +13,13 @@ angular.module('i1820UiApp')
     var Agents = {};
 
     var fetchAgents = function () {
-      $http.get('/discovery').then(function (response) {
+      $http.get('/agent').then(function (response) {
         Agents = response.data;
       });
+    };
+
+    this.remove = function (agentId) {
+      $http.delete('/agent/' + agentId).then(fetchAgents);
     };
 
     this.refresh = function () {
