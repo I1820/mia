@@ -47,10 +47,16 @@ def model_handler(thing):
     return json.dumps(model.get_model(thing))
 
 
-@app.route('/discovery', methods=['GET'])
-def discovery_handler():
+@app.route('/agent', methods=['GET'])
+def agent_get_handler():
     discovery = DiscoveryController()
     return json.dumps(discovery.agents)
+
+
+@app.route('agent/<string:agent>', methods=['DELETE'])
+def agent_remove_handler(agent):
+    discovery = DiscoveryController(agent)
+    return discovery.pong(agent)
 
 
 @app.route('/thing', methods=['POST'])
