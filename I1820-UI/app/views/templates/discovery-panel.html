@@ -11,7 +11,7 @@
       <div ng-repeat="(uuid, agent) in agents" class="list-group-item">
         <h4 class="list-group-item-heading">
           <a ng-click="toAgent(uuid)">
-            {{uuid}} - {{agent.ip}} <small><time class="timeago" ng-attr-datetime="{{agent.time}}"></time></small>
+            {{uuid}} - {{agent.ip}} <small>{{agent.time | timeAgo}}</small>
           </a>
         </h4>
         <div class="list-group-item-text">
