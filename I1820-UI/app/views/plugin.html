@@ -45,3 +45,23 @@
     <input type="text" class="form-control" id="device-type" placeholder="Device Type">
   </div>
 </form>
+<h3>Chains</h3>
+<div ng-repeat="(chain_id, chain) in plugins">
+  <h4>{{chain_id}}</h4>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>UUID</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="plugin in chain track by $index">
+        <td>{{$index}}</td>
+        <td>{{plugin.name}}</td>
+        <td>{{plugin.id}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
