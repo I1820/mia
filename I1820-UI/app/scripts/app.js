@@ -15,7 +15,9 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'btford.socket-io',
+    'yaru22.angular-timeago'
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -42,4 +44,7 @@ angular
       .otherwise({
         redirectTo: '/'
       });
+  })
+  .factory('$socket', function (socketFactory) {
+      return socketFactory();
   });
