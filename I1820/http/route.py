@@ -15,6 +15,7 @@ from ..things.base import Things
 from ..controllers.discovery import DiscoveryController
 from ..controllers.plugin import PluginController
 from ..controllers.model import ModelController
+from ..controllers.stat import StatController
 from ..exceptions.thing import \
      ThingNotFoundException, ThingTypeNotImplementedException, \
      ThingInvalidAccessException
@@ -41,10 +42,16 @@ def root_handler():
 # Human Side
 
 
+# Models
+
+
 @app.route('/model/<string:thing>', methods=['GET'])
 def model_handler(thing):
     model = ModelController()
     return json.dumps(model.get_model(thing))
+
+
+# Agents
 
 
 @app.route('/agent', methods=['GET'])
@@ -57,6 +64,9 @@ def agent_get_handler():
 def agent_remove_handler(agent):
     discovery = DiscoveryController()
     return json.dumps(discovery.pong(agent))
+
+
+# Things
 
 
 @app.route('/thing', methods=['POST'])
@@ -100,6 +110,9 @@ def thing_write_handler():
     return json.dumps(data)
 
 
+# Plugins
+
+
 @app.route('/plugin', methods=['POST'])
 def plugin_create_handler():
     data = flask.request.get_json(force=True)
@@ -111,6 +124,14 @@ def plugin_create_handler():
 @app.route('/plugin', methods=['GET'])
 def plugin_list_handler():
     return json.dumps(PluginController().list_plugin())
+
+
+# Stats
+
+
+@app.route('/stat/uptime', methods=['GET'])
+def stat_uptime_handler():
+    return str(StatController().uptime())
 
 
 # Error Side :P
