@@ -38,8 +38,8 @@ class Plugin(metaclass=Plugins):
     def name(self):
         raise NotImplemented()
 
-    def notify(self, rpi_id, device_id, type, settings):
-        thing = Things.get(type).get_thing(rpi_id, device_id)
+    def notify(self, agent_id, device_id, type, settings):
+        thing = Things.get(type).get_thing(agent_id, device_id)
 
         for key, value in settings.items():
             setattr(thing, key, value)
