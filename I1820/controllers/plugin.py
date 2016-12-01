@@ -10,17 +10,22 @@ from .base import I1820Controller
 from ..plugins.base import Plugins
 
 import uuid
+import threading
 
 
 class PluginController(I1820Controller):
     def __init__(self):
         self.chains = {}
 
+    def _on_log_chain(self, log, chain):
+        for plugin in chain:
+            if not plugin.on_log(log):
+                break
+
     def on_log(self, log):
         for chain_id, chain in self.chains.items():
-            for plugin in chain:
-                if not plugin.on_log(log):
-                    break
+            threading.Thread(name=chain_id,
+                             target=self._on_log_chain, args=(log, chain, ))
 
     def new_plugin(self, name: str, chain: int, args: dict):
         plugin = Plugins.get(name)
