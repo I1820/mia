@@ -9,34 +9,39 @@
 from .base import I1820Controller
 from ..plugins.base import Plugins
 
-import threading
 import uuid
 
 
 class PluginController(I1820Controller):
     def __init__(self):
-        self.plugins = []
+        self.chains = {}
 
     def on_log(self, log):
-        for plugin in self.plugins:
-            threading.Thread(target=plugin.on_log, args=(log,),
-                             daemon=True).start()
+        for chain_id, chain in self.chains.items():
+            for plugin in chain:
+                if not plugin.on_log(log):
+                    break
 
-    def new_plugin(self, name, args: dict):
+    def new_plugin(self, name: str, chain: int, args: dict):
         plugin = Plugins.get(name)
         ident = uuid.uuid4()
         p = plugin(ident, **args)
-        self.plugins.append(p)
+        if chain in self.chains:
+            self.chains[chain].append(p)
+        else:
+            self.chains[chain] = [p]
 
         return p.ident
 
     def list_plugin(self):
-        results = []
+        results = {}
 
-        for plugin in self.plugins:
-            result = {}
-            result['id'] = str(plugin.ident)
-            result['name'] = plugin.name
-            results.append(result)
+        for chain_id, chain in self.chins.items():
+            results[chain_id] = []
+            for plugin in chain:
+                result = {}
+                result['id'] = str(plugin.ident)
+                result['name'] = plugin.name
+                results[chain_id].append(result)
 
         return results
