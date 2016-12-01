@@ -25,7 +25,8 @@ class PluginController(I1820Controller):
     def on_log(self, log):
         for chain_id, chain in self.chains.items():
             threading.Thread(name=chain_id,
-                             target=self._on_log_chain, args=(log, chain, ))
+                             target=self._on_log_chain,
+                             args=(log, chain, )).start()
 
     def new_plugin(self, name: str, chain: int, args: dict):
         plugin = Plugins.get(name)
