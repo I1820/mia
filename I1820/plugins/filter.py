@@ -8,6 +8,10 @@
 # =======================================
 from .base import Plugin
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 
 class FilterPlugin(Plugin):
     name = 'filter'
@@ -24,12 +28,16 @@ class FilterPlugin(Plugin):
         super().__init__(ident)
 
     def on_log(self, log):
+        logger.info("Begin of filter %s" % self.ident)
+
         if self.agent_id != '*' and log.agent != self.agent_id:
             return False
         if self.device_id != '*' and log.device != self.device_id:
             return False
         if self.type != '*' and log.type != self.type:
             return False
+
+        logger.info("Middle of filter %s" % self.ident)
 
         if self.op == '==':
             return log.states[self.state] == self.value
