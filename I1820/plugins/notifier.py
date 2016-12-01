@@ -13,21 +13,12 @@ class NotifierPlugin(Plugin):
     name = 'notifier'
 
     def __init__(self, ident: int,
-                 sensor: str, value: dict, actuator: str, target: dict):
-        self.sensor = sensor
-        self.value = value
-        self.actuator = actuator
-        self.target = target
+                 agent_id: str, device_id: str, type: str, settings: dict):
+        self.type = type
+        self.settings = settings
+        self.agent_id = agent_id
+        self.device_id = device_id
         super().__init__(ident)
 
     def on_log(self, log):
-        send = True
-        for (key, value) in self.value.items():
-            if key in log.states:
-                print(log.states[key])
-                if log.states[key] != value:
-                    send = False
-            else:
-                send = False
-        if send is True:
-            self.notify(log.endpoint, '1:1', self.actuator, self.target)
+        self.notify(self.agent_id, self.device_id, self.type, self.settings)
