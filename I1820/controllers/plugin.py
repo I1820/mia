@@ -36,7 +36,7 @@ class PluginController(I1820Controller):
     def list_plugin(self):
         results = {}
 
-        for chain_id, chain in self.chins.items():
+        for chain_id, chain in self.chains.items():
             results[chain_id] = []
             for plugin in chain:
                 result = {}
