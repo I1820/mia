@@ -22,3 +22,4 @@ class NotifierPlugin(Plugin):
 
     def on_log(self, log):
         self.notify(self.agent_id, self.device_id, self.type, self.settings)
+        return True
