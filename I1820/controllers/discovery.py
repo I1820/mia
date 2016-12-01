@@ -54,4 +54,11 @@ class DiscoveryController(I1820Controller):
             self._agents[message['agent_id']]['things'].add(thing)
 
     def pong(self, agent_id: str):
-        return self._agents.pop(agent_id, None)
+        agent = self._agents.pop(agent_id, None)
+        result = {}
+        if agent is not None:
+            result['time'] = agent['time']
+            result['things'] = []
+            for thing in agent['things']:
+                result['things'].append({'type': thing[0], 'id': thing[1]})
+        return result
