@@ -104,7 +104,8 @@ def thing_write_handler():
 def plugin_create_handler():
     data = flask.request.get_json(force=True)
 
-    return str(PluginController().new_plugin(data['type'], data['arguments']))
+    return str(PluginController().new_plugin(data['type'], data['chain'],
+                                             data['arguments']))
 
 
 @app.route('/plugin', methods=['GET'])
