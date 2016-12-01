@@ -24,7 +24,7 @@ class FilterPlugin(Plugin):
         super().__init__(ident)
 
     def on_log(self, log):
-        if log.agent != self.agent_id or log.devive != self.device_id \
+        if log.agent != self.agent_id or log.device != self.device_id \
            or log.type != self.type:
             return False
         if self.op == '==':
