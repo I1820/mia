@@ -42,10 +42,10 @@ def on_log(client, userdata, message):
         logger.warning("[%s]: %s" % (message.topic, str(e)))
         return
 
+    PluginController().on_log(log)
+
     for key, value in log.states.items():
         setattr(thing, key, {'value': value, 'time': log.timestamp})
-
-    PluginController().on_log(log)
 
     logger.info("[%s]" % message.topic)
 
