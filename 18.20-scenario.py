@@ -11,7 +11,7 @@ if __name__ == '__main__':
             'device_id': '*',
             'type': '*',
             'state': 'light',
-            'value': '900',
+            'value': '800',
             'op': '>'
         }
     }
@@ -59,7 +59,7 @@ if __name__ == '__main__':
             'device_id': '*',
             'type': '*',
             'state': 'light',
-            'value': '900',
+            'value': '800',
             'op': '<'
         }
     }
