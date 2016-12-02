@@ -11,7 +11,6 @@
 
 # I1820
 - [Introduction](#introduction)
-- [History](#history)
 - [Contributors](#contributers)
 - [Up and Running]('#up-and-running')
 - [I1820-UI](https://github.com/AoLab/I1820/blob/master/I1820-UI/README.md)
