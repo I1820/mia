@@ -4,3 +4,4 @@ influxdb
 paho-mqtt
 bson
 python-socketio
+kafka-python
