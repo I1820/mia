@@ -41,9 +41,15 @@ class Things(abc.ABCMeta):
             if isinstance(v, Setting):
                 v.name = k
                 if hasattr(instance, 'settings'):
-                    instance.settings.append(k)
+                    instance.settings.append({
+                        'name': k,
+                        'type': v.type
+                    })
                 else:
-                    instance.settings = [k]
+                    instance.settings = [{
+                        'name': k,
+                        'type': v.type
+                    }]
             if isinstance(v, Statistic):
                 v.name = k
                 if hasattr(instance, 'statistics'):
