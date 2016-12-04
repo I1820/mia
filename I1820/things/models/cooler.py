@@ -18,6 +18,7 @@ class Cooler(ActuatorThing):
     name = "cooler"
 
     on = Setting()
+    temperature = Setting(type='integer')
 
     def __init__(self, agent_id, device_id):
         super().__init__(agent_id, device_id)
