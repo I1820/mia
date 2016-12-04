@@ -46,11 +46,17 @@
       <h3 ng-if="settings.length">Actuators</h3>
       <div ng-repeat="setting in settings" class="list-group-item">
         <h4 class="list-group-item-heading">
-          {{setting}}
+          {{setting.name}}
         </h4>
-        <div class="list-group-item-text">
-          <button type="button" class="btn btn-success" ng-click="turn(setting, true)">Turn On</button>
-          <button type="button" class="btn btn-success" ng-click="turn(setting, false)">Turn Off</button>
+        <div ng-if="setting.type == 'bool'" class="list-group-item-text">
+          <button type="button" class="btn btn-success" ng-click="turn(setting.name, true)">Turn On</button>
+          <button type="button" class="btn btn-success" ng-click="turn(setting.name, false)">Turn Off</button>
+        </div>
+        <div ng-if="setting.type == 'integer'" class="list-group-item-text">
+          <div class="form-group">
+            <input type="text" class="form-control" ng-model="integerSettingValue" placeholder="Value">
+          </div>
+          <button type="button" class="btn btn-success" ng-click="turn(setting.name, integerSettingValue)">Request</button>
         </div>
       </div>
     </div>
