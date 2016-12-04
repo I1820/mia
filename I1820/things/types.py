@@ -81,8 +81,9 @@ class Statistic:
 
 
 class Setting:
-    def __init__(self):
+    def __init__(self, type='bool'):
         self.name = None
+        self.type = type
 
     def __get__(self, obj, objtype):
         pass
