@@ -1,7 +1,15 @@
-<h1>Hello from {{agentId}}</h1>
-<button type="button" class="btn btn-block btn-danger" ng-click="remove()">
-  <span class="glyphicon glyphicon-remove"></span>
-</button>
-<div ng-repeat="thing in things | orderBy : type">
-  <i1820-thing-numerical-panel agent-id="agentId" type="thing.type" thing-id="thing.id"></i1820-thing-numerical-panel>
+<div class="jumbotron">
+  <h1>Hello, Agent</h1>
+  <p>I1820 agent is a point of presence for our data !</p>
+  <p>{{agentId}}</p>
+  <p>
+    <a class="btn btn-danger btn-lg" role="button" ng-click="remove()">
+      <span class="glyphicon glyphicon-remove"></span>
+    </a>
+  </p>
+</div>
+<div class="row">
+  <div class="col-md-6" ng-repeat="thing in things | orderBy : type">
+    <i1820-thing-numerical-panel agent-id="agentId" type="thing.type" thing-id="thing.id"></i1820-thing-numerical-panel>
+  </div>
 </div>
