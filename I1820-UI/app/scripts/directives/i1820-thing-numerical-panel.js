@@ -22,6 +22,8 @@ angular.module('i1820UiApp')
         $scope.statistics = [];
         $scope.events = [];
 
+        var stateWatcher;
+
         ModelService.getModel($scope.type).then(function (data) {
           if (data.hasOwnProperty('states')) {
             $scope.states = data.states;
@@ -37,8 +39,12 @@ angular.module('i1820UiApp')
           }
 
           if ($scope.states.length !== 0) {
-            $interval($scope.refresh, 1000);
+            stateWatcher = $interval($scope.refresh, 5000);
           }
+        });
+
+        $scope.$on('$destroy', function () {
+          $interval.cancel(stateWatcher);
         });
 
         $scope.values = {};
