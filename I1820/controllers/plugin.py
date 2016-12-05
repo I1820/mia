@@ -15,6 +15,7 @@ import threading
 
 class PluginController(I1820Controller):
     def __init__(self):
+        self.lock = threading.Lock()
         self.chains = {}
         self.plugins = {}
 
@@ -27,17 +28,22 @@ class PluginController(I1820Controller):
                 root = root.left
 
     def on_log(self, log):
+        self.lock.acquire()
         for chain_id, root in self.chains.items():
             threading.Thread(name=chain_id,
                              target=self._on_log_chain,
                              args=(log, root, )).start()
+        self.lock.release()
 
     def new_plugin(self, name: str, chain: int, parent: str, args: dict):
         '''
         Creates new plugin
 
-        @param parent: plugin parent that can be root or uuid:branch.
+        :param parent: plugin parent that can be root or uuid:branch.
+        :type parent: str
         '''
+        self.lock.acquire()
+
         plugin = Plugins.get(name)
         ident = uuid.uuid4()
         p = plugin(ident, **args)
@@ -54,6 +60,8 @@ class PluginController(I1820Controller):
             else:
                 self.plugins[parent].left = p
 
+        self.lock.release()
+
         return p.ident
 
     def _chain_iterator(self, root):
@@ -66,6 +74,8 @@ class PluginController(I1820Controller):
             return [i] + left + right
 
     def list_plugin(self):
+        self.lock.acquire()
+
         results = {}
 
         for chain_id, root in self.chains.items():
@@ -74,7 +84,12 @@ class PluginController(I1820Controller):
                 result = {}
                 result['id'] = str(i.ident)
                 result['name'] = i.name
-                result['left'] = str(i.left.ident) if i.left is not None else ''
-                result['right'] = str(i.right.ident) if i.right is not None else ''
+                result['left'] = str(i.left.ident) if i.left \
+                    is not None else ''
+                result['right'] = str(i.right.ident) if i.right \
+                    is not None else ''
                 results[chain_id].append(result)
+
+        self.lock.release()
+
         return results
