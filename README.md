@@ -73,6 +73,36 @@ sudo ./scripts/influxdb-install.sh
 influx -execute 'create database I1820'
    ```
 
+1. Install and Setup Influx Time-Series-Platform \[[Influx installation](https://github.com/influxdata/chronograf/blob/master/docs/INSTALLATION.md)]
+
+   ```sh
+# Download and Install Kapacitor
+wget https://dl.influxdata.com/kapacitor/releases/kapacitor_1.1.0_amd64.deb
+sudo dpkg -i kapacitor_1.1.0_amd64.deb
+
+# Start Kapacitor
+sudo systemctl start kapacitor
+
+# Verify that Kapacitor is Running
+kapacitor list tasks
+
+# Download and Install Telegraf
+wget https://dl.influxdata.com/telegraf/releases/telegraf_1.1.1_amd64.deb
+sudo dpkg -i telegraf_1.1.1_amd64.deb
+
+# Start Telegraf
+sudo systemctl start telegraf
+
+# Download and Install Chronograf
+wget https://dl.influxdata.com/chronograf/nightlies/chronograf_nightly_amd64.deb
+sudo dpkg -i chronograf_nightly_amd64.deb
+
+# Start Chronograf
+sudo systemctl start chronograf
+
+# Let's have fun with influx on http://localhost:8888
+   ```
+
 2. Install and Setup eMQTT \[[eMQTT installation](http://emqtt.io/docs/v2/install.html)]
 
    ```sh
