@@ -28,12 +28,11 @@ class PluginController(I1820Controller):
                 root = root.left
 
     def on_log(self, log):
-        self.lock.acquire()
-        for chain_id, root in self.chains.items():
-            threading.Thread(name=chain_id,
-                             target=self._on_log_chain,
-                             args=(log, root, )).start()
-        self.lock.release()
+        with self.lock:
+            for chain_id, root in self.chains.items():
+                threading.Thread(name=chain_id,
+                                 target=self._on_log_chain,
+                                 args=(log, root, )).start()
 
     def new_plugin(self, name: str, chain: int, parent: str, args: dict):
         '''
@@ -42,25 +41,23 @@ class PluginController(I1820Controller):
         :param parent: plugin parent that can be root or uuid:branch.
         :type parent: str
         '''
-        self.lock.acquire()
 
         plugin = Plugins.get(name)
         ident = uuid.uuid4()
         p = plugin(ident, **args)
 
         # Store newly created plugin
-        self.plugins[str(ident)] = p
+        with self.lock:
+            self.plugins[str(ident)] = p
 
-        if parent == 'root':
-            self.chains[chain] = p
-        else:
-            parent, branch = parent.split(':')
-            if branch == 'true':
-                self.plugins[parent].right = p
+            if parent == 'root':
+                self.chains[chain] = p
             else:
-                self.plugins[parent].left = p
-
-        self.lock.release()
+                parent, branch = parent.split(':')
+                if branch == 'true':
+                    self.plugins[parent].right = p
+                else:
+                    self.plugins[parent].left = p
 
         return p.ident
 
@@ -74,22 +71,19 @@ class PluginController(I1820Controller):
             return [i] + left + right
 
     def list_plugin(self):
-        self.lock.acquire()
-
         results = {}
 
-        for chain_id, root in self.chains.items():
-            results[chain_id] = []
-            for i in self._chain_iterator(root):
-                result = {}
-                result['id'] = str(i.ident)
-                result['name'] = i.name
-                result['left'] = str(i.left.ident) if i.left \
-                    is not None else ''
-                result['right'] = str(i.right.ident) if i.right \
-                    is not None else ''
-                results[chain_id].append(result)
-
-        self.lock.release()
+        with self.lock:
+            for chain_id, root in self.chains.items():
+                results[chain_id] = []
+                for i in self._chain_iterator(root):
+                    result = {}
+                    result['id'] = str(i.ident)
+                    result['name'] = i.name
+                    result['left'] = str(i.left.ident) if i.left \
+                        is not None else ''
+                    result['right'] = str(i.right.ident) if i.right \
+                        is not None else ''
+                    results[chain_id].append(result)
 
         return results
