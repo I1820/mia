@@ -28,7 +28,7 @@ class WaitPlugin(Plugin):
         super().__init__(ident)
 
     def on_log(self, log):
-        logger.info("Filter %s starting" % self.ident)
+        logger.info("Wait %s starting" % self.ident)
 
         if self.agent_id != '*' and log.agent != self.agent_id:
             return False
