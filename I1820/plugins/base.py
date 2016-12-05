@@ -32,6 +32,8 @@ class Plugins(abc.ABCMeta):
 class Plugin(metaclass=Plugins):
     def __init__(self, ident):
         self.ident = ident
+        self.left = None
+        self.right = None
 
     @property
     @abc.abstractmethod
