@@ -4,4 +4,5 @@ influxdb
 paho-mqtt
 bson
 python-socketio
+eventlet
 kafka-python
