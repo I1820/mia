@@ -6,6 +6,7 @@ if __name__ == '__main__':
     f = {
         'type': 'filter',
         'chain': 1,
+        'parent': 'root',
         'arguments': {
             'agent_id': '*',
             'device_id': '*',
@@ -16,12 +17,13 @@ if __name__ == '__main__':
         }
     }
 
-    r = requests.post('http://127.0.0.1:8080/plugin', json=f)
-    print(r.text)
+    fr = requests.post('http://127.0.0.1:8080/plugin', json=f)
+    print(fr.text)
 
     n = {
         'type': 'notifier',
         'chain': 1,
+        'parent': fr.text + ':' + 'true',
         'arguments': {
             'agent_id': '42f6a151-92bb-552d-ba69-bf1d25def01f',
             'device_id': '1:1',
@@ -38,6 +40,7 @@ if __name__ == '__main__':
     n = {
         'type': 'notifier',
         'chain': 1,
+        'parent': r.text + ':' + 'true',
         'arguments': {
             'agent_id': '42f6a151-92bb-552d-ba69-bf1d25def01f',
             'device_id': '1:2',
@@ -51,25 +54,10 @@ if __name__ == '__main__':
     r = requests.post('http://127.0.0.1:8080/plugin', json=n)
     print(r.text)
 
-    f = {
-        'type': 'filter',
-        'chain': 2,
-        'arguments': {
-            'agent_id': '*',
-            'device_id': '*',
-            'type': '*',
-            'state': 'light',
-            'value': '800',
-            'op': '<'
-        }
-    }
-
-    r = requests.post('http://127.0.0.1:8080/plugin', json=f)
-    print(r.text)
-
     n = {
         'type': 'notifier',
-        'chain': 2,
+        'chain': 1,
+        'parent': fr.text + ':' + 'false',
         'arguments': {
             'agent_id': '42f6a151-92bb-552d-ba69-bf1d25def01f',
             'device_id': '1:1',
@@ -85,7 +73,8 @@ if __name__ == '__main__':
 
     n = {
         'type': 'notifier',
-        'chain': 2,
+        'chain': 1,
+        'parent': r.text + ':' + 'true',
         'arguments': {
             'agent_id': '42f6a151-92bb-552d-ba69-bf1d25def01f',
             'device_id': '1:2',
