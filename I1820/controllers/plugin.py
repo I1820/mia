@@ -11,13 +11,28 @@ from ..plugins.base import Plugins
 
 import uuid
 import threading
+import asyncio
+import logging
+
+logger = logging.getLogger(__name__)
 
 
-class PluginController(I1820Controller):
+class PluginController(I1820Controller, threading.Thread):
     def __init__(self):
+        super().__init__()
+
         self.lock = threading.Lock()
         self.chains = {}
         self.plugins = {}
+
+        self.loop = asyncio.new_event_loop()
+
+        self.daemon = True
+        self.start()
+
+    def run(self):
+        self.loop.call_soon(logger.info, 'Event loop started :?')
+        self.loop.run_forever()
 
     def _on_log_chain(self, log, root):
         while root is not None:
