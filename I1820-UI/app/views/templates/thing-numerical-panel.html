@@ -26,7 +26,7 @@
           {{event}}
         </h4>
         <div class="list-group-item-text">
-          <p>{{values[event] | date : 'medium'}}</p>
+          <p>{{values[event]['value']}} @ {{values[event]['time'] | date : 'medium'}}</p>
         </div>
       </div>
     </div>
