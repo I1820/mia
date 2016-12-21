@@ -21,4 +21,4 @@ class EventController(I1820Controller):
         pass
 
     def event(self, event: I1820Event):
-        sio.emit(event.type, data=event.to_json(), namespace='event')
+        sio.emit(event.type, data=event.to_json(), namespace='/I1820')
