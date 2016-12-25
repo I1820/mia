@@ -41,6 +41,7 @@
         <li ng-class="{active: activeView === 'home'}"><a href="#/">Home</a></li>
         <li ng-class="{active: activeView === 'plugin'}"><a href="#/plugin">Plugin</a></li>
         <li ng-class="{active: activeView === 'about'}"><a href="#/about">About</a></li>
+        <li ng-show="activeView === 'agent'" class="active"><a href="#{{path}}">Agent</a></li>
       </ul>
     </div>
   </div>

@@ -12,10 +12,13 @@ angular.module('i1820UiApp')
     $scope.$watch(function () {
       return $location.path();
     }, function (path) {
+      $scope.path = path;
       if (path.includes('plugin')) {
         $scope.activeView = 'plugin';
       } else if (path.includes('about')) {
         $scope.activeView = 'about';
+      } else if (path.includes('agent')) {
+        $scope.activeView = 'agent';
       } else {
         $scope.activeView = 'home';
       }
