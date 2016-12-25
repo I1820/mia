@@ -22,7 +22,7 @@
 
 <!-- Add your site or application content here -->
 <div class="header">
-  <div class="navbar navbar-default" role="navigation">
+  <div class="navbar navbar-default" role="navigation" ng-controller="NavCtrl">
     <div class="container">
       <div class="navbar-header">
 
@@ -39,9 +39,9 @@
       <div class="collapse navbar-collapse" id="js-navbar-collapse">
 
         <ul class="nav navbar-nav">
-          <li class="active"><a href="#/">Home</a></li>
-          <li><a ng-href="#/plugin">Plugin</a></li>
-          <li><a ng-href="#/about">About</a></li>
+          <li ng-class="{active: activeView === 'home'}"><a href="#/">Home</a></li>
+          <li ng-class="{active: activeView === 'plugin'}"><a href="#/plugin">Plugin</a></li>
+          <li ng-class="{active: activeView === 'about'}"><a href="#/about">About</a></li>
         </ul>
       </div>
     </div>
@@ -101,6 +101,7 @@ ga('send', 'pageview');
 <script src="scripts/directives/i1820-thing-numerical-panel.js"></script>
 <script src="scripts/services/model-service.js"></script>
 <script src="scripts/controllers/plugin.js"></script>
+<script src="scripts/controllers/nav.js"></script>
 <!-- endbuild -->
 </body>
 </html>
