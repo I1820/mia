@@ -35,9 +35,13 @@ angular.module('i1820UiApp')
 
         var refreshEvents = function (event) {
           event = JSON.parse(event);
-          if (event['agent_id'] === $scope.agentId &&
-              event['device_id'] === $scope.thingId &&
-                event['type'] === $scope.type) {
+
+          var agentId = 'agent_id';
+          var deviceId = 'device_id';
+          var type = 'type';
+          if (event[agentId] === $scope.agentId &&
+              event[deviceId] === $scope.thingId &&
+                event[type] === $scope.type) {
             for (var i in event.state) {
               $scope.values[i] = event.state[i];
             }
