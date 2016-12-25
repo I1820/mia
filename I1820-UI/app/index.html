@@ -21,29 +21,27 @@
     <![endif]-->
 
 <!-- Add your site or application content here -->
-<div class="header">
-  <div class="navbar navbar-default" role="navigation" ng-controller="NavCtrl">
-    <div class="container">
-      <div class="navbar-header">
+<div class="navbar navbar-inverse" role="navigation" ng-controller="NavCtrl">
+  <div class="container">
+    <div class="navbar-header">
 
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
 
-        <a class="navbar-brand" href="#/">I1820-UI</a>
-      </div>
+      <a class="navbar-brand" href="#/">I1820-UI</a>
+    </div>
 
-      <div class="collapse navbar-collapse" id="js-navbar-collapse">
+    <div class="collapse navbar-collapse" id="js-navbar-collapse">
 
-        <ul class="nav navbar-nav">
-          <li ng-class="{active: activeView === 'home'}"><a href="#/">Home</a></li>
-          <li ng-class="{active: activeView === 'plugin'}"><a href="#/plugin">Plugin</a></li>
-          <li ng-class="{active: activeView === 'about'}"><a href="#/about">About</a></li>
-        </ul>
-      </div>
+      <ul class="nav navbar-nav">
+        <li ng-class="{active: activeView === 'home'}"><a href="#/">Home</a></li>
+        <li ng-class="{active: activeView === 'plugin'}"><a href="#/plugin">Plugin</a></li>
+        <li ng-class="{active: activeView === 'about'}"><a href="#/about">About</a></li>
+      </ul>
     </div>
   </div>
 </div>
@@ -52,10 +50,8 @@
   <div ng-view=""></div>
 </div>
 
-<div class="footer">
-  <div class="container">
-    <p><span class="glyphicon glyphicon-heart"></span> from the AoLab team</p>
-  </div>
+<div class="container">
+  <p><span class="glyphicon glyphicon-heart"></span> from the AoLab team</p>
 </div>
 
 
@@ -70,11 +66,8 @@
 ga('send', 'pageview');
 </script>
 
-<!-- build:js(.) scripts/socket-io.js -->
-<script src="bower_components/socket.io-client/dist/socket.io.js"></script>
-<!-- endbuild -->
-
 <!-- build:js(.) scripts/vendor.js -->
+<script src="bower_components/socket.io-client/dist/socket.io.js"></script>
 <!-- bower:js -->
 <script src="bower_components/jquery/dist/jquery.js"></script>
 <script src="bower_components/angular/angular.js"></script>
