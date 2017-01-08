@@ -99,13 +99,18 @@ def thing_read_handler():
 def thing_write_handler():
     data = flask.request.get_json(force=True)
     agent_id = data['agent_id']
-    device_id = data['device_id']
-
-    thing = Things.get(data['type']).get_thing(agent_id, device_id)
+    things = []
+    if isinstance(data['device_id'], str):
+        device_id = data['device_id']
+        things.append(Things.get(data['type']).get_thing(agent_id, device_id))
+    elif isinstance(data['device_id'], list):
+        for device_id in data['device_id']:
+            things.append(Things.get(data['type']).get_thing(agent_id, device_id))
 
     if 'settings' in data.keys():
         for key, value in data['settings'].items():
-            setattr(thing, key, value)
+            for thing in things:
+                setattr(thing, key, value)
 
     return json.dumps(data)
 
