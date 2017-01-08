@@ -75,21 +75,29 @@ def thing_read_handler():
     data = flask.request.get_json(force=True)
     agent_id = data['agent_id']
     device_id = data['device_id']
+    things = []
+    if isinstance(data['device_id'], str):
+        device_id = data['device_id']
+        things.append(Things.get(data['type']).get_thing(agent_id, device_id))
+    elif isinstance(data['device_id'], list):
+        for device_id in data['device_id']:
+            things.append(
+                Things.get(data['type']).get_thing(agent_id, device_id))
     result = {}
-
-    thing = Things.get(data['type']).get_thing(agent_id, device_id)
 
     # Handling the requested states :)
     if 'states' in data.keys():
-        if len(data['states']) == 0:
-            data['states'] = thing.states
-        for key in data['states']:
-            result[key] = getattr(thing, key)
+        for thing in things:
+            if len(data['states']) == 0:
+                data['states'] = thing.states
+            for key in data['states']:
+                result[key] = getattr(thing, key)
 
     # Handling the statistics for having more fucking fun ...
     if hasattr(thing, 'statistics'):
-        for key in thing.statistics:
-            result[key] = getattr(thing, key)
+        for thing in things:
+            for key in thing.statistics:
+                result[key] = getattr(thing, key)
 
     return json.dumps(result)
 
@@ -105,11 +113,12 @@ def thing_write_handler():
         things.append(Things.get(data['type']).get_thing(agent_id, device_id))
     elif isinstance(data['device_id'], list):
         for device_id in data['device_id']:
-            things.append(Things.get(data['type']).get_thing(agent_id, device_id))
+            things.append(
+                Things.get(data['type']).get_thing(agent_id, device_id))
 
     if 'settings' in data.keys():
-        for key, value in data['settings'].items():
-            for thing in things:
+        for thing in things:
+            for key, value in data['settings'].items():
                 setattr(thing, key, value)
 
     return json.dumps(data)
