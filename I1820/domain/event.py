@@ -14,7 +14,7 @@ class I1820Event:
     The I1820Event object contains information that is used to
     send realtime events to humans.
 
-    :param type: type of event [Discovery, Log, Event]
+    :param type: type of event [Discovery, Log, Event, Raw]
     :type type: str
     :param data: event's data with following form:
     {
