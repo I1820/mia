@@ -10,8 +10,10 @@
 from . import client
 from ..conf.config import cfg
 from ..controllers.discovery import DiscoveryController
+from ..controllers.event import EventController
 from ..controllers.plugin import PluginController
 from ..domain.log import I1820Log
+from ..domain.event import I1820Event
 from ..things.base import Things
 from ..exceptions.thing import ThingNotFoundException
 
@@ -35,6 +37,15 @@ def on_log(client, userdata, message):
 
     if not isinstance(log, I1820Log):
         return
+
+    # Sending raw data
+    data = {
+        'agent_id': log.agent,
+        'device_id': log.device,
+        'type': log.type,
+        'states': log.states
+    }
+    EventController.event(I1820Event('raw', data))
 
     try:
         thing = Things.get(log.type).get_thing(log.agent, log.device)
