@@ -45,7 +45,7 @@ def on_log(client, userdata, message):
         'type': log.type,
         'states': log.states
     }
-    EventController.event(I1820Event('raw', data))
+    EventController().event(I1820Event('raw', data))
 
     try:
         thing = Things.get(log.type).get_thing(log.agent, log.device)
