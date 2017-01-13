@@ -94,6 +94,7 @@ def on_connect(client, userdata, flags, rc):
         client.subscribe('I1820/%s/log' % t)
         client.message_callback_add('I1820/%s/log' % t, on_log)
 
+
 # connect to brocker
 client.on_connect = on_connect
 try:

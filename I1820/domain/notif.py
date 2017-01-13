@@ -45,4 +45,5 @@ class I1820Notification(bson.BSONCoding):
         self.settings = raw_values['settings']
         self.endpoint = raw_values['endpoint']
 
+
 bson.import_class(I1820Notification)

@@ -54,4 +54,5 @@ class I1820Log(bson.BSONCoding):
         self.timestamp = datetime.datetime.fromtimestamp(
             raw_values['timestamp'])
 
+
 bson.import_class(I1820Log)
