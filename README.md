@@ -7,6 +7,7 @@
 <p align="center">
     <img alt="Automated Badge" src="https://img.shields.io/docker/automated/aolab/i1820.svg">
     <img alt="Pulls Badge" src="https://img.shields.io/docker/pulls/aolab/i1820.svg">
+    <img alt="Build Status" src="https://travis-ci.org/AoLab/I1820.svg?branch=master">
 </p>
 
 # I1820
