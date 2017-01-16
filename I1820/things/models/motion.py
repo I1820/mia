@@ -1,6 +1,6 @@
 # In The Name Of God
 # ========================================
-# [] File Name : humidity.py
+# [] File Name : motion.py
 #
 # [] Creation Date : 10-09-2016
 #
