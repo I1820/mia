@@ -1,0 +1,12 @@
+{
+  "agent": "dummy",
+  "device": "1",
+  "type": "temperature",
+  "states": [
+    {
+      "name": "temperature",
+      "value": "10"
+    }
+  ],
+  "timestamp": 10
+}
