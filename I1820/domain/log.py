@@ -7,10 +7,11 @@
 # [] Created By : Parham Alvani (parham.alvani@gmail.com)
 # =======================================
 import datetime
-import bson
+import json
+import jsonschema
 
 
-class I1820Log(bson.BSONCoding):
+class I1820Log:
     '''
     The I1820Log object contains information that is used to
     report end device states into I1820.
@@ -25,11 +26,16 @@ class I1820Log(bson.BSONCoding):
     :type agent: str
     '''
     def __init__(self, type: str, device: str,
-                 states: dict,
+                 states: list,
                  agent: str,
                  timestamp: datetime.datetime = None):
         if timestamp is None:
             timestamp = datetime.datetime.utcnow()
+
+        for state in states:
+            if 'name' not in state or 'value' not in state:
+                raise ValueError(
+                    'states must be an array of names and values.')
 
         self.states = states
         self.type = type
@@ -37,22 +43,27 @@ class I1820Log(bson.BSONCoding):
         self.timestamp = timestamp
         self.agent = agent
 
-    def bson_encode(self):
-        return {
+    def to_json(self):
+        result = {
                 'timestamp': self.timestamp.timestamp(),
                 'type': self.type,
                 'device': self.device,
                 'states': self.states,
                 'agent': self.agent
         }
+        return json.dumps(result)
 
-    def bson_init(self, raw_values):
-        self.states = raw_values['states']
-        self.type = raw_values['type']
-        self.device = raw_values['device']
-        self.agent = raw_values['agent']
-        self.timestamp = datetime.datetime.fromtimestamp(
+    @classmethod
+    def from_json(cls, raw):
+        raw_values = json.loads(raw)
+
+        # validate input json
+        jsonschema.validate(raw_values)
+
+        states = raw_values['states']
+        type = raw_values['type']
+        device = raw_values['device']
+        agent = raw_values['agent']
+        timestamp = datetime.datetime.fromtimestamp(
             raw_values['timestamp'])
-
-
-bson.import_class(I1820Log)
+        return cls(type, device, states, agent, timestamp)
