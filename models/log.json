@@ -17,8 +17,20 @@
       "type": "string"
     },
     "states": {
-      "description": "",
-      "type": "array"
+      "description": "States array of target end device",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "required": ["name", "value"]
+      }
     }
   },
   "required": ["agent", "device", "type", "timestamp"]
