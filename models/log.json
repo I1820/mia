@@ -16,6 +16,10 @@
       "description": "Type of target end device",
       "type": "string"
     },
+    "timestamp": {
+      "description": "Log generated time",
+      "type": "number"
+    },
     "states": {
       "description": "States array of target end device",
       "type": "array",
