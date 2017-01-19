@@ -23,7 +23,7 @@
         "type": "object",
         "properties": {
           "value": {
-            "type": ["string", "number"]
+            "type": ["string", "number", "boolean"]
           },
           "name": {
             "type": "string"
