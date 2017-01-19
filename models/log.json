@@ -37,5 +37,5 @@
       }
     }
   },
-  "required": ["agent", "device", "type", "timestamp"]
+  "required": ["agent", "device", "type", "timestamp", "states"]
 }
