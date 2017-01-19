@@ -6,3 +6,4 @@ bson
 python-socketio
 gevent
 kafka-python
+jsonschema
