@@ -7,11 +7,13 @@
 # [] Created By : Parham Alvani (parham.alvani@gmail.com)
 # =======================================
 import abc
+import datetime
 
 
 class I1820LogAppender:
     @abc.abstractmethod
-    def save(self, measurement, agent_id, device_id, time, value):
+    def save(self, measurement, agent_id, device_id, time: datetime.datetime,
+             value):
         raise NotImplemented()
 
     @abc.abstractmethod
