@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+
+  "title": "I1820 Log",
+  "type": "object",
+  "properties": {
+    "agent": {
+      "description": "I1820 agent identification",
+      "type": "string"
+    },
+    "device": {
+      "description": "Target end device identification",
+      "type": "string"
+    },
+    "type": {
+      "description": "Type of target end device",
+      "type": "string"
+    },
+    "states": {
+      "description": "",
+      "type": "array"
+    }
+  },
+  "required": ["agent", "device", "type", "timestamp"]
+}
