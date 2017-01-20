@@ -6,10 +6,10 @@
 #
 # [] Created By : Parham Alvani (parham.alvani@gmail.com)
 # =======================================
-import bson
+import json
 
 
-class I1820Notification(bson.BSONCoding):
+class I1820Notification:
     '''
     The I1820Notification object contains information that is used to
     send notification into end devices.
@@ -31,19 +31,21 @@ class I1820Notification(bson.BSONCoding):
         self.settings = settings
         self.endpoint = endpoint
 
-    def bson_encode(self):
-            return {
+    def to_json(self):
+            result = {
                 'type': self.type,
                 'device': self.device,
                 'settings': self.settings,
                 'endpoint': self.endpoint
             }
+            return json.dumps(result)
 
-    def bson_init(self, raw_values):
-        self.type = raw_values['type']
-        self.device = raw_values['device']
-        self.settings = raw_values['settings']
-        self.endpoint = raw_values['endpoint']
+    @classmethod
+    def from_json(cls, raw):
+        raw_values = json.loads(raw)
 
-
-bson.import_class(I1820Notification)
+        type = raw_values['type']
+        device = raw_values['device']
+        settings = raw_values['settings']
+        endpoint = raw_values['endpoint']
+        return cls(type, device, settings, endpoint)
