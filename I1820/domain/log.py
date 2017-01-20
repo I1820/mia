@@ -11,8 +11,10 @@ from ..exceptions.format import InvalidLogFormatException
 import datetime
 import json
 import jsonschema
+import os
 
-schema = json.load('schemas/log.json')
+schema = json.load(open(os.path.join(os.path.dirname(__file__),
+                                     os.path.join("schemas", "log.json"))))
 
 
 class I1820Log:
