@@ -7,7 +7,8 @@ import pymongo
 class MongodbLogAppender(I1820LogAppender):
     def __init__(self):
         self._client = pymongo.MongoClient(host=cfg.appenders_mongodb_host,
-                                           port=cfg.appenders_mognodb_port)
+                                           port=int(cfg.appenders_mongodb_port)
+                                           )
         self._client = self._client[cfg.appenders_mongodb_db]
 
     def save(self, measurement, agent_id, device_id, time, value):
