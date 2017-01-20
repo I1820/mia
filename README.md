@@ -104,6 +104,11 @@ sudo systemctl start chronograf
 # Let's have fun with influx on http://localhost:8888
    ```
 
+1. Install and Setup MongoDB \[MongoDB installation]()
+
+   ```sh
+   ```
+
 2. Install and Setup eMQTT \[[eMQTT installation](http://emqtt.io/docs/v2/install.html)]
 
    ```sh
@@ -163,7 +168,7 @@ Thanks to following technologies:
 - [ ] MQTT based user level notification
 
 ### Database
-- [ ] MongoDB Support
+- [x] MongoDB Support
 - [ ] MySQLDB Support
 
 ### Comminucation
