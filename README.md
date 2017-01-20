@@ -107,6 +107,7 @@ sudo systemctl start chronograf
 1. Install and Setup MongoDB \[MongoDB installation]()
 
    ```sh
+   sudo apt-get install mongodb
    ```
 
 2. Install and Setup eMQTT \[[eMQTT installation](http://emqtt.io/docs/v2/install.html)]
@@ -133,7 +134,7 @@ unzip emqttd-ubuntu64-2.0-beta1-20160830.zip && cd emqttd
 sudo pip3 install -r requirements.txt
    ```
 
-4. Provide I1820 configuration in YAML ....
+4. Provide I1820 configuration in INI.
 
    ```sh
 cp I1820/conf/1820.example.ini I1820/conf/1820.ini
