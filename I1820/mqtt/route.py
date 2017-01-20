@@ -6,7 +6,6 @@
 #
 # [] Created By : Parham Alvani (parham.alvani@gmail.com)
 # =======================================
-
 from . import client
 from ..conf.config import cfg
 from ..controllers.discovery import DiscoveryController
@@ -16,9 +15,10 @@ from ..domain.log import I1820Log
 from ..domain.event import I1820Event
 from ..things.base import Things
 from ..exceptions.thing import ThingNotFoundException
+from ..exceptions.fromat import InvalidLogFormatException
 
-import bson
 import logging
+import json
 
 logger = logging.getLogger(__name__)
 
@@ -33,9 +33,10 @@ def on_log(client, userdata, message):
     :param message: recived message that contains topic, payload, qos, retain.
     :type message: MQTTMessage
     '''
-    log = bson.loads(message.payload)
-
-    if not isinstance(log, I1820Log):
+    try:
+        log = I1820Log.from_bson(message.payload)
+    except InvalidLogFormatException as e:
+        logger.warning("[%s]: %s" % (message.topic, str(e)))
         return
 
     # Sending raw data
@@ -43,7 +44,7 @@ def on_log(client, userdata, message):
         'agent_id': log.agent,
         'device_id': log.device,
         'type': log.type,
-        'states': log.states
+        'states': {state['name']: state['value'] for state in log.states}
     }
     EventController().event(I1820Event('raw', data))
 
@@ -55,8 +56,9 @@ def on_log(client, userdata, message):
 
     PluginController().on_log(log)
 
-    for key, value in log.states.items():
-        setattr(thing, key, {'value': value, 'time': log.timestamp})
+    for state in log.states:
+        setattr(thing, state['name'], {'value': state['value'],
+                                       'time': log.timestamp})
 
     logger.info("[%s]" % message.topic)
 
@@ -66,12 +68,12 @@ def on_discovery(client, userdata, message):
     Handles discovery messages that come from I1820 Agents.
     These messages are used as Raspberry PI heart beat.
 
-    :param client: the client instance for this callback
+    : client: the client instance for this callback
     :param userdata: the private user data as set in Client() or userdata_set()
-    :param message: recived message that contains topic, payload, qos, retain.
+    :param age: recived message that contains topic, payload, qos, retain.
     :type message: MQTTMessage
     '''
-    data = bson.loads(message.payload)
+    data = json.loads(message.payload)
     discovery = DiscoveryController()
     discovery.ping(data)
 
