@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import paho.mqtt.client as mqtt
+from socketIO_client import SocketIO, BaseNamespace
 import time
 import json
 
@@ -10,6 +11,19 @@ from I1820.domain.log import I1820Log
 
 token = '83DB8F6299E0A303730B5F913B6A3DF420EBC2C2'
 client = mqtt.Client()
+t = 0
+
+
+class I1820Namespace(BaseNamespace):
+    def on_raw(self, *args):
+        print('raw', args)
+        print(time.time() - t)
+
+    def on_connect(self):
+        print('connect')
+
+    def on_disconnect(self):
+        print('disconnect')
 
 
 def ping():
@@ -20,6 +34,9 @@ def ping():
     client.publish('I1820/%s/discovery' % token, json.dumps(message))
 
 if __name__ == '__main__':
+    socketIO = SocketIO('localhost', 8080)
+    socketIO.define(I1820Namespace, '/I1820')
+
     client.connect(cfg.mqtt_host, int(cfg.mqtt_port))
     client.loop_start()
     while True:
@@ -29,4 +46,6 @@ if __name__ == '__main__':
                            {'name': 'chert', 'value': '1'}
                        ])
         client.publish('I1820/%s/log' % token, log.to_json())
-        time.sleep(20)
+        t = time.time()
+        socketIO.wait(seconds=1)
+        time.sleep(19)
