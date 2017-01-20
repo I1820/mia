@@ -18,7 +18,7 @@
     },
     "timestamp": {
       "description": "Log generated time",
-      "type": "integer"
+      "type": "number"
     },
     "states": {
       "description": "States array of target end device",
