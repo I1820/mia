@@ -34,7 +34,7 @@ def on_log(client, userdata, message):
     :type message: MQTTMessage
     '''
     try:
-        log = I1820Log.from_bson(message.payload)
+        log = I1820Log.from_json(message.payload.decode('ascii'))
     except InvalidLogFormatException as e:
         logger.warning("[%s]: %s" % (message.topic, str(e)))
         return
@@ -73,7 +73,7 @@ def on_discovery(client, userdata, message):
     :param age: recived message that contains topic, payload, qos, retain.
     :type message: MQTTMessage
     '''
-    data = json.loads(message.payload)
+    data = json.loads(message.payload.decode('ascii'))
     discovery = DiscoveryController()
     discovery.ping(data)
 
