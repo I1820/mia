@@ -104,7 +104,7 @@ sudo systemctl start chronograf
 # Let's have fun with influx on http://localhost:8888
    ```
 
-1. Install and Setup MongoDB \[MongoDB installation]()
+1. Install and Setup MongoDB
 
    ```sh
    sudo apt-get install mongodb
