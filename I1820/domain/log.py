@@ -6,9 +6,13 @@
 #
 # [] Created By : Parham Alvani (parham.alvani@gmail.com)
 # =======================================
+from ..exceptions.format import InvalidLogFormatException
+
 import datetime
 import json
 import jsonschema
+
+schema = json.load('schemas/log.json')
 
 
 class I1820Log:
@@ -58,7 +62,10 @@ class I1820Log:
         raw_values = json.loads(raw)
 
         # validate input json
-        jsonschema.validate(raw_values)
+        try:
+            jsonschema.validate(raw_values, schema)
+        except jsonschema.ValidationError as e:
+            raise InvalidLogFormatException(e)
 
         states = raw_values['states']
         type = raw_values['type']
