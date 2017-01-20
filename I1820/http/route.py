@@ -9,8 +9,10 @@
 import flask
 import flask_cors
 import json
+import jsonschema
 
 from . import app
+from ..domain.schemas.schema import log_request_schema
 from ..things.base import Things
 from ..controllers.discovery import DiscoveryController
 from ..controllers.plugin import PluginController
@@ -73,6 +75,9 @@ def agent_remove_handler(agent):
 @flask_cors.cross_origin()
 def thing_read_handler():
     data = flask.request.get_json(force=True)
+
+    jsonschema.validate(data, log_request_schema)
+
     agent_id = data['agent_id']
     device_id = data['device_id']
     things = []
@@ -151,13 +156,18 @@ def stat_uptime_handler():
 
 # Error Side :P
 
+@app.errorhandler(jsonschema.ValidationError)
+def handle_invalid_request(error):
+    return (str(error), 403, {})
+
+
 @app.errorhandler(ThingNotFoundException)
 def handle_invalid_usage(error):
     return (str(error), 404, {})
 
 
 @app.errorhandler(ThingTypeNotImplementedException)
-def handle_invalid_request(error):
+def handle_not_implemented_thing(error):
     return (str(error), 400, {})
 
 
