@@ -15,7 +15,7 @@ from ..domain.log import I1820Log
 from ..domain.event import I1820Event
 from ..things.base import Things
 from ..exceptions.thing import ThingNotFoundException
-from ..exceptions.fromat import InvalidLogFormatException
+from ..exceptions.format import InvalidLogFormatException
 
 import logging
 import json
