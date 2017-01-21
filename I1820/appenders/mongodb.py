@@ -31,7 +31,8 @@ class MongodbLogAppender(I1820LogAppender):
         if result is None:
             return {'value': None, 'time': None}
         else:
-            return {'value': result['value'], 'time': result['time']}
+            return {'value': result['value'],
+                    'time': result['time'].strftime('%Y-%m-%dT%H:%M:%SZ')}
 
     def since(self, measurement, agent_id, device_id, since, limit=10):
         pass
