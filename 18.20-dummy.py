@@ -4,6 +4,7 @@ import paho.mqtt.client as mqtt
 from socketIO_client import SocketIO, BaseNamespace
 import time
 import json
+import logging
 
 from I1820.conf.config import cfg
 from I1820.domain.log import I1820Log
@@ -12,18 +13,16 @@ from I1820.domain.log import I1820Log
 token = '83DB8F6299E0A303730B5F913B6A3DF420EBC2C2'
 client = mqtt.Client()
 t = 0
+logger = logging.getLogger('I1820.dummy')
 
 
 class I1820Namespace(BaseNamespace):
-    def on_raw(self, *args):
-        print('raw', args)
+    def on_raw(self, data):
+        logger.info('raw: %s' % data)
         print(time.time() - t)
 
     def on_connect(self):
-        print('connect')
-
-    def on_disconnect(self):
-        print('disconnect')
+        logger.info('connect')
 
 
 def ping():
@@ -48,4 +47,4 @@ if __name__ == '__main__':
         client.publish('I1820/%s/log' % token, log.to_json())
         t = time.time()
         socketIO.wait(seconds=1)
-        time.sleep(19)
+        time.sleep(10)
