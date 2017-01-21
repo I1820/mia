@@ -158,7 +158,7 @@ def stat_uptime_handler():
 
 @app.errorhandler(jsonschema.ValidationError)
 def handle_invalid_request(error):
-    return (str(error), 403, {})
+    return (str(error), 400, {})
 
 
 @app.errorhandler(ThingNotFoundException)
