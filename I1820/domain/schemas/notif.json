@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
 
-  "title": "I1820 Notif",
+  "title": "I1820 Notification",
   "type": "object",
   "properties": {
     "agent": {
