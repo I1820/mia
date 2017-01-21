@@ -11,8 +11,6 @@ from ..domain.notif import I1820Notification
 from ..mqtt import client
 from ..conf.config import cfg
 
-import bson
-
 
 class NotificationController(I1820Controller):
     '''
@@ -25,4 +23,4 @@ class NotificationController(I1820Controller):
     def notify(self, notification: I1820Notification):
         for t in cfg.endpoints:
             client.publish('I1820/%s/notification' % t,
-                           bson.dumps(notification))
+                           notification.to_json())
