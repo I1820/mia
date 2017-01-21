@@ -28,5 +28,5 @@
       }
     }
   },
-  "required": ["agent", "device", "type", "states"]
+  "required": ["agent_id", "device_id", "type", "states"]
 }
