@@ -90,5 +90,6 @@ class Setting:
 
     def __set__(self, obj, value):
         message = I1820Notification(obj.name, obj.device_id,
-                                    {self.name: value}, obj.agent_id)
+                                    [{'name': self.name, 'value': value}],
+                                    obj.agent_id)
         NotificationController().notify(message)
