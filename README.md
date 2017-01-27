@@ -30,8 +30,8 @@ that can do all you need from IoT middleware (Platform) consist of create notifi
 collect logs and discover and manage your things.
 
 In I1820 literature you have *things* and *nodes*, things are your actuators and
-sesnors and *nodes* are any device that can connect to the I1820 server,
-they only requirment is being able to make MQTT requests. An examples of such
+sensors and *nodes* are any device that can connect to the I1820 server,
+they only requirement is being able to make MQTT requests. An examples of such
 devices are NodeMCU and RPi.
 
 ### Why another middleware?
