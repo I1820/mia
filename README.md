@@ -26,8 +26,8 @@
 <p align="center"><img alt="I1820 in AoLab IoT Architecture" src="http://aolab.github.io/documentation/architecture/I1820.jpg"></p>
 
 I1820 is a improved version of 18.20, it provides you a full featured package
-that can do all you need from IoT middleware consist of create notification,
-collect logs and discover your things.
+that can do all you need from IoT middleware (Platform) consist of create notification,
+collect logs and discover and manage your things.
 
 In I1820 literature you have *things* and *nodes*, things are your actuators and
 sesnors and *nodes* are any device that can connect to the I1820 server,
@@ -42,6 +42,7 @@ The benefits we can point out about I1820 are:
 * Minimalistic dependencies, you're node only should be able to make MQTT
 requests
 * Dead simple sample codes
+* You can deploy it over your personal PaaS for mission-critical security or high-availability purposes
 
 ### I1820 Main Components
 
