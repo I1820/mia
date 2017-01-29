@@ -154,7 +154,7 @@ cp I1820/conf/1820.example.ini I1820/conf/1820.ini
 
 Thanks to following technologies:
 
-- [InfluxDB](https://www.influxdata.com/time-series-platform/influxdb/): Time-Series Data Storate
+- [InfluxDB](https://www.influxdata.com/time-series-platform/influxdb/): Time-Series Data Storage
 - [eMQTT](http://emqtt.io/): The Massively Scalable MQTT Broker for IoT and Mobile Applications
 
 ## Releases
