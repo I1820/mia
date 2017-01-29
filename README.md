@@ -56,26 +56,17 @@ I1820 provides following components of **IoT Application Enablement Platform**:
 
 <p align="center"><img alt="I1820 Main Components" src="http://aolab.github.io/I1820/documentation/I1820-Components.jpg"></p>
 
-
-## Contributors
-
-* [Iman Tabrizian]
-* [Parham Alvani]
-
-[Parham Alvani]: http://1995parham.github.io/
-[Iman Tabrizian]: https://github.com/Tabrizian
-
 ## Up and Running
 ###### in Ubuntu
 
-1. Install and Setup InfluxDB \[[InfluxDB installation](https://docs.influxdata.com/influxdb/v1.0/introduction/installation)]
+- **Step 1** Install and Setup InfluxDB \[[InfluxDB installation](https://docs.influxdata.com/influxdb/v1.0/introduction/installation)]
 
    ```sh
 sudo ./scripts/influxdb-install.sh
 influx -execute 'create database I1820'
    ```
 
-1. Install and Setup Influx Time-Series-Platform \[[Influx installation](https://github.com/influxdata/chronograf/blob/master/docs/INSTALLATION.md)]
+- **Step 1** Install and Setup Influx Time-Series-Platform \[[Influx installation](https://github.com/influxdata/chronograf/blob/master/docs/INSTALLATION.md)]
 
    ```sh
 # Download and Install Kapacitor
@@ -105,13 +96,13 @@ sudo systemctl start chronograf
 # Let's have fun with influx on http://localhost:8888
    ```
 
-1. Install and Setup MongoDB
+- **Step 1** Install and Setup MongoDB
 
    ```sh
    sudo apt-get install mongodb
    ```
 
-2. Install and Setup eMQTT \[[eMQTT installation](http://emqtt.io/docs/v2/install.html)]
+- **Step 2** Install and Setup eMQTT \[[eMQTT installation](http://emqtt.io/docs/v2/install.html)]
 
    ```sh
 unzip emqttd-ubuntu64-2.0-beta1-20160830.zip && cd emqttd
@@ -129,32 +120,32 @@ unzip emqttd-ubuntu64-2.0-beta1-20160830.zip && cd emqttd
 ./bin/emqttd stop
    ```
 
-3. Install python dependencies
+- **Step 3** Install python dependencies
 
    ```sh
 sudo pip3 install -r requirements.txt
    ```
 
-4. Provide I1820 configuration in INI.
+- **Step 4** Provide I1820 configuration in INI.
 
    ```sh
 cp I1820/conf/1820.example.ini I1820/conf/1820.ini
    ```
 
-5. Run :D
+- **Step 5** Run :D
 
    ```sh
 ./18.20-serve.py
    ```
 
-6. API documentation avaiable [here](http://aolab.github.io/I1820-Documentation).
+- **Step 6** API documentation avaiable [here](http://aolab.github.io/I1820-Documentation).
 
 
 ## Components
 
 Thanks to following technologies:
 
-- [InfluxDB](https://www.influxdata.com/time-series-platform/influxdb/): Time-Series Data Storate
+- [InfluxDB](https://www.influxdata.com/time-series-platform/influxdb/): Time-Series Data Storage
 - [eMQTT](http://emqtt.io/): The Massively Scalable MQTT Broker for IoT and Mobile Applications
 
 ## Releases
