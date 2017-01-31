@@ -74,3 +74,6 @@ pip-selfcheck.json
 ### I1820
 # configuration file
 1820.ini
+
+### Idea template
+.idea/
