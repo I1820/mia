@@ -26,18 +26,20 @@ class Things(abc.ABCMeta):
             instance.things[instance.name] = {}
 
         for k, v in namespace.items():
-            v.name = k
             if isinstance(v, State):
+                v.name = k
                 if hasattr(instance, 'states'):
                     instance.states.append(k)
                 else:
                     instance.states = [k]
             if isinstance(v, Event):
+                v.name = k
                 if hasattr(instance, 'events'):
                     instance.events.append(k)
                 else:
                     instance.events = [k]
             if isinstance(v, Setting):
+                v.name = k
                 if hasattr(instance, 'settings'):
                     instance.settings.append({
                         'name': k,
@@ -49,6 +51,7 @@ class Things(abc.ABCMeta):
                         'type': v.type
                     }]
             if isinstance(v, Statistic):
+                v.name = k
                 if hasattr(instance, 'statistics'):
                     instance.statistics.append(k)
                 else:
