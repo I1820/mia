@@ -20,16 +20,17 @@ class ModelController(I1820Controller):
         thing_cls = Things.get(thing)
         response = {}
         response['type'] = thing
-        response['statistics'] = thing_cls.statistics \
+        response['statistics'] = [s.name for s in thing_cls.statistics] \
             if hasattr(thing_cls, 'statistics') else []
         if ActuatorThing in thing_cls.__bases__:
             response['master'] = 'actuator'
-            response['settings'] = thing_cls.settings
+            response['settings'] = [{'name': s.name, 'type': s.type}
+                                    for s in thing_cls.settings]
         elif SensorThing in thing_cls.__bases__:
             response['master'] = 'sensor'
-            response['states'] = thing_cls.states \
+            response['states'] = [s.name for s in thing_cls.states] \
                 if hasattr(thing_cls, 'states') else []
-            response['events'] = thing_cls.events \
+            response['events'] = [e.name for e in thing_cls.events] \
                 if hasattr(thing_cls, 'events') else []
         else:
             pass
