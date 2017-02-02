@@ -9,7 +9,7 @@
 import abc
 import importlib
 
-from .types import Event, Setting, State, Statistic
+from .fields import Field
 from ..exceptions.thing import \
      ThingNotFoundException, ThingTypeNotImplementedException
 
@@ -26,36 +26,12 @@ class Things(abc.ABCMeta):
             instance.things[instance.name] = {}
 
         for k, v in namespace.items():
-            if isinstance(v, State):
+            if isinstance(v, Field):
                 v.name = k
-                if hasattr(instance, 'states'):
-                    instance.states.append(k)
+                if hasattr(instance, v.field_name):
+                    instance.states.append(v)
                 else:
-                    instance.states = [k]
-            if isinstance(v, Event):
-                v.name = k
-                if hasattr(instance, 'events'):
-                    instance.events.append(k)
-                else:
-                    instance.events = [k]
-            if isinstance(v, Setting):
-                v.name = k
-                if hasattr(instance, 'settings'):
-                    instance.settings.append({
-                        'name': k,
-                        'type': v.type
-                    })
-                else:
-                    instance.settings = [{
-                        'name': k,
-                        'type': v.type
-                    }]
-            if isinstance(v, Statistic):
-                v.name = k
-                if hasattr(instance, 'statistics'):
-                    instance.statistics.append(k)
-                else:
-                    instance.statistics = [k]
+                    setattr(instance, v.field_name, v)
         return instance
 
     @classmethod
