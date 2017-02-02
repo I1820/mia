@@ -17,6 +17,3 @@ class Light(SensorThing):
     name = "light"
 
     light = State()
-
-    def __init__(self, agent_id, device_id):
-        super().__init__(agent_id, device_id)

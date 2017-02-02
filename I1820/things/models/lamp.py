@@ -18,6 +18,3 @@ class Lamp(ActuatorThing):
     name = "lamp"
 
     on = Setting()
-
-    def __init__(self, agent_id, device_id):
-        super().__init__(agent_id, device_id)

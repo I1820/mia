@@ -10,6 +10,3 @@ class Curtain(ActuatorThing):
     name = "curtain"
 
     height = Setting(type="integer")
-
-    def __init__(self, agent_id, device_id):
-        super().__init__(agent_id, device_id)
