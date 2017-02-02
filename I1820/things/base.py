@@ -29,7 +29,7 @@ class Things(abc.ABCMeta):
             if isinstance(v, Field):
                 v.name = k
                 if hasattr(instance, v.field_name):
-                    instance.states.append(v)
+                    getattr(instance, v.field_name).append(v)
                 else:
                     setattr(instance, v.field_name, v)
         return instance
