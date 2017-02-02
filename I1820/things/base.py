@@ -31,7 +31,7 @@ class Things(abc.ABCMeta):
                 if hasattr(instance, v.field_name):
                     getattr(instance, v.field_name).append(v)
                 else:
-                    setattr(instance, v.field_name, v)
+                    setattr(instance, v.field_name, [v])
         return instance
 
     @classmethod
