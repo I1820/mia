@@ -7,7 +7,7 @@
 # [] Created By : Parham Alvani (parham.alvani@gmail.com)
 # =======================================
 from ..sensor import SensorThing
-from ..types import State
+from ..fields import State
 
 
 class Light(SensorThing):

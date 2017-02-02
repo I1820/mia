@@ -1,5 +1,5 @@
 from ..actuator import ActuatorThing
-from ..types import Setting
+from ..fields import Setting
 
 
 class Itunes(ActuatorThing):

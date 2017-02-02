@@ -7,7 +7,7 @@
 # [] Created By : Parham Alvani (parham.alvani@gmail.com)
 # =======================================
 from ..sensor import SensorThing
-from ..types import State, Event, Statistic
+from ..fields import State, Event, Statistic
 
 
 class MultiSensor(SensorThing):
