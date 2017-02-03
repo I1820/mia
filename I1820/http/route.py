@@ -18,7 +18,6 @@ from ..things.base import Things
 from ..controllers import i1820_framework_context
 from ..controllers.discovery import DiscoveryController
 from ..controllers.plugin import PluginController
-from ..controllers.model import ModelController
 from ..exceptions.thing import \
      ThingNotFoundException, ThingTypeNotImplementedException, \
      ThingInvalidAccessException
@@ -50,8 +49,11 @@ def root_handler():
 
 @app.route('/model/<string:thing>', methods=['GET'])
 def model_handler(thing):
-    model = ModelController()
-    return json.dumps(model.get_model(thing))
+    model_service_ref = i1820_framework_context.get_service_reference(
+        "model_service")
+    with use_service(i1820_framework_context, model_service_ref) \
+            as model_service:
+        return json.dumps(model_service.get_model(thing))
 
 
 # Agents
