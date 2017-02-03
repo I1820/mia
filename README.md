@@ -56,6 +56,10 @@ I1820 provides following components of **IoT Application Enablement Platform**:
 
 <p align="center"><img alt="I1820 Main Components" src="http://aolab.github.io/I1820/documentation/I1820-Components.jpg"></p>
 
+### Do you love us ?
+
+Let's learn more about I1820 [here](http://aolab.github.io/I1820/presentation/).
+
 ## Up and Running
 ###### in Ubuntu
 
