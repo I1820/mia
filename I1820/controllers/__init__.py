@@ -5,11 +5,10 @@ import logging
 logger = logging.getLogger(__name__)
 
 # Prepare the framework, with iPOPO
-i1820_framework = pelix.framework.create_framework((
-    # iPOPO
-    "pelix.ipopo.core")
+i1820_framework = pelix.framework.create_framework(
+    ("pelix.ipopo.core",  "pelix.shell.core")
 )
 
 # Start the framework, and the pre-installed bundles
-logger.info('I1820 Framework was started :P')
+print(" * I1820 Framework is ready")
 i1820_framework.start()
