@@ -1,7 +1,5 @@
 FROM alpine
-MAINTAINER Parham Alvani <parham.alvani@gmail.com>
-MAINTAINER Iman Tabrizian <tabrizian@outlook.com>
-
+MAINTAINER AoLab
 
 EXPOSE 8080
 
