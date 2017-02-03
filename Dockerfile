@@ -25,7 +25,8 @@ RUN apk del build-dependencies
 RUN rm -rf /var/cache/apk/*
 
 # I1820 Configurations
-ENV I1820_INFLUXDB_HOST=172.17.0.1
+# TODO: Database configuration
+# TODO: MQTT Broker
 
 # Entrypoint Script
 ENTRYPOINT ["/home/root/I1820/18.20-serve.py"]
