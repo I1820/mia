@@ -4,14 +4,8 @@ MAINTAINER AoLab
 EXPOSE 8080
 
 # Install packages
-RUN apk update
-RUN apk add python3
-RUN apk add gcc
-RUN apk add musl-dev
-RUN apk add python3-dev
-
-# Cleanup
-RUN rm -rf /var/cache/apk/*
+RUN apk --update add python3
+RUN apk --update add --virtual build-dependencies gcc musl-dev python3-dev
 
 # Let's Go Home
 WORKDIR /home/root
@@ -24,9 +18,10 @@ RUn pip3 install --upgrade pip
 RUN pip3 install -r requirements.txt
 
 # Remove packages
-RUN apk del gcc
-RUN apk del python3-dev
-RUN apk del musl-dev
+RUN apk del build-dependencies
+
+# Cleanup
+RUN rm -rf /var/cache/apk/*
 
 # I1820 Configurations
 ENV I1820_INFLUXDB_HOST=172.17.0.1
