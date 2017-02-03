@@ -12,12 +12,13 @@ import json
 import jsonschema
 
 from . import app
+from pelix.utilities import use_service
 from ..domain.schemas.schema import log_request_schema
 from ..things.base import Things
+from ..controllers import i1820_framework_context
 from ..controllers.discovery import DiscoveryController
 from ..controllers.plugin import PluginController
 from ..controllers.model import ModelController
-from ..controllers.stat import StatController
 from ..exceptions.thing import \
      ThingNotFoundException, ThingTypeNotImplementedException, \
      ThingInvalidAccessException
@@ -151,7 +152,11 @@ def plugin_list_handler():
 
 @app.route('/stat/uptime', methods=['GET'])
 def stat_uptime_handler():
-    return str(StatController().uptime())
+    stat_service_ref = i1820_framework_context.get_service_reference(
+        "stat_service")
+    with use_service(i1820_framework_context, stat_service_ref) \
+            as stat_service:
+        return str(stat_service.uptime())
 
 
 # Error Side :P
