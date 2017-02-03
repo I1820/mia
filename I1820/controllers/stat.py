@@ -14,7 +14,7 @@ from pelix.ipopo.decorators import ComponentFactory, Property, Provides, \
 
 @ComponentFactory("stat_factory")
 @Provides("stat_service")
-@Property("stat")
+@Property("default")
 @Instantiate("stat_instance")
 class StatService:
     def __init__(self):
