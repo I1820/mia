@@ -1,9 +1,12 @@
 Flask
 Flask-cors
-influxdb
-paho-mqtt
-bson
-python-socketio
 gevent
-kafka-python
+python-socketio
+
+influxdb
+
+paho-mqtt
+
 jsonschema
+
+iPOPO
