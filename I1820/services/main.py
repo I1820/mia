@@ -1,13 +1,5 @@
-import pelix.framework
+from .master import service_master
 
 
 def main():
-    i1820_framework = pelix.framework.create_framework(
-        ("pelix.ipopo.core",  "pelix.shell.core")
-    )
-    print(" * 18.20 Service Framework >>")
-    i1820_framework.start()
-    i1820_framework_context = i1820_framework.get_bundle_context()
-    i1820_framework_context.install_bundle("I1820.services.stat").start()
-    i1820_framework_context.install_bundle("I1820.services.model").start()
-    print(" * 18.20 Service Framework <<")
+    service_master.run()
