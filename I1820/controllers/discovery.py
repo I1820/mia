@@ -14,7 +14,6 @@ from datetime import datetime
 
 class DiscoveryController(I1820Controller):
     def __init__(self):
-        print(" * I1820 controllers: Discovery Controller")
         self._agents = {}
 
     @property
