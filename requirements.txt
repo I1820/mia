@@ -8,5 +8,3 @@ influxdb
 paho-mqtt
 
 jsonschema
-
-iPOPO
