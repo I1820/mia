@@ -13,6 +13,7 @@ import datetime
 
 class StatController(I1820Controller):
     def __init__(self):
+        print(" * I1820 controllers: Stat Controller")
         self.start_time = datetime.datetime.now()
 
     def uptime(self):
