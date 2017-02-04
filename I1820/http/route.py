@@ -12,10 +12,9 @@ import json
 import jsonschema
 
 from . import app
-from pelix.utilities import use_service
 from ..domain.schemas.schema import log_request_schema
 from ..things.base import Things
-from ..controllers import i1820_framework_context
+from ..services.master import service_master
 from ..controllers.discovery import DiscoveryController
 from ..controllers.plugin import PluginController
 from ..exceptions.thing import \
@@ -49,10 +48,7 @@ def root_handler():
 
 @app.route('/model/<string:thing>', methods=['GET'])
 def model_handler(thing):
-    model_service_ref = i1820_framework_context.get_service_reference(
-        "model_service")
-    with use_service(i1820_framework_context, model_service_ref) \
-            as model_service:
+    with service_master.service('model_service') as model_service:
         return json.dumps(model_service.get_model(thing))
 
 
@@ -154,10 +150,7 @@ def plugin_list_handler():
 
 @app.route('/stat/uptime', methods=['GET'])
 def stat_uptime_handler():
-    stat_service_ref = i1820_framework_context.get_service_reference(
-        "stat_service")
-    with use_service(i1820_framework_context, stat_service_ref) \
-            as stat_service:
+    with service_master.service('stat_service') as stat_service:
         return str(stat_service.uptime())
 
 
