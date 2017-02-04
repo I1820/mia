@@ -8,6 +8,6 @@ def main():
     print(" * 18.20 Service Framework >>")
     i1820_framework.start()
     i1820_framework_context = i1820_framework.get_bundle_context()
-    i1820_framework_context.install_bundle("I1820.controllers.stat").start()
-    i1820_framework_context.install_bundle("I1820.controllers.model").start()
+    i1820_framework_context.install_bundle("I1820.services.stat").start()
+    i1820_framework_context.install_bundle("I1820.services.model").start()
     print(" * 18.20 Service Framework <<")
