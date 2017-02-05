@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/AoLab/I1820.png?label=ready&title=Ready)](https://waffle.io/AoLab/I1820)
 <p align="center">
     <img alt="I1820 Logo" src="http://aolab.github.io/I1820/logo/logo-md.png">
 </p>
