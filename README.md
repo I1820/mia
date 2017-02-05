@@ -151,6 +151,7 @@ Thanks to following technologies:
 
 - [InfluxDB](https://www.influxdata.com/time-series-platform/influxdb/): Time-Series Data Storage
 - [eMQTT](http://emqtt.io/): The Massively Scalable MQTT Broker for IoT and Mobile Applications
+- [redis](https://redis.io/): open source (BSD licensed), in-memory data structure store, used as a database, cache and message broker.
 
 ## Releases
 
@@ -161,7 +162,7 @@ Thanks to following technologies:
 
 ## ToDo
 ### Core
-- [ ] OSGi Service Model [based on iPOPO]
+- [x] OSGi Service Model [based on iPOPO]
 - [x] Socket.io based user level notification
 
 ### Database
