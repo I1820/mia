@@ -10,3 +10,5 @@ paho-mqtt
 jsonschema
 
 iPOPO
+
+redis
