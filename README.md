@@ -1,4 +1,3 @@
-[![Stories in Ready](https://badge.waffle.io/AoLab/I1820.png?label=ready&title=Ready)](https://waffle.io/AoLab/I1820)
 <p align="center">
     <img alt="I1820 Logo" src="http://aolab.github.io/I1820/logo/logo-md.png">
 </p>
@@ -9,6 +8,7 @@
     <img alt="Automated Badge" src="https://img.shields.io/docker/automated/aolab/i1820.svg">
     <img alt="Pulls Badge" src="https://img.shields.io/docker/pulls/aolab/i1820.svg">
     <img alt="Build Status" src="https://travis-ci.org/AoLab/I1820.svg?branch=master">
+    <a href="https://waffle.io/AoLab/I1820"><img alt="Stories in Ready" src="https://badge.waffle.io/AoLab/I1820.png?label=in%20progress&title=In%20Progress"></a>
 </p>
 
 # I1820
