@@ -34,6 +34,8 @@ class I1820Config:
             return self.cfg['mqtt.i1820.org'][field]
         elif section == 'endpoints':
             return self.cfg['things.i1820.org']['endpoints'].split(' ')
+        elif section == 'redis':
+            return self.cfg['redis.i1820.org'][field]
 
 
 I1820_CONFIG_PATH = os.path.join(os.path.dirname(__file__), "1820.ini")
