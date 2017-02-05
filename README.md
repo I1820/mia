@@ -157,9 +157,10 @@ Thanks to following technologies:
 ## Releases
 
 * Orange 1.0.dev1
-* Pink 1.0: 1.0
+* Pink 1.0
 * Purple 2.0
-* Green 3.0: master
+* Green 3.0
+* Black 4.0: master
 
 ## ToDo
 ### Core
