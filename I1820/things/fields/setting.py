@@ -7,6 +7,7 @@ class Setting(Field):
     field_name = 'settings'
 
     def __init__(self, type='bool'):
+        super().__init__()
         self.type = type
 
     def __get__(self, obj, objtype):
