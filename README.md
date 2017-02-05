@@ -161,7 +161,7 @@ Thanks to following technologies:
 
 ## ToDo
 ### Core
-- [ ] OSGi Service Model [based on iPOPO]
+- [x] OSGi Service Model [based on iPOPO]
 - [x] Socket.io based user level notification
 
 ### Database
