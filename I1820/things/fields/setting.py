@@ -9,12 +9,14 @@ class Setting(Field):
     def __init__(self, type='bool'):
         super().__init__()
         self.type = type
+        self.storage = {}
 
     def __get__(self, obj, objtype):
-        pass
+        return self.storage[(obj.agent_id, obj.devivce_id)]
 
     def __set__(self, obj, value):
         message = I1820Notification(obj.name, obj.device_id,
                                     [{'name': self.name, 'value': value}],
                                     obj.agent_id)
+        self.storage[(obj.agent_id, obj.device_id)] = value
         NotificationController().notify(message)

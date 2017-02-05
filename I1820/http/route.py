@@ -93,8 +93,13 @@ def thing_read_handler():
     if 'states' in data.keys():
         for thing in things:
             if len(data['states']) == 0:
-                data['states'] = thing.states
+                result['states'] = thing.states
             for key in data['states']:
+                result[key] = getattr(thing, key)
+
+    if 'settings' in data.keys():
+        for thing in things:
+            for key in data['settings']:
                 result[key] = getattr(thing, key)
 
     # Handling the statistics for having more fucking fun ...

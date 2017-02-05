@@ -26,7 +26,14 @@
       "items": {
         "type": "string"
       }
+    },
+    "settings": {
+      "description": "Requested states array of target end device",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
     }
   },
-  "required": ["agent_id", "device_id", "type", "states"]
+  "required": ["agent_id", "device_id", "type"]
 }
