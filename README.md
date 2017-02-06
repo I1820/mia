@@ -125,28 +125,28 @@ unzip emqttd-ubuntu64-2.0-beta1-20160830.zip && cd emqttd
 ./bin/emqttd stop
    ```
 
-- **Step 4** Install and Setup Redis \[[Resdis installation](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-redis)]
+- **Step 3** Install and Setup Redis \[[Resdis installation](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-redis)]
 
 
-- **Step 3** Install python dependencies
+- **Step 4** Install python dependencies
 
    ```sh
 sudo pip3 install -r requirements.txt
    ```
 
-- **Step 4** Provide I1820 configuration in INI.
+- **Step 5** Provide I1820 configuration in INI.
 
    ```sh
 cp I1820/conf/1820.example.ini I1820/conf/1820.ini
    ```
 
-- **Step 5** Run :D
+- **Step 6** Run :D
 
    ```sh
 ./18.20-serve.py
    ```
 
-- **Step 6** API documentation avaiable [here](http://aolab.github.io/I1820-Documentation).
+- **Step 7** API documentation avaiable [here](http://aolab.github.io/I1820-Documentation).
 
 
 ## Components
