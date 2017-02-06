@@ -125,6 +125,9 @@ unzip emqttd-ubuntu64-2.0-beta1-20160830.zip && cd emqttd
 ./bin/emqttd stop
    ```
 
+- **Step 4** Install and Setup Redis \[[Resdis installation](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-redis)]
+
+
 - **Step 3** Install python dependencies
 
    ```sh
