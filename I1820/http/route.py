@@ -97,6 +97,7 @@ def thing_read_handler():
             for key in data['states']:
                 result[key] = getattr(thing, key)
 
+    # Even handling setting but I think it's not okey !
     if 'settings' in data.keys():
         for thing in things:
             for key in data['settings']:
