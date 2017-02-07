@@ -93,7 +93,7 @@ def thing_read_handler():
     if 'states' in data.keys():
         for thing in things:
             if len(data['states']) == 0:
-                result['states'] = thing.states
+                data['states'] = [state.name for state in thing.states]
             for key in data['states']:
                 result[key] = getattr(thing, key)
 
