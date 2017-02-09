@@ -106,7 +106,7 @@ def thing_read_handler():
     # Handling the statistics for having more fucking fun ...
     if hasattr(thing, 'statistics'):
         for thing in things:
-            for key in thing.statistics:
+            for key in [statistic.name for statistic in thing.statistics]:
                 result[key] = getattr(thing, key)
 
     return json.dumps(result)
