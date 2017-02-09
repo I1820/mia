@@ -39,7 +39,7 @@ def on_log(client, userdata, message):
         logger.warning("[%s]: %s" % (message.topic, str(e)))
         return
 
-    # Sending raw data
+    # Sending raw data without any futher processing
     data = {
         'agent_id': log.agent,
         'device_id': log.device,
@@ -54,6 +54,7 @@ def on_log(client, userdata, message):
         logger.warning("[%s]: %s" % (message.topic, str(e)))
         return
 
+    # Sending data to plugin system
     PluginController().on_log(log)
 
     for state in log.states:
