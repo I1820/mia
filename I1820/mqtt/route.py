@@ -10,7 +10,6 @@ from . import client
 from ..conf.config import cfg
 from ..controllers.discovery import DiscoveryController
 from ..controllers.event import EventController
-from ..controllers.plugin import PluginController
 from ..domain.log import I1820Log
 from ..domain.event import I1820Event
 from ..things.base import Things
@@ -53,9 +52,6 @@ def on_log(client, userdata, message):
     except ThingNotFoundException as e:
         logger.warning("[%s]: %s" % (message.topic, str(e)))
         return
-
-    # Sending data to plugin system
-    PluginController().on_log(log)
 
     for state in log.states:
         setattr(thing, state['name'], {'value': state['value'],
