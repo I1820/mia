@@ -16,7 +16,7 @@
       "description": "Type of target end device",
       "type": "string"
     },
-    "states": {
+    "settings": {
       "description": "Settings array of target end device",
       "type": "array",
       "items": {
