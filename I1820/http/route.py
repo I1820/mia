@@ -16,7 +16,6 @@ from ..domain.schemas.schema import log_request_schema
 from ..things.base import Things
 from ..services.master import service_master
 from ..controllers.discovery import DiscoveryController
-from ..controllers.plugin import PluginController
 from ..exceptions.thing import \
      ThingNotFoundException, ThingTypeNotImplementedException, \
      ThingInvalidAccessException
@@ -132,23 +131,6 @@ def thing_write_handler():
                 setattr(thing, key, value)
 
     return json.dumps(data)
-
-
-# Plugins
-
-
-@app.route('/plugin', methods=['POST'])
-def plugin_create_handler():
-    data = flask.request.get_json(force=True)
-
-    return str(PluginController().new_plugin(data['type'], data['chain'],
-                                             data['parent'],
-                                             data['arguments']))
-
-
-@app.route('/plugin', methods=['GET'])
-def plugin_list_handler():
-    return json.dumps(PluginController().list_plugin())
 
 
 # Stats
