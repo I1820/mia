@@ -9,7 +9,7 @@
   </p>
 </div>
 <div class="row">
-  <div class="col-md-6" ng-repeat="thing in things | orderBy : type">
+  <div class="col-md-6" ng-repeat="thing in things | orderBy : 'type'">
     <i1820-thing-numerical-panel agent-id="agentId" type="thing.type" thing-id="thing.id"></i1820-thing-numerical-panel>
   </div>
 </div>
