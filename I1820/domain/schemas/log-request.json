@@ -16,17 +16,6 @@
       "description": "Type of target end device",
       "type": "string"
     },
-    "timestamp": {
-      "description": "Log generated time",
-      "type": "integer"
-    },
-    "states": {
-      "description": "Requested states array of target end device",
-      "type": "array",
-      "items": {
-        "type": "string"
-      }
-    },
     "settings": {
       "description": "Requested states array of target end device",
       "type": "array",
