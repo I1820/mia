@@ -15,5 +15,5 @@ class SmartLamp (ActuatorThing):
     name = "smartLamp"
 
     on = Setting()
-    color = Setting(type='string')
+    color = Setting(type='color')
     fade = Setting(type='integer')
