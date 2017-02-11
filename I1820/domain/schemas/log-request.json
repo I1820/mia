@@ -16,6 +16,13 @@
       "description": "Type of target end device",
       "type": "string"
     },
+    "states": {
+      "description": "Requested states array of target end device",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
     "settings": {
       "description": "Requested states array of target end device",
       "type": "array",
