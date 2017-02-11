@@ -24,7 +24,7 @@
       }
     },
     "settings": {
-      "description": "Requested states array of target end device",
+      "description": "Requested settings array of target end device",
       "type": "array",
       "items": {
         "type": "string"
