@@ -13,6 +13,7 @@ import jsonschema
 
 from . import app
 from ..domain.schemas.schema import log_request_schema
+from ..domain.schemas.schema import notif_request_schema
 from ..things.base import Things
 from ..services.master import service_master
 from ..controllers.discovery import DiscoveryController
@@ -115,6 +116,9 @@ def thing_read_handler():
 @flask_cors.cross_origin()
 def thing_write_handler():
     data = flask.request.get_json(force=True)
+
+    jsonschema.validate(data, notif_request_schema)
+
     agent_id = data['agent_id']
     things = []
     if isinstance(data['device_id'], str):
