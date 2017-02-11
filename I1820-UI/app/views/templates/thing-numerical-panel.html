@@ -64,6 +64,12 @@
           </div>
           <button type="button" class="btn btn-default" ng-click="turn(setting.name, stringSettingValue)">Request</button>
         </div>
+        <div ng-if="setting.type == 'color'" class="list-group-item-text">
+          <div class="form-group">
+            <input type="color" class="form-control" ng-model="colorSettingValue" value="#ff6600">
+          </div>
+          <button type="button" class="btn btn-default" ng-click="turn(setting.name, colorSettingValue)">Request</button>
+        </div>
       </div>
     </div>
   </div>
