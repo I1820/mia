@@ -11,7 +11,7 @@ class ServiceMaster:
         self.i1820_framework = pelix.framework.create_framework(
             ("pelix.ipopo.core",  "pelix.shell.core")
         )
-        print(" * 18.20 Service Framework >>")
+        print(" * ")
         self.i1820_framework.start()
         self.i1820_framework_context = \
             self.i1820_framework.get_bundle_context()
@@ -19,7 +19,14 @@ class ServiceMaster:
             "I1820.services.stat").start()
         self.i1820_framework_context.install_bundle(
             "I1820.services.model").start()
-        print(" * 18.20 Service Framework <<")
+        self.i1820_framework_context.install_bundle(
+            "I1820.services.redis").start()
+        print(" * ")
+
+    def stop(self):
+        print(" > ")
+        self.i1820_framework.stop()
+        print(" > ")
 
     def service(self, service_name):
         service_ref = self.i1820_framework_context.get_service_reference(
