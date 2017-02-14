@@ -8,8 +8,8 @@
 # =======================================
 from . import client
 from ..conf.config import cfg
-from ..controllers.discovery import DiscoveryController
 from ..controllers.event import EventController
+from ..services.master import service_master
 from ..domain.log import I1820Log
 from ..domain.event import I1820Event
 from ..things.base import Things
@@ -71,8 +71,8 @@ def on_discovery(client, userdata, message):
     :type message: MQTTMessage
     '''
     data = json.loads(message.payload.decode('ascii'))
-    discovery = DiscoveryController()
-    discovery.ping(data)
+    with service_master.service('discovery_service') as discovery_service:
+        discovery_service.ping(data)
 
     logger.info("[%s]" % message.topic)
 

@@ -16,7 +16,6 @@ from ..domain.schemas.schema import log_request_schema
 from ..domain.schemas.schema import notif_request_schema
 from ..things.base import Things
 from ..services.master import service_master
-from ..controllers.discovery import DiscoveryController
 from ..exceptions.thing import \
      ThingNotFoundException, ThingTypeNotImplementedException, \
      ThingInvalidAccessException
@@ -57,14 +56,14 @@ def model_handler(thing):
 
 @app.route('/agent', methods=['GET'])
 def agent_get_handler():
-    discovery = DiscoveryController()
-    return json.dumps(discovery.agents)
+    with service_master.service('discovery_service') as discovery_service:
+        return json.dumps(discovery_service.agents)
 
 
 @app.route('/agent/<string:agent>', methods=['DELETE'])
 def agent_remove_handler(agent):
-    discovery = DiscoveryController()
-    return json.dumps(discovery.pong(agent))
+    with service_master.service('discovery_service') as discovery_service:
+        return json.dumps(discovery_service.pong(agent))
 
 
 # Things
