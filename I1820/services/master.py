@@ -21,6 +21,8 @@ class ServiceMaster:
             "I1820.services.model").start()
         self.i1820_framework_context.install_bundle(
             "I1820.services.redis").start()
+        self.i1820_framework_context.install_bundle(
+            "I1820.services.discovery").start()
         print(" * ")
 
     def stop(self):
