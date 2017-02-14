@@ -94,12 +94,5 @@ def on_connect(client, userdata, flags, rc):
         client.message_callback_add('I1820/%s/log' % t, on_log)
 
 
-# connect to brocker
+# provides on connect handler
 client.on_connect = on_connect
-try:
-    client.connect(cfg.mqtt_host, int(cfg.mqtt_port), 60)
-    print(" * MQTT at %s:%d" % (cfg.mqtt_host, int(cfg.mqtt_port)))
-except ConnectionError as e:
-    print(" * MQTT at %s:%d had connection error." % (cfg.mqtt_host,
-                                                      int(cfg.mqtt_port)))
-    raise e
