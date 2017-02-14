@@ -2,6 +2,7 @@ from ..conf.config import cfg
 
 from pelix.ipopo.decorators import ComponentFactory, Property, Provides, \
      Validate, Invalidate, Instantiate
+import redis
 
 
 @ComponentFactory("redis_factory")
@@ -20,24 +21,20 @@ class RedisService:
         """
         # All setup should be done here
         print(" * 18.20 Service: Redis Service")
-        if cfg.redis_host == '-':
-            print(" * Without Redis we are old but gold")
-        else:
-            # Setup redis connection
-            import redis
-            self.rconn = redis.StrictRedis(host=cfg.redis_host,
-                                           port=int(cfg.redis_port))
-            print(" * Redis at %s:%d" % (cfg.redis_host, int(cfg.redis_port)))
-            # We are new to cluster
-            n = self.rconn.scard('i1820:')
-            self.rconn.client_setname('el-i1820-%d' % n)
+        # Setup redis connection
+        self.rconn = redis.StrictRedis(host=cfg.redis_host,
+                                       port=int(cfg.redis_port))
+        print(" * Redis at %s:%d" % (cfg.redis_host, int(cfg.redis_port)))
+        # We are new to cluster
+        n = self.rconn.scard('i1820:')
+        self.rconn.client_setname('el-i1820-%d' % n)
 
-            for client in self.rconn.client_list():
-                if client['name'] == self.rconn.client_getname():
-                    name = 'el-i1820-%s' % client['addr'].split(':')[0]
-                    self.rconn.sadd('i1820:', name)
-                    self.rconn.client_setname(name)
-                    break
+        for client in self.rconn.client_list():
+            if client['name'] == self.rconn.client_getname():
+                name = 'el-i1820-%s' % client['addr'].split(':')[0]
+                self.rconn.sadd('i1820:', name)
+                self.rconn.client_setname(name)
+                break
 
     @Invalidate
     def invalidate(self, context):
