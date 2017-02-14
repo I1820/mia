@@ -8,8 +8,10 @@
 # =======================================
 from .base import I1820Controller
 from ..things.base import Things
+from ..services.master import service_master
 
 from datetime import datetime
+import time
 
 
 class DiscoveryController(I1820Controller):
@@ -29,6 +31,11 @@ class DiscoveryController(I1820Controller):
         return agents
 
     def ping(self, message: dict):
+        with service_master.service('redis_service') as redis_service:
+            redis_service.rconn.zadd('time:',
+                                     time.time(),
+                                     'agent: %s' % message['agent_id'])
+
         message['things'] = {tuple(t) for t in message['things']}
 
         if message['agent_id'] not in self._agents:
