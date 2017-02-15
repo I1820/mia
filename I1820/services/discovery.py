@@ -9,12 +9,12 @@ from pelix.ipopo.decorators import ComponentFactory, Property, Provides, \
 @ComponentFactory("discovery_factory")
 @Provides("discovery_service")
 @Property("default")
-@Requires("rs", "redis_service")
+@Requires("_rs", "redis_service")
 @Instantiate("default_discovery_instance")
 class DiscoveryService:
     def __init__(self):
         self._agents = {}
-        self.rs = None
+        self._rs = None
 
     @Validate
     def validate(self, context):
@@ -46,8 +46,8 @@ class DiscoveryService:
         return agents
 
     def ping(self, message: dict):
-        self.rs.rconn.zadd('time:', time.time(),
-                           'agent: %s' % message['agent_id'])
+        self._rs.rconn.zadd('time:', time.time(),
+                            'agent: %s' % message['agent_id'])
 
         message['things'] = {tuple(t) for t in message['things']}
 
