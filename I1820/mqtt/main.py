@@ -19,3 +19,7 @@ def main():
                                                           int(cfg.mqtt_port)))
         raise e
     client.loop_start()
+
+
+def die():
+    client.loop_stop()
