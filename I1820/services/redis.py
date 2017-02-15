@@ -25,16 +25,6 @@ class RedisService:
         self.rconn = redis.StrictRedis(host=cfg.redis_host,
                                        port=int(cfg.redis_port))
         print(" * Redis at %s:%d" % (cfg.redis_host, int(cfg.redis_port)))
-        # We are new to cluster
-        n = self.rconn.scard('i1820:')
-        self.rconn.client_setname('el-i1820-%d' % n)
-
-        for client in self.rconn.client_list():
-            if client['name'] == self.rconn.client_getname():
-                name = 'el-i1820-%s' % client['addr'].split(':')[0]
-                self.rconn.sadd('i1820:', name)
-                self.rconn.client_setname(name)
-                break
 
     @Invalidate
     def invalidate(self, context):
@@ -42,5 +32,4 @@ class RedisService:
         The component has been invalidated. This method is called right after
         the provided service has been removed from the framework.
         """
-        print(" > 18.20 Service: Redis Service")
-        self.rconn.srem('i1820:', self.rconn.client_getname())
+        pass
