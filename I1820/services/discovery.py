@@ -35,6 +35,8 @@ class DiscoveryService:
 
     @property
     def agents(self):
+        agents = self._rs.rconn.zrange('time:', 0, -1, withscores=True)
+        print(agents)
         agents = {}
         for agent in self._agents:
             agents[agent] = {}
