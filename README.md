@@ -26,6 +26,9 @@
 
 <p align="center"><img alt="I1820 in AoLab IoT Architecture" src="http://aolab.github.io/documentation/architecture/I1820.jpg"></p>
 
+Middleware connects different, often complex and already existing
+programs that were not originally designed to be connected.
+
 I1820 is a improved version of 18.20, it provides you a full featured package
 that can do all you need from IoT middleware (Platform) consist of create notification,
 collect logs and discover and manage your things.
