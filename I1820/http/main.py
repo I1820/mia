@@ -13,10 +13,16 @@ import logging
 
 logger = logging.getLogger('I1820.wsgi')
 
+ip = '0.0.0.0'
+port = 8080
+http_server = WSGIServer((ip, port), application=app, log=logger)
+
 
 def main():
-    ip = '0.0.0.0'
-    port = 8080
-    http_server = WSGIServer((ip, port), application=app, log=logger)
     print(' * HTTP at %s:%d' % (ip, port))
     http_server.serve_forever()
+
+
+def die():
+    print(' > HTTP Die')
+    http_server.stop()
