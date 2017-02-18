@@ -10,7 +10,7 @@
     },
     "device_id": {
       "description": "Target end device identification",
-      "type": "string"
+      "type": ["string", "array"]
     },
     "type": {
       "description": "Type of target end device",
