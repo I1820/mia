@@ -22,4 +22,5 @@ def main():
 
 
 def die():
+    print(" > MQTT Die")
     client.loop_stop()
