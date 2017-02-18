@@ -38,7 +38,7 @@ sensors and *nodes* are any device that can connect to the I1820 server,
 they only requirement is being able to make MQTT requests. An examples of such
 devices are NodeMCU and RPi.
 
-### Why another middleware?
+### Why another platform?
 
 The benefits we can point out about I1820 are:
 
@@ -172,6 +172,7 @@ Thanks to following technologies:
 ### Core
 - [x] OSGi Service Model [based on iPOPO]
 - [x] Socket.io based user level notification
+- [ ] Distributed I1820
 
 ### Database
 - [x] MongoDB Support
