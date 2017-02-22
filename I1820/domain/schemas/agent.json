@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+
+  "title": "I1820 Agent",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "I1820 agent identification",
+      "type": "string"
+    },
+    "things": {
+      "description": "Array of agent attached things",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": ["string"]
+          },
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": ["type", "id"]
+      }
+    }
+  },
+  "required": ["id", "things"]
+}
