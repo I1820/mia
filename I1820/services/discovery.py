@@ -1,3 +1,11 @@
+# In The Name Of God
+# ========================================
+# [] File Name : discovery.py
+#
+# [] Creation Date : 22-02-2017
+#
+# [] Created By : Parham Alvani (parham.alvani@gmail.com)
+# =======================================
 from ..things.base import Things
 
 from datetime import datetime
