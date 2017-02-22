@@ -39,6 +39,6 @@ class I1820Agent:
     def from_json(cls, raw):
         raw_values = json.loads(raw)
 
-        ident = raw_values['type']
+        ident = raw_values['id']
         things = raw_values['things']
         return cls(ident, things)
