@@ -9,7 +9,7 @@
 from ..things.base import Things
 from ..domain.agent import I1820Agent
 
-# from datetime import datetime
+from datetime import datetime
 import time
 from pelix.ipopo.decorators import ComponentFactory, Property, Provides, \
      Validate, Invalidate, Instantiate, Requires
@@ -44,12 +44,16 @@ class DiscoveryService:
 
     @property
     def agents(self):
+        '''
+        Retrieves I1820 agent information from redis.
+        '''
         agents = self._rs.rconn.zrange('i1820:agent:time:',
                                        0, -1, withscores=True)
         result = {}
         for agent_id, agent_time in agents:
             result[agent_id] = {}
-            result[agent_id]['time'] = agent_time
+            result[agent_id]['time'] = datetime.fromtimestamp(agent_time)\
+                .strftime('%Y-%m-%dT%H:%M:%SZ')
             result[agent_id]['things'] = []
             for t in self._rs.rconn.smembers('i1820:agent:%s' % agent_id):
                 t_type, t_id = t.split(":", maxsplit=1)
@@ -58,14 +62,20 @@ class DiscoveryService:
         return result
 
     def ping(self, agent: I1820Agent):
+        '''
+        Agent pings I1820, this method saves it's status and things.
+        '''
         self._rs.rconn.zadd('i1820:agent:time:', time.time(),
                             '%s' % agent.ident)
         for t in agent.things:
             Things.get(t['type']).new_thing(agent.ident, t['id'])
-            self._rs.rconn.sadd('i1820:agent:%s' % agent.ident,
-                                '%s:%s' % (t['type'], t['id']))
+            s = self._rs.rconn.sadd('i1820:agent:%s' % agent.ident,
+                                    '%s:%s' % (t['type'], t['id']))
+            print(s)
 
     def pong(self, agent_id: str):
+        '''
+        '''
         agent = self._agents.pop(agent_id, None)
         result = {}
         if agent is not None:
