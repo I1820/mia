@@ -7,8 +7,9 @@
 # [] Created By : Parham Alvani (parham.alvani@gmail.com)
 # =======================================
 from ..things.base import Things
+from ..domain.agent import I1820Agent
 
-from datetime import datetime
+# from datetime import datetime
 import time
 from pelix.ipopo.decorators import ComponentFactory, Property, Provides, \
      Validate, Invalidate, Instantiate, Requires
@@ -43,45 +44,26 @@ class DiscoveryService:
 
     @property
     def agents(self):
-        agents = self._rs.rconn.zrange('time:', 0, -1, withscores=True)
-        print(agents)
-        agents = {}
-        for agent in self._agents:
-            agents[agent] = {}
-            agents[agent]['time'] = self._agents[agent]['time']
-            agents[agent]['things'] = []
-            for thing in self._agents[agent]['things']:
-                agents[agent]['things'].append(
-                    {'type': thing[0], 'id': thing[1]})
-        return agents
+        agents = self._rs.rconn.zrange('i1820:agent:time:',
+                                       0, -1, withscores=True)
+        result = {}
+        for agent_id, agent_time in agents:
+            result[agent_id] = {}
+            result[agent_id]['time'] = agent_time
+            result[agent_id]['things'] = []
+            for t in self._rs.rconn.smembers('i1820:agent:%s' % agent_id):
+                t_type, t_id = t.split(":", maxsplit=1)
+                result[agent_id]['things'].append(
+                    {'type': t_type, 'id': t_id})
+        return result
 
-    def ping(self, message: dict):
-        self._rs.rconn.zadd('time:', time.time(),
-                            'agent: %s' % message['agent_id'])
-
-        message['things'] = {tuple(t) for t in message['things']}
-
-        if message['agent_id'] not in self._agents:
-            self._agents[message['agent_id']] = {
-                'time': datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
-                'things': set()
-            }
-        else:
-            self._agents[message['agent_id']]['time'] = \
-                    datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
-
-        to_be_add = message['things'] - \
-            self._agents[message['agent_id']]['things']
-        to_be_del = self._agents[message['agent_id']]['things'] - \
-            message['things']
-
-        for thing in to_be_del:
-            Things.get(thing[0]).del_thing(message['agent_id'], thing[1])
-            self._agents[message['agent_id']]['things'].remove(thing)
-
-        for thing in to_be_add:
-            Things.get(thing[0]).new_thing(message['agent_id'], thing[1])
-            self._agents[message['agent_id']]['things'].add(thing)
+    def ping(self, agent: I1820Agent):
+        self._rs.rconn.zadd('i1820:agent:time:', time.time(),
+                            '%s' % agent.ident)
+        for t in agent.things:
+            Things.get(t['type']).new_thing(agent.ident, t['id'])
+            self._rs.rconn.sadd('i1820:agent:%s' % agent.ident,
+                                '%s:%s' % (t['type'], t['id']))
 
     def pong(self, agent_id: str):
         agent = self._agents.pop(agent_id, None)
