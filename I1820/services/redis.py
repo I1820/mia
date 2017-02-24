@@ -23,7 +23,8 @@ class RedisService:
         print(" * 18.20 Service: Redis Service")
         # Setup redis connection
         self.rconn = redis.StrictRedis(host=cfg.redis_host,
-                                       port=int(cfg.redis_port))
+                                       port=int(cfg.redis_port),
+                                       decode_responses=True)
         print(" * Redis at %s:%d" % (cfg.redis_host, int(cfg.redis_port)))
 
     @Invalidate
