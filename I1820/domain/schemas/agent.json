@@ -8,6 +8,13 @@
       "description": "I1820 agent identification",
       "type": "string"
     },
+    "actions": {
+      "description": "Array of actions that agent can do",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
     "things": {
       "description": "Array of agent attached things",
       "type": "array",
