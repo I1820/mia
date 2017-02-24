@@ -10,7 +10,6 @@ from ..things.base import Things
 from ..domain.agent import I1820Agent
 
 from datetime import datetime
-import time
 from pelix.ipopo.decorators import ComponentFactory, Property, Provides, \
      Validate, Invalidate, Instantiate, Requires
 
@@ -65,7 +64,7 @@ class DiscoveryService:
         '''
         Agent pings I1820, this method saves it's status and things.
         '''
-        self._rs.rconn.zadd('i1820:agent:time:', time.time(),
+        self._rs.rconn.zadd('i1820:agent:time:', datetime.utcnow().timestamp(),
                             '%s' % agent.ident)
         for t in agent.things:
             Things.get(t['type']).new_thing(agent.ident, t['id'])
