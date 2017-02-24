@@ -8,6 +8,11 @@ from pelix.ipopo.decorators import ComponentFactory, Property, Provides, \
 @Requires("_rs", "redis_service")
 @Instantiate("default_cluster_instance")
 class ClusterService:
+    _code = {
+        'el': 'core',
+        'jj': 'scenario'
+    }
+
     def __init__(self):
         self._rs = None
         self.name = None
@@ -43,4 +48,16 @@ class ClusterService:
         self._rs.rconn.srem('i1820:', self._rs.rconn.client_getname())
 
     def neighbours(self):
-        pass
+        """
+        Retrieves I1820 avaiable components
+        """
+        results = []
+
+        for i1820 in self._rs.rconn.smembers('i1820:'):
+            result = {}
+            result['code'] = i1820
+            result['type'], _, result['ip'] = i1820.split('-')
+            result['type'] = ClusterService._code[result['type']]
+            results.append(result)
+
+        return results
