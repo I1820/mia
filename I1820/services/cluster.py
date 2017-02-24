@@ -1,3 +1,12 @@
+# In The Name Of God
+# ========================================
+# [] File Name : cluster.py
+#
+# [] Creation Date : 24-02-2017
+#
+# [] Created By : Parham Alvani (parham.alvani@gmail.com)
+# =======================================
+
 from pelix.ipopo.decorators import ComponentFactory, Property, Provides, \
      Validate, Invalidate, Instantiate, Requires
 
