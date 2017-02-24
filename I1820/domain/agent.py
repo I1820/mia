@@ -23,7 +23,7 @@ class I1820Agent:
     :param things: list of agent attached things.
     :type things: list
     '''
-    def __init__(self, ident: str, things: list):
+    def __init__(self, ident: str, things: list, actions: list=[]):
         for thing in things:
             if 'type' not in thing or 'id' not in thing:
                 raise ValueError(
@@ -31,11 +31,13 @@ class I1820Agent:
 
         self.ident = ident
         self.things = things
+        self.actions = actions
 
     def to_json(self):
             result = {
                 'id': self.ident,
                 'things': self.things,
+                'actions': self.actions
             }
             return json.dumps(result)
 
@@ -51,4 +53,7 @@ class I1820Agent:
 
         ident = raw_values['id']
         things = raw_values['things']
-        return cls(ident, things)
+        actions = []
+        if 'actions' in raw_values:
+            actions = raw_values['actions']
+        return cls(ident, things, actions)
