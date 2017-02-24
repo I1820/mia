@@ -144,6 +144,14 @@ def stat_uptime_handler():
     with service_master.service('stat_service') as stat_service:
         return str(stat_service.uptime())
 
+# Cluster
+
+
+@app.route('/cluster', methods=['GET'])
+def cluster_handler():
+    with service_master.service('cluster_service') as cluster_service:
+        return json.dumps(cluster_service.neighbours())
+
 
 # Error Side :P
 
