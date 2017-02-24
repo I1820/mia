@@ -12,12 +12,13 @@ from ..controllers.event import EventController
 from ..services.master import service_master
 from ..domain.log import I1820Log
 from ..domain.event import I1820Event
+from ..domain.agent import I1820Agent
 from ..things.base import Things
 from ..exceptions.thing import ThingNotFoundException
-from ..exceptions.format import InvalidLogFormatException
+from ..exceptions.format import InvalidLogFormatException, \
+     InvalidAgentFormatException
 
 import logging
-import json
 
 logger = logging.getLogger(__name__)
 
@@ -70,9 +71,14 @@ def on_discovery(client, userdata, message):
     :param age: recived message that contains topic, payload, qos, retain.
     :type message: MQTTMessage
     '''
-    data = json.loads(message.payload.decode('ascii'))
+    try:
+        agent = I1820Agent.from_json(message.payload.decode('ascii'))
+    except InvalidAgentFormatException as e:
+        logger.warning("[%s]: %s" % (message.topic, str(e)))
+        return
+
     with service_master.service('discovery_service') as discovery_service:
-        discovery_service.ping(data)
+        discovery_service.ping(agent)
 
     logger.info("[%s]" % message.topic)
 
