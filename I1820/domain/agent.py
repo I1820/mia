@@ -6,7 +6,11 @@
 #
 # [] Created By : Parham Alvani (parham.alvani@gmail.com)
 # =======================================
+from ..exceptions.format import InvalidAgentFormatException
+from .schemas.schema import agent_schema
+
 import json
+import jsonschema
 
 
 class I1820Agent:
@@ -38,6 +42,12 @@ class I1820Agent:
     @classmethod
     def from_json(cls, raw):
         raw_values = json.loads(raw)
+
+        # validate input json
+        try:
+            jsonschema.validate(raw_values, agent_schema)
+        except jsonschema.ValidationError as e:
+            raise InvalidAgentFormatException(e)
 
         ident = raw_values['id']
         things = raw_values['things']
