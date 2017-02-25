@@ -67,19 +67,17 @@ class DiscoveryService:
         self._rs.rconn.zadd('i1820:agent:time:', datetime.utcnow().timestamp(),
                             '%s' % agent.ident)
         for t in agent.things:
-            Things.get(t['type']).new_thing(agent.ident, t['id'])
-            s = self._rs.rconn.sadd('i1820:agent:%s' % agent.ident,
+                # Add thing into local things storage
+                Things.get(t['type']).new_thing(agent.ident, t['id'])
+                self._rs.rconn.sadd('i1820:agent:%s' % agent.ident,
                                     '%s:%s' % (t['type'], t['id']))
-            print(s)
 
     def pong(self, agent_id: str):
         '''
+        Removes given agent (based on it's identification) from agent storage.
         '''
-        agent = self._agents.pop(agent_id, None)
-        result = {}
-        if agent is not None:
-            result['time'] = agent['time']
-            result['things'] = []
-            for thing in agent['things']:
-                result['things'].append({'type': thing[0], 'id': thing[1]})
+        result = self._rs.rconn.zrem('i1820:agent:time:', agent_id)
+        for t in self._rs.rconn.smembers('i1820:agent:%s' % agent_id):
+            t_type, t_id = t.split(":", maxsplit=1)
+            Things.get(t_type).del_thing(agent_id, t_id)
         return result
