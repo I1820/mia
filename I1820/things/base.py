@@ -66,7 +66,9 @@ class Thing(metaclass=Things):
 
     @classmethod
     def new_thing(cls, agent_id, device_id):
-        cls.things[cls.name][(agent_id, device_id)] = cls(agent_id, device_id)
+        if (agent_id, device_id) not in cls.things[cls.name]:
+            cls.things[cls.name][(agent_id, device_id)] = \
+                    cls(agent_id, device_id)
 
     @classmethod
     def del_thing(cls, agent_id, device_id):
