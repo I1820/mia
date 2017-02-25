@@ -63,7 +63,7 @@ def agent_get_handler():
 @app.route('/agent/<string:agent>', methods=['DELETE'])
 def agent_remove_handler(agent):
     with service_master.service('discovery_service') as discovery_service:
-        return json.dumps(discovery_service.pong(agent))
+        return str(discovery_service.pong(agent))
 
 
 # Things
