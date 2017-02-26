@@ -78,6 +78,7 @@ class DiscoveryService:
         '''
         result = self._rs.rconn.zrem('i1820:agent:time:', agent_id)
         for t in self._rs.rconn.smembers('i1820:agent:%s' % agent_id):
+            self._rs.rconn.srem('i1820:agent:%s' % agent_id, t)
             t_type, t_id = t.split(":", maxsplit=1)
             Things.get(t_type).del_thing(agent_id, t_id)
         return result
