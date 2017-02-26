@@ -72,7 +72,9 @@ class Thing(metaclass=Things):
 
     @classmethod
     def del_thing(cls, agent_id, device_id):
-        del cls.things[cls.name][(agent_id, device_id)]
+        if cls.name in cls.things:
+            if (agent_id, device_id) in cls.things[cls.name]:
+                del cls.things[cls.name][(agent_id, device_id)]
 
     @classmethod
     def has_thing(cls, agent_id, device_id):
