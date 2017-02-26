@@ -11,7 +11,7 @@
     <a href="https://waffle.io/AoLab/I1820"><img alt="Stories in Ready" src="https://badge.waffle.io/AoLab/I1820.png?label=in%20progress&title=In%20Progress"></a>
 </p>
 
-# I1820
+# I1820, The IoT Platform
 - [Introduction](#introduction)
 - [Contributors](#contributers)
 - [Up and Running]('#up-and-running')
