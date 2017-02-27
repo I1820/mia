@@ -10,19 +10,19 @@ from ..things.base import Things
 from ..domain.agent import I1820Agent
 
 from datetime import datetime
+from threading import Lock
 from pelix.ipopo.decorators import ComponentFactory, Property, Provides, \
-     Validate, Invalidate, Instantiate, Requires
+     Validate, Invalidate, Instantiate
 
 
 @ComponentFactory("discovery_factory")
 @Provides("discovery_service")
 @Property("default")
-@Requires("_rs", "redis_service")
 @Instantiate("default_discovery_instance")
 class DiscoveryService:
     def __init__(self):
         self._agents = {}
-        self._rs = None
+        self.lck = Lock()
 
     @Validate
     def validate(self, context):
@@ -46,31 +46,53 @@ class DiscoveryService:
         '''
         Retrieves I1820 agent information from redis.
         '''
-        agents = self._rs.rconn.zrange('i1820:agent:time:',
-                                       0, -1, withscores=True)
         result = {}
-        for agent_id, agent_time in agents:
-            result[agent_id] = {}
-            result[agent_id]['time'] = datetime.fromtimestamp(agent_time)\
-                .strftime('%Y-%m-%dT%H:%M:%SZ')
-            result[agent_id]['things'] = []
-            for t in self._rs.rconn.smembers('i1820:agent:%s' % agent_id):
-                t_type, t_id = t.split(":", maxsplit=1)
-                result[agent_id]['things'].append(
-                    {'type': t_type, 'id': t_id})
+
+        with self.lck:
+            for agent_id, agent in self._agents.items():
+                result[agent_id] = {}
+                result[agent_id]['time'] = datetime\
+                    .fromtimestamp(agent['time'])\
+                    .strftime('%Y-%m-%dT%H:%M:%SZ')
+                result[agent_id]['things'] = []
+                for t_type, t_id in agent['things']:
+                    result[agent_id]['things'].append(
+                        {'type': t_type, 'id': t_id})
         return result
 
     def ping(self, agent: I1820Agent):
         '''
         Agent pings I1820, this method saves it's status and things.
         '''
-        self._rs.rconn.zadd('i1820:agent:time:', datetime.utcnow().timestamp(),
-                            '%s' % agent.ident)
-        for t in agent.things:
-                # Add thing into local things storage
-                Things.get(t['type']).new_thing(agent.ident, t['id'])
-                self._rs.rconn.sadd('i1820:agent:%s' % agent.ident,
-                                    '%s:%s' % (t['type'], t['id']))
+        # Agent attached things set
+        s = {(t['type'], t['id']) for t in agent.things}
+
+        # Let's create our agent
+        to_add = {}
+        to_del = {}
+        with self.lck:
+            if agent.ident not in self._agents:
+                self._agents[agent.ident] = {}
+                self._agents[agent.ident]['things'] = s
+                self._agents[agent.ident]['time'] = \
+                    datetime.utcnow().timestamp()
+                to_add = s
+            else:
+                self._agents[agent.ident]['time'] = \
+                            datetime.utcnow().timestamp()
+                if self._agents[agent.ident]['things'] == s:
+                    return
+                else:
+                    to_del = self._agents[agent.ident]['things'] - s
+                    to_add = s - self._agents[agent.ident]['things']
+
+        # Add things into local things storage
+        for (t_type, t_id) in to_add:
+            Things.get(t_type).new_thing(agent.ident, t_id)
+
+        # Remove things from local things storage
+        for (t_type, t_id) in to_del:
+            Things.get(t_type).del_thing(agent.ident, t_id)
 
     def pong(self, agent_id: str):
         '''
