@@ -98,9 +98,12 @@ class DiscoveryService:
         '''
         Removes given agent (based on it's identification) from agent storage.
         '''
-        result = self._rs.rconn.zrem('i1820:agent:time:', agent_id)
-        for t in self._rs.rconn.smembers('i1820:agent:%s' % agent_id):
-            self._rs.rconn.srem('i1820:agent:%s' % agent_id, t)
-            t_type, t_id = t.split(":", maxsplit=1)
-            Things.get(t_type).del_thing(agent_id, t_id)
+        with self.lck:
+            if agent_id in self._agents:
+                result = 1
+                for t_type, t_id in self._agents[agent_id]['things']:
+                    Things.get(t_type).del_thing(agent_id, t_id)
+                del self._agents[agent_id]
+            else:
+                result = 0
         return result
