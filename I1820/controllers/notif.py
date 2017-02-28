@@ -21,6 +21,5 @@ class NotificationController(I1820Controller):
         pass
 
     def notify(self, notification: I1820Notification):
-        for t in cfg.endpoints:
-            client.publish('I1820/%s/notification' % t,
-                           notification.to_json())
+        client.publish('I1820/%s/notification' % cfg.endpoint,
+                       notification.to_json())
