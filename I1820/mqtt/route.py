@@ -19,6 +19,7 @@ from ..exceptions.format import InvalidLogFormatException, \
      InvalidAgentFormatException
 
 import logging
+import json
 
 logger = logging.getLogger(__name__)
 
@@ -61,6 +62,28 @@ def on_log(client, userdata, message):
     logger.info("[%s]" % message.topic)
 
 
+def on_new_discovery(client, userdata, message):
+    '''
+    Handles discovery messages that come from I1820 Agents.
+    These messages are used as Broadcast for finding free I1820.
+
+    : client: the client instance for this callback
+    :param userdata: the private user data as set in Client() or userdata_set()
+    :param age: recived message that contains topic, payload, qos, retain.
+    :type message: MQTTMessage
+    '''
+    try:
+        agent = I1820Agent.from_json(message.payload.decode('ascii'))
+    except InvalidAgentFormatException as e:
+        logger.warning("[%s]: %s" % (message.topic, str(e)))
+        return
+    resp = {
+        'id': agent.ident,
+        'master': cfg.endpoint
+    }
+    client.publish('I1820/discovery-ack', json.dumps(resp))
+
+
 def on_discovery(client, userdata, message):
     '''
     Handles discovery messages that come from I1820 Agents.
@@ -93,11 +116,14 @@ def on_connect(client, userdata, flags, rc):
     :param flags: response flags sent by the broker
     :param rc: the connection result
     '''
-    for t in cfg.endpoints:
-        client.subscribe('I1820/%s/discovery' % t)
-        client.message_callback_add('I1820/%s/discovery' % t, on_discovery)
-        client.subscribe('I1820/%s/log' % t)
-        client.message_callback_add('I1820/%s/log' % t, on_log)
+    # New added things
+    client.subscribe('I1820/discovery')
+    client.message_callback_add('I1820/discovery', on_new_discovery)
+
+    client.subscribe('I1820/%s/discovery' % cfg.endpoint)
+    client.message_callback_add('I1820/%s/discovery' % cfg.endpoint, on_discovery)
+    client.subscribe('I1820/%s/log' % cfg.endpoint)
+    client.message_callback_add('I1820/%s/log' % cfg.endpoint, on_log)
 
 
 # provides on connect handler
