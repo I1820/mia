@@ -121,7 +121,8 @@ def on_connect(client, userdata, flags, rc):
     client.message_callback_add('I1820/discovery', on_new_discovery)
 
     client.subscribe('I1820/%s/discovery' % cfg.endpoint)
-    client.message_callback_add('I1820/%s/discovery' % cfg.endpoint, on_discovery)
+    client.message_callback_add('I1820/%s/discovery' % cfg.endpoint,
+                                on_discovery)
     client.subscribe('I1820/%s/log' % cfg.endpoint)
     client.message_callback_add('I1820/%s/log' % cfg.endpoint, on_log)
 
