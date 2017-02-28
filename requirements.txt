@@ -6,9 +6,8 @@ python-socketio
 influxdb
 
 paho-mqtt
+requests
 
 jsonschema
 
 iPOPO
-
-redis
