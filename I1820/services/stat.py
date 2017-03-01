@@ -7,6 +7,7 @@
 # [] Created By : Parham Alvani (parham.alvani@gmail.com)
 # =======================================
 import datetime
+import resource
 
 from pelix.ipopo.decorators import ComponentFactory, Property, Provides, \
          Validate, Invalidate, Instantiate
@@ -40,3 +41,6 @@ class StatService:
 
     def uptime(self):
         return datetime.datetime.now() - self.start_time
+
+    def resource(self):
+        return resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
