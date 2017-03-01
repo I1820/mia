@@ -85,6 +85,7 @@ class DiscoveryService:
                 else:
                     to_del = self._agents[agent.ident]['things'] - s
                     to_add = s - self._agents[agent.ident]['things']
+                    self._agents[agent.ident]['things'] = s
 
         # Add things into local things storage
         for (t_type, t_id) in to_add:
