@@ -144,6 +144,12 @@ def stat_uptime_handler():
     with service_master.service('stat_service') as stat_service:
         return str(stat_service.uptime())
 
+
+@app.route('/stat/memory', methods=['GET'])
+def stat_memory_handler():
+    with service_master.service('stat_service') as stat_service:
+        return str(stat_service.resource())
+
 # Cluster
 
 
