@@ -15,7 +15,11 @@ class I1820Config:
         cfg = configparser.ConfigParser()
 
         # File based configurations
-        cfg.read(path)
+        try:
+            cfg.read_file(open(path))
+        except FileNotFoundError:
+            print(" :| we need some configuration as you may know ...")
+            exit()
 
         self.cfg = cfg
 
