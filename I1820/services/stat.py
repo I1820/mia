@@ -43,4 +43,6 @@ class StatService:
         return datetime.datetime.now() - self.start_time
 
     def resource(self):
-        return resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
+        m = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
+        m = (m / 1000)
+        return m
