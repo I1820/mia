@@ -3,11 +3,11 @@
 import paho.mqtt.client as mqtt
 from socketIO_client import SocketIO, BaseNamespace
 import time
-import json
 import logging
 
 from I1820.conf.config import cfg
 from I1820.domain.log import I1820Log
+from I1820.domain.agent import I1820Agent
 
 
 token = '83DB8F6299E0A303730B5F913B6A3DF420EBC2C2'
@@ -25,12 +25,10 @@ class I1820Namespace(BaseNamespace):
         logger.info('connect')
 
 
-def ping():
-    message = {
-        'agent_id': 'dummy',
-        'things': [['dummy', '0']]
-    }
-    client.publish('I1820/%s/discovery' % token, json.dumps(message))
+def ping(i):
+    logger.info('i = %d' % i)
+    agent = I1820Agent('dummy', [{'type': 'dummy', 'id': str(i)}])
+    client.publish('I1820/%s/discovery' % token, agent.to_json())
 
 if __name__ == '__main__':
     socketIO = SocketIO('localhost', 8080)
@@ -38,8 +36,10 @@ if __name__ == '__main__':
 
     client.connect(cfg.mqtt_host, int(cfg.mqtt_port))
     client.loop_start()
+    i = 0
     while True:
-        ping()
+        i = (i + 1) % 2
+        ping(i)
         log = I1820Log(type='dummy', device='0', agent='dummy',
                        states=[
                            {'name': 'chert', 'value': '1'}
@@ -47,4 +47,4 @@ if __name__ == '__main__':
         client.publish('I1820/%s/log' % token, log.to_json())
         t = time.time()
         socketIO.wait(seconds=1)
-        time.sleep(10)
+        time.sleep(1)
