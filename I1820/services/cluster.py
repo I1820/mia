@@ -6,6 +6,7 @@
 #
 # [] Created By : Parham Alvani (parham.alvani@gmail.com)
 # =======================================
+from ..conf.config import cfg
 
 from pelix.ipopo.decorators import ComponentFactory, Property, Provides, \
      Validate, Invalidate, Instantiate
@@ -48,3 +49,11 @@ class ClusterService:
         results = []
 
         return results
+
+    @property
+    def tenant(self):
+        result = {
+            'id': cfg.tenant_id,
+            'owner': cfg.tenant_owner
+        }
+        return result
