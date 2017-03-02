@@ -150,13 +150,19 @@ def stat_memory_handler():
     with service_master.service('stat_service') as stat_service:
         return str(stat_service.resource())
 
-# Cluster
+# Cluster & Tenant
 
 
 @app.route('/cluster', methods=['GET'])
 def cluster_handler():
     with service_master.service('cluster_service') as cluster_service:
         return json.dumps(cluster_service.neighbours())
+
+
+@app.route('/tenant', methods=['GET'])
+def tenant_handler():
+    with service_master.service('cluster_service') as cluster_service:
+        return json.dumps(cluster_service.tenant)
 
 
 # Error Side :P
