@@ -10,7 +10,7 @@ from I1820.domain.log import I1820Log
 from I1820.domain.agent import I1820Agent
 
 
-token = '83DB8F6299E0A303730B5F913B6A3DF420EBC2C2'
+tenant_id = cfg.tenant_id
 client = mqtt.Client()
 t = 0
 logger = logging.getLogger('I1820.dummy')
@@ -28,7 +28,8 @@ class I1820Namespace(BaseNamespace):
 def ping(i):
     logger.info('i = %d' % i)
     agent = I1820Agent('dummy', [{'type': 'dummy', 'id': str(i)}])
-    client.publish('I1820/%s/discovery' % token, agent.to_json())
+    client.publish('I1820/%s/discovery' % tenant_id, agent.to_json())
+
 
 if __name__ == '__main__':
     socketIO = SocketIO('localhost', 8080)
@@ -44,7 +45,7 @@ if __name__ == '__main__':
                        states=[
                            {'name': 'chert', 'value': '1'}
                        ])
-        client.publish('I1820/%s/log' % token, log.to_json())
+        client.publish('I1820/%s/log' % tenant_id, log.to_json())
         t = time.time()
         socketIO.wait(seconds=1)
         time.sleep(1)
