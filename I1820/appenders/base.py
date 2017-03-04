@@ -23,3 +23,7 @@ class I1820LogAppender:
     @abc.abstractmethod
     def since(self, measurement, agent_id, device_id, since, limit):
         raise NotImplemented()
+
+    @abc.abstractmethod
+    def renew(self, measurement, agent_id, device_id, time: datetime.datetime):
+        raise NotImplemented()
