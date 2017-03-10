@@ -45,6 +45,10 @@ class LogService:
         pass
 
     def save(self, measurement, agent_id, device_id, time, value):
+        last_value = self.appender.last(measurement,
+                                        agent_id, device_id)['value']
+        if last_value is not None and value == last_value:
+            print("duplicate")
         return self.appender.save(measurement, agent_id,
                                   device_id, time, value)
 
