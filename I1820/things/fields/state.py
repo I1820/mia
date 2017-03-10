@@ -8,7 +8,6 @@ class State(Field):
 
     def __init__(self):
         super().__init__()
-        self.storage = {}
 
     def __get__(self, obj, objtype):
         value = LogController().last(
@@ -17,9 +16,6 @@ class State(Field):
 
     def __set__(self, obj, value):
         if isinstance(value, dict):
-            # TODO: checks last cached value with new value
-            # caches last value for renewing instead of inserting
-            self.storage[(obj.agent_id, obj.device_id)] = value
             LogController().save(self.name, obj.agent_id,
                                  obj.device_id,
                                  value['time'], value['value'])
