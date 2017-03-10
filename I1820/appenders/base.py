@@ -10,7 +10,7 @@ import abc
 import datetime
 
 
-class I1820LogAppender:
+class I1820LogAppender(metaclass=abc.ABCMeta):
     @abc.abstractmethod
     def save(self, measurement, agent_id, device_id, time: datetime.datetime,
              value):
