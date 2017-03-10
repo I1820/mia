@@ -39,6 +39,9 @@ class KafkaLogAppender(I1820LogAppender):
     def since(self, measurement, agent_id, device_id, since, limit=10):
         return None
 
+    def renew(self, measurement, agent_id, device_id, time):
+        pass
+
     @staticmethod
     def json_serializer(v):
         return json.dumps(v).encode('utf-8')

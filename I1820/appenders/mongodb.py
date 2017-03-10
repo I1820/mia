@@ -36,3 +36,6 @@ class MongodbLogAppender(I1820LogAppender):
 
     def since(self, measurement, agent_id, device_id, since, limit=10):
         pass
+
+    def renew(self, measurement, agent_id, device_id, time):
+        pass
