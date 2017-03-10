@@ -19,7 +19,7 @@ from pelix.ipopo.decorators import ComponentFactory, Property, Provides, \
 @Instantiate("default_log_instance")
 class LogService:
     def __init__(self):
-        pass
+        self.appender = None
 
     @Validate
     def validate(self, context):
