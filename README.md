@@ -72,6 +72,7 @@ Let's learn more about I1820 [here](http://aolab.github.io/I1820/presentation/).
    ```sh
 sudo ./scripts/influxdb-install.sh
 influx -execute 'create database I1820'
+influx -execute 'create retention policy "a_week" on "I1820" duration 1w replication 1'
    ```
 
 - **Step 1** Install and Setup Influx Time-Series-Platform \[[Influx installation](https://github.com/influxdata/chronograf/blob/master/docs/INSTALLATION.md)]
