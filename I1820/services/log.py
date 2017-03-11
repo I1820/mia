@@ -45,12 +45,17 @@ class LogService:
         pass
 
     def save(self, measurement, agent_id, device_id, time, value):
-        last_value = self.appender.last(measurement,
-                                        agent_id, device_id)['value']
+        last_value = None
+        if cfg.appenders_renew == 'true':
+            last_value = self.appender.last(measurement,
+                                            agent_id, device_id)['value']
+
         if last_value is not None and value == last_value:
-            print("duplicate")
-        return self.appender.save(measurement, agent_id,
-                                  device_id, time, value)
+            return self.appender.renew(measurement, agent_id,
+                                       device_id, time)
+        else:
+            return self.appender.save(measurement, agent_id,
+                                      device_id, time, value)
 
     def last(self, measurement, agent_id, device_id):
         return self.appender.last(measurement, agent_id, device_id)
