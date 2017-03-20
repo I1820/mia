@@ -31,7 +31,7 @@ class LogService:
         print(" * 18.20 Service: Log Service")
         appender_name = cfg.appenders_appender
         appender_module = importlib.import_module(
-            'I1820.appenders.%s' % appender_name)
+            'I1820.databases.%s' % appender_name)
         appender_cls = getattr(
             appender_module, "%sLogAppender" % appender_name.title())
         self.appender = appender_cls()
@@ -44,18 +44,20 @@ class LogService:
         """
         pass
 
-    def save(self, measurement, agent_id, device_id, time, value):
+    def create(self, measurement, agent_id, device_id, time, value):
         last_value = None
         if cfg.appenders_renew == 'true':
-            last_value = self.appender.last(measurement,
-                                            agent_id, device_id)['value']
+            last_value = self.appender.retrieve_last(measurement,
+                                                     agent_id,
+                                                     device_id)['value']
 
         if last_value is not None and value == last_value:
-            return self.appender.renew(measurement, agent_id,
-                                       device_id, time)
+            return self.appender.update(measurement,
+                                        agent_id,
+                                        device_id, time)
         else:
-            return self.appender.save(measurement, agent_id,
-                                      device_id, time, value)
+            return self.appender.create(measurement, agent_id,
+                                        device_id, time, value)
 
-    def last(self, measurement, agent_id, device_id):
+    def retrieve_last(self, measurement, agent_id, device_id):
         return self.appender.last(measurement, agent_id, device_id)
