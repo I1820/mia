@@ -24,7 +24,7 @@ class ServiceMaster:
         self.i1820_framework_context.install_bundle(
             "I1820.services.cluster").start()
         self.i1820_framework_context.install_bundle(
-            "I1820.services.log").start()
+            "I1820.databases.log").start()
         print(" * ")
 
     def stop(self):
