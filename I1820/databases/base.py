@@ -12,18 +12,19 @@ import datetime
 
 class I1820LogAppender(metaclass=abc.ABCMeta):
     @abc.abstractmethod
-    def save(self, measurement, agent_id, device_id, time: datetime.datetime,
-             value):
+    def create(self, measurement, agent_id, device_id, time: datetime.datetime,
+               value):
         raise NotImplemented()
 
     @abc.abstractmethod
-    def last(self, measurement, agent_id, device_id):
+    def retrieve_last(self, measurement, agent_id, device_id):
         raise NotImplemented()
 
     @abc.abstractmethod
-    def since(self, measurement, agent_id, device_id, since, limit):
+    def retrieve_since(self, measurement, agent_id, device_id, since, limit):
         raise NotImplemented()
 
     @abc.abstractmethod
-    def renew(self, measurement, agent_id, device_id, time: datetime.datetime):
+    def update(self, measurement, agent_id, device_id,
+               time: datetime.datetime):
         raise NotImplemented()
