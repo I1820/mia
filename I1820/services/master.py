@@ -18,9 +18,9 @@ class ServiceMaster:
         self.i1820_framework_context.install_bundle(
             "I1820.services.stat").start()
         self.i1820_framework_context.install_bundle(
-            "I1820.services.model").start()
+            "I1820.things.model").start()
         self.i1820_framework_context.install_bundle(
-            "I1820.services.discovery").start()
+            "I1820.things.discovery").start()
         self.i1820_framework_context.install_bundle(
             "I1820.services.cluster").start()
         self.i1820_framework_context.install_bundle(
