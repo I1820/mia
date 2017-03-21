@@ -60,4 +60,4 @@ class LogService:
                                         device_id, time, value)
 
     def retrieve_last(self, measurement, agent_id, device_id):
-        return self.appender.last(measurement, agent_id, device_id)
+        return self.appender.retrieve_last(measurement, agent_id, device_id)
