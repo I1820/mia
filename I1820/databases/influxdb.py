@@ -20,7 +20,7 @@ class InfluxdbLogAppender(I1820LogAppender):
                                       password=cfg.appenders_influxdb_passwd,
                                       database=cfg.appenders_influxdb_db)
 
-    def save(self, measurement, agent_id, device_id, time, value):
+    def create(self, measurement, agent_id, device_id, time, value):
         points = [{
             "measurement": measurement,
             "tags": {
@@ -34,7 +34,7 @@ class InfluxdbLogAppender(I1820LogAppender):
         }]
         self._client.write_points(points, time_precision="s")
 
-    def last(self, measurement, agent_id, device_id):
+    def retrieve_last(self, measurement, agent_id, device_id):
         q = ('SELECT * FROM %s'
              ' WHERE "agent_id" = \'%s\' AND "device_id" = \'%s\''
              ' ORDER BY time DESC LIMIT 1;') % (measurement,
@@ -46,7 +46,8 @@ class InfluxdbLogAppender(I1820LogAppender):
         else:
             return {'value': last['value'], 'time': last['time']}
 
-    def since(self, measurement, agent_id, device_id, since, limit=10):
+    def retrieve_since(self, measurement, agent_id, device_id, since,
+                       limit=10):
         q = ('SELECT * FROM %s'
              ' WHERE "agent_id" = \'%s\' AND "device_id" = \'%s\''
              ' AND time > \'%s\''
@@ -55,5 +56,5 @@ class InfluxdbLogAppender(I1820LogAppender):
         results = self._client.query(q)
         next(results.get_points(), None)
 
-    def renew(self, measurement, agent_id, device_id, time):
+    def update(self, measurement, agent_id, device_id, time):
         pass
