@@ -5,8 +5,8 @@
   </div>
 
   <!-- Statistics -->
-  <div class="card-block">
-    <h4 class="card-title" ng-if="statistics.length">Statistics</h4>
+  <div class="card-block" ng-if="statistics.length">
+    <h4 class="card-title">Statistics</h4>
   </div>
   <ul class="list-group list-group-flush">
     <li ng-repeat="statistic in statistics" class="list-group-item">
@@ -15,8 +15,8 @@
   </ul>
 
   <!-- Events -->
-  <div class="card-block">
-    <h4 class="card-title" ng-if="events.length">Events</h4>
+  <div class="card-block" ng-if="events.length">
+    <h4 class="card-title">Events</h4>
   </div>
   <ul class="list-group list-group-flush">
     <li ng-repeat="event in events" class="list-group-item">
@@ -25,8 +25,8 @@
   </ul>
 
   <!-- States -->
-  <div class="card-block">
-    <h4 class="card-title" ng-if="states.length">Sensors</h4>
+  <div class="card-block" ng-if="states.length">
+    <h4 class="card-title">Sensors</h4>
   </div>
   <ul class="list-group list-group-flush">
     <li ng-repeat="state in states" class="list-group-item">
@@ -35,8 +35,8 @@
   </ul>
 
   <!-- Actuators -->
-  <div class="card-block">
-    <h3 class="card-title" ng-if="settings.length">Actuators</h3>
+  <div class="card-block" ng-if="settings.length">
+    <h3 class="card-title">Actuators</h3>
   </div>
   <div class="list-group list-group-flush">
     <div ng-repeat="setting in settings" class="list-group-item flex-column">
