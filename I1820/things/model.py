@@ -6,9 +6,9 @@
 #
 # [] Created By : Parham Alvani (parham.alvani@gmail.com)
 # =======================================
-from ..things.base import Things
-from ..things.sensor import SensorThing
-from ..things.actuator import ActuatorThing
+from .base import Things
+from .sensor import SensorThing
+from .actuator import ActuatorThing
 
 from pelix.ipopo.decorators import ComponentFactory, Property, Provides, \
          Validate, Invalidate, Instantiate

@@ -6,7 +6,7 @@
 #
 # [] Created By : Parham Alvani (parham.alvani@gmail.com)
 # =======================================
-from ..things.base import Things
+from .base import Things
 from ..domain.agent import I1820Agent
 
 from datetime import datetime
