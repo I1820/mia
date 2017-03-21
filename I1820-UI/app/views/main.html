@@ -5,15 +5,10 @@
   </div>
 </div>
 <img src="images/i1820-logo.png" class="figure-img img-fluid rounded" />
-<div>
-  <h2>Tenant is</h2>
-  <dl>
-    <dt>Tenant ID</dt>
-    <dd>{{tenant.id}}</dd>
-    <dt>Tenant Owner</dt>
-    <dd>{{tenant.owner}}</dd>
-  </dl>
-</div>
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">{{tenant.owner}}</li>
+  <li class="breadcrumb-item">{{tenant.id}}</li>
+</ol>
 <blockquote class="blockquote-reverse">
   <p>Good Days, Good Things</p>
   <footer>Parham Alvani in <cite title="AoLab">AoLab</cite></footer>
