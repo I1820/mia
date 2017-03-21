@@ -5,10 +5,6 @@
 <p align="center"><strong>Good Days Good Things</strong></p>
 
 <p align="center">
-    <img alt="Automated Badge" src="https://img.shields.io/docker/automated/aolab/i1820.svg">
-    <img alt="Pulls Badge" src="https://img.shields.io/docker/pulls/aolab/i1820.svg">
-    <img alt="Build Status" src="https://travis-ci.com/I1820/I1820.Core.svg?token=JZAMgPdyu1goqjqCpTVq&branch=master">
-    <a href="https://waffle.io/AoLab/I1820"><img alt="Stories in Ready" src="https://badge.waffle.io/AoLab/I1820.png?label=in%20progress&title=In%20Progress"></a>
 </p>
 
 # I1820, The IoT Platform
