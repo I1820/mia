@@ -1,3 +1,11 @@
+# In The Name Of God
+# ========================================
+# [] File Name : mongodb.py
+#
+# [] Creation Date : 21-03-2017
+#
+# [] Created By : Parham Alvani (parham.alvani@gmail.com)
+# =======================================
 from .base import I1820LogAppender
 from ..conf.config import cfg
 
@@ -11,7 +19,7 @@ class MongodbLogAppender(I1820LogAppender):
                                            )
         self._client = self._client[cfg.appenders_mongodb_db]
 
-    def save(self, measurement, agent_id, device_id, time, value):
+    def create(self, measurement, agent_id, device_id, time, value):
         collection = self._client[measurement]
         point = {
             "agent_id": agent_id,
@@ -21,7 +29,7 @@ class MongodbLogAppender(I1820LogAppender):
         }
         collection.insert_one(point)
 
-    def last(self, measurement, agent_id, device_id):
+    def retrieve_last(self, measurement, agent_id, device_id):
         collection = self._client[measurement]
         q = {
             "agent_id": agent_id,
@@ -34,8 +42,9 @@ class MongodbLogAppender(I1820LogAppender):
             return {'value': result['value'],
                     'time': result['time'].strftime('%Y-%m-%dT%H:%M:%SZ')}
 
-    def since(self, measurement, agent_id, device_id, since, limit=10):
+    def retrieve_since(self, measurement, agent_id, device_id, since,
+                       limit=10):
         pass
 
-    def renew(self, measurement, agent_id, device_id, time):
+    def update(self, measurement, agent_id, device_id, time):
         pass
