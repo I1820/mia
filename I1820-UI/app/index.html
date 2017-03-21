@@ -21,27 +21,19 @@
     <![endif]-->
 
 <!-- Add your site or application content here -->
-<div class="navbar navbar-inverse" role="navigation" ng-controller="NavCtrl">
+<div class="navbar navbar-inverse bg-inverse navbar-toggleable-md" role="navigation" ng-controller="NavCtrl">
   <div class="container">
-    <div class="navbar-header">
-
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-
-      <a class="navbar-brand" href="#/">I1820-UI</a>
-    </div>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#js-navbar-collapse" aria-controls="js-navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="#/">I1820-UI</a>
 
     <div class="collapse navbar-collapse" id="js-navbar-collapse">
-
-      <ul class="nav navbar-nav">
-        <li ng-class="{active: activeView === 'home'}"><a href="#/">Home</a></li>
-        <li ng-class="{active: activeView === 'plugin'}"><a href="#/plugin">Plugin</a></li>
-        <li ng-class="{active: activeView === 'about'}"><a href="#/about">About</a></li>
-        <li ng-show="activeView === 'agent'" class="active"><a href="#{{path}}">Agent</a></li>
+      <ul class="navbar-nav mr-auto">
+        <li ng-class="{active: activeView === 'home'}" class="nav-item"><a class="nav-link" href="#/">Home</a></li>
+        <li ng-class="{active: activeView === 'plugin'}" class="nav-item"><a class="nav-link" href="#/plugin">Plugin</a></li>
+        <li ng-class="{active: activeView === 'about'}" class="nav-item"><a class="nav-link" href="#/about">About</a></li>
+        <li ng-show="activeView === 'agent'" class="active nav-item"><a class="nav-link" href="#{{path}}">Agent</a></li>
       </ul>
     </div>
   </div>
@@ -72,6 +64,7 @@ ga('send', 'pageview');
 <!-- bower:js -->
 <script src="bower_components/jquery/dist/jquery.js"></script>
 <script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/tether/dist/js/tether.js"></script>
 <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
 <script src="bower_components/angular-animate/angular-animate.js"></script>
 <script src="bower_components/angular-cookies/angular-cookies.js"></script>
