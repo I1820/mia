@@ -19,16 +19,16 @@ class State(Field):
 
     def __get__(self, obj, objtype):
         with service_master.service('log_service') as log_service:
-            value = log_service.last(
+            value = log_service.retrieve_last(
                 self.name, obj.agent_id, obj.device_id)
         return value
 
     def __set__(self, obj, value):
         if isinstance(value, dict):
             with service_master.service('log_service') as log_service:
-                log_service.save(self.name, obj.agent_id,
-                                 obj.device_id,
-                                 value['time'], value['value'])
+                log_service.create(self.name, obj.agent_id,
+                                   obj.device_id,
+                                   value['time'], value['value'])
             return
         else:
             raise ThingInvalidAccessException(obj.name, self.name)
