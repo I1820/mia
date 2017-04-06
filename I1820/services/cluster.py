@@ -17,11 +17,6 @@ from pelix.ipopo.decorators import ComponentFactory, Property, Provides, \
 @Property("default")
 @Instantiate("default_cluster_instance")
 class ClusterService:
-    _code = {
-        'el': 'core',
-        'jj': 'scenario'
-    }
-
     def __init__(self):
         self.name = None
 
@@ -41,14 +36,6 @@ class ClusterService:
         the provided service has been removed from the framework.
         """
         print(" > 18.20 Service: Cluster Service")
-
-    def neighbours(self):
-        """
-        Retrieves I1820 avaiable components
-        """
-        results = []
-
-        return results
 
     @property
     def tenant(self):
