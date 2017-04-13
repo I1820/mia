@@ -1,5 +1,5 @@
 before_script:
-  - apt-get update -qq && apt-get install -y -qq python3 python3-pip
+  - apt-get update -qq && apt-get install -y -qq python3 python3-pip python3-dev
   - which python3
   - python3 -V
   - pip3 install -r dev-requirements.txt
