@@ -1,8 +1,7 @@
-image: python:3.5
-
-before_script:
-  - pip3 install flake8
-
 code_style:
-  script:
-    - flake8 --statistics --verbose I1820/
+  image: python:3.5
+  before_script:
+    - pip3 install flake8
+  flake8:
+    script:
+      - flake8 --statistics --verbose I1820/
