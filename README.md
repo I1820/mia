@@ -152,6 +152,7 @@ Thanks to following technologies:
 
 - [InfluxDB](https://www.influxdata.com/time-series-platform/influxdb/): Time-Series Data Storage
 - [ActiveMQ](http://activemq.apache.org/): The most popular and powerful open source messaging and Integration Patterns server
+- [Consul]():
 
 ## Releases
 
