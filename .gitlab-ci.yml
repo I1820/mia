@@ -22,4 +22,4 @@ docker_image:
     - docker info
 
   script:
-    - docker build -t i1820/Core .
+    - docker build -t i1820/core .
