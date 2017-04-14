@@ -11,3 +11,5 @@ requests
 jsonschema
 
 iPOPO
+
+consul-service-discovery
