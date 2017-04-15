@@ -145,6 +145,12 @@ cp I1820/conf/1820.example.ini I1820/conf/1820.ini
 
 - **Step 7** API documentation avaiable [here](http://aolab.github.io/I1820-Documentation).
 
+## Docker
+Let's build our docker image :P
+
+```sh
+sudo docker build --no-cache -t i1820/core .
+```
 
 ## Components
 
