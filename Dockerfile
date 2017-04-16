@@ -13,7 +13,7 @@ WORKDIR /home/root
 # I1820
 WORKDIR /home/root/I1820
 COPY . .
-RUN pyvenv .
+RUN cp I1820/conf/1820.example.ini I1820/conf/1820.ini
 RUn pip3 install --upgrade pip
 RUN pip3 install -r requirements.txt
 
