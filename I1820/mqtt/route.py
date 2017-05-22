@@ -94,12 +94,12 @@ def on_connect(client, userdata, flags, rc):
     :param rc: the connection result
     '''
     # Discovery
-    client.subscribe('I1820/%s/discovery' % cfg.tenant_id)
-    client.message_callback_add('I1820/%s/discovery' % cfg.tenant_id,
+    client.subscribe('I1820/%s/agent/ping' % cfg.tenant_id)
+    client.message_callback_add('I1820/%s/agent/ping' % cfg.tenant_id,
                                 on_discovery)
     # Log
-    client.subscribe('I1820/%s/log' % cfg.tenant_id)
-    client.message_callback_add('I1820/%s/log' % cfg.tenant_id, on_log)
+    client.subscribe('I1820/%s/log/send' % cfg.tenant_id)
+    client.message_callback_add('I1820/%s/log/send' % cfg.tenant_id, on_log)
 
 
 # provides on connect handler

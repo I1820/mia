@@ -65,7 +65,7 @@ Let's learn more about I1820 [here](http://aolab.github.io/I1820/presentation/).
 
 - **Step 1** Install and Setup InfluxDB \[[InfluxDB installation](https://docs.influxdata.com/influxdb/v1.0/introduction/installation)]
 
-   ```sh
+    ```sh
 sudo ./scripts/influxdb-install.sh
 influx -execute 'create database I1820'
 influx -execute 'create retention policy "a_week" on "I1820" duration 1w replication 1'
@@ -103,8 +103,8 @@ sudo systemctl start chronograf
 
 - **Step 1** Install and Setup MongoDB
 
-   ```sh
-   sudo apt-get install mongodb
+    ```sh
+sudo apt-get install mongodb
    ```
 
 - **Step 2** Install and Setup eMQTT \[[eMQTT installation](http://emqtt.io/docs/v2/install.html)]

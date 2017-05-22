@@ -21,5 +21,5 @@ class NotificationController(I1820Controller):
         pass
 
     def notify(self, notification: I1820Notification):
-        client.publish('I1820/%s/notification' % cfg.tenant_id,
+        client.publish('I1820/%s/configuration/request' % cfg.tenant_id,
                        notification.to_json())
