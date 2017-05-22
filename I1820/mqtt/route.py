@@ -94,7 +94,7 @@ def on_connect(client, userdata, flags, rc):
     :param rc: the connection result
     '''
     # Discovery
-    client.subscribe('I1820/%s/discovery/ping' % cfg.tenant_id)
+    client.subscribe('I1820/%s/agent/ping' % cfg.tenant_id)
     client.message_callback_add('I1820/%s/discovery/ping' % cfg.tenant_id,
                                 on_discovery)
     # Log
