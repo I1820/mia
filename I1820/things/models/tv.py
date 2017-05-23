@@ -1,6 +1,6 @@
 # In The Name Of God
 # ========================================
-# [] File Name : lamp.py
+# [] File Name : tv.py
 #
 # [] Creation Date : 26-08-2016
 #
