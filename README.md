@@ -1,4 +1,4 @@
-[![Travis branch](https://img.shields.io/travis/i1820/core/master.svg?style=flat-square)](https://travis-ci.org/i1820/core)
+[![Travis branch](https://img.shields.io/travis/I1820/Core/master.svg?style=flat-square)](https://travis-ci.org/I1820/Core)
 
 <p align="center"><strong>Good Days Good Things</strong></p>
 
