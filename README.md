@@ -1,11 +1,4 @@
-<p align="center">
-    <img alt="I1820 Logo" src="http://aolab.github.io/I1820/logo/logo-md.png">
-</p>
-
 <p align="center"><strong>Good Days Good Things</strong></p>
-
-<p align="center">
-</p>
 
 # I1820, The IoT Platform
 - [Introduction](#introduction)
@@ -19,8 +12,6 @@
 
 ## Introduction
 *Next Generation of IoT Platforms*
-
-<p align="center"><img alt="I1820 in AoLab IoT Architecture" src="http://aolab.github.io/documentation/architecture/I1820.jpg"></p>
 
 Middleware connects different, often complex and already existing
 programs that were not originally designed to be connected.
@@ -53,12 +44,6 @@ I1820 provides following components of **IoT Application Enablement Platform**:
 * Database
 * Processing & action management
 * Data visualization
-
-<p align="center"><img alt="I1820 Main Components" src="http://aolab.github.io/I1820/documentation/I1820-Components.jpg"></p>
-
-### Do you love us ?
-
-Let's learn more about I1820 [here](http://aolab.github.io/I1820/presentation/).
 
 ## Up and Running
 ###### in Ubuntu
