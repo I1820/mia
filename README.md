@@ -1,4 +1,5 @@
 [![Travis branch](https://img.shields.io/travis/I1820/Core/master.svg?style=flat-square)](https://travis-ci.org/I1820/Core)
+[![Maintainability](https://api.codeclimate.com/v1/badges/111cc2d035c50725fb48/maintainability)](https://codeclimate.com/github/I1820/Core/maintainability)
 
 <p align="center"><strong>Good Days Good Things</strong></p>
 
