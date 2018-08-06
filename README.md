@@ -1,3 +1,5 @@
+[![Travis branch](https://img.shields.io/travis/i1820/core/master.svg?style=flat-square)](https://travis-ci.org/i1820/core)
+
 <p align="center"><strong>Good Days Good Things</strong></p>
 
 # I1820, The IoT Platform
