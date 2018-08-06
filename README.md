@@ -2,7 +2,6 @@
 
 # I1820, The IoT Platform
 - [Introduction](#introduction)
-- [Contributors](#contributers)
 - [Up and Running]('#up-and-running')
 - [I1820-UI](https://github.com/AoLab/I1820/blob/master/I1820-UI/README.md)
 - [Components](#components)
@@ -50,15 +49,15 @@ I1820 provides following components of **IoT Application Enablement Platform**:
 
 - **Step 1** Install and Setup InfluxDB \[[InfluxDB installation](https://docs.influxdata.com/influxdb/v1.0/introduction/installation)]
 
-    ```sh
+```sh
 sudo ./scripts/influxdb-install.sh
 influx -execute 'create database I1820'
 influx -execute 'create retention policy "a_week" on "I1820" duration 1w replication 1'
-   ```
+```
 
-- **Step 1** Install and Setup Influx Time-Series-Platform \[[Influx installation](https://github.com/influxdata/chronograf/blob/master/docs/INSTALLATION.md)]
+- **Step 1+** Install and Setup Influx Time-Series-Platform \[[Influx installation](https://github.com/influxdata/chronograf/blob/master/docs/INSTALLATION.md)]
 
-   ```sh
+```sh
 # Download and Install Kapacitor
 wget https://dl.influxdata.com/kapacitor/releases/kapacitor_1.1.0_amd64.deb
 sudo dpkg -i kapacitor_1.1.0_amd64.deb
@@ -84,17 +83,17 @@ sudo dpkg -i chronograf_nightly_amd64.deb
 sudo systemctl start chronograf
 
 # Let's have fun with influx on http://localhost:8888
-   ```
+```
 
-- **Step 1** Install and Setup MongoDB
+- **Step 1+** Install and Setup MongoDB
 
-    ```sh
+```sh
 sudo apt-get install mongodb
-   ```
+```
 
 - **Step 2** Install and Setup eMQTT \[[eMQTT installation](http://emqtt.io/docs/v2/install.html)]
 
-   ```sh
+```sh
 unzip emqttd-ubuntu64-2.0-beta1-20160830.zip && cd emqttd
 
 # start console
@@ -108,30 +107,28 @@ unzip emqttd-ubuntu64-2.0-beta1-20160830.zip && cd emqttd
 
 # stop
 ./bin/emqttd stop
-   ```
+```
 
 - **Step 4** Install python dependencies
 
-   ```sh
+```sh
 sudo pip3 install -r requirements.txt
-   ```
+```
 
 - **Step 5** Provide I1820 configuration in INI.
 
-   ```sh
+```sh
 cp I1820/conf/1820.example.ini I1820/conf/1820.ini
-   ```
+```
 
-- **Step 6** Run :D
+- **Step 6** Run :rocket:
 
-   ```sh
+```sh
 ./18.20-serve.py
-   ```
-
-- **Step 7** API documentation avaiable [here](http://aolab.github.io/I1820-Documentation).
+```
 
 ## Docker
-Let's build our docker image :P
+Let's build our docker image :yum: (WIP)
 
 ```sh
 sudo docker build --no-cache -t i1820/core .
@@ -143,7 +140,7 @@ Thanks to following technologies:
 
 - [InfluxDB](https://www.influxdata.com/time-series-platform/influxdb/): Time-Series Data Storage
 - [ActiveMQ](http://activemq.apache.org/): The most popular and powerful open source messaging and Integration Patterns server
-- [Consul]():
+- [Consul](): ?
 
 ## Releases
 
@@ -151,7 +148,8 @@ Thanks to following technologies:
 * Pink 1.0
 * Purple 2.0
 * Green 3.0
-* Black 4.0: master
+* Black 4.0
+* Dead 5.0: master
 
 ## ToDo
 ### Core
