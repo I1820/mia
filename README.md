@@ -1,5 +1,6 @@
 [![Travis branch](https://img.shields.io/travis/com/I1820/Core/master.svg?style=flat-square)](https://travis-ci.com/I1820/Core)
-[![Maintainability](https://api.codeclimate.com/v1/badges/111cc2d035c50725fb48/maintainability)](https://codeclimate.com/github/I1820/Core/maintainability)
+[![Codacy Badge](https://img.shields.io/codacy/grade/554074dbb573493bbb235d08122e1206.svg?style=flat-square
+)](https://www.codacy.com/project/i1820/Core/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=I1820/Core&amp;utm_campaign=Badge_Grade_Dashboard)
 
 <p align="center"><strong>Good Days Good Things</strong></p>
 
