@@ -1,5 +1,5 @@
 [![Travis branch](https://img.shields.io/travis/com/I1820/Core/master.svg?style=flat-square)](https://travis-ci.com/I1820/Core)
-[![Codacy Badge](https://img.shields.io/codacy/grade/554074dbb573493bbb235d08122e1206.svg?style=flat-square)](https://www.codacy.com/project/i1820/Core/dashboard)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/554074dbb573493bbb235d08122e1206)](https://www.codacy.com/app/i1820/Core?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=I1820/Core&amp;utm_campaign=Badge_Grade)
 
 <p align="center"><strong>Good Days Good Things</strong></p>
 
