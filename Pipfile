@@ -12,6 +12,7 @@ requests = "*"
 jsonschema = "*"
 Flask = "*"
 Flask-Cors = "*"
+rich = "*"
 
 [dev-packages]
 flake8 = "*"

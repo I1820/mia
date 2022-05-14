@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "e5c4817b911d5b226be849009fc9b29b51abe5b7c0ac851458497c59195eedc5"
+            "sha256": "fa14661423b579d170dafc509e79790a7cb44c3854ce8f4603ddf54c2a24078b"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -54,6 +54,13 @@
             ],
             "markers": "python_version >= '3.7'",
             "version": "==8.1.3"
+        },
+        "commonmark": {
+            "hashes": [
+                "sha256:452f9dc859be7f06631ddcb328b6919c67984aca654e5fefb3914d54691aed60",
+                "sha256:da2f38c92590f83de410ba1a3cbceafbc74fee9def35f9251ba9a971d6d66fd9"
+            ],
+            "version": "==0.9.1"
         },
         "flask": {
             "hashes": [
@@ -303,6 +310,14 @@
             "index": "pypi",
             "version": "==1.6.1"
         },
+        "pygments": {
+            "hashes": [
+                "sha256:5eb116118f9612ff1ee89ac96437bb6b49e8f04d8a13b514ba26f620208e26eb",
+                "sha256:dc9c10fb40944260f6ed4c688ece0cd2048414940f1cea51b8b226318411c519"
+            ],
+            "markers": "python_version >= '3.6'",
+            "version": "==2.12.0"
+        },
         "pyrsistent": {
             "hashes": [
                 "sha256:0e3e1fcc45199df76053026a51cc59ab2ea3fc7c094c6627e93b7b44cdae2c8c",
@@ -368,6 +383,14 @@
             ],
             "index": "pypi",
             "version": "==2.27.1"
+        },
+        "rich": {
+            "hashes": [
+                "sha256:d13c6c90c42e24eb7ce660db397e8c398edd58acb7f92a2a88a95572b838aaa4",
+                "sha256:d239001c0fb7de985e21ec9a4bb542b5150350330bbc1849f835b9cbc8923b91"
+            ],
+            "index": "pypi",
+            "version": "==12.4.1"
         },
         "setuptools": {
             "hashes": [
