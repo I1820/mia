@@ -1,9 +1,10 @@
 [![Travis branch](https://img.shields.io/travis/com/I1820/Core/master.svg?style=flat-square)](https://travis-ci.com/I1820/Core)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/554074dbb573493bbb235d08122e1206)](https://www.codacy.com/app/i1820/Core?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=I1820/Core&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/554074dbb573493bbb235d08122e1206)](https://www.codacy.com/app/i1820/Core?utm_source=github.com&utm_medium=referral&utm_content=I1820/Core&utm_campaign=Badge_Grade)
 
 <p align="center"><strong>Good Days Good Things</strong></p>
 
 # I1820, The IoT Platform
+
 - [Introduction](#introduction)
 - [Up and Running]('#up-and-running')
 - [I1820-UI](https://github.com/AoLab/I1820/blob/master/I1820-UI/README.md)
@@ -11,9 +12,9 @@
 - [Releases](#releases)
 - [ToDo](#todo)
 
-
 ## Introduction
-*Next Generation of IoT Platforms*
+
+_Next Generation of IoT Platforms_
 
 Middleware connects different, often complex and already existing
 programs that were not originally designed to be connected.
@@ -22,8 +23,8 @@ I1820 is a improved version of 18.20, it provides you a full featured package
 that can do all you need from IoT middleware (Platform) consist of create notification,
 collect logs and discover and manage your things.
 
-In I1820 literature you have *things* and *nodes*, things are your actuators and
-sensors and *nodes* are any device that can connect to the I1820 server,
+In I1820 literature you have _things_ and _nodes_, things are your actuators and
+sensors and _nodes_ are any device that can connect to the I1820 server,
 they only requirement is being able to make MQTT requests. An examples of such
 devices are NodeMCU and RPi.
 
@@ -31,23 +32,24 @@ devices are NodeMCU and RPi.
 
 The benefits we can point out about I1820 are:
 
-* SDK pain is over, you don't need sdk's anymore!
-* Minimalistic dependencies, you're node only should be able to make MQTT
-requests
-* Dead simple sample codes
-* You can deploy it over your personal PaaS for mission-critical security or high-availability purposes
+- SDK pain is over, you don't need sdk's anymore!
+- Minimalistic dependencies, you're node only should be able to make MQTT
+  requests
+- Dead simple sample codes
+- You can deploy it over your personal PaaS for mission-critical security or high-availability purposes
 
 ### I1820 Main Components
 
 I1820 provides following components of **IoT Application Enablement Platform**:
 
-* Connectivity & normalization
-* Device management
-* Database
-* Processing & action management
-* Data visualization
+- Connectivity & normalization
+- Device management
+- Database
+- Processing & action management
+- Data visualization
 
 ## Up and Running
+
 ###### in Ubuntu
 
 - **Step 1** Install and Setup InfluxDB \[[InfluxDB installation](https://docs.influxdata.com/influxdb/v1.0/introduction/installation)]
@@ -131,6 +133,7 @@ cp I1820/conf/1820.example.ini I1820/conf/1820.ini
 ```
 
 ## Docker
+
 Let's build our docker image :yum: (WIP)
 
 ```sh
@@ -147,28 +150,33 @@ Thanks to following technologies:
 
 ## Releases
 
-* Orange 1.0.dev1
-* Pink 1.0
-* Purple 2.0
-* Green 3.0
-* Black 4.0
-* Dead 5.0: master
+- Orange 1.0.dev1
+- Pink 1.0
+- Purple 2.0
+- Green 3.0
+- Black 4.0
+- Dead 5.0: master
 
 ## ToDo
+
 ### Core
+
 - [x] OSGi Service Model [based on iPOPO]
 - [x] Socket.io based user level notification
 - [ ] Distributed I1820
 
 ### Database
+
 - [x] MongoDB Support
 - [ ] MySQLDB Support
 
 ### Comminucation
+
 - [ ] CoAP Proxy
 - [ ] HTTP Proxy
 
 ### Low Level
+
 - [ ] I1820 C Library
 - [ ] I1820 TinyOS
 - [ ] I1820 RIOT
