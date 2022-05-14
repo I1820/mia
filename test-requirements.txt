@@ -1,2 +1,0 @@
--r dev-requirements.txt
-socketio-client

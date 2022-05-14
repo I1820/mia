@@ -1,5 +1,4 @@
-version: "2"
-
+---
 services:
   i1820:
     build: .
@@ -8,4 +7,4 @@ services:
     depends_on:
       - influx
   influx:
-    image: tutum/influxdb
+    image: influxdb
