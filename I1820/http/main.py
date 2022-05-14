@@ -1,25 +1,18 @@
-# In The Name Of God
-# ========================================
-# [] File Name : main.py
-#
-# [] Creation Date : 26-08-2016
-#
-# [] Created By : Parham Alvani (parham.alvani@gmail.com)
-# =======================================
-from .route import app
+import logging
+
 from gevent.wsgi import WSGIServer
 
-import logging
+from .route import app
 
 logger = logging.getLogger('I1820.wsgi')
 
-ip = '0.0.0.0'
-port = 8080
-http_server = WSGIServer((ip, port), application=app, log=logger)
+IP = '0.0.0.0'
+PORT = 8080
+http_server = WSGIServer((IP, PORT), application=app, log=logger)
 
 
 def main():
-    print(' * HTTP at %s:%d' % (ip, port))
+    print(' * HTTP at %s:%d' % (IP, PORT))
     http_server.serve_forever()
 
 
