@@ -3,7 +3,8 @@ import dataclasses
 
 @dataclasses.dataclass()
 class MQTT:
-    url: str
+    host: str
+    port: int
 
 
 @dataclasses.dataclass()
@@ -14,5 +15,6 @@ class Appenders:
 
 @dataclasses.dataclass()
 class Config:
+    tenant: str
     mqtt: MQTT
     appenders: Appenders
