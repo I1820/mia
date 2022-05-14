@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "e0d90a8b0c6237ea25fecb27518e5c74d52341591678bc604b1a3b2055c7a8c0"
+            "sha256": "e5c4817b911d5b226be849009fc9b29b51abe5b7c0ac851458497c59195eedc5"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -187,14 +187,6 @@
             "index": "pypi",
             "version": "==5.3.1"
         },
-        "ipopo": {
-            "hashes": [
-                "sha256:11776bf590a27ae1184cf4e639c9eab30ed28a34964957015d60606240c0729a",
-                "sha256:79882efe394658cce6e104c84bf77a3ff2c6a970ad1810481401f4bcdee7eeb4"
-            ],
-            "index": "pypi",
-            "version": "==1.0.1"
-        },
         "itsdangerous": {
             "hashes": [
                 "sha256:2c2349112351b88699d8d4b6b075022c0808887cb7ad10069318a8b0bc88db44",
@@ -210,13 +202,6 @@
             ],
             "markers": "python_version >= '3.7'",
             "version": "==3.1.2"
-        },
-        "jsonrpclib-pelix": {
-            "hashes": [
-                "sha256:a9c0178317562a179e83deb27f753840fad4afe3b2bd1ee64495592ce3df1b28",
-                "sha256:e9e0b33efa8fa20d817dd78dfd9e4cdb3967c8a5d3cb5a783be1ee81c4a89c7c"
-            ],
-            "version": "==0.4.3.2"
         },
         "jsonschema": {
             "hashes": [
