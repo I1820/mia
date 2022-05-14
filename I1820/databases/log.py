@@ -6,47 +6,31 @@
 #
 # [] Created By : Parham Alvani (parham.alvani@gmail.com)
 # =======================================
+import datetime
 import importlib
 
-from ..conf.config import cfg
-from pelix.ipopo.decorators import ComponentFactory, Property, Provides, \
-     Validate, Invalidate, Instantiate
+from ..conf.config import Config
+from .base import LogAppender
 
 
-@ComponentFactory("log_factory")
-@Provides("log_service")
-@Property("default")
-@Instantiate("default_log_instance")
 class LogService:
-    def __init__(self):
-        self.appender = None
+    def __init__(self, cfg: Config):
+        self.cfg = cfg
+        print(" * Mia Log Appender Service")
 
-    @Validate
-    def validate(self, context):
-        """
-        The component is validated. This method is called right before the
-        provided service is registered to the framework.
-        """
-        # All setup should be done here
-        print(" * 18.20 Service: Log Service")
-        appender_name = cfg.appenders_appender
+        appender_name = cfg.appenders.name
         appender_module = importlib.import_module(
             'I1820.databases.%s' % appender_name)
         appender_cls = getattr(
             appender_module, "%sLogAppender" % appender_name.title())
-        self.appender = appender_cls()
 
-    @Invalidate
-    def invalidate(self, context):
-        """
-        The component has been invalidated. This method is called right after
-        the provided service has been removed from the framework.
-        """
-        pass
+        print(f" * Mia Log Appender based on {appender_name.title()}")
 
-    def create(self, measurement, agent_id, device_id, time, value):
+        self.appender: LogAppender = appender_cls()
+
+    def create(self, measurement, agent_id: str, device_id: str, time: datetime.datetime, value):
         last_value = None
-        if cfg.appenders_renew == 'true':
+        if self.cfg.appenders.renew is True:
             last_value = self.appender.retrieve_last(measurement,
                                                      agent_id,
                                                      device_id)['value']
@@ -55,9 +39,8 @@ class LogService:
             return self.appender.update(measurement,
                                         agent_id,
                                         device_id, time)
-        else:
-            return self.appender.create(measurement, agent_id,
-                                        device_id, time, value)
+        return self.appender.create(measurement, agent_id,
+                                    device_id, time, value)
 
-    def retrieve_last(self, measurement, agent_id, device_id):
+    def retrieve_last(self, measurement, agent_id: str, device_id: str):
         return self.appender.retrieve_last(measurement, agent_id, device_id)

@@ -1,30 +1,23 @@
-# In The Name Of God
-# ========================================
-# [] File Name : base.py
-#
-# [] Creation Date : 28-11-2016
-#
-# [] Created By : Parham Alvani (parham.alvani@gmail.com)
-# =======================================
 import abc
 import datetime
+import typing
 
 
-class I1820LogAppender(metaclass=abc.ABCMeta):
+class LogAppender(metaclass=abc.ABCMeta):
     @abc.abstractmethod
-    def create(self, measurement, agent_id, device_id, time: datetime.datetime,
-               value):
-        raise NotImplemented()
-
-    @abc.abstractmethod
-    def retrieve_last(self, measurement, agent_id, device_id):
-        raise NotImplemented()
+    def create(self, measurement: typing.Any, agent_id: str, device_id: str, time: datetime.datetime,
+               value: typing.Any):
+        raise NotImplementedError()
 
     @abc.abstractmethod
-    def retrieve_since(self, measurement, agent_id, device_id, since, limit):
-        raise NotImplemented()
+    def retrieve_last(self, measurement: typing.Any, agent_id: str, device_id: str):
+        raise NotImplementedError()
+
+    @abc.abstractmethod
+    def retrieve_since(self, measurement: typing.Any, agent_id: str, device_id: str, since: datetime.datetime, limit: int):
+        raise NotImplementedError()
 
     @abc.abstractmethod
     def update(self, measurement, agent_id, device_id,
                time: datetime.datetime):
-        raise NotImplemented()
+        raise NotImplementedError()
