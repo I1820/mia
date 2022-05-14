@@ -1,9 +1,40 @@
+'''
+fundamental classes for dynamic managements of things models.
+'''
+from __future__ import annotations
+
 import abc
 import importlib
+import typing
 
 from ..exceptions.thing import (ThingNotFoundException,
                                 ThingTypeNotImplementedException)
-from .fields import Field
+from .fields.base import Field
+
+
+class Things():
+    '''
+    Things class manages loaded things so we can get them by their name.
+    '''
+    things: dict[str, type[Thing]] = {}
+
+    @classmethod
+    def set(cls, name: str, thing: type[Thing]):
+        cls.things[name] = thing
+
+    @classmethod
+    def get(cls, name: str) -> type[Thing]:
+        '''
+        return the thing class by its name property.
+        it will load these classes on-demand.
+        '''
+        if name not in cls.things:
+            try:
+                importlib.import_module(f'I1820.things.models.{name}')
+            except ImportError as exception:
+                raise ThingTypeNotImplementedException(name, exception) \
+                    from exception
+        return cls.things[name]
 
 
 class AbstractThing(abc.ABCMeta):
@@ -11,22 +42,24 @@ class AbstractThing(abc.ABCMeta):
         instance = abc.ABCMeta.__new__(
             cls, name, bases, namespace)
 
-        assert isinstance(instance, Thing)
+        # here we are wrongly consider all subclasses
+        # of AbstractThing are Thing
+        # please ignore the type error
+        if 'name' in namespace and isinstance(namespace['name'], str) \
+                and namespace['name'] != "":
+            instance = typing.cast(type[Thing], instance)
+            Things.set(namespace['name'], instance)
+            instance.things[namespace['name']] = {}
 
-        if isinstance(instance.name, str):
-            Things.set(instance.name, instance)
-            instance.things[instance.name] = {}
-
-        for k, v in namespace.items():
-            if isinstance(v, Field):
+        for key, value in namespace.items():
+            if isinstance(value, Field):
                 # set field name based on its name in the thing class
-                v.name = k
-                if hasattr(instance, v.field_name):
-                    getattr(instance, v.field_name).append(v)
+                value.name = key
+                if hasattr(instance, value.field_name):
+                    getattr(instance, value.field_name).append(value)
                 else:
-                    setattr(instance, v.field_name, [v])
+                    setattr(instance, value.field_name, [value])
         return instance
-
 
 class Thing(metaclass=AbstractThing):
     things = {}
@@ -63,28 +96,3 @@ class Thing(metaclass=AbstractThing):
             if (agent_id, device_id) in cls.things[cls.name]:
                 return True
         return False
-
-
-class Things():
-    '''
-    Things class manages loaded things so we can get them by their name.
-    '''
-    things: dict[str, Thing] = {}
-
-    @classmethod
-    def set(cls, name: str, thing: Thing):
-        cls.things[name] = thing
-
-    @classmethod
-    def get(cls, name: str) -> Thing:
-        '''
-        return the thing class by its name property.
-        it will load these classes on-demand.
-        '''
-        if name not in cls.things:
-            try:
-                importlib.import_module(f'I1820.things.models.{name}')
-            except ImportError as exception:
-                raise ThingTypeNotImplementedException(name, exception) \
-                    from exception
-        return cls.things[name]

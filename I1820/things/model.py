@@ -10,7 +10,7 @@ class ModelService:
     def __init__(self):
         print(" * 18.20 Service: Model Service")
 
-    def get_model(self, thing):
+    def get_model(self, thing: str):
         thing_cls = Things.get(thing)
         response = {}
         response['type'] = thing

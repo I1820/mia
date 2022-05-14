@@ -1,5 +1,5 @@
 from ..actuator import ActuatorThing
-from ..fields import Setting
+from ..fields.setting import Setting
 
 
 class Lamp(ActuatorThing):
