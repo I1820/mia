@@ -1,6 +1,3 @@
-[![Travis branch](https://img.shields.io/travis/com/I1820/Core/master.svg?style=flat-square)](https://travis-ci.com/I1820/Core)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/554074dbb573493bbb235d08122e1206)](https://www.codacy.com/app/i1820/Core?utm_source=github.com&utm_medium=referral&utm_content=I1820/Core&utm_campaign=Badge_Grade)
-
 <p align="center"><strong>Good Days Good Things</strong></p>
 
 # I1820, The IoT Platform
@@ -38,9 +35,9 @@ The benefits we can point out about I1820 are:
 - Dead simple sample codes
 - You can deploy it over your personal PaaS for mission-critical security or high-availability purposes
 
-### I1820 Main Components
+### Main Components
 
-I1820 provides following components of **IoT Application Enablement Platform**:
+mia provides following components of **IoT Application Enablement Platform**:
 
 - Connectivity & normalization
 - Device management
