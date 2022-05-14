@@ -3,15 +3,14 @@
 # Creation Date : 1/31/17
 # Created By : Mahtab Farrokh (mahtab.farrokh@gmail.com)
 
-import requests
 import json
 import time
 
-url = 'http://127.0.0.1:8080/thing'
+import requests
 
+URL = 'http://127.0.0.1:8080/thing'
 
-
-def makeCheshmak ()  :
+def make_cheshmak():
     while True:
         post_data = {
             "type": "smartLamp",
@@ -22,7 +21,7 @@ def makeCheshmak ()  :
                 "on": True
             }
         }
-        requests.put(url, data=json.dumps(post_data))
+        requests.put(URL, data=json.dumps(post_data))
         time.sleep(1)
         post_data = {
             "type": "smartLamp",
@@ -33,10 +32,9 @@ def makeCheshmak ()  :
                 "on": True
             }
         }
-        requests.put(url, data=json.dumps(post_data))
+        requests.put(URL, data=json.dumps(post_data))
         time.sleep(1)
 
+
 if __name__ == '__main__':
-    makeCheshmak()
-
-
+    make_cheshmak()
