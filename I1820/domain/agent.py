@@ -1,45 +1,45 @@
-# In The Name Of God
-# ========================================
-# [] File Name : agent.py
-#
-# [] Creation Date : 22-02-2017
-#
-# [] Created By : Parham Alvani (parham.alvani@gmail.com)
-# =======================================
+import dataclasses
+import datetime
+import json
+
+import jsonschema
+
 from ..exceptions.format import InvalidAgentFormatException
 from .schemas.schema import agent_schema
 
-import json
-import jsonschema
 
-
-class I1820Agent:
+@dataclasses.dataclass()
+class RawThing:
     '''
-    The I1820Agent object contains information that is used to
-    represents agent to I1820.
-
-    :param ident: agent identification.
-    :type ident: str
-    :param things: list of agent attached things.
-    :type things: list
+    RawThing represents a thing that is attached into an agent.
+    This is a very low level interface and we will convert 
+    it into our models later.
     '''
-    def __init__(self, ident: str, things: list, actions: list=[]):
-        for thing in things:
-            if 'type' not in thing or 'id' not in thing:
-                raise ValueError(
-                    'things must be an array of types and ids.')
+    id: str
+    type: str
 
+
+class Agent:
+    '''
+    The Agent object contains information that is used to
+    represents agent to our platform.
+    '''
+    def __init__(self, ident: str, things: set[RawThing], actions: list[str]):
         self.ident = ident
         self.things = things
         self.actions = actions
+        self.last_seen: datetime.datetime
 
     def to_json(self):
-            result = {
-                'id': self.ident,
-                'things': self.things,
-                'actions': self.actions
-            }
-            return json.dumps(result)
+        '''
+        convert an agent into json representation
+        '''
+        result = {
+            'id': self.ident,
+            'things': self.things,
+            'actions': self.actions
+        }
+        return json.dumps(result)
 
     @classmethod
     def from_json(cls, raw):
