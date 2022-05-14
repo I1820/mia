@@ -1,32 +1,25 @@
-# In The Name Of God
-# ========================================
-# [] File Name : base.py
-#
-# [] Creation Date : 26-08-2016
-#
-# [] Created By : Parham Alvani (parham.alvani@gmail.com)
-# =======================================
 import abc
 import importlib
 
+from ..exceptions.thing import (ThingNotFoundException,
+                                ThingTypeNotImplementedException)
 from .fields import Field
-from ..exceptions.thing import \
-     ThingNotFoundException, ThingTypeNotImplementedException
 
 
-class Things(abc.ABCMeta):
-    things = {}
-
+class AbstractThing(abc.ABCMeta):
     def __new__(cls, name, bases, namespace):
         instance = abc.ABCMeta.__new__(
             cls, name, bases, namespace)
 
+        assert isinstance(instance, Thing)
+
         if isinstance(instance.name, str):
-            cls.things[instance.name] = instance
+            Things.set(instance.name, instance)
             instance.things[instance.name] = {}
 
         for k, v in namespace.items():
             if isinstance(v, Field):
+                # set field name based on its name in the thing class
                 v.name = k
                 if hasattr(instance, v.field_name):
                     getattr(instance, v.field_name).append(v)
@@ -34,34 +27,22 @@ class Things(abc.ABCMeta):
                     setattr(instance, v.field_name, [v])
         return instance
 
-    @classmethod
-    def get(cls, name):
-        if name not in cls.things:
-            try:
-                importlib.import_module('I1820.things.models.%s' % name)
-            except ImportError as e:
-                raise ThingTypeNotImplementedException(name, e)
-        return cls.things[name]
 
-
-class Thing(metaclass=Things):
+class Thing(metaclass=AbstractThing):
     things = {}
+    name: str = ""
 
-    def __init__(self, agent_id, device_id):
+    def __init__(self, agent_id: str, device_id: str):
         self.agent_id = agent_id
         self.device_id = device_id
-
-    @property
-    @abc.abstractmethod
-    def name(self):
-        raise NotImplemented()
 
     @classmethod
     def get_thing(cls, agent_id, device_id):
         try:
             thing = cls.things[cls.name][(agent_id, device_id)]
-        except (KeyError, ValueError) as e:
-            raise ThingNotFoundException(agent_id, device_id, cls.name, e)
+        except (KeyError, ValueError) as exception:
+            raise ThingNotFoundException(agent_id, device_id, cls.name,
+                                         exception) from exception
         return thing
 
     @classmethod
@@ -82,3 +63,28 @@ class Thing(metaclass=Things):
             if (agent_id, device_id) in cls.things[cls.name]:
                 return True
         return False
+
+
+class Things():
+    '''
+    Things class manages loaded things so we can get them by their name.
+    '''
+    things: dict[str, Thing] = {}
+
+    @classmethod
+    def set(cls, name: str, thing: Thing):
+        cls.things[name] = thing
+
+    @classmethod
+    def get(cls, name: str) -> Thing:
+        '''
+        return the thing class by its name property.
+        it will load these classes on-demand.
+        '''
+        if name not in cls.things:
+            try:
+                importlib.import_module(f'I1820.things.models.{name}')
+            except ImportError as exception:
+                raise ThingTypeNotImplementedException(name, exception) \
+                    from exception
+        return cls.things[name]

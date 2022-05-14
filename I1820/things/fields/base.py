@@ -2,10 +2,11 @@ import abc
 
 
 class Field:
-    def __init__(self):
-        self.name = None
+    '''
+    Field represnts a measurement/actuation on a device.
+    for example when we have lamp we can have on/off actuation on it.
+    '''
+    field_name: str = ""
 
-    @property
-    @abc.abstractmethod
-    def field_name(self):
-        raise NotImplemented()
+    def __init__(self):
+        self.name: str = ""
