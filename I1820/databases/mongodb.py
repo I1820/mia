@@ -1,19 +1,11 @@
-# In The Name Of God
-# ========================================
-# [] File Name : mongodb.py
-#
-# [] Creation Date : 21-03-2017
-#
-# [] Created By : Parham Alvani (parham.alvani@gmail.com)
-# =======================================
-from .base import I1820LogAppender
-from ..conf.config import cfg
-
 import pymongo
 
+from ..conf.config import Config
+from .base import LogAppender
 
-class MongodbLogAppender(I1820LogAppender):
-    def __init__(self):
+
+class MongodbLogAppender(LogAppender):
+    def __init__(self, cfg: Config):
         self._client = pymongo.MongoClient(host=cfg.appenders_mongodb_host,
                                            port=int(cfg.appenders_mongodb_port)
                                            )
