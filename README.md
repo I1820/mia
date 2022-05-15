@@ -52,15 +52,6 @@ Thanks to following technologies:
 - [InfluxDB](https://www.influxdata.com/time-series-platform/influxdb/): Time-Series Data Storage
 - [ActiveMQ](http://activemq.apache.org/): The most popular and powerful open source messaging and Integration Patterns server
 
-## Releases
-
-- Orange 1.0.dev1
-- Pink 1.0
-- Purple 2.0
-- Green 3.0
-- Black 4.0
-- Dead 5.0: master
-
 ## ToDo
 
 ### Core
