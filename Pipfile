@@ -14,6 +14,7 @@ Flask = "*"
 Flask-Cors = "*"
 rich = "*"
 sanic = "*"
+pymongo = "*"
 
 [dev-packages]
 socketio-client = "*"
