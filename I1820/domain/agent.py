@@ -8,7 +8,7 @@ from ..exceptions.format import InvalidAgentFormatException
 from .schemas.schema import agent_schema
 
 
-@dataclasses.dataclass()
+@dataclasses.dataclass(frozen=True)
 class RawThing:
     '''
     RawThing represents a thing that is attached into an agent.
