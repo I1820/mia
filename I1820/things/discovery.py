@@ -15,7 +15,7 @@ class DiscoveryService:
         print(" * Mia Service: Discovery Service")
 
     @property
-    def agents(self):
+    def agents(self) -> dict[str, dict]:
         '''
         retrieves agent information from redis.
         '''
