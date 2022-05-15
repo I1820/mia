@@ -1,7 +1,7 @@
 from datetime import datetime
 from threading import Lock
 
-from ..domain.agent import Agent
+from ..domain.agent import Agent, RawThing
 from .base import Things
 
 
@@ -40,8 +40,8 @@ class DiscoveryService:
         for saving things we are using Thing class devices field.
         '''
         # Let's create our agent
-        to_add = {}
-        to_del = {}
+        to_add: set[RawThing] = set()
+        to_del: set[RawThing] = set()
         with self.lck:
             if agent.ident not in self._agents:
                 self._agents[agent.ident] = agent
