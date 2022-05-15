@@ -1,17 +1,7 @@
-FROM alpine
-MAINTAINER Parham Alvani <parham.alvani@gmail.com>
+FROM python:3-alpine
 
-EXPOSE 8080
+WORKDIR /app
 
-# Install packages
-RUN apk --update add python3
-RUN apk --update add --virtual build-dependencies gcc musl-dev python3-dev
-
-# Let's Go Home
-WORKDIR /home/root
-
-# I1820
-WORKDIR /home/root/I1820
 COPY . .
 RUN cp I1820/conf/1820.example.ini I1820/conf/1820.ini
 RUn pip3 install --upgrade pip
@@ -23,9 +13,7 @@ RUN apk del build-dependencies
 # Cleanup
 RUN rm -rf /var/cache/apk/*
 
-# I1820 Configurations
-# TODO: Database configuration
-# TODO: MQTT Broker
+EXPOSE 8080
 
 # Entrypoint Script
 ENTRYPOINT ["/home/root/I1820/18.20-serve.py"]
