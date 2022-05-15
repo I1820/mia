@@ -49,7 +49,7 @@ class AbstractThing(abc.ABCMeta):
                 and namespace['name'] != "":
             instance = typing.cast(type[Thing], instance)
             Things.set(namespace['name'], instance)
-            instance.things[namespace['name']] = {}
+            instance.registered_things[namespace['name']] = {}
 
         for key, value in namespace.items():
             if isinstance(value, Field):
@@ -62,7 +62,7 @@ class AbstractThing(abc.ABCMeta):
         return instance
 
 class Thing(metaclass=AbstractThing):
-    things = {}
+    registered_things: dict[str, dict[tuple[str, str], Thing]] = {}
     name: str = ""
 
     def __init__(self, agent_id: str, device_id: str):
@@ -70,29 +70,29 @@ class Thing(metaclass=AbstractThing):
         self.device_id = device_id
 
     @classmethod
-    def get_thing(cls, agent_id, device_id):
+    def get_thing(cls, agent_id: str, device_id: str) -> Thing:
         try:
-            thing = cls.things[cls.name][(agent_id, device_id)]
+            thing = cls.registered_things[cls.name][(agent_id, device_id)]
         except (KeyError, ValueError) as exception:
             raise ThingNotFoundException(agent_id, device_id, cls.name,
                                          exception) from exception
         return thing
 
     @classmethod
-    def new_thing(cls, agent_id, device_id):
-        if (agent_id, device_id) not in cls.things[cls.name]:
-            cls.things[cls.name][(agent_id, device_id)] = \
+    def new_thing(cls, agent_id: str, device_id: str):
+        if (agent_id, device_id) not in cls.registered_things[cls.name]:
+            cls.registered_things[cls.name][(agent_id, device_id)] = \
                     cls(agent_id, device_id)
 
     @classmethod
-    def del_thing(cls, agent_id, device_id):
-        if cls.name in cls.things:
-            if (agent_id, device_id) in cls.things[cls.name]:
-                del cls.things[cls.name][(agent_id, device_id)]
+    def del_thing(cls, agent_id: str, device_id: str):
+        if cls.name in cls.registered_things:
+            if (agent_id, device_id) in cls.registered_things[cls.name]:
+                del cls.registered_things[cls.name][(agent_id, device_id)]
 
     @classmethod
-    def has_thing(cls, agent_id, device_id):
-        if cls.name in cls.things:
-            if (agent_id, device_id) in cls.things[cls.name]:
+    def has_thing(cls, agent_id: str, device_id: str):
+        if cls.name in cls.registered_things:
+            if (agent_id, device_id) in cls.registered_things[cls.name]:
                 return True
         return False
