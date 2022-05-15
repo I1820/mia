@@ -13,5 +13,5 @@ jobs:
           python-version: '3.10'
       - run: pip install pipenv
       - run: pipenv install --dev -v
-      - run: pytest
-      - run: mypy .
+      - run: pipenv run pytest
+      - run: pipenv run mypy .
