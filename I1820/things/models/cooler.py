@@ -1,13 +1,5 @@
-# In The Name Of God
-# ========================================
-# [] File Name : cooler.py
-#
-# [] Creation Date : 02-10-2016
-#
-# [] Created By : Parham Alvani (parham.alvani@gmail.com)
-# =======================================
 from ..actuator import ActuatorThing
-from ..fields import Setting
+from ..fields.setting import Setting
 
 
 class Cooler(ActuatorThing):
@@ -17,5 +9,5 @@ class Cooler(ActuatorThing):
 
     name = "cooler"
 
-    on = Setting()
-    temperature = Setting(type='integer')
+    on: Setting[bool] = Setting()
+    temperature: Setting[int] = Setting()

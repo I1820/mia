@@ -1,6 +1,6 @@
+import socketio
 from flask import Flask
 from flask_cors import CORS
-import socketio
 
 sio = socketio.Server(async_mode='gevent')
 

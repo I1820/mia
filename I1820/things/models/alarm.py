@@ -1,5 +1,5 @@
 from ..actuator import ActuatorThing
-from ..fields import Setting
+from ..fields.setting import Setting
 
 
 class Alarm(ActuatorThing):
@@ -9,4 +9,4 @@ class Alarm(ActuatorThing):
 
     name = "alarm"
 
-    on = Setting()
+    on: Setting[bool] = Setting()

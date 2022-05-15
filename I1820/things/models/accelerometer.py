@@ -1,5 +1,5 @@
+from ..fields.state import State
 from ..sensor import SensorThing
-from ..fields import State
 
 
 class Accelerometer(SensorThing):

@@ -1,5 +1,5 @@
 from ..actuator import ActuatorThing
-from ..fields import Setting
+from ..fields.setting import Setting
 
 
 class Curtain(ActuatorThing):
@@ -9,4 +9,4 @@ class Curtain(ActuatorThing):
 
     name = "curtain"
 
-    height = Setting(type="integer")
+    height: Setting[int] = Setting()
