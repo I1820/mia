@@ -1,6 +1,5 @@
 import paho.mqtt.client as mqtt
 
-from ..conf.config import Config
 from ..things.discovery import DiscoveryService
 from .route import Handler
 
@@ -11,20 +10,22 @@ class MQTTService():
     with agents and their things.
     '''
 
-    def __init__(self, cfg: Config, discovery_service: DiscoveryService):
+    def __init__(self, host: str, port: int, tenant: str,
+                 discovery_service: DiscoveryService):
         self.client = mqtt.Client(client_id="i1820")
-        self.hld = Handler(discovery_service, cfg)
-        self.cfg = cfg
+        self.hld = Handler(discovery_service, tenant)
+        self.host = host
+        self.port = port
 
     def connect(self):
         '''
         connect into mqtt server
         '''
         try:
-            self.client.connect(self.cfg.mqtt.host, self.cfg.mqtt.port, 60)
-            print(f" * MQTT at {self.cfg.mqtt.host}:{self.cfg.mqtt.port}")
+            self.client.connect(self.host, self.port, 60)
+            print(f" * MQTT at {self.host}:{self.port}")
         except ConnectionError as exception:
-            print(f" * MQTT at {self.cfg.mqtt.host}:{self.cfg.mqtt.port} had connection error.")
+            print(f" * MQTT at {self.host}:{self.port} had connection error.")
             raise exception
 
         # provides on connect handler

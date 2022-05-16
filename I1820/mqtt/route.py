@@ -1,6 +1,5 @@
 import logging
 
-from ..conf.config import Config
 from ..controllers.event import EventController
 from ..domain.agent import Agent
 from ..domain.event import I1820Event
@@ -13,10 +12,10 @@ from ..things.discovery import DiscoveryService
 
 
 class Handler():
-    def __init__(self, discovery_service: DiscoveryService, cfg: Config):
+    def __init__(self, discovery_service: DiscoveryService, tenant: str):
         self.logger = logging.getLogger("mqtt.handler")
         self.discovery_service = discovery_service
-        self.cfg = cfg
+        self.tenant = tenant
 
     def on_log(self, _client, _userdata, message):
         '''
@@ -24,8 +23,10 @@ class Handler():
         These messages are used for report and status collecting.
 
         :param client: the client instance for this callback
-        :param userdata: the private user data as set in Client() or userdata_set()
-        :param message: recived message that contains topic, payload, qos, retain.
+        :param userdata: the private user data as set in
+        Client() or userdata_set()
+        :param message: recived message that contains topic, payload,
+        qos, retain.
         :type message: MQTTMessage
         '''
         try:
@@ -62,7 +63,8 @@ class Handler():
         These messages are used as Raspberry PI heart beat.
 
         : client: the client instance for this callback
-        :param userdata: the private user data as set in Client() or userdata_set()
+        :param userdata: the private user data as set in
+        Client() or userdata_set()
         :param age: recived message that contains topic, payload, qos, retain.
         :type message: MQTTMessage
         '''
@@ -83,15 +85,16 @@ class Handler():
         It subscribes to thing side channels based on things API token
 
         :param client: the client instance for this callback
-        :param userdata: the private user data as set in Client() or userdata_set()
+        :param userdata: the private user data as set in
+        Client() or userdata_set()
         :param flags: response flags sent by the broker
         :param rc: the connection result
         '''
         # Discovery
-        client.subscribe(f'I1820/{self.cfg.tenant}/agent/ping')
-        client.message_callback_add(f'I1820/{self.cfg.tenant}/agent/ping',
+        client.subscribe(f'I1820/{self.tenant}/agent/ping')
+        client.message_callback_add(f'I1820/{self.tenant}/agent/ping',
                                     self.on_discovery)
         # Log
-        client.subscribe(f'I1820/{self.cfg.tenant}/log/send')
-        client.message_callback_add(f'I1820/{self.cfg.tenant}/log/send',
+        client.subscribe(f'I1820/{self.tenant}/log/send')
+        client.message_callback_add(f'I1820/{self.tenant}/log/send',
                                     self.on_log)
