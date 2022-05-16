@@ -1,16 +1,16 @@
-from I1820.http.main import die as die_http
-from I1820.http.main import main as main_http
-from I1820.mqtt.main import die as die_mqtt
-from I1820.mqtt.main import main as main_mqtt
-from I1820.services.main import die as die_srv
-from I1820.services.main import main as main_srv
+'''
+runs mia server
+'''
+
+from rich import pretty
+from rich.console import Console
+
+import I1820.conf
 
 if __name__ == '__main__':
-    main_srv()
-    main_mqtt()
-    try:
-        main_http()
-    except KeyboardInterrupt:
-        die_http()
-        die_mqtt()
-        die_srv()
+    console = Console()
+    pretty.install()
+
+    cfg = I1820.conf.load()
+
+    console.print("Mia is up and running", style="bold red")
