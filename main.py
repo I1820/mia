@@ -12,5 +12,6 @@ if __name__ == '__main__':
     pretty.install()
 
     cfg = I1820.conf.load()
+    pretty.pprint(cfg)
 
     console.print("Mia is up and running", style="bold red")
