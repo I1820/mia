@@ -1,0 +1,5 @@
+tenant = "main"
+
+[mqtt]
+port = 1883
+host = "localhost"
