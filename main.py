@@ -8,6 +8,7 @@ from rich import pretty
 from rich.console import Console
 
 import I1820.conf
+import I1820.controllers
 import I1820.databases
 import I1820.discovery
 import I1820.http.main
@@ -57,6 +58,9 @@ if __name__ == '__main__':
     mqtt_service = I1820.mqtt.MQTTService(cfg.mqtt.host, cfg.mqtt.port,
                                           cfg.tenant, discovery_service)
     mqtt_service.connect()
+
+    # i don't know is there any a better way or not
+    I1820.controllers.NotificationController.mqtt_service = mqtt_service
 
     console.print("Mia is up and running", style="bold red")
 
