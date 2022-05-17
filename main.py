@@ -19,5 +19,6 @@ if __name__ == '__main__':
     discovery_service = I1820.discovery.DiscoveryService()
     mqtt_service = I1820.mqtt.MQTTService(cfg.mqtt.host, cfg.mqtt.port,
                                           cfg.tenant, discovery_service)
+    mqtt_service.connect()
 
     console.print("Mia is up and running", style="bold red")
