@@ -8,7 +8,7 @@ from ..exceptions.format import InvalidAgentFormatException
 from .schemas.schema import agent_schema
 
 
-@dataclasses.dataclass(frozen=True, repr=True)
+@dataclasses.dataclass(frozen=True)
 class RawThing:
     '''
     RawThing represents a thing that is attached into an agent.
@@ -36,7 +36,7 @@ class Agent:
         '''
         result = {
             'id': self.ident,
-            'things': list(self.things),
+            'things': [dataclasses.asdict(t) for t in self.things],
             'actions': self.actions
         }
         return json.dumps(result)
@@ -52,7 +52,11 @@ class Agent:
             raise InvalidAgentFormatException(e)
 
         ident = raw_values['id']
-        things = raw_values['things']
+        things: set[RawThing] = set()
+        for raw_thing in raw_values['things']:
+            things.add(
+                RawThing(id=raw_thing['id'], type=raw_thing['type'])
+            )
         actions = []
         if 'actions' in raw_values:
             actions = raw_values['actions']
