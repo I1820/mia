@@ -24,7 +24,7 @@ class MQTTService():
         try:
             self.client.connect(self.host, self.port, 60)
             print(f" * MQTT at {self.host}:{self.port}")
-        except ConnectionError as exception:
+        except Exception as exception:
             print(f" * MQTT at {self.host}:{self.port} had connection error.")
             raise exception
 
