@@ -9,5 +9,5 @@ class Itunes(ActuatorThing):
 
     name = "itunes"
 
-    play = Setting()
-    direction = Setting()
+    play: Setting[bool] = Setting()
+    direction: Setting[bool] = Setting()

@@ -9,4 +9,4 @@ class Valve(ActuatorThing):
 
     name = "valve"
 
-    on = Setting()
+    on: Setting[bool] = Setting()

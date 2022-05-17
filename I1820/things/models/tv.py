@@ -9,4 +9,4 @@ class Tv(ActuatorThing):
 
     name = "tv"
 
-    on = Setting()
+    on: Setting[bool] = Setting()

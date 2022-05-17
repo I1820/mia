@@ -14,6 +14,6 @@ class SmartLamp (ActuatorThing):
 
     name = "smartLamp"
 
-    on = Setting()
+    on: Setting[bool] = Setting()
     color: Setting[float] = Setting()
     fade: Setting[int] = Setting()

@@ -9,4 +9,4 @@ class Mode(ActuatorThing):
 
     name = "mode"
 
-    on = Setting()
+    on: Setting[bool] = Setting()

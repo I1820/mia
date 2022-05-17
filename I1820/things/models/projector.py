@@ -9,5 +9,5 @@ class Projector(ActuatorThing):
 
     name = "projector"
 
-    on = Setting()
-    input = Setting()
+    on: Setting[bool] = Setting()
+    input: Setting[int] = Setting()
