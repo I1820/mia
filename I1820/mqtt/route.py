@@ -1,6 +1,7 @@
 import logging
 
 from ..controllers.event import EventController
+from ..discovery import DiscoveryService
 from ..domain.agent import Agent
 from ..domain.event import I1820Event
 from ..domain.log import I1820Log
@@ -8,7 +9,6 @@ from ..exceptions.format import (InvalidAgentFormatException,
                                  InvalidLogFormatException)
 from ..exceptions.thing import ThingNotFoundException
 from ..things.base import Things
-from ..things.discovery import DiscoveryService
 
 
 class Handler():

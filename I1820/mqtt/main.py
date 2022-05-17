@@ -1,6 +1,6 @@
 import paho.mqtt.client as mqtt
 
-from ..things.discovery import DiscoveryService
+from ..discovery import DiscoveryService
 from .route import Handler
 
 
