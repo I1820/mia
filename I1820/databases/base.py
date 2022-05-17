@@ -20,8 +20,3 @@ class LogAppender(metaclass=abc.ABCMeta):
     @abc.abstractmethod
     def retrieve_since(self, measurement: typing.Any, agent_id: str, device_id: str, since: datetime.datetime, limit: int):
         raise NotImplementedError()
-
-    @abc.abstractmethod
-    def update(self, measurement, agent_id, device_id,
-               time: datetime.datetime):
-        raise NotImplementedError()

@@ -46,6 +46,3 @@ class InfluxdbLogAppender(LogAppender):
                                                  device_id, since, limit)
         results = self._client.query(q)
         next(results.get_points(), None)
-
-    def update(self, measurement, agent_id, device_id, time):
-        pass

@@ -38,6 +38,3 @@ class MongodbLogAppender(LogAppender):
     def retrieve_since(self, measurement, agent_id, device_id, since,
                        limit=10):
         pass
-
-    def update(self, measurement, agent_id, device_id, time):
-        pass
