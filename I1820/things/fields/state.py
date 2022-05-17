@@ -10,7 +10,7 @@ class State(Field):
     def __init__(self):
         super().__init__()
 
-    def __get__(self, obj: Thing, objtype):
+    def __get__(self, obj: Thing, _):
         with service_master.service('log_service') as log_service:
             value = log_service.retrieve_last(
                 self.name, obj.agent_id, obj.device_id)

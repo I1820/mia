@@ -4,6 +4,10 @@ import typing
 
 
 class LogAppender(metaclass=abc.ABCMeta):
+    '''
+    abstract log appender to implement different log storages.
+    '''
+
     @abc.abstractmethod
     def create(self, measurement: typing.Any, agent_id: str, device_id: str, time: datetime.datetime,
                value: typing.Any):
