@@ -16,7 +16,6 @@ rich = "*"
 sanic = "*"
 pymongo = "*"
 dynaconf = "*"
-dependency-injector = "*"
 
 [dev-packages]
 socketio-client = "*"
