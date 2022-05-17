@@ -3,3 +3,11 @@ tenant = "main"
 [mqtt]
 port = 1883
 host = "localhost"
+
+[database]
+name = 'mongodb'
+
+[database.config]
+host = 'mongodb://127.0.0.1'
+port = 27017
+database = 'mia'
