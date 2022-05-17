@@ -23,7 +23,7 @@ def ping(ident: int):
     agent = Agent('dummy', things={
                       RawThing(type='dummy', id=str(ident))
                   }, actions=[])
-    client.publish(f'I1820/{TENANT_ID}/discovery', agent.to_json())
+    client.publish(f'I1820/{TENANT_ID}/agent/ping', agent.to_json())
 
 
 if __name__ == '__main__':
@@ -37,5 +37,5 @@ if __name__ == '__main__':
                        states=[
                            {'name': 'chert', 'value': '1'}
                        ])
-        client.publish(f'I1820/{TENANT_ID}/log', log.to_json())
+        client.publish(f'I1820/{TENANT_ID}/log/send', log.to_json())
         time.sleep(1)
