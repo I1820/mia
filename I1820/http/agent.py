@@ -9,13 +9,13 @@ from ..discovery import DiscoveryService
 class AgentHanlder():
     @staticmethod
     async def list(request: sanic.Request) -> sanic.HTTPResponse:
-        ds = typing.cast(DiscoveryService, request.ctx.discovery_service)
+        ds = typing.cast(DiscoveryService, request.app.ctx.discovery_service)
 
         return json(ds.agents)
 
     @staticmethod
     async def delete(request: sanic.Request, agent: str) -> sanic.HTTPResponse:
-        ds = typing.cast(DiscoveryService, request.ctx.discovery_service)
+        ds = typing.cast(DiscoveryService, request.app.ctx.discovery_service)
 
         return json(ds.pong(agent))
 
