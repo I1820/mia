@@ -16,6 +16,8 @@ rich = "*"
 sanic = "*"
 pymongo = "*"
 dynaconf = "*"
+pymongo-stubs = "*"
+types-requests = "*"
 
 [dev-packages]
 socketio-client = "*"
