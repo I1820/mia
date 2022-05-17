@@ -39,3 +39,14 @@ mia provides following components of **IoT Application Enablement Platform**:
 - Database
 - Processing & action management
 - Data visualization
+
+## Requests
+
+```sh
+curl -X POST 127.0.0.1:8080/things -H 'Content-Type: application/json' -d '{
+  "agent_id": "dummy",
+  "device_id": "0",
+  "type": "dummy",
+  "states": ["chert"]
+}'
+```
