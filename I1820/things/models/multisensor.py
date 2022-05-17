@@ -1,18 +1,12 @@
-# In The Name Of God
-# ========================================
-# [] File Name : multisensor.py
-#
-# [] Creation Date : 21-09-2016
-#
-# [] Created By : Parham Alvani (parham.alvani@gmail.com)
-# =======================================
+from ..fields.event import Event
+from ..fields.state import State
+from ..fields.statistic import Statistic
 from ..sensor import SensorThing
-from ..fields import State, Event, Statistic
 
 
 class MultiSensor(SensorThing):
     """
-    This class represents Mutli Sensor
+    Mutli-Sensor which is buit by Sepehr Hashtroudi in Aolab @ 2016
     """
     name = "multisensor"
 

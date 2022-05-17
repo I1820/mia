@@ -4,16 +4,16 @@
 
 
 from ..actuator import ActuatorThing
-from ..fields import Setting
+from ..fields.setting import Setting
 
 
 class SmartLamp (ActuatorThing):
     """
-    This class represents smart lamp actuator
+    Colorful lamp which is built by Niligo.
     """
 
     name = "smartLamp"
 
     on = Setting()
-    color = Setting(type='color')
-    fade = Setting(type='integer')
+    color: Setting[float] = Setting()
+    fade: Setting[int] = Setting()

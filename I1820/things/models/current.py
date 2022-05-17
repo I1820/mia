@@ -1,13 +1,5 @@
-# In The Name Of God
-# ========================================
-# [] File Name : current.py
-#
-# [] Creation Date : 10-09-2016
-#
-# [] Created By : Parham Alvani (parham.alvani@gmail.com)
-# =======================================
+from ..fields.state import State
 from ..sensor import SensorThing
-from ..fields import State
 
 
 class Dummy(SensorThing):

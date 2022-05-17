@@ -1,13 +1,5 @@
-# In The Name Of God
-# ========================================
-# [] File Name : motion.py
-#
-# [] Creation Date : 10-09-2016
-#
-# [] Created By : Parham Alvani (parham.alvani@gmail.com)
-# =======================================
+from ..fields.event import Event
 from ..sensor import SensorThing
-from ..fields import Event
 
 
 class Motion(SensorThing):
