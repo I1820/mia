@@ -2,12 +2,7 @@
 
 # I1820, The IoT Platform
 
-- [Introduction](#introduction)
-- [Up and Running]('#up-and-running')
-- [I1820-UI](https://github.com/AoLab/I1820/blob/master/I1820-UI/README.md)
-- [Components](#components)
-- [Releases](#releases)
-- [ToDo](#todo)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/I1820/mia/ci?label=ci&logo=github&style=flat-square)
 
 ## Introduction
 
