@@ -14,9 +14,32 @@ class MQTT:
 
 
 @dataclasses.dataclass()
+class MongoDBDatabase:
+    host: str = "mongodb://127.0.0.1"
+    port: int = 23017
+    database: str = 'mia'
+
+
+@dataclasses.dataclass()
+class InfluxDBDatabase:
+    host: str = "127.0.0.1"
+    port: int = 8080
+    database: str = 'mia'
+    username: str = 'admin'
+    password: str = 'admin'
+
+
+@dataclasses.dataclass()
+class Database:
+    name: str = 'mongodb'
+    config: MongoDBDatabase | InfluxDBDatabase = MongoDBDatabase()
+
+
+@dataclasses.dataclass()
 class Config:
     tenant: str = 'main'
     mqtt: MQTT = MQTT()
+    database: Database = Database()
 
 
 def load() -> Config:
@@ -29,6 +52,8 @@ def load() -> Config:
         envvar_prefix="MIA",
         nested_separator="__",
         validators=[
+            Validator('database.name', is_type_of=(str),
+                      is_in=("mongodb", "influxdb")),
             Validator('mqtt.host', is_type_of=(str),
                       default='127.0.0.1'),
             Validator('mqtt.port', default=1883,
@@ -43,5 +68,20 @@ def load() -> Config:
     cfg.tenant = settings['tenant']
     cfg.mqtt.port = settings['mqtt.port']
     cfg.mqtt.host = settings['mqtt.host']
+    cfg.database.name = settings['database.name']
+
+    match cfg.database.name:
+        case 'mongodb':
+            cfg.database.config = MongoDBDatabase()
+            cfg.database.config.host = settings['database.config.host']
+            cfg.database.config.port = settings['database.config.port']
+            cfg.database.config.database = settings['database.config.database']
+        case 'influxdb':
+            cfg.database.config = InfluxDBDatabase()
+            cfg.database.config.host = settings['database.config.host']
+            cfg.database.config.port = settings['database.config.port']
+            cfg.database.config.database = settings['database.config.database']
+            cfg.database.config.username = settings['database.config.username']
+            cfg.database.config.password = settings['database.config.password']
 
     return cfg
