@@ -14,7 +14,7 @@ class Setting(Field, typing.Generic[T]):
         super().__init__()
         self.storage: dict[tuple[str, str], T] = {}
 
-    def __get__(self, obj: Thing, objtype) -> T:
+    def __get__(self, obj: Thing, _) -> T:
         return self.storage[(obj.agent_id, obj.device_id)]
 
     def __set__(self, obj: Thing, value: T):
