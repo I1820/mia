@@ -19,7 +19,7 @@ class DiscoveryService:
         '''
         retrieves agent information from redis.
         '''
-        result = {}
+        result: dict[str, dict] = {}
 
         with self.lck:
             for agent_id, agent in self._agents.items():
