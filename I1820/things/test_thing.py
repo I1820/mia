@@ -1,6 +1,13 @@
+import typing
+
+from ..controllers import NotificationController
 from .base import Thing, Things
 from .models.lamp import Lamp
 
+
+class DummyMQTTService:
+    def publish(self, body):
+        pass
 
 def test_get_thing():
     lamp = Things.get("lamp")
@@ -16,6 +23,8 @@ def test_get_thing():
 
 def test_trun_on_lamp():
     lamp = Things.get("lamp")
+
+    NotificationController.mqtt_service = DummyMQTTService()
 
     assert issubclass(lamp, Lamp)
     l = lamp('fake_agent', 'fake_device')
