@@ -6,6 +6,7 @@ from rich import pretty
 from rich.console import Console
 
 import I1820.conf
+import I1820.databases
 import I1820.discovery
 import I1820.http.main
 import I1820.logger
@@ -19,6 +20,26 @@ if __name__ == '__main__':
 
     cfg = I1820.conf.load()
     pretty.pprint(cfg)
+
+    database: I1820.databases.LogAppender
+
+    match cfg.database.name:
+        case 'mongodb':
+            database = I1820.databases.MongodbLogAppender(
+                    host=cfg.database.config.host,
+                    port=cfg.database.config.port,
+                    database=cfg.database.config.database,
+                    )
+        case 'influxdb':
+            database = I1820.databases.InfluxdbLogAppender(
+                    host=cfg.database.config.host,
+                    port=cfg.database.config.port,
+                    database=cfg.database.config.database,
+                    user=cfg.database.config.username,
+                    password=cfg.database.config.password,
+                )
+
+    log_service = I1820.databases.LogService(database)
 
     discovery_service = I1820.discovery.DiscoveryService()
     mqtt_service = I1820.mqtt.MQTTService(cfg.mqtt.host, cfg.mqtt.port,
