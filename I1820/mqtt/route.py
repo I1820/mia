@@ -1,9 +1,8 @@
 import logging
 
-from ..controllers.event import EventController
 from ..discovery import DiscoveryService
 from ..domain.agent import Agent
-from ..domain.event import I1820Event
+# from ..domain.event import I1820Event
 from ..domain.log import I1820Log
 from ..exceptions.format import (InvalidAgentFormatException,
                                  InvalidLogFormatException)
@@ -36,13 +35,13 @@ class Handler():
             return
 
         # Sending raw data without any futher processing
-        data = {
-            'agent_id': log.agent,
-            'device_id': log.device,
-            'type': log.type,
-            'states': {state['name']: state['value'] for state in log.states}
-        }
-        EventController().event(I1820Event('raw', data))
+        # data = {
+        #     'agent_id': log.agent,
+        #    'device_id': log.device,
+        #     'type': log.type,
+        #     'states': {state['name']: state['value'] for state in log.states}
+        # }
+        # EventController().event(I1820Event('raw', data))
 
         try:
             thing = Things.get(log.type).get_thing(log.agent, log.device)
@@ -78,6 +77,11 @@ class Handler():
 
         self.logger.info("discovery on [%s]", agent.ident)
 
+    def publish(self, client, body):
+        '''
+        publish the given body into the tenant.
+        '''
+        client.publish(f'I1820/{self.tenant}/configuration/request', body)
 
     def on_connect(self, client, userdata, flags, rc):
         '''

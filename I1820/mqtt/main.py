@@ -33,6 +33,10 @@ class MQTTService():
 
         self.client.loop_start()
 
+
+    def publish(self, body: str):
+        self.hld.publish(self.client, body)
+
     def die(self):
         '''
         disconnect from mqtt server
