@@ -1,24 +1,15 @@
-# In The Name Of God
-# ========================================
-# [] File Name : influxdb.py
-#
-# [] Creation Date : 28-11-2016
-#
-# [] Created By : Parham Alvani (parham.alvani@gmail.com)
-# =======================================
-from .base import I1820LogAppender
-from ..conf.config import cfg
-
 from influxdb import InfluxDBClient
 
+from .base import LogAppender
 
-class InfluxdbLogAppender(I1820LogAppender):
-    def __init__(self):
-        self._client = InfluxDBClient(host=cfg.appenders_influxdb_host,
-                                      port=cfg.appenders_influxdb_port,
-                                      username=cfg.appenders_influxdb_user,
-                                      password=cfg.appenders_influxdb_passwd,
-                                      database=cfg.appenders_influxdb_db)
+
+class InfluxdbLogAppender(LogAppender):
+    def __init__(self, host, port, user, password, database):
+        self._client = InfluxDBClient(host=host,
+                                      port=port,
+                                      username=user,
+                                      password=password,
+                                      database=database)
 
     def create(self, measurement, agent_id, device_id, time, value):
         points = [{
