@@ -2,7 +2,7 @@ from datetime import datetime
 from threading import Lock
 
 from ..domain.agent import Agent, RawThing
-from .base import Things
+from ..things.base import Things
 
 
 class DiscoveryService:

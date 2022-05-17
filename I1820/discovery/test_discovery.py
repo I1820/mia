@@ -1,5 +1,5 @@
 from ..domain.agent import Agent, RawThing
-from .base import Things
+from ..things.base import Things
 from .discovery import DiscoveryService
 
 
