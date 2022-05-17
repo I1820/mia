@@ -2,14 +2,19 @@ import logging
 
 import sanic
 
+from ..discovery import DiscoveryService
+from .agent import AgentHanlder
+from .health import HealthHanlder
 from .model import ModelHanlder
 
 
-def app() -> sanic.Sanic:
+def app(ds: DiscoveryService) -> sanic.Sanic:
     app = sanic.Sanic('mia')
     app.ctx.logger = logging.getLogger('mia.http')
+    app.ctx.discovery_service = ds
 
-    mh = ModelHanlder()
-    app.blueprint(mh.register())
+    app.blueprint(ModelHanlder().register())
+    app.blueprint(HealthHanlder().register())
+    app.blueprint(AgentHanlder().register())
 
     return app
