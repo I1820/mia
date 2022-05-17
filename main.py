@@ -27,5 +27,5 @@ if __name__ == '__main__':
 
     console.print("Mia is up and running", style="bold red")
 
-    app = I1820.http.main.app()
+    app = I1820.http.main.app(discovery_service)
     app.run(host="0.0.0.0", port=8080)
