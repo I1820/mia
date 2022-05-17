@@ -1,6 +1,6 @@
 import typing
 
-# from ...controllers.notif import NotificationController
+from ...controllers import NotificationController
 from ...domain.notif import I1820Notification
 from ..base import Thing
 from .base import Field
@@ -18,8 +18,8 @@ class Setting(Field, typing.Generic[T]):
         return self.storage[(obj.agent_id, obj.device_id)]
 
     def __set__(self, obj: Thing, value: T):
-        I1820Notification(obj.name, obj.device_id,
-                          [{'name': self.name, 'value': value}],
-                          obj.agent_id)
+        message = I1820Notification(obj.name, obj.device_id,
+                                    [{'name': self.name, 'value': value}],
+                                    obj.agent_id)
         self.storage[(obj.agent_id, obj.device_id)] = value
-        # NotificationController().notify(message)
+        NotificationController().notify(message)

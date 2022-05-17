@@ -77,7 +77,7 @@ class Thing(metaclass=AbstractThing):
         '''
         create a dict representation of the thing properties.
         '''
-        response = {}
+        response: dict[str, list[str] | str] = {}
         response['type'] = cls.name
         response['master'] = [str(c) for c in cls.__bases__]
         response['statistics'] = [s.name for s in cls.statistics]
