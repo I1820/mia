@@ -61,6 +61,7 @@ if __name__ == '__main__':
 
     # i don't know is there any a better way or not
     I1820.controllers.NotificationController.mqtt_service = mqtt_service
+    I1820.controllers.LogController.log_service = log_service
 
     console.print("Mia is up and running", style="bold red")
 
