@@ -1,16 +1,7 @@
-# In The Name Of God
-# ========================================
-# [] File Name : event.py
-#
-# [] Creation Date : 30-10-2016
-#
-# [] Created By : Parham Alvani (parham.alvani@gmail.com)
-# =======================================
 from ..domain.event import I1820Event
-from .base import I1820Controller
 
 
-class EventController(I1820Controller):
+class EventController():
     '''
     The EventController controls human related events. these events
     base on :class:`I1820Event`.

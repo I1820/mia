@@ -1,26 +1,21 @@
-# In The Name Of God
-# ========================================
-# [] File Name : base.py
-#
-# [] Creation Date : 09-09-2016
-#
-# [] Created By : Parham Alvani (parham.alvani@gmail.com)
-# =======================================
+from __future__ import annotations
+
 import abc
 import threading
 
 
-class ControllerMeta(abc.ABCMeta):
-    instances = {}
+class Controller():
+    '''
+    controllers must be signleton. this parent class create single controller
+    instance on their first call and then return it always.
+    '''
+
+    instances: dict[type[Controller], Controller] = {}
     lock = threading.Lock()
 
-    def __call__(self, *args, **kwargs):
-        with self.lock:
-            if self not in self.instances:
-                self.instances[self] = super(ControllerMeta,
-                                             self).__call__(*args, **kwargs)
-        return self.instances[self]
-
-
-class I1820Controller(metaclass=ControllerMeta):
-    pass
+    @classmethod
+    def __call__(cls):
+        with cls.lock:
+            if cls not in cls.instances:
+                cls.instances[cls] = cls()
+        return cls.instances[cls]
