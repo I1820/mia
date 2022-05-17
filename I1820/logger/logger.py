@@ -3,7 +3,7 @@ import logging
 from rich.logging import RichHandler
 
 FORMAT = (
-    'I1820: [%(asctime)s] %(levelname)-8s %(name)-12s %(thread)-8s %(message)s'
+    'mia: [%(asctime)s] %(levelname)-8s %(name)-12s %(thread)-8s %(message)s'
 )
 
 
