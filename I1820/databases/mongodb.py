@@ -1,18 +1,19 @@
-import pymongo
+import datetime
 
-from ..conf.config import Config
+import pymongo
+from pymongo.database import Database
+
 from .base import LogAppender
 
 
 class MongodbLogAppender(LogAppender):
-    def __init__(self, cfg: Config):
-        self._client = pymongo.MongoClient(host=cfg.appenders_mongodb_host,
-                                           port=int(cfg.appenders_mongodb_port)
-                                           )
-        self._client = self._client[cfg.appenders_mongodb_db]
+    def __init__(self, host: str, port: int, database: str):
+        self.client = pymongo.MongoClient(host=host,
+                                          port=port)
+        self.database: Database = self.client[database]
 
-    def create(self, measurement, agent_id, device_id, time, value):
-        collection = self._client[measurement]
+    def create(self, measurement: str, agent_id: str, device_id: str, time: datetime.datetime, value):
+        collection = self.database[measurement]
         point = {
             "agent_id": agent_id,
             "device_id": device_id,
@@ -22,7 +23,7 @@ class MongodbLogAppender(LogAppender):
         collection.insert_one(point)
 
     def retrieve_last(self, measurement, agent_id, device_id):
-        collection = self._client[measurement]
+        collection = self.database[measurement]
         q = {
             "agent_id": agent_id,
             "device_id": device_id
