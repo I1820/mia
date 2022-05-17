@@ -2,6 +2,8 @@
 runs mia server
 '''
 
+import typing
+
 from rich import pretty
 from rich.console import Console
 
@@ -11,9 +13,13 @@ import I1820.discovery
 import I1820.http.main
 import I1820.logger
 import I1820.mqtt
+# just for type hinting
+from I1820.conf.config import InfluxDBDatabase, MongoDBDatabase
 
 if __name__ == '__main__':
-    I1820.logger.setup()
+    # uncomment the following line to have a cutom logger
+    # but it cannot work with http server.
+    # I1820.logger.setup()
 
     console = Console()
     pretty.install()
@@ -25,12 +31,16 @@ if __name__ == '__main__':
 
     match cfg.database.name:
         case 'mongodb':
+            cfg.database.config = \
+                typing.cast(MongoDBDatabase, cfg.database.config)
             database = I1820.databases.MongodbLogAppender(
                     host=cfg.database.config.host,
                     port=cfg.database.config.port,
                     database=cfg.database.config.database,
                     )
         case 'influxdb':
+            cfg.database.config = \
+                typing.cast(InfluxDBDatabase, cfg.database.config)
             database = I1820.databases.InfluxdbLogAppender(
                     host=cfg.database.config.host,
                     port=cfg.database.config.port,
@@ -38,6 +48,8 @@ if __name__ == '__main__':
                     user=cfg.database.config.username,
                     password=cfg.database.config.password,
                 )
+        case _:
+            raise ValueError('invalid database type')
 
     log_service = I1820.databases.LogService(database)
 
