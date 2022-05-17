@@ -1,5 +1,9 @@
 ---
 services:
+  mongodb:
+    image: mongodb
+    ports:
+      - 27017:27017
   emqx:
     image: emqx/emqx
     ports:
