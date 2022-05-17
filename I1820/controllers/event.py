@@ -6,9 +6,8 @@
 #
 # [] Created By : Parham Alvani (parham.alvani@gmail.com)
 # =======================================
-from .base import I1820Controller
 from ..domain.event import I1820Event
-from ..http import sio
+from .base import I1820Controller
 
 
 class EventController(I1820Controller):
@@ -21,4 +20,5 @@ class EventController(I1820Controller):
         pass
 
     def event(self, event: I1820Event):
-        sio.emit(event.type, data=event.to_json(), namespace='/I1820')
+        # sio.emit(event.type, data=event.to_json(), namespace='/I1820')
+        pass

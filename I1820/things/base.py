@@ -61,9 +61,30 @@ class AbstractThing(abc.ABCMeta):
                     setattr(instance, value.field_name, [value])
         return instance
 
+
 class Thing(metaclass=AbstractThing):
     registered_things: dict[str, dict[tuple[str, str], Thing]] = {}
     name: str = ""
+
+    # these properties filled by `field_name` of the fields.
+    statistics: list[Field] = []
+    settings: list[Field] = []
+    events: list[Field] = []
+    states: list[Field] = []
+
+    @classmethod
+    def to_dict(cls) -> dict:
+        '''
+        create a dict representation of the thing properties.
+        '''
+        response = {}
+        response['type'] = cls.name
+        response['master'] = [str(c) for c in cls.__bases__]
+        response['statistics'] = [s.name for s in cls.statistics]
+        response['settings'] = [s.name for s in cls.settings]
+        response['states'] = [s.name for s in cls.states]
+        response['events'] = [e.name for e in cls.events]
+        return response
 
     def __init__(self, agent_id: str, device_id: str):
         self.agent_id = agent_id

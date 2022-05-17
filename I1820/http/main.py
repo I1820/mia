@@ -1,21 +1,15 @@
 import logging
 
-from gevent.wsgi import WSGIServer
+import sanic
 
-from .route import app
-
-logger = logging.getLogger('I1820.wsgi')
-
-IP = '0.0.0.0'
-PORT = 8080
-http_server = WSGIServer((IP, PORT), application=app, log=logger)
+from .model import ModelHanlder
 
 
-def main():
-    print(' * HTTP at %s:%d' % (IP, PORT))
-    http_server.serve_forever()
+def app() -> sanic.Sanic:
+    app = sanic.Sanic('mia')
+    app.ctx.logger = logging.getLogger('mia.http')
 
+    mh = ModelHanlder()
+    app.blueprint(mh.register())
 
-def die():
-    print(' > HTTP Die')
-    http_server.stop()
+    return app
