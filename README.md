@@ -1,9 +1,8 @@
-<p align="center"><strong>Good Days Good Things</strong></p>
+<h6 align="center">Good Days Good Things</h6>
+<h1 align="center">MiA, The IoT Platform</h1>
 
-# MiA, The IoT Platform
-
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/I1820/mia/ci?label=ci&logo=github&style=flat-square)
-
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/I1820/mia/ci?label=ci&logo=github&style=for-the-badge)
+  
 ## Introduction
 
 _IoT Platform PoC_
@@ -41,6 +40,9 @@ MiA provides following components of **IoT Application Enablement Platform**:
 - Data visualization
 
 ## Requests
+
+You can use the following reuqest to see the latest data for the given thing.
+Please note that in MiA things are uniqued with their `thing_id` and `agent_id`.
 
 ```sh
 curl -X POST 127.0.0.1:8080/things -H 'Content-Type: application/json' -d '{
