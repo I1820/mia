@@ -2,6 +2,7 @@ import typing
 
 from ..controllers import NotificationController
 from .base import Thing, Things
+from .fields.base import Field
 from .models.lamp import Lamp
 
 
@@ -18,7 +19,8 @@ def test_get_thing():
     assert issubclass(lamp, Lamp)
     assert isinstance(lamp('fake_agent', 'fake_device'), Lamp)
     assert isinstance(lamp('fake_agent', 'fake_device'), Thing)
-    assert lamp.on.name == 'on'
+    assert lamp.__dict__['on'].name == 'on'
+    assert isinstance(lamp.__dict__['on'], Field)
 
     assert Things.things == {'lamp': lamp}
 
