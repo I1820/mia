@@ -51,10 +51,8 @@ class AbstractThing(abc.ABCMeta):
             Things.set(namespace['name'], instance)
             instance.registered_things[namespace['name']] = {}
 
-        for key, value in namespace.items():
+        for _, value in namespace.items():
             if isinstance(value, Field):
-                # set field name based on its name in the thing class
-                value.name = key
                 if hasattr(instance, value.field_name):
                     getattr(instance, value.field_name).append(value)
                 else:

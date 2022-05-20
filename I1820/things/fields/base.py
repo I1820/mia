@@ -10,3 +10,6 @@ class Field:
 
     def __init__(self):
         self.name: str = ""
+
+    def __set_name__(self, _: type, name: str):
+        self.name = name
