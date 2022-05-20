@@ -18,6 +18,7 @@ def test_get_thing():
     assert issubclass(lamp, Lamp)
     assert isinstance(lamp('fake_agent', 'fake_device'), Lamp)
     assert isinstance(lamp('fake_agent', 'fake_device'), Thing)
+    assert lamp.on.name == 'on'
 
     assert Things.things == {'lamp': lamp}
 
