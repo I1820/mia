@@ -39,6 +39,27 @@ MiA provides following components of **IoT Application Enablement Platform**:
 - Processing & action management
 - Data visualization
 
+## Up and Running
+
+firs of all you can start the database and mqtt broker (the only requirements for MiA) by provided docker-compose as below:
+
+```sh
+docker-compose up -d
+```
+
+then you can run MiA with [pipenv](https://pipenv.pypa.io/en/latest/#) as follow:
+
+```sh
+pipenv install
+pipenv run main.py
+```
+
+Also you can the simple dummy agent to check that MiA is up and running:
+
+```
+pipenv run dummy.py
+```
+
 ## Requests
 
 You can use the following reuqest to see the latest data for the given thing.
