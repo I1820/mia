@@ -92,6 +92,22 @@ Each _thing_ has its `id` but this ID and its _agent_ ID together will unique th
 
 Types in the IoT world are very important and there are plenty of things out there so MiA tries its best on the type system which is written in python and without even a restart you can add your types into MiA.
 
+After the ping functionality _agent_ must have a way for sending the things data into the MiA server. This happens with the following json structure that is sending over MQTT to `I1820/{TENANT_ID}/log/send` topic.
+
+```json
+{
+  "timestamp": 1653572066,
+  "type": "temperature",
+  "device": "t1",
+  "states": [ {"name": "temperature", "value": 10.2 } ],
+  "agent": "a-very-unique-id"
+}
+```
+
+Each log contains `agent` which is the _agent_ ID and `device` which is a _thing_ ID. Again `type` specify the _thing_ type and `states` contains the _thing_ states which is defined in its type [here](https://github.com/I1820/mia/tree/main/I1820/things/models). `timestamp` is the time that this log is captured .
+
+MiA tries its based on be multi-tenant this means you can run multiple MiA servers over one MQTT broker to aggerate data from multiple rooms for example. To have this functionality each MiA server starts with a uniqe Tenant ID which is used over its MQTT topics. The default value for the Tenant ID is `main` so when you want only one MiA server use `main` instead of `{TENANT_ID}`.
+
 ## A Little Bit of History
 
 This platform started as PoC on [AoLab](https://github.com/AoLab) (Summer 2016) when we have many trobble with [Kaa](https://github.com/kaaproject) as our IoT Platform. Our goals were minimizing the resource usage and having a dynamic type system. We used this PoC on Computer Engineering Facility of Amirkabir University of Engineering when we were going to have smart room e2e IoT solution.
