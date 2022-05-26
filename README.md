@@ -41,11 +41,13 @@ MiA provides following components of **IoT Application Enablement Platform**:
 
 ## Up and Running
 
-firs of all you can start the database and mqtt broker (the only requirements for MiA) by provided docker-compose as below:
+firs of all you can start the database and mqtt broker (the only requirements for MiA) by provided [docker-compose](https://docs.docker.com/compose/) as below:
 
 ```sh
 docker-compose up -d
 ```
+
+if you have any issue with docker or docker-compose you can install these dependency based on their official manual. For [MongoDB](https://www.mongodb.com/docs/manual/installation/) please check [here](https://www.mongodb.com/docs/manual/installation/) and for [EMQX](https://www.emqx.io/) please check [here](https://www.emqx.io/docs/en/v4.4/getting-started/install.html#installation).
 
 then you can run MiA with [pipenv](https://pipenv.pypa.io/en/latest/#) as follow:
 
