@@ -110,6 +110,19 @@ Each log contains `agent` which is the _agent_ ID and `device` which is a _thing
 
 MiA tries its based on be multi-tenant this means you can run multiple MiA servers over one MQTT broker to aggerate data from multiple rooms for example. To have this functionality each MiA server starts with a uniqe Tenant ID which is used over its MQTT topics. The default value for the Tenant ID is `main` so when you want only one MiA server use `main` instead of `{TENANT_ID}`.
 
+At the end we need to configure the _things_ for example we want to turn on the lamp and _on_ is a configuration or setting on the _lamp_ as a thing. For this we need to subscribe on `I1820/{TENANT_ID}/configuration/request` in _agents_. Each message on this topic which comes from MiA server has the following structure in json.
+
+```json
+{
+  "type": "lamp",
+  "device": "l1",
+  "settings": [ {"name": "on", "value": true } ],
+  "agent": "a-very-unique-id"
+}
+```
+
+Each configuration message (here we called them notification) contains `agent` which is the _agent_ ID and `device` which is a _thing_ ID. Again `type` specify the _thing_ type and `settings` contains the _thing_ settings which is defined in its type [here](https://github.com/I1820/mia/tree/main/I1820/things/models).
+
 ## A Little Bit of History
 
 This platform started as PoC on [AoLab](https://github.com/AoLab) (Summer 2016) when we have many trobble with [Kaa](https://github.com/kaaproject) as our IoT Platform. Our goals were minimizing the resource usage and having a dynamic type system. We used this PoC on Computer Engineering Facility of Amirkabir University of Engineering when we were going to have smart room e2e IoT solution.
