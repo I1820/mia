@@ -76,6 +76,17 @@ curl -X POST 127.0.0.1:8080/things -H 'Content-Type: application/json' -d '{
 }'
 ```
 
+For changing settings on a thing we have the following request:
+
+```sh
+curl -X PUT 127.0.0.1:8080/things -H 'Content-Type: application/json' -d '{
+  "agent_id": "dummy",
+  "device_id": "1",
+  "type": "lamp",
+  "settings": { "on": true }
+}'
+```
+
 ## How to implement an agent?
 
 An _agent_ gather _things_'s data and controls them. Each _agent_ periodically pings the MiA server, so it can find out the agent is up and running and also knows about its current number of active things. Each ping is a message which is sent over MQTT with the following JSON structure and to `I1820/{TENANT_ID}/agent/ping` topic.
