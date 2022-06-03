@@ -2,7 +2,7 @@
 <h1 align="center">MiA, The IoT Platform</h1>
 
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/I1820/mia/ci?label=ci&logo=github&style=for-the-badge)
-  
+
 ## Introduction
 
 _IoT Platform PoC_
@@ -18,6 +18,8 @@ In MiA literature you have _things_ and _agents_, things are your actuators and
 sensors and _agents_ are any device that can connect to the MiA server,
 they only requirement is being able to make MQTT requests. An examples of such
 devices are NodeMCU and RPi.
+
+![mia.png](./docs/diag/mia.png)
 
 ### Why another platform?
 
@@ -112,7 +114,7 @@ After the ping functionality _agent_ must have a way for sending the things data
   "timestamp": 1653572066,
   "type": "temperature",
   "device": "t1",
-  "states": [ {"name": "temperature", "value": 10.2 } ],
+  "states": [{ "name": "temperature", "value": 10.2 }],
   "agent": "a-very-unique-id"
 }
 ```
@@ -127,7 +129,7 @@ At the end we need to configure the _things_ for example we want to turn on the 
 {
   "type": "lamp",
   "device": "l1",
-  "settings": [ {"name": "on", "value": true } ],
+  "settings": [{ "name": "on", "value": true }],
   "agent": "a-very-unique-id"
 }
 ```
