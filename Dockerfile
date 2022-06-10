@@ -1,5 +1,7 @@
 FROM python:3-alpine
 
+RUN apk --update add --virtual build-dependencies
+
 WORKDIR /app
 
 COPY . .
