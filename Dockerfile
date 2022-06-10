@@ -1,5 +1,7 @@
 FROM python:3-alpine
 
+RUN apk add build-base
+
 WORKDIR /app
 
 COPY . .
