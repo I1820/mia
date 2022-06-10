@@ -16,7 +16,6 @@ pymongo-stubs = "*"
 types-requests = "*"
 
 [dev-packages]
-socketio-client = "*"
 pytest = "*"
 mypy = "*"
 pylint = "*"
