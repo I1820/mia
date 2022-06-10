@@ -7,7 +7,7 @@
   <img alt="GitHub Pipenv locked Python version" src="https://img.shields.io/github/pipenv/locked/python-version/i1820/mia?logo=python&style=for-the-badge">
   <img alt="GitHub release (latest SemVer including pre-releases)" src="https://img.shields.io/github/v/release/i1820/mia?include_prereleases&logo=github&style=for-the-badge">
 </p>
-  
+
 ## Introduction
 
 _IoT Platform PoC_
@@ -68,6 +68,14 @@ Also you can the simple dummy agent to check that MiA is up and running:
 ```
 pipenv run dummy.py
 ```
+
+if you are a fan of docker, you can run MiA in docker:
+
+```
+docker run -e MIA_MQTT__HOST=lhar -ti ghcr.io/i1820/mia:latest
+```
+
+MiA supports both file-based and env-based configuration so you can use which one that suites you.
 
 ## Requests
 
