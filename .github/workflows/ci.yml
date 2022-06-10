@@ -32,4 +32,4 @@ jobs:
         with:
           platforms: linux/amd64
           push: true
-          files: [ 'docker-bake.json' ]
+          files: 'docker-bake.json'
