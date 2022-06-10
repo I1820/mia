@@ -30,6 +30,5 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - uses: docker/bake-action@v2
         with:
-          platforms: linux/amd64
           push: true
           files: 'docker-bake.json'
