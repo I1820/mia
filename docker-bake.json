@@ -1,0 +1,14 @@
+{
+  "group": {
+    "default": {
+      "targets": ["mia"]
+    }
+  },
+
+  "target": {
+    "mia": {
+      "dockerfile": "Dockerfile",
+      "tags": ["ghcr.io/i1820/mia"]
+    }
+  }
+}
