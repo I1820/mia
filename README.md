@@ -10,6 +10,7 @@
 
 <p align="center">
   <img alt="YouTube Video Views" src="https://img.shields.io/youtube/views/pwM4AHY5eL0?label=MIA-1%20Views&logo=youtube&style=for-the-badge">
+  <img alt="YouTube Video Views" src="https://img.shields.io/youtube/views/cAniRCpFmrU?label=MIA-2%20Views&logo=youtube&style=for-the-badge">
 </p>
 
 ## Introduction
