@@ -102,6 +102,12 @@ curl -X PUT 127.0.0.1:8080/things -H 'Content-Type: application/json' -d '{
 }'
 ```
 
+Also with the following request you can see the registered agents:
+
+```sh
+curl 127.0.0.1:8080/agents
+```
+
 ## How to implement an agent?
 
 An _agent_ gather _things_'s data and controls them. Each _agent_ periodically pings the MiA server, so it can find out the agent is up and running and also knows about its current number of active things. Each ping is a message which is sent over MQTT with the following JSON structure and to `I1820/{TENANT_ID}/agent/ping` topic.
