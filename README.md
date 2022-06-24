@@ -8,6 +8,10 @@
   <img alt="GitHub release (latest SemVer including pre-releases)" src="https://img.shields.io/github/v/release/i1820/mia?include_prereleases&logo=github&style=for-the-badge">
 </p>
 
+<p align="center">
+  <img alt="YouTube Video Views" src="https://img.shields.io/youtube/views/pwM4AHY5eL0?label=MIA-1%20Views&logo=youtube&style=for-the-badge">
+</p>
+
 ## Introduction
 
 _IoT Platform PoC_
