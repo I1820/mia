@@ -1,11 +1,11 @@
 ---
 services:
   mongodb:
-    image: mongo
+    image: mongo:5.0
     ports:
       - 27017:27017
   emqx:
-    image: emqx/emqx
+    image: emqx/emqx:5.0.0
     ports:
       - 1883:1883
       - 18083:18083
