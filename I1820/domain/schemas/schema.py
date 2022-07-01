@@ -1,11 +1,19 @@
-import os
-import json
+'''
+this module loads json schemas from the files and used
+for validating incoming mqtt requests.
+'''
 
-log_schema = json.load(open(os.path.join(os.path.dirname(__file__),
-                                         "log.json")))
-log_request_schema = json.load(open(os.path.join(os.path.dirname(__file__),
-                                                 "log-request.json")))
-notif_request_schema = json.load(open(os.path.join(os.path.dirname(__file__),
-                                                   "notif-request.json")))
-agent_schema = json.load(open(os.path.join(os.path.dirname(__file__),
-                                           "agent.json")))
+import json
+import os
+
+log_schema = json.load(
+    open(
+        os.path.join(os.path.dirname(__file__), "log.json"),
+        encoding="UTF-8"
+    ))
+
+agent_schema = json.load(
+    open(
+        os.path.join(os.path.dirname(__file__), "agent.json"),
+        encoding="UTF-8"
+    ))
