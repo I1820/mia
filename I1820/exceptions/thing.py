@@ -1,25 +1,22 @@
-# In The Name Of God
-# ========================================
-# [] File Name : thing.py
-#
-# [] Creation Date : 22-09-2016
-#
-# [] Created By : Parham Alvani (parham.alvani@gmail.com)
-# =======================================
+from sanic.exceptions import SanicException
 
 
-class ThingNotFoundException(Exception):
+class ThingNotFoundException(SanicException):
     """
-    Raised when a (agent_id, device_id) is requested that is not
+    raised when a (agent_id, device_id) is requested that is not
     exist.
     """
+    status_code = 404
 
-    def __init__(self, agent_id, device_id, type, error):
-        super().__init__("(%s, %s) of type %s was Not Found." %
-                         (agent_id, device_id, type))
+    def __init__(self, agent_id, device_id, device_type, error):
+
+        super().__init__(
+            message=f"({agent_id}, {device_id}) of type {device_type} "
+            "was Not Found."
+        )
         self.agent_id = agent_id
         self.device_id = device_id
-        self.type = type
+        self.device_type = device_type
         self.error = error
 
 
