@@ -1,3 +1,7 @@
+'''
+thing related apis which can be used for sending information to things
+or reading its information.
+'''
 import dataclasses
 import typing
 
@@ -22,8 +26,15 @@ class ThingReadRequest():
     statistics: bool = False
 
 
+@dataclasses.dataclass
 class ThingWriteRequest():
-    pass
+    '''
+    configuration request for the thing settings.
+    '''
+    agent_id: str
+    device_id: str | list[str]
+    type: str
+    settings: dict[str, typing.Any]
 
 
 class ThingHandler():
@@ -84,30 +95,33 @@ class ThingHandler():
         return json(result)
 
     @staticmethod
-    async def thing_write_handler(request: sanic.Request) -> sanic.HTTPResponse:
-        data = request.json
-        if data is None:
-            return json(status=401, body='bad request')
-        data = typing.cast(dict, data)
-
-        agent_id = data['agent_id']
+    @openapi.body({"application/json": ThingWriteRequest})
+    @openapi.description('''
+    write things information these information includes:
+    - settings
+    ''')
+    @validate(json=ThingWriteRequest)
+    async def thing_write_handler(
+            _: sanic.Request,
+            body: ThingWriteRequest,
+    ) -> sanic.HTTPResponse:
+        agent_id = body.agent_id
         things = []
-        if isinstance(data['device_id'], str):
-            device_id = data['device_id']
+        if isinstance(body.device_id, str):
+            device_id = body.device_id
             things.append(
-                Things.get(data['type']).get_thing(agent_id, device_id)
+                Things.get(body.type).get_thing(agent_id, device_id)
             )
-        elif isinstance(data['device_id'], list):
-            for device_id in data['device_id']:
+        elif isinstance(body.device_id, list):
+            for device_id in body.device_id:
                 things.append(
-                    Things.get(data['type']).get_thing(agent_id, device_id))
+                    Things.get(body.type).get_thing(agent_id, device_id))
 
-        if 'settings' in data.keys():
-            for thing in things:
-                for key, value in data['settings'].items():
-                    setattr(thing, key, value)
+        for thing in things:
+            for key, value in body.settings.items():
+                setattr(thing, key, value)
 
-        return json(data)
+        return json(body)
 
     def register(self) -> sanic.Blueprint:
         bp = sanic.Blueprint("things", url_prefix='/things')
