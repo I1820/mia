@@ -21,7 +21,7 @@
                 "sha256:7a973fc22b29e9962d0897805ace5856e6a566ab1f0c8e5c91ff6c866519c937",
                 "sha256:8334f23235248a3b2e83b2c3a78a22674f39969b96397126cc93664d9a901e59"
             ],
-            "markers": "python_version >= '3.6' and python_full_version < '4.0.0'",
+            "markers": "python_version >= '3.6' and python_version < '4'",
             "version": "==0.8.0"
         },
         "attrs": {
@@ -492,11 +492,11 @@
         },
         "sanic-ext": {
             "hashes": [
-                "sha256:a55d2f7255dfd4934b3c5c4ccb09cb37177fa14fc675e7c03b384f75318c201c",
-                "sha256:b8e21afa50b7981b43f29c1f571b2970e37de29925cca4c9c86bf2fd6971f742"
+                "sha256:ec6be5c2c5dfeacc7e6acb16a8be2dc5396f8931b73dc72617230d0eeb85db69",
+                "sha256:f0790ab5bb1b6497f4ede72743c9b9b080627a01315ecfc2c994d38327595cab"
             ],
             "index": "pypi",
-            "version": "==22.6.1"
+            "version": "==22.6.2"
         },
         "sanic-routing": {
             "hashes": [
@@ -589,7 +589,7 @@
                 "sha256:8298d6d56d39be0e3bc13c1c97d133f9b45d797169a0e11cdd0e0489d786f7ec",
                 "sha256:879ba4d1e89654d9769ce13121e0f94310ea32e8d2f8cf587b77c08bbcdb30d6"
             ],
-            "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4, 3.5' and python_full_version < '4.0.0'",
+            "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4, 3.5' and python_version < '4'",
             "version": "==1.26.10"
         },
         "uvloop": {
