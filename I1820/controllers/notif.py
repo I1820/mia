@@ -10,10 +10,10 @@ class AbstractNotification(typing.Protocol):
 
 
 class NotificationController(Controller):
-    '''
+    """
     The NotificationController controls notifications. these notifications
     base on :class:`I1820Notification`.
-    '''
+    """
 
     mqtt_service: typing.Optional[AbstractNotification] = None
 

@@ -1,12 +1,4 @@
-# In The Name Of God
-# ========================================
-# [] File Name : log.py
-#
-# [] Creation Date : 04-09-2016
-#
-# [] Created By : Parham Alvani (parham.alvani@gmail.com)
-# =======================================
-from ..exceptions.format import InvalidLogFormatException
+from I1820.exceptions.format import InvalidLogFormatException
 from .schemas.schema import log_schema
 
 import datetime
@@ -15,7 +7,7 @@ import jsonschema
 
 
 class I1820Log:
-    '''
+    """
     The I1820Log object contains information that is used to
     report end device states into I1820.
 
@@ -27,18 +19,21 @@ class I1820Log:
     :type states: dict
     :param agent: identification of target end device agent [Raspberry PI].
     :type agent: str
-    '''
-    def __init__(self, type: str, device: str,
-                 states: list,
-                 agent: str,
-                 timestamp: datetime.datetime = None):
-        if timestamp is None:
-            timestamp = datetime.datetime.utcnow()
+    """
 
+    def __init__(
+        self,
+        type: str,
+        device: str,
+        states: list,
+        agent: str,
+        timestamp: datetime.datetime = datetime.datetime.utcnow(),
+    ):
         for state in states:
-            if 'name' not in state or 'value' not in state:
+            if "name" not in state or "value" not in state:
                 raise ValueError(
-                    'states must be an array of names and values.')
+                    "states must be an array of names and values."
+                )
 
         self.states = states
         self.type = type
@@ -48,11 +43,11 @@ class I1820Log:
 
     def to_json(self):
         result = {
-                'timestamp': self.timestamp.timestamp(),
-                'type': self.type,
-                'device': self.device,
-                'states': self.states,
-                'agent': self.agent
+            "timestamp": self.timestamp.timestamp(),
+            "type": self.type,
+            "device": self.device,
+            "states": self.states,
+            "agent": self.agent,
         }
         return json.dumps(result)
 
@@ -66,10 +61,9 @@ class I1820Log:
         except jsonschema.ValidationError as e:
             raise InvalidLogFormatException(e)
 
-        states = raw_values['states']
-        type = raw_values['type']
-        device = raw_values['device']
-        agent = raw_values['agent']
-        timestamp = datetime.datetime.fromtimestamp(
-            raw_values['timestamp'])
+        states = raw_values["states"]
+        type = raw_values["type"]
+        device = raw_values["device"]
+        agent = raw_values["agent"]
+        timestamp = datetime.datetime.fromtimestamp(raw_values["timestamp"])
         return cls(type, device, states, agent, timestamp)

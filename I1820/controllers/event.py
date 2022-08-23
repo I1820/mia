@@ -1,12 +1,13 @@
 from ..domain.event import I1820Event
 
 
-class EventController():
-    '''
+class EventController:
+    """
     The EventController controls human related events. these events
     base on :class:`I1820Event`.
     **Use Event for sending realtime information to humans.**
-    '''
+    """
+
     def __init__(self):
         pass
 

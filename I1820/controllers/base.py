@@ -19,7 +19,7 @@ class ControllerMeta(abc.ABCMeta):
 
 
 class Controller(metaclass=ControllerMeta):
-    '''
+    """
     controllers must be signleton. this parent class create single controller
     instance on their first call and then return it always.
-    '''
+    """
