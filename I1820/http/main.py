@@ -1,5 +1,3 @@
-import logging
-
 import sanic
 
 from ..discovery import DiscoveryService

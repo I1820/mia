@@ -3,10 +3,10 @@ import typing
 import sanic
 from sanic.response import json
 
-from ..discovery import DiscoveryService
+from I1820.discovery import DiscoveryService
 
 
-class AgentHanlder():
+class AgentHanlder:
     @staticmethod
     async def list(request: sanic.Request) -> sanic.HTTPResponse:
         ds = typing.cast(DiscoveryService, request.app.ctx.discovery_service)
@@ -20,8 +20,8 @@ class AgentHanlder():
         return json(ds.pong(agent))
 
     def register(self) -> sanic.Blueprint:
-        bp = sanic.Blueprint("agents", url_prefix='/agents')
-        bp.add_route(self.list, '/', methods=['GET'])
-        bp.add_route(self.delete, '/<agent:str>', methods=['DELETE'])
+        bp = sanic.Blueprint("agents", url_prefix="/agents")
+        bp.add_route(self.list, "/", methods=["GET"])
+        bp.add_route(self.delete, "/<agent:str>", methods=["DELETE"])
 
         return bp

@@ -14,6 +14,7 @@ class DiscoveryService:
     def __init__(self):
         self._agents: dict[str, Agent] = {}
         self.lck = Lock()
+        self.logger = logger.getChild("discovery")
         print(" * Mia Service: Discovery Service")
 
     @property
@@ -62,12 +63,12 @@ class DiscoveryService:
         # Add things into local things storage
         for thg in to_add:
             Things.get(thg.type).new_thing(agent.ident, thg.id)
-            logger.info("thing %s was registered", thg.id)
+            self.logger.info("thing %s was registered", thg.id)
 
         # Remove things from local things storage
         for thg in to_del:
             Things.get(thg.type).del_thing(agent.ident, thg.id)
-            logger.info("thing %s was removed", thg.id)
+            self.logger.info("thing %s was removed", thg.id)
 
     def pong(self, agent_id: str):
         """

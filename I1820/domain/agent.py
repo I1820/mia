@@ -51,7 +51,7 @@ class Agent:
         try:
             jsonschema.validate(raw_values, agent_schema)
         except jsonschema.ValidationError as e:
-            raise InvalidAgentFormatException(e)
+            raise InvalidAgentFormatException(e) from e
 
         ident = raw_values["id"]
         things: set[RawThing] = set()

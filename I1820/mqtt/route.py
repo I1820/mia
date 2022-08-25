@@ -15,6 +15,7 @@ from I1820.things.base import Things
 class Handler:
     def __init__(self, discovery_service: DiscoveryService, tenant: str):
         self.discovery_service = discovery_service
+        self.logger = logger.getChild("mqtt")
         self.tenant = tenant
 
     def on_log(self, _client, _userdata, message):
@@ -32,7 +33,7 @@ class Handler:
         try:
             log = I1820Log.from_json(message.payload.decode("ascii"))
         except InvalidLogFormatException as e:
-            logger.warning("[%s]: %s", message.topic, str(e))
+            self.logger.warning("%s: %s", message.topic, str(e))
             return
 
         # Sending raw data without any futher processing
@@ -47,7 +48,7 @@ class Handler:
         try:
             thing = Things.get(log.type).get_thing(log.agent, log.device)
         except ThingNotFoundException as e:
-            logger.warning("[%s]: %s", message.topic, str(e))
+            self.logger.warning("%s: %s", message.topic, str(e))
             return
 
         for state in log.states:
@@ -57,7 +58,13 @@ class Handler:
                 {"value": state["value"], "time": log.timestamp},
             )
 
-        logger.info("[%s]", message.topic)
+        self.logger.info(
+            "recived log on %s from agent: %s, device: %s, type: %s",
+            message.topic,
+            log.agent,
+            log.device,
+            log.type,
+        )
 
     def on_discovery(self, client, userdata, message):
         """
@@ -78,7 +85,7 @@ class Handler:
 
         self.discovery_service.ping(agent)
 
-        logger.info("discovery on [%s]", agent.ident)
+        self.logger.info("discovery from %s", agent.ident)
 
     def publish(self, client, body):
         """
