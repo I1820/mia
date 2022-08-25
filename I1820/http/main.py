@@ -10,8 +10,7 @@ from .thing import ThingHandler
 
 
 def app(ds: DiscoveryService) -> sanic.Sanic:
-    app = sanic.Sanic('mia')
-    app.ctx.logger = logging.getLogger('mia.http')
+    app = sanic.Sanic("mia")
     app.ctx.discovery_service = ds
 
     app.blueprint(ModelHanlder().register())
