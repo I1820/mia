@@ -1,1 +1,1 @@
-from .logger import setup
+from .logger import logger

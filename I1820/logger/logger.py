@@ -2,16 +2,13 @@ import logging
 
 from rich.logging import RichHandler
 
-FORMAT = (
-    'mia: [%(asctime)s] %(levelname)-8s %(name)-12s %(thread)-8s %(message)s'
+logger = logging.getLogger(__name__)
+
+format = logging.Formatter(
+    "mia: [%(asctime)s] %(levelname)-8s %(name)-12s %(thread)-8s %(message)s"
 )
 
+handler = RichHandler(markup=True)
+handler.setFormatter(format)
 
-def setup():
-    '''
-    setup logging based on rich library and a custom format
-    '''
-    logging.basicConfig(
-        level="NOTSET", format=FORMAT, datefmt="[%X]",
-        handlers=[RichHandler(markup=True)]
-    )
+logger.addHandler(handler)
