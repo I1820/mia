@@ -1,14 +1,22 @@
 {
   "group": {
     "default": {
-      "targets": ["mia"]
+      "targets": [
+        "mia"
+      ]
     }
   },
-
+  "variable": {
+    "TAG": {
+      "default": "latest"
+    }
+  },
   "target": {
     "mia": {
       "dockerfile": "Dockerfile",
-      "tags": ["ghcr.io/i1820/mia"]
+      "tags": [
+        "ghcr.io/i1820/mia:${TAG}"
+      ]
     }
   }
 }
