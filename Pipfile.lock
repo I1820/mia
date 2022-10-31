@@ -500,11 +500,11 @@
         },
         "sanic": {
             "hashes": [
-                "sha256:01932dc4cbcd312caf509cb9ffcee8bea4f22b497a5b0c2d4dd5794c4408737a",
-                "sha256:ac29863e64377399ca5a99408d521409ba8a80f81013c0e2878fae88de5e9aa8"
+                "sha256:9793919827f3753fd16433c8750625472f1a08e2147d6870bb7ff94ab12caaea",
+                "sha256:d8905ee1c72759c7b37b1638c3b2b6656573d38156a82a85fd020532749029c1"
             ],
             "index": "pypi",
-            "version": "==22.9.0"
+            "version": "==22.9.1"
         },
         "sanic-ext": {
             "hashes": [
