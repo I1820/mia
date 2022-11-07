@@ -508,11 +508,11 @@
         },
         "sanic-ext": {
             "hashes": [
-                "sha256:07fa77d122b8c024dcf40d180bafe4f32b0a473d429f0d9f7ee403490e690ea6",
-                "sha256:915b40545101b928bb9b5258e443eb8f37ba403ff7a05565a7bec790a9b46654"
+                "sha256:84515c7b8f2ec2c22c25fbeebdbf473e6e10fe224fc9c6767a1d3caa384266a7",
+                "sha256:af4ed519c177a590229d5056a997ea556177294cca00db580efb1b8717ecead8"
             ],
             "index": "pypi",
-            "version": "==22.9.0"
+            "version": "==22.9.1"
         },
         "sanic-routing": {
             "hashes": [
