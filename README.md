@@ -2,7 +2,7 @@
 <h1 align="center">MiA, The IoT Platform</h1>
 
 <p align="center">
-  <img src="https://img.shields.io/github/workflow/status/I1820/mia/ci?label=ci&logo=github&style=for-the-badge" alt="GitHub Workflow Status">
+  <img src="https://img.shields.io/github/actions/workflow/status/I1820/mia/ci.yml?label=ci&logo=github&style=for-the-badge&branch=main" alt="GitHub Workflow Status">
   <img alt="GitHub" src="https://img.shields.io/github/license/i1820/mia?logo=gnu&style=for-the-badge">
   <img alt="GitHub Pipenv locked Python version" src="https://img.shields.io/github/pipenv/locked/python-version/i1820/mia?logo=python&style=for-the-badge">
   <img alt="GitHub release (latest SemVer including pre-releases)" src="https://img.shields.io/github/v/release/i1820/mia?include_prereleases&logo=github&style=for-the-badge">
