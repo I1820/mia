@@ -21,7 +21,7 @@
                 "sha256:1142fa8e80dbae46bb6339573ad4c8c0841358f79c6eb50a493dceca14621bad",
                 "sha256:9107f1ca0b2a5553987a94a3c9959fe5b491fdf731389aa5b7b1bd0733e32de6"
             ],
-            "markers": "python_version >= '3.7' and python_version < '4'",
+            "markers": "python_version >= '3.7' and python_version < '4.0'",
             "version": "==22.1.0"
         },
         "attrs": {
@@ -522,11 +522,11 @@
         },
         "sanic": {
             "hashes": [
-                "sha256:9793919827f3753fd16433c8750625472f1a08e2147d6870bb7ff94ab12caaea",
-                "sha256:d8905ee1c72759c7b37b1638c3b2b6656573d38156a82a85fd020532749029c1"
+                "sha256:84edf46cc17d13264ccec0ae6622e43087498f95644dc336ade74a2d5e6c88cb",
+                "sha256:e5f81115f838956957046b6c52e7a08c1bd6e8ff530ee1376471eaf1579bfffa"
             ],
             "index": "pypi",
-            "version": "==22.9.1"
+            "version": "==22.12.0"
         },
         "sanic-ext": {
             "hashes": [
