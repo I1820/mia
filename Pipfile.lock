@@ -123,11 +123,11 @@
         },
         "dynaconf": {
             "hashes": [
-                "sha256:11a60bcd735f82b8a47b288f99e4ffbbd08c6c130a7be93c5d03e93fc260a5e1",
-                "sha256:a79d7b3ad4a35af9b576c49f11cd3b23a1b04b87b63a4e9f92cc82f2b0cafeeb"
+                "sha256:791d8029c74548d57b0266aabd6557ebfff6540bffd7f58ba700f577c047c0f5",
+                "sha256:a28442d12860a44fad5fa1d9db918c710cbfc971e8b7694697429fb8f1c3c620"
             ],
             "index": "pypi",
-            "version": "==3.1.12"
+            "version": "==3.2.0"
         },
         "html5tagger": {
             "hashes": [
