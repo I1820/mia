@@ -32,14 +32,16 @@ class InfluxDBDatabase:
 @dataclasses.dataclass()
 class Database:
     name: str = "mongodb"
-    config: MongoDBDatabase | InfluxDBDatabase = MongoDBDatabase()
+    config: MongoDBDatabase | InfluxDBDatabase = dataclasses.field(
+        default_factory=MongoDBDatabase
+    )
 
 
 @dataclasses.dataclass()
 class Config:
     tenant: str = "main"
-    mqtt: MQTT = MQTT()
-    database: Database = Database()
+    mqtt: MQTT = dataclasses.field(default_factory=MQTT)
+    database: Database = dataclasses.field(default_factory=Database)
 
 
 def load() -> Config:
