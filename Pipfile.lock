@@ -175,7 +175,7 @@
                 "sha256:e41ccac9e77cd045f3e4ee0fc62cbf3d54d7d4b375431eb855561f26ee7a9ec4",
                 "sha256:f959e4770b3fc8ee4dbc3578fd910fab9003e093f20ac8c621452c4d62e517cb"
             ],
-            "markers": "python_version >= '3.5'",
+            "markers": "python_full_version >= '3.5.0'",
             "version": "==0.6.0"
         },
         "idna": {
@@ -183,7 +183,7 @@
                 "sha256:814f528e8dead7d329833b91c5faa87d60bf71824cd12a7530b5526063d02cb4",
                 "sha256:90b77e79eaa3eba6de819a0c442c0b4ceefc341a7a2ab77d7562bf49f425c5c2"
             ],
-            "markers": "python_version >= '3.5'",
+            "markers": "python_full_version >= '3.5.0'",
             "version": "==3.4"
         },
         "influxdb": {
@@ -711,11 +711,11 @@
         },
         "sanic-ext": {
             "hashes": [
-                "sha256:263dce66c262f1e59f663dca6e115a1d3ad20b68fcaab04bf48f6cb70dcae9d0",
-                "sha256:73c8b21061211cbfa8beb282b1cb052ec10033f3ab02fff854482b52bace5a4b"
+                "sha256:81dd136b6b7b79fda8b4fec2444d9822394555779c298a89155c67287a184902",
+                "sha256:94eb84b7d1728c058e056c6fe6f4bcd39d370e826a83d1a38d977363c3b51159"
             ],
             "index": "pypi",
-            "version": "==23.3.0"
+            "version": "==23.6.0"
         },
         "sanic-routing": {
             "hashes": [
