@@ -138,12 +138,12 @@
         },
         "dynaconf": {
             "hashes": [
-                "sha256:8a37ba3b16df64cb1db383eaad9c733aece218413be0fad5d785f7a907612106",
-                "sha256:df4af8d0f3b068cc6419ceceaae572070a6b8fec38fa51a1f5eb8ea4883e53de"
+                "sha256:2e6adebaa587f4df9241a16a4bec3fda521154d26b15f3258fde753a592831b6",
+                "sha256:858f9806fab2409c4f5442614c2605d4c4071d5e5153b0e7f24a225f27465aed"
             ],
             "index": "pypi",
             "markers": "python_version >= '3.8'",
-            "version": "==3.2.3"
+            "version": "==3.2.4"
         },
         "html5tagger": {
             "hashes": [
