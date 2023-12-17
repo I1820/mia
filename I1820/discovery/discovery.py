@@ -1,4 +1,4 @@
-from datetime import datetime
+import datetime
 from threading import Lock
 
 from I1820.domain.agent import Agent, RawThing
@@ -50,10 +50,10 @@ class DiscoveryService:
         with self.lck:
             if agent.ident not in self._agents:
                 self._agents[agent.ident] = agent
-                self._agents[agent.ident].last_seen = datetime.utcnow()
+                self._agents[agent.ident].last_seen = datetime.datetime.now(datetime.UTC)
                 to_add = agent.things
             else:
-                agent.last_seen = datetime.utcnow()
+                agent.last_seen = datetime.datetime.now(datetime.UTC)
                 if self._agents[agent.ident] == agent.things:
                     return
                 to_del = self._agents[agent.ident].things - agent.things
