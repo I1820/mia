@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import abc
 import threading
-import typing
 
 
 class ControllerMeta(abc.ABCMeta):
@@ -10,7 +9,9 @@ class ControllerMeta(abc.ABCMeta):
     lock = threading.Lock()
 
     def __call__(cls, *args, **kwargs):
-        cls = typing.cast(type[Controller], cls)
+        # Controller is the only class extends from ControllerMeta
+        # class
+        assert isinstance(cls, type(Controller))
 
         with cls.lock:
             if cls not in cls.instances:
@@ -20,6 +21,6 @@ class ControllerMeta(abc.ABCMeta):
 
 class Controller(metaclass=ControllerMeta):
     """
-    controllers must be signleton. this parent class create single controller
+    controllers must be singleton. this parent class create single controller
     instance on their first call and then return it always.
     """

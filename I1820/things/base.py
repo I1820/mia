@@ -1,8 +1,11 @@
 '''
-fundamental classes for dynamic managements of things models.
+fundamental classes for dynamic managements of things models
+using python code and without having any external source of description
+like JSON or YAML.
 '''
 from __future__ import annotations
 
+import re
 import abc
 import importlib
 import typing
@@ -20,13 +23,18 @@ class Things():
 
     @classmethod
     def set(cls, name: str, thing: type[Thing]):
+        '''
+        Provide a thing class with its name for future
+        referencing.
+        '''
         cls.things[name] = thing
 
     @classmethod
     def get(cls, name: str) -> type[Thing]:
         '''
-        return the thing class by its name property.
-        it will load these classes on-demand.
+        Return the thing class by its name property.
+        It will load these classes on-demand from the
+        models package.
         '''
         if name not in cls.things:
             try:
@@ -38,18 +46,40 @@ class Things():
 
 
 class AbstractThing(abc.ABCMeta):
-    def __new__(cls, name, bases, namespace):
+    '''
+    Abstract class for things which controls the instantiation
+    of the Thing classes.
+    '''
+    @typing.override
+    def __new__(mcs, name, bases, namespace):
         instance = abc.ABCMeta.__new__(
-            cls, name, bases, namespace)
+            mcs, name, bases, namespace)
 
-        # here we are wrongly consider all subclasses
-        # of AbstractThing are Thing
-        # please ignore the type error
-        if 'name' in namespace and isinstance(namespace['name'], str) \
-                and namespace['name'] != "":
-            instance = typing.cast(type[Thing], instance)
-            Things.set(namespace['name'], instance)
-            instance.registered_things[namespace['name']] = {}
+        # Thing itself should need to be defined, so treat
+        # it as normal.
+        try:
+            Thing
+        except NameError:
+            return instance
+
+        # Thing sub-classes can use abstract to remove themselves from
+        # things tree.
+        if namespace.get("abstract", False):
+            return instance
+        
+        # meta class is used only for thing so every instances should
+        # be thing or its sub-classes.
+
+        if 'name' not in namespace or not isinstance(namespace['name'], str) \
+                or namespace['name'] == "":
+            # convert class name from camel case to snake case.
+            namespace['name'] = re.sub(r'(?<!^)(?=[A-Z])', '_', name).lower()
+            instance.name = namespace['name']
+
+        assert isinstance(instance, type(Thing))
+        Things.set(namespace['name'], instance)
+        instance.registered_things[namespace['name']] = {}
+
 
         for _, value in namespace.items():
             if isinstance(value, Field):
@@ -61,6 +91,15 @@ class AbstractThing(abc.ABCMeta):
 
 
 class Thing(metaclass=AbstractThing):
+    '''
+    Thing class has all of the instances of that class.
+    For example Lamp is a thing and for each lamp we will have
+    a record in the registered_things map based on the agent_id
+    and device_id.
+
+    registered thing is defined over the thing class and it is shared between
+    all the instances.
+    '''
     registered_things: dict[str, dict[tuple[str, str], Thing]] = {}
     name: str = ""
 

@@ -1,5 +1,3 @@
-import typing
-
 from ..controllers import NotificationController
 from .base import Thing, Things
 from .fields.base import Field
@@ -12,6 +10,7 @@ class DummyMQTTService:
 
 def test_get_thing():
     lamp = Things.get("lamp")
+    light = Things.get("light")
 
     assert lamp.name == 'lamp'
     assert isinstance(lamp, type)
@@ -22,7 +21,12 @@ def test_get_thing():
     assert lamp.__dict__['on'].name == 'on'
     assert isinstance(lamp.__dict__['on'], Field)
 
-    assert Things.things == {'lamp': lamp}
+    assert len(Things.things)
+    assert Things.things['lamp'] == lamp
+    assert Things.things['light'] == light
+
+    assert len(lamp.registered_things) == 2
+    assert "lamp" in lamp.registered_things
 
 def test_trun_on_lamp():
     lamp = Things.get("lamp")
