@@ -15,6 +15,7 @@ dynaconf = "*"
 pymongo-stubs = "*"
 types-requests = "*"
 sanic-ext = "*"
+setuptools = "*"
 
 [dev-packages]
 pytest = "*"
