@@ -730,12 +730,12 @@
         },
         "sanic": {
             "hashes": [
-                "sha256:35136e9cbac1250636f6523326506c4867cbc8635bd15087d3b38fcdbd0bd855",
-                "sha256:ccb1e9fea9c868a67fe5a213ca4a64d92c410caca3bfefa0947f6d838f2bcf60"
+                "sha256:2528ca81d2bdc58ea67d93c500df1a9c58404904b0bc3442425b464c72b4bb84",
+                "sha256:e292293b2663a7afeb380bdc48ab93978468b27deae46ad9561513941eb0311f"
             ],
             "index": "pypi",
             "markers": "python_version >= '3.8'",
-            "version": "==23.6.0"
+            "version": "==23.12.1"
         },
         "sanic-ext": {
             "hashes": [
@@ -747,10 +747,10 @@
         },
         "sanic-routing": {
             "hashes": [
-                "sha256:49f8d0c2aa3f99d2aa16f942e71a5056fe28241a42d29f4c369c04646ad3f737",
-                "sha256:e3aa97a51af9ccc580e773e351ee2333a7c3f69f75cecbfd06a3a8ddca6e04e6"
+                "sha256:1558a72afcb9046ed3134a5edae02fc1552cff08f0fff2e8d5de0877ea43ed73",
+                "sha256:1dcadc62c443e48c852392dba03603f9862b6197fc4cba5bbefeb1ace0848b04"
             ],
-            "version": "==23.6.0"
+            "version": "==23.12.0"
         },
         "setuptools": {
             "hashes": [
