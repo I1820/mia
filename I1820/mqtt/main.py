@@ -17,7 +17,9 @@ class MQTTService:
         tenant: str,
         discovery_service: DiscoveryService,
     ):
-        self.client = mqtt.Client(client_id="i1820")
+        self.client = mqtt.Client(
+            mqtt.CallbackAPIVersion.VERSION2, client_id="i1820"
+        )
         self.hld = Handler(discovery_service, tenant)
         self.host = host
         self.port = port

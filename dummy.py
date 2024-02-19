@@ -11,7 +11,7 @@ from I1820.domain.agent import Agent, RawThing
 from I1820.domain.log import I1820Log
 
 TENANT_ID = "main"
-client = mqtt.Client()
+client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2)
 logger = logging.getLogger("mia.dummy")
 
 
